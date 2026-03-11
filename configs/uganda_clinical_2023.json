@@ -1,0 +1,485 @@
+{
+  "document": {
+    "pdf_path": "Uganda-Clinical-Guidelines-20231.pdf",
+    "title": "Uganda Clinical Guidelines 2023",
+    "short_name": "UCG-2023",
+    "page_count": 1161
+  },
+  "processing": {
+    "benchmark_pages": "auto",
+    "page_range": null,
+    "max_pages_per_batch": 200
+  },
+  "ground_truth": [
+    {
+      "page": 68,
+      "type": "text",
+      "must_contain": [
+        "adult",
+        "cetrizine"
+      ]
+    },
+    {
+      "page": 80,
+      "type": "text",
+      "must_contain": [
+        "adult",
+        "volumes"
+      ]
+    },
+    {
+      "page": 90,
+      "type": "text",
+      "must_contain": [
+        "after",
+        "repeat"
+      ]
+    },
+    {
+      "page": 101,
+      "type": "text",
+      "must_contain": [
+        "amoxicillin",
+        "every"
+      ]
+    },
+    {
+      "page": 110,
+      "type": "text",
+      "must_contain": [
+        "after",
+        "suspected"
+      ]
+    },
+    {
+      "page": 117,
+      "type": "text",
+      "must_contain": [
+        "after",
+        "18-30"
+      ]
+    },
+    {
+      "page": 130,
+      "type": "text",
+      "must_contain": [
+        "adult",
+        "adults"
+      ]
+    },
+    {
+      "page": 68,
+      "type": "table",
+      "must_contain": [
+        "HC3\nHC4"
+      ]
+    }
+  ],
+  "drug_keywords": [
+    "abacavir",
+    "aciclovir",
+    "acid",
+    "acyclovir",
+    "adult",
+    "aflatoxin",
+    "after",
+    "albendazole",
+    "alprazolam",
+    "ambisome",
+    "aminophylline",
+    "amitriptyline",
+    "amlodipine",
+    "amodiaquine",
+    "amoxicillin",
+    "amoxycillin",
+    "ampicillin",
+    "around",
+    "artemether",
+    "artesunate",
+    "aspirin",
+    "atazanavir",
+    "atenolol",
+    "atorvastatin",
+    "atropine",
+    "azithromycin",
+    "beclomethasone",
+    "bendroflumethiazide",
+    "benzhexol",
+    "benzodiazepine",
+    "benzylpenicillin",
+    "betamethasone",
+    "bisoprolol",
+    "bromide",
+    "bupropion",
+    "captopril",
+    "carbamazepine",
+    "carbetocin",
+    "carbimazole",
+    "cefixime",
+    "ceftriaxone",
+    "cephalexin",
+    "cetirizine",
+    "cetrizine",
+    "cexfixime",
+    "child",
+    "chloramphenicol",
+    "chloride",
+    "chloroquine",
+    "chlorphenamine",
+    "chlorpheniramine",
+    "chlorpromazine",
+    "cillin",
+    "ciprofloxacin",
+    "clindamycin",
+    "clofazimine",
+    "clotrimazole",
+    "cloxacillin",
+    "clozapine",
+    "codeine",
+    "conazole",
+    "containing",
+    "cotrimoxazole",
+    "dapsone",
+    "darunavir",
+    "dexamethasone",
+    "diazepam",
+    "diclofenac",
+    "digoxin",
+    "dihydroartemisinin",
+    "dilute",
+    "dolutegravir",
+    "donepezil",
+    "doxycycline",
+    "drocortisone",
+    "efavirenz",
+    "eflornithine",
+    "enalapril",
+    "enoxaparin",
+    "epinephrine",
+    "ergotamine",
+    "erythromicin",
+    "erythromycim",
+    "erythromycin",
+    "ethambutol",
+    "ethosuximide",
+    "exceed",
+    "fluconazole",
+    "fluoxetine",
+    "folic acid",
+    "furosemide",
+    "gentamicin",
+    "glibenclamide",
+    "glucagon",
+    "griseofulvin",
+    "haloperidol",
+    "hrig",
+    "hydralazine",
+    "hydrochlorothiazide",
+    "hydrocortisone",
+    "hyoscine",
+    "ibuprofen",
+    "indomethacin",
+    "inflam",
+    "infusion",
+    "initially",
+    "inject",
+    "injection",
+    "insulin",
+    "isoniazid",
+    "ketoconazole",
+    "labetalol",
+    "lamivudine",
+    "levonorgestrel",
+    "lisinopril",
+    "lopinavir",
+    "loratidine",
+    "losartan",
+    "lumefantrine",
+    "mebendazole",
+    "mefloquine",
+    "memantine",
+    "mesylate",
+    "metformin",
+    "methyldopa",
+    "metoclopramide",
+    "metronidazole",
+    "miconazole",
+    "midazolam",
+    "misoprostol",
+    "molnupiravir",
+    "morphine",
+    "mycin",
+    "nebivolol",
+    "nebulisation",
+    "nevirapine",
+    "niazid",
+    "nifedipine",
+    "niramine",
+    "nitrofurantoin",
+    "niverapine",
+    "noxymethylpenicillin",
+    "olanzapine",
+    "omeprazole",
+    "oral rehydration salts",
+    "oxytocin",
+    "paracetamol",
+    "parenteral",
+    "paromomycin",
+    "penicillin",
+    "pentamidine",
+    "peptide",
+    "pessaries",
+    "pessary",
+    "pethidine",
+    "phenobarbital",
+    "phenytoin",
+    "phosphate",
+    "picillin",
+    "piperaquine",
+    "praziquantel",
+    "prednisolone",
+    "primaquine",
+    "promethazine",
+    "propranolol",
+    "pyrazinamide",
+    "pyridoxine",
+    "pyrimethamine",
+    "quetiapine",
+    "quinine",
+    "raltegravir",
+    "ranitidine",
+    "retard",
+    "ride",
+    "rifampicin",
+    "rifapentine",
+    "risperidone",
+    "ritonavir",
+    "salbutamol",
+    "sertaline",
+    "sertraline",
+    "simvastatin",
+    "spironolactone",
+    "stibogluconate",
+    "streptomycin",
+    "sugar",
+    "sulfadoxine",
+    "sulphate",
+    "sumatriptan",
+    "syrup",
+    "tablet",
+    "tablets",
+    "telmisartan",
+    "tenofovir",
+    "then",
+    "thiamine",
+    "thiazide",
+    "timolol",
+    "tinidazole",
+    "tramadol",
+    "triamcinolone",
+    "trimoxazole",
+    "trisilicate",
+    "usually",
+    "valsartan",
+    "vancomycin",
+    "vitamin a",
+    "warfarin",
+    "year",
+    "zidovudine",
+    "zinc",
+    "zole"
+  ],
+  "dosing_keywords": [
+    "body weight",
+    "kg",
+    "dose",
+    "mg",
+    "tablet",
+    "twice daily",
+    "daily for",
+    "single dose",
+    "every 8 hours",
+    "mg/kg",
+    "dose (mg)",
+    "dose given"
+  ],
+  "dose_reference_ranges": {},
+  "domain_keywords": {
+    "conditions": [
+      [
+        "malaria",
+        "Malaria"
+      ],
+      [
+        "HIV|AIDS",
+        "HIV/AIDS"
+      ],
+      [
+        "tubercul",
+        "Tuberculosis"
+      ],
+      [
+        "pneumonia",
+        "Pneumonia"
+      ],
+      [
+        "diarrh",
+        "Diarrhoeal disease"
+      ],
+      [
+        "diabetes",
+        "Diabetes"
+      ],
+      [
+        "hypertension",
+        "Hypertension"
+      ],
+      [
+        "asthma",
+        "Asthma"
+      ],
+      [
+        "anemia|anaemia",
+        "Anaemia"
+      ],
+      [
+        "epilepsy",
+        "Epilepsy"
+      ],
+      [
+        "meningitis",
+        "Meningitis"
+      ],
+      [
+        "hepatitis",
+        "Hepatitis"
+      ],
+      [
+        "measles",
+        "Measles"
+      ],
+      [
+        "typhoid",
+        "Typhoid"
+      ],
+      [
+        "malnutrition",
+        "Malnutrition"
+      ],
+      [
+        "pregnancy|obstetric|maternal",
+        "Maternal health"
+      ],
+      [
+        "neonatal|newborn",
+        "Neonatal care"
+      ],
+      [
+        "dental|oral health",
+        "Oral health"
+      ],
+      [
+        "mental health|depression|anxiety",
+        "Mental health"
+      ],
+      [
+        "cancer|oncology",
+        "Cancer"
+      ],
+      [
+        "renal|kidney",
+        "Renal disease"
+      ],
+      [
+        "cardiac|heart",
+        "Cardiac disease"
+      ],
+      [
+        "respiratory",
+        "Respiratory disease"
+      ],
+      [
+        "skin|dermatol",
+        "Skin conditions"
+      ]
+    ],
+    "biomarkers": [],
+    "contraindication_terms": [
+      "contraindicated",
+      "do not give",
+      "not recommended",
+      "avoid",
+      "should not",
+      "first trimester",
+      "allergy",
+      "hypersensitivity"
+    ],
+    "high_preservation_keywords": [
+      "mg/kg",
+      "contraindicated",
+      "do not give",
+      "danger sign",
+      "refer urgently",
+      "emergency",
+      "not recommended",
+      "should not be used",
+      "avoid",
+      "first-line treatment"
+    ]
+  },
+  "cross_validation": {
+    "dosing_pages": [
+      68,
+      80,
+      89,
+      90,
+      101,
+      110,
+      116,
+      117,
+      125,
+      130,
+      134,
+      136,
+      137,
+      138,
+      139,
+      142,
+      143,
+      146,
+      152,
+      165,
+      167,
+      170,
+      171,
+      175,
+      176,
+      178,
+      180,
+      183,
+      184,
+      187,
+      188,
+      190,
+      191,
+      192,
+      193,
+      195,
+      196,
+      197,
+      200,
+      215,
+      218,
+      220,
+      221,
+      224,
+      226,
+      228,
+      229,
+      230,
+      236,
+      237
+    ],
+    "severe_pages": []
+  }
+}

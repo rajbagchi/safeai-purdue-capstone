@@ -30,9 +30,15 @@ from typing import Optional, List, Dict, Any, Tuple
 from collections import defaultdict
 from bisect import bisect_right
 
+from pipeline_config import (
+    load_config, get_document_title, get_condition_patterns,
+    get_biomarker_patterns, build_high_preservation_regex,
+)
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 2.  CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
+CONFIG = load_config()
 OUTPUT_DIR = Path("extraction_output")
 
 # Chunk sizing
@@ -65,14 +71,8 @@ STRUCTURAL_HEADING_RES = [
     re.compile(r"^©", re.I),
 ]
 
-# Keywords that elevate a narrative chunk to "high" preservation
-HIGH_PRESERVATION_KW = re.compile(
-    r"mg/kg|mg\s*/\s*kg|contraindicated|do not give|not recommended|"
-    r"recommended dose|should not be used|avoid|"
-    r"first.?line treatment|second.?line|treatment failure|"
-    r"danger signs|severe malaria",
-    re.IGNORECASE,
-)
+# Keywords that elevate a narrative chunk to "high" preservation (from config)
+HIGH_PRESERVATION_KW = build_high_preservation_regex(CONFIG)
 
 # Clinical metadata: age patterns
 AGE_PATTERN_RE = re.compile(
@@ -986,19 +986,7 @@ def _infer_condition_from_hierarchy(hierarchy: List[str]) -> Optional[str]:
 
     Walks the hierarchy looking for treatment/condition indicators.
     """
-    condition_keywords = [
-        (r"uncomplicated\s+malaria", "Uncomplicated malaria"),
-        (r"severe\s+malaria", "Severe malaria"),
-        (r"recurrent.*malaria", "Recurrent malaria"),
-        (r"treating\s+malaria", "Malaria treatment"),
-        (r"P\.\s*falciparum", "P. falciparum malaria"),
-        (r"P\.\s*vivax", "P. vivax malaria"),
-        (r"pregnancy", "Malaria in pregnancy"),
-        (r"chemoprevention", "Malaria chemoprevention"),
-        (r"prevention", "Malaria prevention"),
-        (r"vector\s+control", "Vector control"),
-        (r"diagnosing", "Malaria diagnosis"),
-    ]
+    condition_keywords = get_condition_patterns(CONFIG)
     for heading in reversed(hierarchy):
         for pattern, label in condition_keywords:
             if re.search(pattern, heading, re.I):
@@ -1120,14 +1108,16 @@ def extract_clinical_metadata_for_narrative(chunk: Dict) -> None:
     if contras:
         cm["contraindications"] = contras
 
-    # Special populations
+    # Special populations (generic + config biomarkers)
     special_pop_patterns = [
         r"(pregnant\s+women[^.;]*)",
         r"(children\s+(?:under|<|weighing\s*<)\s*[\d]+\s*(?:kg|years?|months?)[^.;]*)",
         r"(infants?\s*(?:<|under)\s*[\d]+\s*(?:months?|weeks?)[^.;]*)",
         r"(HIV[^.;]*patients?[^.;]*)",
-        r"(G6PD\s+deficien[ct][^.;]*)",
     ]
+    # Add biomarker-specific patterns from config
+    for bm in get_biomarker_patterns(CONFIG):
+        special_pop_patterns.append(rf"({re.escape(bm)}\s+deficien[ct][^.;]*)")
     pops = []
     for pat in special_pop_patterns:
         for m in re.finditer(pat, content, re.I):
@@ -1395,7 +1385,7 @@ def save_chunks(
 
     envelope = {
         "pipeline_version": "4a",
-        "source_document": "WHO guidelines for malaria - 13 August 2025",
+        "source_document": get_document_title(CONFIG),
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "total_chunks": len(chunks),
         "chunk_type_counts": dict(type_counts),

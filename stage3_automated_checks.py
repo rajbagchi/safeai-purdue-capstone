@@ -28,9 +28,14 @@ import time
 from pathlib import Path
 from typing import Optional
 
+from pipeline_config import (
+    load_config, get_drug_keywords, get_dose_reference_ranges,
+)
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 2.  CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
+CONFIG = load_config()
 OUTPUT_DIR = Path("extraction_output")
 
 # Weight-band coverage thresholds (kg)
@@ -158,10 +163,8 @@ def parse_dosing_table(md: str) -> dict:
             "body weight", "weight (kg)", "weight"
         ]) and weight_col is None:
             weight_col = ci
-        elif any(kw in h_lower for kw in [
-            "dose", "mg", "tablet", "primaquine", "artemether",
-            "artesunate", "dihydroartemisinin", "sulfadoxine",
-        ]):
+        elif any(kw in h_lower for kw in
+                 ["dose", "mg", "tablet"] + get_drug_keywords(CONFIG)):
             dose_cols.append(ci)
 
     # If no dose column identified from header, assume column 1+
@@ -354,21 +357,10 @@ def check_weight_coverage(parsed: dict, table_info: dict) -> dict:
 # 9.  CHECK 4: CLINICAL DOSE BOUNDS
 # ─────────────────────────────────────────────────────────────────────────────
 
-# Reference per-kg dose ranges for common antimalarials (mg/kg/dose).
+# Reference per-kg dose ranges (loaded from pipeline_config.json).
 # These are wide ranges to catch only gross extraction errors, not subtle
 # clinical deviations.
-_DRUG_DOSE_RANGES = {
-    "artemether":           (1.0, 5.0),
-    "lumefantrine":         (5.0, 30.0),
-    "artesunate":           (1.5, 15.0),
-    "amodiaquine":          (5.0, 20.0),
-    "mefloquine":           (3.0, 15.0),
-    "dihydroartemisinin":   (1.5, 10.0),
-    "piperaquine":          (10.0, 32.0),
-    "sulfadoxine":          (15.0, 35.0),
-    "pyrimethamine":        (0.5, 2.0),
-    "primaquine":           (0.05, 1.0),
-}
+_DRUG_DOSE_RANGES = get_dose_reference_ranges(CONFIG)
 
 
 def _identify_drug(header: str) -> Optional[str]:
@@ -627,7 +619,7 @@ def load_dosing_tables() -> list:
 
     print(f"  Dosing tables to validate: {len(dosing_tables)}")
 
-    # Load stitched table from Stage 2 (pp.173-174)
+    # Load stitched table from Stage 2 (if any page-boundary tables were detected)
     stitched_table = None
     if xval_path.exists():
         with open(xval_path, "r", encoding="utf-8") as f:
@@ -887,7 +879,8 @@ def main():
 
     if stitched_result:
         st_status = "\u2705 PASS" if stitched_result["overall_passed"] else "\u274c FAIL"
-        print(f"\n  Stitched table (pp.173-174): {st_status}")
+        st_pages = stitched_result.get("pages", "?")
+        print(f"\n  Stitched table (pp.{st_pages}): {st_status}")
 
     print(f"\n  Total time           : {timings['total_s']}s")
     print(f"{'='*70}\n")

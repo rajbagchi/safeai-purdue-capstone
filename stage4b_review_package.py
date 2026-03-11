@@ -34,10 +34,16 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime, timezone
 
+from pipeline_config import (
+    load_config, get_document_title, get_source_pdf_label,
+    get_contraindication_terms, build_contraindication_regex,
+)
+
 # ═══════════════════════════════════════════════════════════════════
 # 2. CONFIGURATION
 # ═══════════════════════════════════════════════════════════════════
 
+CONFIG = load_config()
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "extraction_output"
 CHUNKS_PATH = OUTPUT_DIR / "chunks.json"
@@ -163,20 +169,16 @@ STRATIFICATION_KEYWORDS_RE = re.compile(
     r"weight|kg|age|year|month|infant|child|adult|pediatric|neonate",
     re.IGNORECASE,
 )
-CONTRAINDICATION_KEYWORDS_RE = re.compile(
-    r"contraindicated|do not give|not recommended|avoid|should not|"
-    r"first trimester|G6PD|allergy|hypersensitivity",
-    re.IGNORECASE,
-)
+CONTRAINDICATION_KEYWORDS_RE = build_contraindication_regex(CONFIG)
 CONDITIONAL_LOGIC_KEYWORDS_RE = re.compile(
     r"\bif\b.*\bthen\b|refer|danger sign|emergency|severe|failure|"
     r"switch to|escalate|hospitalize",
     re.IGNORECASE,
 )
 
-# Source document identifier
-SOURCE_DOCUMENT = "WHO guidelines for malaria - 13 August 2025"
-SOURCE_PDF = "B09514-eng.pdf (478 pages)"
+# Source document identifier (from config)
+SOURCE_DOCUMENT = get_document_title(CONFIG)
+SOURCE_PDF = get_source_pdf_label(CONFIG)
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -1354,6 +1356,12 @@ def main():
         type=str,
         default=None,
         help="Path to completed review_package.json for ingestion",
+    )
+    parser.add_argument(
+        "--config",
+        type=str,
+        default=None,
+        help="Path to pipeline_config JSON file (handled by pipeline_config.py)",
     )
     args = parser.parse_args()
 

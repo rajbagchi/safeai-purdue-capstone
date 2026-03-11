@@ -1,0 +1,99 @@
+{
+  "document": {
+    "pdf_path": "B09514-eng.pdf",
+    "title": "WHO guidelines for malaria - 13 August 2025",
+    "short_name": "WHO-Malaria-2025",
+    "page_count": 478
+  },
+  "processing": {
+    "benchmark_pages": [173, 212],
+    "page_range": null,
+    "max_pages_per_batch": null
+  },
+  "ground_truth": [
+    {"page": 173, "type": "text",
+     "must_contain": ["weight-based dosage recommendations", "artemether"]},
+    {"page": 174, "type": "text",
+     "must_contain": ["lumefantrine", "decreased exposure", "smokers"]},
+    {"page": 174, "type": "text",
+     "must_contain": ["amodiaquine", "neutropenia", "efavirenz"]},
+    {"page": 175, "type": "text",
+     "must_contain": ["sulfadoxine", "pyrimethamine", "folic acid"]},
+    {"page": 176, "type": "text",
+     "must_contain": ["dihydroartemisinin", "piperaquine", "2.5 mg/kg"]},
+    {"page": 177, "type": "text",
+     "must_contain": ["piperaquine", "QT interval"]},
+    {"page": 178, "type": "text",
+     "must_contain": ["primaquine", "0.25 mg/kg", "G6PD deficiency"]},
+    {"page": 212, "type": "text",
+     "must_contain": ["hyperpyrexia", "convulsions", "maintain airway"]},
+    {"page": 173, "type": "table",
+     "must_contain": ["20 + 120"]},
+    {"page": 174, "type": "table",
+     "must_contain": ["80 + 480"]},
+    {"page": 174, "type": "table",
+     "must_contain": ["25 + 67.5", "200 + 540"]},
+    {"page": 175, "type": "table",
+     "must_contain": ["25 + 55", "200 + 440"]},
+    {"page": 175, "type": "table",
+     "must_contain": ["250 / 12.5", "1500 / 75"]},
+    {"page": 176, "type": "table",
+     "must_contain": ["20 + 160", "200 + 1600"]},
+    {"page": 178, "type": "table",
+     "must_contain": ["3.75", "7.5"]},
+    {"page": 198, "type": "image",
+     "must_contain": ["G6PD", "primaquine"]}
+  ],
+  "drug_keywords": [
+    "artemether", "lumefantrine", "artesunate", "amodiaquine",
+    "mefloquine", "sulfadoxine", "pyrimethamine", "piperaquine",
+    "dihydroartemisinin", "primaquine", "quinine", "chloroquine"
+  ],
+  "dosing_keywords": [
+    "body weight", "kg", "dose (mg)", "dose given", "mg/kg",
+    "tablet", "twice daily", "daily for 3 days", "single dose"
+  ],
+  "dose_reference_ranges": {
+    "artemether":         {"min_mg_per_kg": 1.0,  "max_mg_per_kg": 5.0},
+    "lumefantrine":       {"min_mg_per_kg": 5.0,  "max_mg_per_kg": 30.0},
+    "artesunate":         {"min_mg_per_kg": 1.5,  "max_mg_per_kg": 15.0},
+    "amodiaquine":        {"min_mg_per_kg": 5.0,  "max_mg_per_kg": 20.0},
+    "mefloquine":         {"min_mg_per_kg": 3.0,  "max_mg_per_kg": 15.0},
+    "dihydroartemisinin": {"min_mg_per_kg": 1.5,  "max_mg_per_kg": 10.0},
+    "piperaquine":        {"min_mg_per_kg": 10.0, "max_mg_per_kg": 32.0},
+    "sulfadoxine":        {"min_mg_per_kg": 15.0, "max_mg_per_kg": 35.0},
+    "pyrimethamine":      {"min_mg_per_kg": 0.5,  "max_mg_per_kg": 2.0},
+    "primaquine":         {"min_mg_per_kg": 0.05, "max_mg_per_kg": 1.0}
+  },
+  "domain_keywords": {
+    "conditions": [
+      ["uncomplicated\\s+malaria", "Uncomplicated malaria"],
+      ["severe\\s+malaria", "Severe malaria"],
+      ["recurrent.*malaria", "Recurrent malaria"],
+      ["treating\\s+malaria", "Malaria treatment"],
+      ["P\\.\\s*falciparum", "P. falciparum malaria"],
+      ["P\\.\\s*vivax", "P. vivax malaria"],
+      ["pregnancy", "Malaria in pregnancy"],
+      ["chemoprevention", "Malaria chemoprevention"],
+      ["prevention", "Malaria prevention"],
+      ["vector\\s+control", "Vector control"],
+      ["diagnosing", "Malaria diagnosis"]
+    ],
+    "biomarkers": ["G6PD"],
+    "contraindication_terms": [
+      "contraindicated", "do not give", "not recommended",
+      "avoid", "should not", "first trimester", "G6PD",
+      "allergy", "hypersensitivity"
+    ],
+    "high_preservation_keywords": [
+      "mg/kg", "contraindicated", "do not give", "not recommended",
+      "recommended dose", "should not be used", "avoid",
+      "first-line treatment", "second-line", "treatment failure",
+      "danger signs", "severe malaria"
+    ]
+  },
+  "cross_validation": {
+    "dosing_pages": [173, 174, 175, 176, 177, 178],
+    "severe_pages": [212]
+  }
+}

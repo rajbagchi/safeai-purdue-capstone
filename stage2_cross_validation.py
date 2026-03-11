@@ -12,8 +12,11 @@ Three cross-validation layers:
   2. Independent table extraction — uses PyMuPDF find_tables() to re-extract
      dosing tables and compare against Docling cell-by-cell.
   3. Page-boundary table stitching — detects tables that span page breaks,
-     merges the fragments, and resolves the known Stage 1 failure (80 + 480 mg
-     artemether-lumefantrine row on pp.173–174).
+     merges the fragments, and resolves known page-boundary failures.
+
+Config-driven: reads document-specific settings from pipeline_config.json
+    python stage2_cross_validation.py                         # uses default config
+    python stage2_cross_validation.py --config configs/X.json # uses custom config
 
 Run:
     python stage2_cross_validation.py
@@ -30,63 +33,46 @@ from pathlib import Path
 
 import fitz  # PyMuPDF
 
+from pipeline_config import (
+    load_config, get_pdf_path, get_ground_truth, get_dosing_pages,
+)
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 2.  CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
-PDF_PATH = "B09514-eng.pdf"
+CONFIG = load_config()
+PDF_PATH = get_pdf_path(CONFIG)
 OUTPUT_DIR = Path("extraction_output")
 
-# Pages to cross-validate (1-indexed PDF page numbers)
-DOSING_PAGES = list(range(173, 179))     # pp.173–178  (ACT dosing tables)
-SEVERE_MALARIA_PAGE = 212                 # severe malaria management
-CROSS_VALIDATE_PAGES = DOSING_PAGES + [SEVERE_MALARIA_PAGE]
+# Pages to cross-validate — from config, or auto-discover from Stage 1
+_dosing_pages_cfg = get_dosing_pages(CONFIG)
+_severe_pages_cfg = CONFIG.get("cross_validation", {}).get("severe_pages", [])
+
+if _dosing_pages_cfg == "auto":
+    # Auto-discover: read Stage 1 table_inventory.json for dosing pages
+    _inv_path = OUTPUT_DIR / "table_inventory.json"
+    if _inv_path.exists():
+        _inv = json.loads(_inv_path.read_text(encoding="utf-8"))
+        DOSING_PAGES = sorted(set(
+            t["page"] for t in _inv
+            if t.get("classification") in ("dosing", "dosing (no weight bands)")
+        ))
+    else:
+        DOSING_PAGES = []
+        print("⚠️  No table_inventory.json found — dosing pages auto-discovery skipped")
+else:
+    DOSING_PAGES = list(_dosing_pages_cfg) if _dosing_pages_cfg else []
+
+CROSS_VALIDATE_PAGES = sorted(set(DOSING_PAGES + list(_severe_pages_cfg)))
 
 # Page-boundary detection thresholds (fraction of page height)
 BOTTOM_THRESHOLD = 0.90   # table bbox bottom > 90% of page height → likely truncated
 TOP_THRESHOLD = 0.10      # table bbox top < 10% of page height → likely continuation
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 3.  GROUND TRUTH  (same as Stage 1 — copied for independence)
+# 3.  GROUND TRUTH  (loaded from pipeline_config.json — shared with Stage 1)
 # ─────────────────────────────────────────────────────────────────────────────
-GROUND_TRUTH = [
-    # TEXT checks
-    {"page": 173, "type": "text",
-     "must_contain": ["weight-based dosage recommendations", "artemether"]},
-    {"page": 174, "type": "text",
-     "must_contain": ["lumefantrine", "decreased exposure", "smokers"]},
-    {"page": 174, "type": "text",
-     "must_contain": ["amodiaquine", "neutropenia", "efavirenz"]},
-    {"page": 175, "type": "text",
-     "must_contain": ["sulfadoxine", "pyrimethamine", "folic acid"]},
-    {"page": 176, "type": "text",
-     "must_contain": ["dihydroartemisinin", "piperaquine", "2.5 mg/kg"]},
-    {"page": 177, "type": "text",
-     "must_contain": ["piperaquine", "QT interval"]},
-    {"page": 178, "type": "text",
-     "must_contain": ["primaquine", "0.25 mg/kg", "G6PD deficiency"]},
-    {"page": 212, "type": "text",
-     "must_contain": ["hyperpyrexia", "convulsions", "maintain airway"]},
-
-    # TABLE checks
-    {"page": 173, "type": "table",
-     "must_contain": ["20 + 120"]},
-    {"page": 174, "type": "table",
-     "must_contain": ["80 + 480"]},       # ← Stage 1 failure (page-boundary)
-    {"page": 174, "type": "table",
-     "must_contain": ["25 + 67.5", "200 + 540"]},
-    {"page": 175, "type": "table",
-     "must_contain": ["25 + 55", "200 + 440"]},
-    {"page": 175, "type": "table",
-     "must_contain": ["250 / 12.5", "1500 / 75"]},
-    {"page": 176, "type": "table",
-     "must_contain": ["20 + 160", "200 + 1600"]},
-    {"page": 178, "type": "table",
-     "must_contain": ["3.75", "7.5"]},
-
-    # IMAGE checks
-    {"page": 198, "type": "image",
-     "must_contain": ["G6PD", "primaquine"]},
-]
+GROUND_TRUTH = get_ground_truth(CONFIG)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
