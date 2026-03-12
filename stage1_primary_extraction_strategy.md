@@ -1,8 +1,8 @@
 # Stage 1: Primary Extraction Strategy
 
 **Safe AI Uganda — Clinical Data Extraction Methodology**
-**Document:** WHO Consolidated Malaria Guidelines (B09514-eng.pdf, 478 pages)
-**Last updated:** 03.03.2026
+**Document:** Config-driven (reference: WHO Consolidated Malaria Guidelines, B09514-eng.pdf, 478 pages)
+**Last updated:** 11.03.2026
 
 ---
 
@@ -70,6 +70,8 @@ After extraction, each of the 207 tables is automatically classified using keywo
 | **structural** | 2 | Table of contents, abbreviation lists |
 | **other** | 142 | Reference tables, metadata, supplementary |
 
+Table classification keywords are now loaded from the JSON config file (`clinical_table_keywords` field) via `pipeline_config.py`. The default 7 clinical management keywords can be expanded per-document — for example, the Uganda Clinical Guidelines config uses 33 keywords. Classification uses case-insensitive matching, and a relaxed threshold allows a single clinical keyword (with no dosing keywords present) to classify a table as `clinical_management`.
+
 **Dosing** and **clinical_management** tables are converted to Natural Language Logic (NLL) — a linearised IF/THEN format that enables LLMs to reason about tabular data without alignment hallucinations:
 
 ```
@@ -92,7 +94,7 @@ Accuracy is measured against 16 hand-verified ground-truth checks spanning three
 | **Image** | 1 | 1 | 0 | 100% |
 | **Total** | **16** | **15** | **1** | **93.8%** |
 
-Ground-truth entries are defined as JSON objects with a page number, content type, and a list of keywords that must be present in the extracted output:
+Ground-truth entries are defined as JSON objects with a page number, content type, and a list of keywords that must be present in the extracted output. Ground-truth entries are loaded from the `ground_truth` field in the pipeline config JSON file (e.g., `configs/malaria_who_2025.json`). This allows each document to define its own benchmark checks without modifying the extraction script.
 
 ```json
 {"page": 173, "type": "table", "must_contain": ["20 + 120"]}
@@ -259,6 +261,30 @@ The remaining 33 are smaller PDF layout elements (logos, decorative elements, sm
 
 **Why it is necessary:** Clinical pathway diagrams contain decision logic that is not captured in text or tables. The OCR output from these images feeds into the ground-truth benchmark (the p.198 image must contain "G6PD" and "primaquine") and will be cross-validated in Stage 2.
 
+### 5.7 `image_inventory.json` (per-image OCR metadata)
+
+**What it is:** A JSON array of all images extracted from the PDF, with their OCR text and metadata.
+
+**What it contains:** For each image: index, source page number, caption text (from Docling), OCR text (from RapidOCR), saved PNG path, and image dimensions (width, height).
+
+**Why it is necessary:** Stage 4a uses this file to enrich image chunks with OCR text content and clinical metadata, instead of creating empty placeholder chunks. This ensures that clinical flowcharts, diagnostic algorithms, and severity classification diagrams contribute their text content to the RAG knowledge base.
+
+---
+
+## Changelog
+
+### v2.0 — PDF-Agnostic Config-Driven Architecture (tag: v2.0-pdf-agnostic)
+
+**Before:** All disease-specific constants were hardcoded: 7 clinical management keywords, 16 malaria ground-truth checks, a single PDF path (`B09514-eng.pdf`), drug keywords, dosing keywords, and dose reference ranges — all embedded directly in `extraction_mvp_v2.py`.
+
+**After:** All disease-specific constants externalized to JSON config files in `configs/` directory (e.g., `malaria_who_2025.json`, `uganda_clinical_2023.json`). Shared config loader `pipeline_config.py` provides accessor functions. All stages accept a `--config` CLI flag to select the document config. New `config_generator.py` script enables AI-assisted onboarding of new clinical PDFs — it scans a PDF and generates a draft config with drug keywords, ground truth, dosing pages, and condition patterns.
+
+### v2.1 — Broader Clinical Content + Image OCR Enhancement
+
+**Before:** `classify_table()` used exact-case keyword matching with a strict score threshold. Image OCR text was extracted by RapidOCR in memory but NOT persisted to disk — Stage 4a only saw empty `<!-- image -->` placeholder markers.
+
+**After:** Table classification uses case-insensitive matching with a relaxed threshold: a single clinical keyword (with no dosing keywords) is sufficient for `clinical_management` classification. Config field `clinical_table_keywords` expanded to 33 keywords for Uganda Clinical Guidelines. New `image_inventory.json` output persists per-image OCR text, caption, page number, PNG path, and dimensions to disk, enabling Stage 4a to enrich image chunks with actual clinical content.
+
 ---
 
 ## 6. What Stage 1 Does Not Cover
@@ -271,4 +297,4 @@ The following are explicitly deferred to subsequent stages:
 | Abbreviation tables misclassified as dosing (pp.27, 29) | Stage 2: Classification refinement |
 | DHA-piperaquine weight-band parsing edge case | Stage 3: Enhanced plausibility rules |
 | Clinical correctness of extracted dosing values | Stage 4: IDI physician review |
-| Content chunking for RAG/LLM pipeline | Post-extraction chunking strategy (TBD) |
+| Content chunking for RAG/LLM pipeline | **Implemented** — Stage 4a chunking + metadata strategy |

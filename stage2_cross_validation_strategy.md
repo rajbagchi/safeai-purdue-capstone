@@ -1,8 +1,8 @@
 # Stage 2: Cross-Validation Strategy
 
 **Safe AI Uganda — Clinical Data Extraction Methodology**
-**Document:** WHO Consolidated Malaria Guidelines (B09514-eng.pdf, 478 pages)
-**Last updated:** 04.03.2026
+**Document:** Config-driven (reference: WHO Consolidated Malaria Guidelines, B09514-eng.pdf, 478 pages)
+**Last updated:** 11.03.2026
 
 ---
 
@@ -58,7 +58,7 @@ Stage 2 runs seven sequential validation layers, each building on the previous.
 
 ### 2.1 Raw Text Verification (Layer A)
 
-For every ground-truth check (the same 16 entries used in Stage 1), the raw text is extracted from the corresponding PDF page using `page.get_text()` and each keyword is verified.
+For every ground-truth check (the same 16 entries used in Stage 1, loaded from the `ground_truth` field in the pipeline config JSON), the raw text is extracted from the corresponding PDF page using `page.get_text()` and each keyword is verified.
 
 | Content type | Checks | Pass | Fail | Accuracy |
 |---|---|---|---|---|
@@ -129,7 +129,7 @@ No actual dosing values differ between the two engines.
 
 ### 2.5 Classification Refinement (Layer E)
 
-Stage 1 classified 41 tables as "dosing" using keyword scoring. Stage 2 applies a secondary check: does the table actually contain numeric weight-band patterns and dose values?
+Stage 1 classified 41 tables as "dosing" using keyword scoring. Classification keywords are loaded from the pipeline config JSON, enabling document-specific keyword sets. Stage 2 applies a secondary check: does the table actually contain numeric weight-band patterns and dose values?
 
 Tables are verified at two levels:
 1. **Header-level**: Does the first row contain keywords like "Body weight", "Dose (mg)", "mg base", "daily for N days"?
@@ -245,6 +245,16 @@ IF Body weight (kg) is ≥ 35, THEN Dose is 80 + 480.
 
 ---
 
+## Changelog
+
+### v2.0 — PDF-Agnostic Config-Driven Architecture (tag: v2.0-pdf-agnostic)
+
+**Before:** Classification refinement keywords and ground-truth checks were hardcoded specifically for the WHO malaria PDF. Dosing page numbers, drug keywords, and validation targets were embedded directly in the script.
+
+**After:** All disease-specific parameters loaded from JSON config via `pipeline_config.py`. The script accepts `--config` to select a document-specific configuration. Ground-truth checks, dosing page lists, and keyword sets are all config-driven.
+
+---
+
 ## 6. What Stage 2 Does Not Cover
 
 The following are explicitly deferred to subsequent stages:
@@ -254,5 +264,5 @@ The following are explicitly deferred to subsequent stages:
 | Clinical correctness of dosing values (e.g., is 80 + 480 mg the right dose for ≥ 35 kg?) | Stage 4: IDI physician review |
 | DHA-piperaquine weight-band parsing edge case (p.176) | Stage 3: Enhanced plausibility rules |
 | Full-document cross-validation (only 7 pages checked) | Future: expand to all 207 tables if needed |
-| Content chunking for RAG/LLM pipeline | Post-extraction chunking strategy (TBD) |
+| Content chunking for RAG/LLM pipeline | **Implemented** — Stage 4a chunking + metadata strategy |
 | Vision-model cross-validation (Claude API Tier 2) | Future: targeted verification of ambiguous tables |

@@ -1,7 +1,7 @@
 # Clinical Verification Report — WHO Consolidated Malaria Guidelines
 ## Stage 4b: Physician Review Package
 
-**Generated:** 2026-03-05T03:16:37Z | **Pipeline version:** 4b
+**Generated:** 2026-03-11T23:52:40Z | **Pipeline version:** 4b
 **Source:** B09514-eng.pdf (478 pages)
 **Safety rule:** No content proceeds to deployment without `verified_by` signature + `audit_hash`.
 
@@ -29,10 +29,10 @@
 | 1. Validated dosing tables | Passed all 6 Stage 3 automated plausibility checks. Physicia... | 8 | Mandatory | ~16 min |
 | 2. Unvalidated dosing tables | NOT validated by Stage 3 automated checks (no weight column ... | 22 | Mandatory | ~44 min |
 | 3. Clinical management tables | Safety-critical clinical management content. Full manual rev... | 1 | Mandatory | ~2 min |
-| 4. Evidence tables + high-priority narratives | Contains clinical thresholds, dosing keywords, or contraindi... | 325 | Recommended | ~2.7 hrs |
+| 4. Evidence tables + high-priority narratives | Contains clinical thresholds, dosing keywords, or contraindi... | 326 | Recommended | ~2.7 hrs |
 | **Total mandatory** | | **31** | | **~62 min** |
 
-**Total review items:** 356 (mandatory: 31, recommended: 325). Optional chunks not included: 1122.
+**Total review items:** 357 (mandatory: 31, recommended: 326). Optional chunks not included: 1121.
 
 ---
 
@@ -81,7 +81,7 @@ Factors associated with altered drug exposure and treatment response:
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for artemether + lumefantrine matches WHO guidelines source PDF page 172.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.0–35.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 172 and section 5.2.1.1.2 Artemether + lumefantrine match the printed WHO guidelines.
 
@@ -131,7 +131,7 @@ Artesunate + amodiaquine is associated with severe neutropenia, particularly in 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Artesunate + amodiaquine matches WHO guidelines source PDF page 173.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.0–36.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 173 and section 5.2.1.1.2 Artesunate + amodiaquine match the printed WHO guidelines.
 
@@ -181,7 +181,7 @@ As concomitant use of rifampicin decreases exposure to mefloquine, po
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Artesunate + mefloquine matches WHO guidelines source PDF page 174.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.0–30.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 174 and section 5.2.1.1.2 Artesunate + mefloquine match the printed WHO guidelines.
 
@@ -227,7 +227,7 @@ Target dose and range: A target dose (range) of 4 (2-10) mg/kg bw per day artesu
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Artesunate matches WHO guidelines source PDF page 174.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.0–50.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 174 and section 5.2.1.1.2 Artesunate + sulfadoxine-pyrimethamine match the printed WHO guidelines.
 
@@ -285,7 +285,7 @@ As malnourished children are at increased risk for treatment failure, their resp
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Dihydroartemisinin + piperaquine matches WHO guidelines source PDF page 175.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.0–80.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 175 and section 5.2.1.1.2 Practical info match the printed WHO guidelines.
 
@@ -329,7 +329,7 @@ Please refer to the Policy brief on single-dose primaquine as a gametocytocide i
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Single matches WHO guidelines source PDF page 177.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 5.0–100.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 177 and section 5.2.1.3 Practical info match the printed WHO guidelines.
 
@@ -372,7 +372,7 @@ IF Body weight (kg) is > 20 to ≤ 35, THEN Total dose is 200 mg, Number of tabl
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Total matches WHO guidelines source PDF page 202.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 10.0–35.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 202 and section 5.2.1.7 Dispersible tablet dose recommendations for children (&gt;10 kg to ≤ 35 kg) match the printed WHO guidelines.
 
@@ -422,7 +422,7 @@ IF Body weight (kg) is ≥ 35, THEN Dose (mg) of artemether + lumefantrine given
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for artemether + lumefantrine matches WHO guidelines source PDF page 173, 174.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.0–35.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 173, 174 and section 5.2.1.1.2 Dosing of ACTs match the printed WHO guidelines.
 
@@ -538,7 +538,7 @@ IF ABT is Global Vector Control Response
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose matches WHO guidelines source PDF page 26.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 26 and section 10.5 1. Abbreviations match the printed WHO guidelines.
 
@@ -582,7 +582,7 @@ IF Certainty of the evidence is Feasibility, THEN Low is The introduction of taf
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose matches WHO guidelines source PDF page 203.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 203 and section 5.2.1.7 Benefits and harms match the printed WHO guidelines.
 
@@ -674,7 +674,7 @@ In populations using a 7-day primaquine regimen of 1 mg/kg/day, the improved eff
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose matches WHO guidelines source PDF page 205.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.25–70.0 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 205 and section 5.2.1.7 Benefits and harms match the printed WHO guidelines.
 
@@ -722,7 +722,7 @@ Comparator: Artemether + lumefantrine twice daily for 3 days
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                      | Comparator Artemether + lumefantrine              | Intervention Dihydroartemisinin + piperaquine                   | Certainty of the evidence matches WHO guidelines source PDF page 414.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 414 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -768,7 +768,7 @@ Comparator: Artesunate + mefloquine once daily for 3 days
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                                   | Comparator Artesunate + mefloquine                                     | Intervention Dihydroartemisinin + piperaquine     | Certainty of the evidence matches WHO guidelines source PDF page 415.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.28–3.72 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 415 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -822,7 +822,7 @@ Further studies in additional settings are required before this result can be ge
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                     | Comparator Artemether + lumefantrine   | Intervention Artemisinin + naphthoquine                     | Certainty of the evidence matches WHO guidelines source PDF page 424.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 424 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -884,7 +884,7 @@ Comparator: Dihydroartemisinin + piperaquine; 3-day course
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                      | Comparator Dihydroartemisinin + piperaquine   | Intervention Artemisinin + naphthoquine                      | Certainty of the evidence matches WHO guidelines source PDF page 426.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 426 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -932,7 +932,7 @@ Comparator: Artesunate 4 mg/kg bw once daily for 1 day plus sulfadoxine-pyrimeth
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                      | Comparator Artesunate 1 day plus sulfadoxine- pyrimethamine   | Intervention Artesunate 3 days plus sulfadoxine- pyrimethamine   | Certainty of the evidence matches WHO guidelines source PDF page 436.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 436 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -978,7 +978,7 @@ Comparator: Artesunate 4 mg/kg bw once daily for 1 day plus sulfadoxine-pyrimeth
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                     | Comparator Artesunate 1 day plus sulfadoxine- pyrimethamine   | Intervention Artesunate 3 days plus sulfadoxine- pyrimethamine   | Certainty of the evidence matches WHO guidelines source PDF page 437.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 437 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1031,7 +1031,7 @@ Comparator: Malaria treatment with an artemisinin derivative alone
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                      | Comparator ACT          | Intervention ACT + primaquine                                | Certainty of the evidence matches WHO guidelines source PDF page 438.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.4–0.6 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 438 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1077,7 +1077,7 @@ Comparator: Chloroquine
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                               | Comparator Quinine      | Intervention Artemether- lumefantrine           | Certainty of the evidence matches WHO guidelines source PDF page 440.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 440 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1129,7 +1129,7 @@ Comparator: Chloroquine
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                               | Comparator Quinine      | Intervention Artemether- lumefantrine                       | Certainty of the evidence matches WHO guidelines source PDF page 441.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 441 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1175,7 +1175,7 @@ Comparator: Chloroquine
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                     | Comparator Chloroquine   | Intervention ACT                                                | Certainty of the evidence matches WHO guidelines source PDF page 443.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 443 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1221,7 +1221,7 @@ Comparator: Alternative ACTs
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                   | Comparator Alternative ACT   | Intervention Dihydroartemisinin + piperaquine                   | Certainty of the evidence matches WHO guidelines source PDF page 444.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 444 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1274,7 +1274,7 @@ tablets once a week until delivery. Imprecision: serious. Although the intervent
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                                  | Comparator Quinine                                           | Intervention Artesunate                            | Certainty of the evidence matches WHO guidelines source PDF page 453.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.65–2.03 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 453 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1328,7 +1328,7 @@ Quinine
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                                  | Comparator Quinine                                                         | Intervention Artesunate                             | Certainty of the evidence matches WHO guidelines source PDF page 455.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 455 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1384,7 +1384,7 @@ both compared intramuscular artemether with intravenous artesunate in adults. Im
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                            | Comparator Artesunate                                        | Intervention Artemether               | Certainty of the evidence matches WHO guidelines source PDF page 456.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.34–0.92 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 456 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1434,7 +1434,7 @@ Comparator: Intravenous or intramuscular quinine
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                                                                          | Comparator Quinine                                                                                                                                                      | Intervention Artemether                 | Certainty of the evidence matches WHO guidelines source PDF page 457.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population (extracted range: 0.66–1.2 kg); no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 457 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1476,7 +1476,7 @@ Comparator: Intravenous or intramuscular quinine
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements   | Comparator Quinine                                                                                   | Intervention Artemether                                                                              | Certainty of the evidence matches WHO guidelines source PDF page 458.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 458 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1518,7 +1518,7 @@ Comparator: Intravenous or intramuscular quinine
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                 | Comparator Quinine   | Intervention Artemether   | Certainty of the evidence matches WHO guidelines source PDF page 458.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 458 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1568,7 +1568,7 @@ Comparator: Intravenous or intramuscular quinine
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                     | Comparator Quinine     | Intervention Artemether                                   | Certainty of the evidence matches WHO guidelines source PDF page 459.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 459 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -1612,7 +1612,7 @@ IF Outcome Timeframe is Adverse events, THEN Study results and measurements is B
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify each weight band's dose for Study results and measurements                                                                                    | Comparator No RACDT Intervention Reactive case detection and treatment                                                                                                                                                                                                                                                                                                                              | Certainty of the evidence matches WHO guidelines source PDF page 472.
 - [ ] **Stratification** — Confirm weight/age bands cover the full intended population; no merged or missing rows.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 472 and section 10.5 Summary match the printed WHO guidelines.
 
@@ -1630,7 +1630,7 @@ IF Outcome Timeframe is Adverse events, THEN Study results and measurements is B
 
 ### 31. clinical_table-0025
 **Pages:** 211 | **Section:** 5.2.2 Management of complications
-**Validation:** No validation data
+**Validation:** No validation data | **Condition:** Severe malaria
 
 **Audit hash:** `ff219899245a771d...`
 
@@ -1678,7 +1678,7 @@ b Prevent by avoiding excess hydration
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 211.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify that the NLL (Natural Language Logic) correctly represents the weight→dose mapping from the table.
 - [ ] **Provenance** — Confirm source page 211 and section 5.2.2 Management of complications match the printed WHO guidelines.
 
@@ -1690,7 +1690,7 @@ b Prevent by avoiding excess hydration
 
 ---
 
-## TIER 4 — Evidence Tables + High-Priority Narratives (325 chunks) — RECOMMENDED REVIEW
+## TIER 4 — Evidence Tables + High-Priority Narratives (326 chunks) — RECOMMENDED REVIEW
 
 > Contains clinical thresholds, dosing keywords, or contraindication information. Recommended review for additional clinical safety assurance.
 
@@ -1712,7 +1712,7 @@ b Prevent by avoiding excess hydration
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 4 and section 4.1.1 Remark: match the printed WHO guidelines.
 
@@ -1745,7 +1745,7 @@ Pyrethroid-pyriproxyfen ITNs are not recommended for deployment over pyrethroid-
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: deployment over pyrethroid-PBO ITNs for prevention of malaria in adults and children in areas with pyrethroid resistance.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: deployment over pyrethroid-PBO ITNs for prevention of malaria in adults and children in areas with pyrethroid resistance.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 5 and section 4.1.1 Conditional recommendation against , Moderate certainty evidence match the printed WHO guidelines.
 
@@ -1757,7 +1757,7 @@ Pyrethroid-pyriproxyfen ITNs are not recommended for deployment over pyrethroid-
 
 ---
 
-### 77. narrative-0148
+### 76. narrative-0148
 **Pages:** 41 | **Section:** 4.1.1 Insecticide-treated nets
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -1790,7 +1790,7 @@ ITNs are most effective where the principal malaria vector(s) mosquitoes bite pr
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 41 and section 4.1.1 Insecticide-treated nets match the printed WHO guidelines.
 
@@ -1802,7 +1802,7 @@ ITNs are most effective where the principal malaria vector(s) mosquitoes bite pr
 
 ---
 
-### 78. narrative-0151
+### 77. narrative-0151
 **Pages:** 43 | **Section:** 4.1.1 Pyrethroid-only nets (2019)
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -1820,7 +1820,7 @@ Pyrethroid-only long-lasting insecticidal nets (LLINs) should be deployed for th
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 43 and section 4.1.1 Pyrethroid-only nets (2019) match the printed WHO guidelines.
 
@@ -1832,7 +1832,7 @@ Pyrethroid-only long-lasting insecticidal nets (LLINs) should be deployed for th
 
 ---
 
-### 79. narrative-0153
+### 78. narrative-0153
 **Pages:** 43 | **Section:** 4.1.1 Evidence to decision
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -1865,7 +1865,7 @@ No undesirable effects were identified in the systematic review. However, the pa
 
 ---
 
-### 80. narrative-0164
+### 79. narrative-0164
 **Pages:** 45 | **Section:** 4.1.1 Justification
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -1897,7 +1897,7 @@ The systematic review did not identify any undesirable effects of pyrethroid ITN
 
 ---
 
-### 81. narrative-0180
+### 80. narrative-0180
 **Pages:** 50 | **Section:** 4.1.1 Resources
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -1957,7 +1957,7 @@ Although no research was identified regarding the feasibility of implementing py
 
 ---
 
-### 82. narrative-0185
+### 81. narrative-0185
 **Pages:** 53 | **Section:** 4.1.1 Pyrethroid-pyriproxyfen ITNs vs pyrethroid-PBO ITNs (2023)
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -1976,7 +1976,7 @@ The conditionality of the recommendation against the deployment of pyrethroid-py
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: deployment over pyrethroid-PBO ITNs for prevention of malaria in adults and children in areas with pyrethroid resistance.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: deployment over pyrethroid-PBO ITNs for prevention of malaria in adults and children in areas with pyrethroid resistance.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 53 and section 4.1.1 Pyrethroid-pyriproxyfen ITNs vs pyrethroid-PBO ITNs (2023) match the printed WHO guidelines.
 
@@ -1988,7 +1988,7 @@ The conditionality of the recommendation against the deployment of pyrethroid-py
 
 ---
 
-### 83. narrative-0188
+### 82. narrative-0188
 **Pages:** 54 | **Section:** 4.1.1 Resources
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2025,7 +2025,7 @@ Overall, the GDG judged the magnitude of undesirable effects associated with pyr
 
 ---
 
-### 84. narrative-0198
+### 83. narrative-0198
 **Pages:** 59 | **Section:** 4.1.1 Practical info
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2073,7 +2073,7 @@ Countries should generate data on defined standard indicators of coverage and ac
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: countries in subSaharan Africa, unless nationally representative data clearly show that the use of ITNs with particular attributes increases significantly among populations at risk of malaria.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: countries in subSaharan Africa, unless nationally representative data clearly show that the use of ITNs with particular attributes increases significantly among populations at risk of malaria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 59 and section 4.1.1 Practical info match the printed WHO guidelines.
 
@@ -2085,7 +2085,7 @@ Countries should generate data on defined standard indicators of coverage and ac
 
 ---
 
-### 85. narrative-0209
+### 84. narrative-0209
 **Pages:** 63 | **Section:** 4.1.1 Sodium channel modulators
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2118,7 +2118,7 @@ Further detailed information is provided in the WHO publication Operational manu
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 63 and section 4.1.1 Sodium channel modulators match the printed WHO guidelines.
 
@@ -2151,7 +2151,7 @@ The co-deployment of ITNs and IRS is not recommended for prevention and control 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: prevention and control of malaria in children and adults in areas with ongoing malaria transmission.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: prevention and control of malaria in children and adults in areas with ongoing malaria transmission.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 7 and section 4.1.2 Conditional recommendation for , Moderate certainty evidence match the printed WHO guidelines.
 
@@ -2163,7 +2163,7 @@ The co-deployment of ITNs and IRS is not recommended for prevention and control 
 
 ---
 
-### 86. narrative-0230
+### 85. narrative-0230
 **Pages:** 71 | **Section:** 4.1.2 Prioritize optimal coverage with either ITNs or IRS over combination (2019)
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2182,7 +2182,7 @@ In settings where optimal ITN coverage, as specified in the strategic plan, has 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: prevention and control of malaria in children and adults in areas with ongoing malaria transmission.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: prevention and control of malaria in children and adults in areas with ongoing malaria transmission.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 71 and section 4.1.2 Prioritize optimal coverage with either ITNs or IRS over combination (2019) match the printed WHO guidelines.
 
@@ -2194,7 +2194,7 @@ In settings where optimal ITN coverage, as specified in the strategic plan, has 
 
 ---
 
-### 87. narrative-0241
+### 86. narrative-0241
 **Pages:** 74 | **Section:** 4.1.2 Justification
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2218,7 +2218,7 @@ Once elimination has been achieved, optimal vector control coverage should be ma
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 74 and section 4.1.2 Justification match the printed WHO guidelines.
 
@@ -2246,7 +2246,7 @@ The deployment of topical repellents in areas with ongoing malaria transmission 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 8 and section 4.1.3 Topical repellents (2023) match the printed WHO guidelines.
 
@@ -2279,7 +2279,7 @@ Deployment of insecticide-treated clothing is not recommended for the prevention
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: the prevention and control of malaria at the community level in areas with ongoing malaria transmission.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: the prevention and control of malaria at the community level in areas with ongoing malaria transmission.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 8 and section 4.1.3 Conditional recommendation against , Low certainty evidence match the printed WHO guidelines.
 
@@ -2308,7 +2308,7 @@ Space spraying is not recommended for the prevention and control of malaria in c
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: the prevention and control of malaria in children and adults in areas with ongoing malaria transmission.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: the prevention and control of malaria in children and adults in areas with ongoing malaria transmission.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 9 and section 4.1.3 Space spraying (2019) match the printed WHO guidelines.
 
@@ -2320,7 +2320,7 @@ Space spraying is not recommended for the prevention and control of malaria in c
 
 ---
 
-### 88. narrative-0262
+### 87. narrative-0262
 **Pages:** 79 | **Section:** 4.1.3 Practical info
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2340,7 +2340,7 @@ generate evidence on the efficacy of larval habitat modification and/or manipula
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 79 and section 4.1.3 Practical info match the printed WHO guidelines.
 
@@ -2352,7 +2352,7 @@ generate evidence on the efficacy of larval habitat modification and/or manipula
 
 ---
 
-### 89. narrative-0271
+### 88. narrative-0271
 **Pages:** 82 | **Section:** 4.1.3 Topical repellents (2023)
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2368,7 +2368,7 @@ The panel recommended against the implementation of topical repellents if the ma
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 82 and section 4.1.3 Topical repellents (2023) match the printed WHO guidelines.
 
@@ -2380,7 +2380,7 @@ The panel recommended against the implementation of topical repellents if the ma
 
 ---
 
-### 90. narrative-0283
+### 89. narrative-0283
 **Pages:** 84 | **Section:** 4.1.3 Insecticide-treated clothing (2019)
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2399,7 +2399,7 @@ The GDG recommended against the deployment of insecticide-treated clothing due t
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: the prevention and control of malaria at the community level in areas with ongoing malaria transmission.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: the prevention and control of malaria at the community level in areas with ongoing malaria transmission.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 84 and section 4.1.3 Insecticide-treated clothing (2019) match the printed WHO guidelines.
 
@@ -2411,7 +2411,7 @@ The GDG recommended against the deployment of insecticide-treated clothing due t
 
 ---
 
-### 91. narrative-0290
+### 90. narrative-0290
 **Pages:** 87 | **Section:** 4.1.3 Moderate
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2443,7 +2443,7 @@ For the outcomes included in the systematic review - mortality, prevalence of pa
 
 ---
 
-### 92. narrative-0298
+### 91. narrative-0298
 **Pages:** 93 | **Section:** 4.1.3 Space spraying (2019)
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -2462,7 +2462,7 @@ The panel recommended against the deployment of space spraying to control malari
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: the prevention and control of malaria in children and adults in areas with ongoing malaria transmission.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: the prevention and control of malaria in children and adults in areas with ongoing malaria transmission.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 93 and section 4.1.3 Space spraying (2019) match the printed WHO guidelines.
 
@@ -2527,7 +2527,7 @@ Since the initial recommendation, new data have documented the value of malaria 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 10 and section 4.2.2 Remark: match the printed WHO guidelines.
 
@@ -2539,7 +2539,7 @@ Since the initial recommendation, new data have documented the value of malaria 
 
 ---
 
-### 98. narrative-0361
+### 97. narrative-0361
 **Pages:** 108 | **Section:** 4.2.2 Perennial malaria chemoprevention (PMC) - formerly intermittent preventive treatment of malaria in infants (IPTi)
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2565,7 +2565,7 @@ Perennial malaria chemoprevention (PMC) is the administration of a full treatmen
 
 ---
 
-### 99. narrative-0362
+### 98. narrative-0362
 **Pages:** 108 | **Section:** 4.2.2 Perennial malaria chemoprevention (2022)
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2585,7 +2585,7 @@ In areas of moderate to high perennial malaria transmission, children belonging 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 108 and section 4.2.2 Perennial malaria chemoprevention (2022) match the printed WHO guidelines.
 
@@ -2597,7 +2597,7 @@ In areas of moderate to high perennial malaria transmission, children belonging 
 
 ---
 
-### 100. narrative-0369
+### 99. narrative-0369
 **Pages:** 109 | **Section:** 4.2.2 Contraindications
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2616,7 +2616,7 @@ PMC is not recommended in children with severe acute illness or those who are un
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 109.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving a sulfa-based medication as treatment or prophylaxis, including co-trimoxazole (trimethoprim-sulfamethoxazole), individuals receiving other forms of malaria chemoprevention (e, children with severe acute illness or those who are unable to take oral medication, children who during the last 30 days received a dose of any of the drugs being used for PMC, or those allergic to any of the drugs being used for PMC.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving a sulfa-based medication as treatment or prophylaxis, including co-trimoxazole (trimethoprim-sulfamethoxazole), individuals receiving other forms of malaria chemoprevention (e, children with severe acute illness or those who are unable to take oral medication, children who during the last 30 days received a dose of any of the drugs being used for PMC, or those allergic to any of the drugs being used for PMC.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 109 and section 4.2.2 Contraindications match the printed WHO guidelines.
 
@@ -2628,7 +2628,7 @@ PMC is not recommended in children with severe acute illness or those who are un
 
 ---
 
-### 101. narrative-0371
+### 100. narrative-0371
 **Pages:** 109 | **Section:** 4.2.2 Benefits and harms
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2668,7 +2668,7 @@ More information on the evidence can be found in the systematic review [126] .
 
 ---
 
-### 102. narrative-0372
+### 101. narrative-0372
 **Pages:** 110 | **Section:** 4.2.2 Moderate
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2710,7 +2710,7 @@ PMC is generally considered cost-effective or highly cost-effective due to its u
 
 ---
 
-### 103. narrative-0375
+### 102. narrative-0375
 **Pages:** 111 | **Section:** 4.2.2 Sources of information
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2798,7 +2798,7 @@ In areas of seasonal malaria transmission, children belonging to age groups at h
 
 ---
 
-### 104. narrative-0382
+### 103. narrative-0382
 **Pages:** 113 | **Section:** 4.2.3 Seasonal malaria chemoprevention (2022)
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2830,7 +2830,7 @@ In areas of seasonal malaria transmission, children belonging to age groups at h
 
 ---
 
-### 105. narrative-0384
+### 104. narrative-0384
 **Pages:** 113 | **Section:** 4.2.3 Age group
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2856,7 +2856,7 @@ Most research studies have evaluated SMC in children aged 3-59 months. SMC given
 
 ---
 
-### 106. narrative-0389
+### 105. narrative-0389
 **Pages:** 114 | **Section:** 4.2.3 Contraindications
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2875,7 +2875,7 @@ SMC is not recommended for children with severe acute illness or those who are u
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 114.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e, children with severe acute illness or those who are unable to take oral medication, children who during the last 30 days received a dose of any of the drugs being used for SMC, or children with an allergy to any of the drugs being used for SMC.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e, children with severe acute illness or those who are unable to take oral medication, children who during the last 30 days received a dose of any of the drugs being used for SMC, or children with an allergy to any of the drugs being used for SMC.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 114 and section 4.2.3 Contraindications match the printed WHO guidelines.
 
@@ -2887,7 +2887,7 @@ SMC is not recommended for children with severe acute illness or those who are u
 
 ---
 
-### 107. narrative-0391
+### 106. narrative-0391
 **Pages:** 114 | **Section:** 4.2.3 Benefits and harms
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2927,7 +2927,7 @@ More information can be found in the systematic review (Thwing et al unpublished
 
 ---
 
-### 108. narrative-0392
+### 107. narrative-0392
 **Pages:** 115 | **Section:** 4.2.3 Notes
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2955,7 +2955,7 @@ There was little evidence of an effect on all-cause mortality. It is plausible t
 
 ---
 
-### 109. narrative-0396
+### 108. narrative-0396
 **Pages:** 116 | **Section:** 4.2.3 Sources of information
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -2983,7 +2983,7 @@ The objectives of the systematic review were to assess the effect of SMC with an
 
 ---
 
-### 110. narrative-0397
+### 109. narrative-0397
 **Pages:** 116 | **Section:** 4.2.3 Summary of judgements
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -3033,7 +3033,7 @@ Evidence from the systematic review (Thwing et al unpublished evidence) and supp
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 11.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: IPTsc if safe and effective alternatives are available (see "Practical info").
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: IPTsc if safe and effective alternatives are available (see "Practical info").
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 11 and section 4.2.4 Remark: match the printed WHO guidelines.
 
@@ -3045,7 +3045,7 @@ Evidence from the systematic review (Thwing et al unpublished evidence) and supp
 
 ---
 
-### 111. narrative-0402
+### 110. narrative-0402
 **Pages:** 117 | **Section:** 4.2.4 Intermittent preventive treatment of malaria in school-aged children (2022)
 **Validation:** No validation data
 
@@ -3069,7 +3069,7 @@ School-aged children living in malaria-endemic settings with moderate to high pe
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 117.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: IPTsc if safe and effective alternatives are available (see "Practical info").
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: IPTsc if safe and effective alternatives are available (see "Practical info").
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 117 and section 4.2.4 Intermittent preventive treatment of malaria in school-aged children (2022) match the printed WHO guidelines.
 
@@ -3081,7 +3081,7 @@ School-aged children living in malaria-endemic settings with moderate to high pe
 
 ---
 
-### 112. narrative-0403
+### 111. narrative-0403
 **Pages:** 117 | **Section:** 4.2.4 Antimalarial medicine
 **Validation:** No validation data
 
@@ -3102,7 +3102,7 @@ The possibility of interactions with other drugs delivered as part of school hea
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: IPTsc if safe and effective alternatives are available.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: IPTsc if safe and effective alternatives are available.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 117 and section 4.2.4 Antimalarial medicine match the printed WHO guidelines.
 
@@ -3114,7 +3114,7 @@ The possibility of interactions with other drugs delivered as part of school hea
 
 ---
 
-### 113. narrative-0404
+### 112. narrative-0404
 **Pages:** 118 | **Section:** 4.2.4 Age group
 **Validation:** No validation data
 
@@ -3136,7 +3136,7 @@ If older age groups are included in IPTsc, particular consideration should be gi
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: chemoprevention without first confirming pregnancy status; Special populations: children under 15 years old.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: chemoprevention without first confirming pregnancy status; Special populations: children under 15 years old.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 118 and section 4.2.4 Age group match the printed WHO guidelines.
 
@@ -3148,7 +3148,7 @@ If older age groups are included in IPTsc, particular consideration should be gi
 
 ---
 
-### 114. narrative-0409
+### 113. narrative-0409
 **Pages:** 118 | **Section:** 4.2.4 Contraindications
 **Validation:** No validation data
 
@@ -3171,7 +3171,7 @@ IPTsc is not recommended in children with severe acute illness, those unable to 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 118.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving a sulfa-based medication as treatment or prophylaxis, including co-trimoxazole (trimethoprim-sulfamethoxazole) for HIV, individuals receiving other forms of malaria chemoprevention (e, children with severe acute illness, those unable to take oral medication, children who during the last 30 days received a dose of any drug being used for IPTsc, or those allergic to any of the drugs being used for IPTsc.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving a sulfa-based medication as treatment or prophylaxis, including co-trimoxazole (trimethoprim-sulfamethoxazole) for HIV, individuals receiving other forms of malaria chemoprevention (e, children with severe acute illness, those unable to take oral medication, children who during the last 30 days received a dose of any drug being used for IPTsc, or those allergic to any of the drugs being used for IPTsc.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 118 and section 4.2.4 Contraindications match the printed WHO guidelines.
 
@@ -3183,7 +3183,7 @@ IPTsc is not recommended in children with severe acute illness, those unable to 
 
 ---
 
-### 115. narrative-0410
+### 114. narrative-0410
 **Pages:** 119 | **Section:** 4.2.4 Other considerations
 **Validation:** No validation data
 
@@ -3213,7 +3213,7 @@ Information about IPTsc should be fully accessible to school-aged children, thei
 
 ---
 
-### 116. narrative-0411
+### 115. narrative-0411
 **Pages:** 119 | **Section:** 4.2.4 Benefits and harms
 **Validation:** No validation data
 
@@ -3254,7 +3254,7 @@ scores: 0.36; 95% CI: 0.01-0.71; p-value for interaction = 0.004), but no signif
 
 ---
 
-### 117. narrative-0414
+### 116. narrative-0414
 **Pages:** 121 | **Section:** 4.2.4 Sources of information
 **Validation:** No validation data
 
@@ -3282,7 +3282,7 @@ The systematic review addressed the GDG's PICO (population, intervention, compar
 
 ---
 
-### 118. narrative-0415
+### 117. narrative-0415
 **Pages:** 122 | **Section:** 4.2.4 Feasibility
 **Validation:** No validation data
 
@@ -3326,7 +3326,7 @@ In areas with moderate to high levels of P. falciparum transmission, providing a
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 13 and section 4.2.6.4 Conditional recommendation against , Very low certainty evidence match the printed WHO guidelines.
 
@@ -3362,7 +3362,7 @@ Mass treatment with an 8-aminoquinoline medicine alone to reduce the transmissio
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 14.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 14 and section 4.3 Remark: match the printed WHO guidelines.
 
@@ -3374,7 +3374,7 @@ Mass treatment with an 8-aminoquinoline medicine alone to reduce the transmissio
 
 ---
 
-### 132. narrative-0523
+### 131. narrative-0523
 **Pages:** 154 | **Section:** 4.3 Interchangeability
 **Validation:** No validation data
 
@@ -3392,7 +3392,7 @@ Restarting the vaccine series is not recommended.
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 154.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 154 and section 4.3 Interchangeability match the printed WHO guidelines.
 
@@ -3404,7 +3404,7 @@ Restarting the vaccine series is not recommended.
 
 ---
 
-### 133. narrative-0527
+### 132. narrative-0527
 **Pages:** 155 | **Section:** 4.3 Vaccination of special populations
 **Validation:** No validation data
 
@@ -3427,7 +3427,7 @@ The vaccines are not recommended for use in adults (including health workers and
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: use in adults (including health workers and pregnant persons).
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: use in adults (including health workers and pregnant persons).
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 155 and section 4.3 Vaccination of special populations match the printed WHO guidelines.
 
@@ -3439,7 +3439,7 @@ The vaccines are not recommended for use in adults (including health workers and
 
 ---
 
-### 134. narrative-0529
+### 133. narrative-0529
 **Pages:** 155 | **Section:** 4.3 Research priorities
 **Validation:** No validation data
 
@@ -3459,7 +3459,7 @@ WHO also encourages international and national funders to support relevant learn
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 155.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 155 and section 4.3 Research priorities match the printed WHO guidelines.
 
@@ -3471,7 +3471,7 @@ WHO also encourages international and national funders to support relevant learn
 
 ---
 
-### 135. narrative-0530
+### 134. narrative-0530
 **Pages:** 156 | **Section:** 4.3 Benefits and harms
 **Validation:** No validation data
 
@@ -3530,7 +3530,7 @@ Certainty of the evidence on the safety of RTS,S/AS01 was rated MODERATE. Three 
 
 ---
 
-### 136. narrative-0538
+### 135. narrative-0538
 **Pages:** 161 | **Section:** 4.3 Justification
 **Validation:** No validation data
 
@@ -3562,7 +3562,7 @@ The malaria vaccines have acceptable safety profiles and are well tolerated. The
 
 ---
 
-### 137. narrative-0539
+### 136. narrative-0539
 **Pages:** 161 | **Section:** 4.3 Research needs
 **Validation:** No validation data
 
@@ -3584,7 +3584,7 @@ WHO also encourages international and national funders to support relevant learn
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 161.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 161 and section 4.3 Research needs match the printed WHO guidelines.
 
@@ -3634,7 +3634,7 @@ Artesunate-pyronaridine is now included in the list of options for the treatment
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: use in the first trimester of pregnancy.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: use in the first trimester of pregnancy.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 15 and section 5.2.1.1 Artemisinin-based combination therapy match the printed WHO guidelines.
 
@@ -3661,7 +3661,7 @@ Artesunate-pyronaridine is now included in the list of options for the treatment
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 16 and section 5.2.1.1 Remark: match the printed WHO guidelines.
 
@@ -3673,7 +3673,7 @@ Artesunate-pyronaridine is now included in the list of options for the treatment
 
 ---
 
-### 146. narrative-0562
+### 145. narrative-0562
 **Pages:** 167 | **Section:** 5.2.1.1 Artemisinin-based combination therapy (2015)
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -3701,7 +3701,7 @@ Artesunate-pyronaridine is now included in the list of options for the treatment
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: use in the first trimester of pregnancy.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: use in the first trimester of pregnancy.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 167 and section 5.2.1.1 Artemisinin-based combination therapy (2015) match the printed WHO guidelines.
 
@@ -3713,7 +3713,7 @@ Artesunate-pyronaridine is now included in the list of options for the treatment
 
 ---
 
-### 147. narrative-0565
+### 146. narrative-0565
 **Pages:** 168 | **Section:** 5.2.1.1 Desirable effects
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -3739,7 +3739,7 @@ Artesunate-pyronaridine is now included in the list of options for the treatment
 
 ---
 
-### 148. narrative-0567
+### 147. narrative-0567
 **Pages:** 168 | **Section:** 5.2.1.1 Desirable effects:
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -3767,7 +3767,7 @@ Artesunate-pyronaridine is now included in the list of options for the treatment
 
 ---
 
-### 149. narrative-0570
+### 148. narrative-0570
 **Pages:** 168 | **Section:** 5.2.1.1 GRADE
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -3793,7 +3793,7 @@ In the absence of resistance to the partner drug, the five recommended ACTs have
 
 ---
 
-### 150. narrative-0571
+### 149. narrative-0571
 **Pages:** 168 | **Section:** 5.2.1.1 Other considerations
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -3819,7 +3819,7 @@ The guideline development group decided to recommend a menu of approved combinat
 
 ---
 
-### 151. narrative-0573
+### 150. narrative-0573
 **Pages:** 169 | **Section:** 5.2.1.1 Artesunate-pyronaridine for uncomplicated malaria (2022)
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -3836,7 +3836,7 @@ Artesunate-pyronaridine (ASPY) is recommended as an artemisinin-based combinatio
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 169 and section 5.2.1.1 Artesunate-pyronaridine for uncomplicated malaria (2022) match the printed WHO guidelines.
 
@@ -3848,7 +3848,7 @@ Artesunate-pyronaridine (ASPY) is recommended as an artemisinin-based combinatio
 
 ---
 
-### 152. narrative-0577
+### 151. narrative-0577
 **Pages:** 170 | **Section:** 5.2.1.1 Feasibility
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -3874,7 +3874,7 @@ Research on formal cost analysis, and cost estimates related to scale are requir
 
 ---
 
-### 153. narrative-0578
+### 152. narrative-0578
 **Pages:** 170 | **Section:** 5.2.1.1 Summary
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -3913,412 +3913,9 @@ The GDG determined that there was probably no important uncertainty or variabili
 
 ---
 
-### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.1 Artemisinin-based combination therapy > 5.2.1.1.2 Dosing of ACTs
-
-### 47. narrative-0069
-**Pages:** 16 | **Section:** 5.2.1.1.2 Strong recommendation for
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `c80f387dacc00910...`
-
-#### Extracted Content
-```
-Revised dose recommendation for dihydroartemisinin + piperaquine in young children (2015)
-
-Children weighing &lt;25kg treated with dihydroartemisinin + piperaquine should receive a minimum of 2.5 mg/ kg bw per day of dihydroartemisinin and 20 mg/ kg bw per day of piperaquine daily for 3 days.
-
-*Not evaluated using the GRADE framework
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 16.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- ~~**Conditional Logic**~~ — Not applicable
-- [ ] **Provenance** — Confirm source page 16 and section 5.2.1.1.2 Strong recommendation for match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 158. narrative-0589
-**Pages:** 172 | **Section:** 5.2.1.1.2 Dosing of ACTs
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `38ee9bad3632ff80...`
-
-#### Extracted Content
-```
-ACT regimens must ensure optimal dosing to prolong their useful therapeutic life, i.e. to maximize the likelihood of rapid clinical and parasitological cure, minimize transmission and retard drug resistance.
-
-It is essential to achieve effective antimalarial drug concentrations for a sufficient time (exposure) in all target populations in order to ensure high cure rates. The dosage recommendations below are derived from understanding the relationship between dose and the profiles of exposure to the drug (pharmacokinetics) and the resulting therapeutic efficacy (pharmacodynamics) and safety. Some patient groups, notably younger children, are not dosed optimally with the "dosage regimens recommended by manufacturers, which compromises efficacy and fuels resistance. In these guidelines when there was pharmacological evidence that certain patient groups are not receiving optimal doses, dose regimens were adjusted to ensure similar exposure across all patient groups.
-
-Weight-based dosage recommendations are summarized below. While age-based dosing may be more practical in children, the relation between age and weight differs in different populations. Age-based dosing can therefore result in under- dosing or over-dosing of some patients, unless large, region-specific weight-for-age databases are available to guide dosing in that region.
-
-Factors other than dosage regimen may also affect exposure to a drug and thus treatment efficacy. The drug exposure of an individual patient also depends on factors such as the quality of the drug, the formulation, adherence and, for some drugs, co-administration with fat. Poor adherence is a major cause of treatment failure and drives the emergence and spread of drug resistance. Fixed-dose combinations encourage adherence and are preferred to loose (individual) tablets. Prescribers should take the time necessary to explain to patients why they should complete antimalarial course.
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 172.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
-- [ ] **Provenance** — Confirm source page 172 and section 5.2.1.1.2 Dosing of ACTs match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 159. narrative-0590
-**Pages:** 172 | **Section:** 5.2.1.1.2 Artemether + lumefantrine
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `540e46d6d02fe838...`
-
-#### Extracted Content
-```
-Formulations currently available: Dispersible or standard tablets containing 20 mg artemether and 120 mg lumefantrine, and standard tablets containing 40 mg artemether and 240 mg lumefantrine in a fixed-dose combination formulation. The flavoured dispersible tablet paediatric formulation facilitates use in young children.
-
-Target dose range: A total dose of 5-24 mg/kg bw of artemether and 29-144 mg/ kg bw of lumefantrine
-
-Recommended dosage regimen: Artemether + lumefantrine is given twice a day for 3 days (total, six doses). The first two doses should, ideally, be given 8 h apart.
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 172.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- ~~**Conditional Logic**~~ — Not applicable
-- [ ] **Provenance** — Confirm source page 172 and section 5.2.1.1.2 Artemether + lumefantrine match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 160. narrative-0591
-**Pages:** 172 | **Section:** 5.2.1.1.2 Artemether + lumefantrine
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `89d930453551879a...`
-
-#### Extracted Content
-```
-≥ 35
-
-80 + 480
-
-Factors associated with altered drug exposure and treatment response:
-
-- · Decreased exposure to lumefantrine has been documented in young children (&lt;3 years) as well as pregnant women, large adults, patients taking mefloquine, rifampicin or efavirenz and in smokers. As these target populations may be at increased risk for treatment failure, their responses to treatment should be monitored more closely and their full adherence ensured.
-- · Increased exposure to lumefantrine has been observed in patients concomitantly taking lopinavir- lopinavir/ritonavirbased antiretroviral agents but with no increase in toxicity; therefore, no dosage adjustment is indicated.
-```
-
-#### Extracted Clinical Flags
-- **Special populations:** pregnant women, large adults, patients taking mefloquine, rifampicin or efavirenz and in smokers
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 172.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
-- [ ] **Provenance** — Confirm source page 172 and section 5.2.1.1.2 Artemether + lumefantrine match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 161. narrative-0593
-**Pages:** 173 | **Section:** 5.2.1.1.2 Artesunate + amodiaquine
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `ceb2d1af93638102...`
-
-#### Extracted Content
-```
-Formulations currently available: A fixed-dose combination in tablets containing 25 + 67.5 mg, 50 + 135 mg or 100 + 270 mg of artesunate and amodiaquine, respectively
-
-Target dose and range: The target dose (and range) are 4 (2-10) mg/kg bw per day artesunate and 10 (7.5-15) mg/kg bw per day amodiaquine once a day for 3 days. A total therapeutic dose range of 6-30 mg/kg bw per day artesunate and 22.5-45 mg/kg bw per dose amodiaquine is recommended.
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 173.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- ~~**Conditional Logic**~~ — Not applicable
-- [ ] **Provenance** — Confirm source page 173 and section 5.2.1.1.2 Artesunate + amodiaquine match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 162. narrative-0594
-**Pages:** 173 | **Section:** 5.2.1.1.2 Artesunate + amodiaquine
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `124080328b81a783...`
-
-#### Extracted Content
-```
-Factors associated with altered drug exposure and treatment response:
-
-Treatment failure after amodiaquine monotherapy was more frequent among children who were underweight for their age. Therefore, their response to artesunate + amodiaquine treatment should be closely monitored.
-
-Artesunate + amodiaquine is associated with severe neutropenia, particularly in patients co-infected with HIV and especially in those on zidovudine and/or cotrimoxazole. Concomitant use of efavirenz increases exposure to amodiaquine and hepatotoxicity. Thus, concomitant use of artesunate + amodiaquine by patients taking zidovudine, efavirenz and cotrimoxazole should be avoided, unless this is the only ACT promptly available.
-```
-
-#### Verification Checklist
-- ~~**Dosage Accuracy**~~ — Not applicable
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
-- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
-- [ ] **Provenance** — Confirm source page 173 and section 5.2.1.1.2 Artesunate + amodiaquine match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 163. narrative-0596
-**Pages:** 174 | **Section:** 5.2.1.1.2 Artesunate + mefloquine
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `a92bba15004271dc...`
-
-#### Extracted Content
-```
-Formulations currently available: A fixed-dose formulation of paediatric tablets containing 25 mg artesunate and 55 mg mefloquine hydrochloride (equivalent to 50 mg mefloquine base) and adult tablets containing 100 mg artesunate and 220 mg mefloquine hydrochloride (equivalent to 200 mg mefloquine base)
-
-Target dose and range: Target doses (ranges) of 4 (2-10) mg/kg bw per day artesunate and 8.3 (7-11) mg/kg bw per day mefloquine, given once a day for 3 days
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 174.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- ~~**Conditional Logic**~~ — Not applicable
-- [ ] **Provenance** — Confirm source page 174 and section 5.2.1.1.2 Artesunate + mefloquine match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 164. narrative-0597
-**Pages:** 174 | **Section:** 5.2.1.1.2 Artesunate + mefloquine
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `121f247403df80e7...`
-
-#### Extracted Content
-```
-Additional comments:
-
-Mefloquine was associated with increased incidences of nausea, vomiting, dizziness, dysphoria and sleep disturbance in clinical trials, but these symptoms are seldom debilitating, and, where this ACT has been used, it has generally been well tolerated. To reduce acute vomiting and optimize absorption, the total mefloquine dose should preferably be split over 3 days, as in current fixed-dose combinations.
-
-As concomitant use of rifampicin decreases exposure to mefloquine, potentially decreasing its efficacy, patients taking this drug should be followed up carefully to identify treatment failures.
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 174.
-- ~~**Stratification**~~ — Not applicable
-- ~~**Contraindications**~~ — Not applicable
-- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
-- [ ] **Provenance** — Confirm source page 174 and section 5.2.1.1.2 Artesunate + mefloquine match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 165. narrative-0598
-**Pages:** 174 | **Section:** 5.2.1.1.2 Artesunate + sulfadoxine-pyrimethamine
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `5a65e37f1632cbb5...`
-
-#### Extracted Content
-```
-Formulations: Currently available as blister-packed, scored tablets containing 50 mg artesunate and fixed dose combination tablets comprising 500 mg sulfadoxine + 25 mg pyrimethamine. There is no fixed-dose combination.
-
-Target dose and range: A target dose (range) of 4 (2-10) mg/kg bw per day artesunate given once a day for 3 days and a single administration of at least 25 / 1.25 (25-70 / 1.25-3.5) mg/kg bw sulfadoxine / pyrimethamine given as a single dose on day 1.
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 174.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- ~~**Conditional Logic**~~ — Not applicable
-- [ ] **Provenance** — Confirm source page 174 and section 5.2.1.1.2 Artesunate + sulfadoxine-pyrimethamine match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 166. narrative-0601
-**Pages:** 175 | **Section:** 5.2.1.1.2 Strong recommendation for
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `dad08138862eef3f...`
-
-#### Extracted Content
-```
-Revised dose recommendation for dihydroartemisinin + piperaquine in young children (2015)
-
-Children weighing &lt;25kg treated with dihydroartemisinin + piperaquine should receive a minimum of 2.5 mg/kg bw per day of dihydroartemisinin and 20 mg/ kg bw per day of piperaquine daily for 3 days.
-
-*Not evaluated using the GRADE framework
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 175.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- ~~**Conditional Logic**~~ — Not applicable
-- [ ] **Provenance** — Confirm source page 175 and section 5.2.1.1.2 Strong recommendation for match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 167. narrative-0602
-**Pages:** 175 | **Section:** 5.2.1.1.2 Practical info
-**Validation:** No validation data | **Condition:** Uncomplicated malaria | **Weight range:** 25.0+ kg
-
-**Audit hash:** `9a2ea4fb214fd934...`
-
-#### Extracted Content
-```
-Formulations: Currently available as a fixed-dose combination in tablets containing 40 mg dihydroartemisinin and 320 mg piperaquine and paediatric tablets contain 20 mg dihydroartemisinin and 160 mg piperaquine.
-
-Target dose and range: A target dose (range) of 4 (2-10) mg/kg bw per day dihydroartemisinin and 18 (16-27) mg/kg bw per day piperaquine given once a day for 3 days for adults and children weighing ≥ 25 kg. The target doses and ranges for children weighing &lt; 25 kg are 4 (2.5-10) mg/kg bw per day dihydroartemisinin and 24 (20-32) mg/kg bw per day piperaquine once a day for 3 days.
-
-Recommended dosage regimen: The dose regimen currently recommended by the manufacturer provides adequate exposure to piperaquine and excellent cure rates (&gt; 95%), except in children &lt; 5 years, who have a threefold increased risk for treatment failure. Children in this age group have significantly lower plasma piperaquine concentrations than older children and adults given the same mg/kg bw dose. Children weighing &lt; 25 kg should receive at least 2.5 mg/kg bw dihydroartemisinin and 20 mg/kg bw piperaquine to achieve the same exposure as children weighing ≥ 25 kg and adults.
-
-Dihydroartemisinin + piperaquine should be given daily for 3 days.
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 175.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
-- [ ] **Provenance** — Confirm source page 175 and section 5.2.1.1.2 Practical info match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 168. narrative-0603
-**Pages:** 175 | **Section:** 5.2.1.1.2 Practical info
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `4b9853f778de5657...`
-
-#### Extracted Content
-```
-Factors associated with altered drug exposure and treatment response:
-
-High-fat meals should be avoided, as they significantly accelerate the absorption of piperaquine, thereby increasing the risk for potentially arrhythmogenic delayed ventricular repolarization (prolongation of the corrected electrocardiogram QT interval). Normal meals do not alter the absorption of piperaquine.
-
-As malnourished children are at increased risk for treatment failure, their response to treatment should be monitored closely.
-
-- · Dihydroartemisinin exposure is lower in pregnant women.
-- · Piperaquine is eliminated more rapidly by pregnant women, shortening the post-treatment prophylactic effect of dihydroartemisinin + piperaquine. As this does not affect primary efficacy, no dosage adjustment is recommended for pregnant women.
-
-
-
-Additional comments: Piperaquine prolongs the QT interval by approximately the same amount as chloroquine but by less than quinine. It is not necessary to perform an electrocardiogram before prescribing dihydroartemisinin + piperaquine, but this ACT should not be used in patients with congenital QT prolongation or who have a clinical condition or are on medications that prolong the QT interval. There has been no evidence of cardiotoxicity in large randomized trials or in extensive deployment.
-```
-
-#### Extracted Clinical Flags
-- **Contraindications:** patients with congenital QT prolongation or who have a clinical condition or are on medications that prolong the QT interval
-- **Special populations:** pregnant women, shortening the post-treatment prophylactic effect of dihydroartemisinin + piperaquin, pregnant women
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 175.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: patients with congenital QT prolongation or who have a clinical condition or are on medications that prolong the QT interval; Special populations: pregnant women, shortening the post-treatment prophylactic effect of dihydroartemisinin + piperaquin, pregnant women.
-- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
-- [ ] **Provenance** — Confirm source page 175 and section 5.2.1.1.2 Practical info match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
-### 169. narrative-0604
-**Pages:** 176 | **Section:** 5.2.1.1.2 Justification
-**Validation:** No validation data | **Condition:** Uncomplicated malaria
-
-**Audit hash:** `a2506d0579c77531...`
-
-#### Extracted Content
-```
-The dosing subgroup reviewed all available dihydroartemisinin-piperaquine pharmacokinetic data (6 published studies and 10 studies from the WWARN database; total 652 patients) [208][211] and then conducted simulations of piperaquine exposures for each weight group. These showed lower exposure in younger children with higher risks of treatment failure. The revised dose regimens are predicted to provide equivalent piperaquine exposures across all age groups.
-```
-
-#### Verification Checklist
-- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 176.
-- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- ~~**Contraindications**~~ — Not applicable
-- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
-- [ ] **Provenance** — Confirm source page 176 and section 5.2.1.1.2 Justification match the printed WHO guidelines.
-
-**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
-
-**Reviewer notes:** _____
-
-**Corrections (if any):** _____
-
----
-
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.3 Reducing the transmissibility of treated P. falciparum infections in areas of lowintensity transmission
 
-### 48. narrative-0070
+### 47. narrative-0070
 **Pages:** 16 | **Section:** 5.2.1.3 Reducing the transmissibility of treated P. falciparum infections in areas of lowintensity transmission
 **Validation:** No validation data | **Condition:** P. falciparum malaria
 
@@ -4341,7 +3938,7 @@ In low-transmission areas, a single dose of 0.25 mg/kg bw primaquine should be g
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 16.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women) to reduce transmission.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: pregnant women) to reduce transmission.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 16 and section 5.2.1.3 Reducing the transmissibility of treated P. falciparum infections in areas of lowintensity transmission match the printed WHO guidelines.
 
@@ -4355,7 +3952,7 @@ In low-transmission areas, a single dose of 0.25 mg/kg bw primaquine should be g
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.4 Special risk groups > 5.2.1.4.1 Pregnant and lactating women
 
-### 49. narrative-0072
+### 48. narrative-0072
 **Pages:** 17 | **Section:** 5.2.1.4.1 Remark:
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -4375,7 +3972,7 @@ In low-transmission areas, a single dose of 0.25 mg/kg bw primaquine should be g
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: the first trimester of pregnancy.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: the first trimester of pregnancy.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 17 and section 5.2.1.4.1 Remark: match the printed WHO guidelines.
 
@@ -4401,7 +3998,7 @@ Malaria in pregnancy is associated with low-birth-weight infants, increased anae
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 179 and section 5.2.1.4.1 Pregnant and lactating women match the printed WHO guidelines.
 
@@ -4431,7 +4028,7 @@ WHO has generated a new recommendation based on a review of all updated evidence
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 179 and section 5.2.1.4.1 First trimester of pregnancy match the printed WHO guidelines.
 
@@ -4473,7 +4070,7 @@ Primaquine and tetracyclines should not be used in pregnancy.
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 179.
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: pregnancy; Special populations: pregnant women in Africa have been treated with amodiaquine alone or combined with SP or artesunate, pregnant women.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: pregnancy; Special populations: pregnant women in Africa have been treated with amodiaquine alone or combined with SP or artesunate, pregnant women.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 179 and section 5.2.1.4.1 Second and third trimesters match the printed WHO guidelines.
 
@@ -4503,7 +4100,7 @@ The amounts of antimalarial drugs that enter breast milk and are consumed by bre
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: breastfeeding mothers because of its potential effect on infants' bones and teeth, nursing women, unless the breastfed infant has been checked for G6PD deficiency; Special populations: G6PD deficiency.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: breastfeeding mothers because of its potential effect on infants' bones and teeth, nursing women, unless the breastfed infant has been checked for G6PD deficiency; Special populations: G6PD deficiency.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 180 and section 5.2.1.4.1 Lactating women match the printed WHO guidelines.
 
@@ -4538,7 +4135,7 @@ Pregnant women with uncomplicated P. falciparum malaria should be treated with a
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: the first trimester of pregnancy; Special populations: Pregnant women with uncomplicated P.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: the first trimester of pregnancy; Special populations: Pregnant women with uncomplicated P.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 181 and section 5.2.1.4.1 Treatment in the first trimester of pregnancy (2022) match the printed WHO guidelines.
 
@@ -4591,7 +4188,7 @@ The GDG judged the overall certainty of the assessed evidence across the differe
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 181.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women in the first trimester treated with ACTs other than artemether-lumefantrine who were , pregnant women in the second or third trimester treated with an ACT for P.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: pregnant women in the first trimester treated with ACTs other than artemether-lumefantrine who were , pregnant women in the second or third trimester treated with an ACT for P.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 181 and section 5.2.1.4.1 Benefits and harms match the printed WHO guidelines.
 
@@ -4622,7 +4219,7 @@ Aligning the first-line treatment of uncomplicated P. falciparum malaria for the
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 183.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women in the first trimester are already being treated with artemether-lumefantrine, based .
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: pregnant women in the first trimester are already being treated with artemether-lumefantrine, based .
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 183 and section 5.2.1.4.1 Resources Research evidence match the printed WHO guidelines.
 
@@ -4653,7 +4250,7 @@ Aligning the first-line treatment of uncomplicated P. falciparum malaria for the
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 183.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women in the first trimester are already being treated with artemether-lumefantrine, based .
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: pregnant women in the first trimester are already being treated with artemether-lumefantrine, based .
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 183 and section 5.2.1.4.1 Summary match the printed WHO guidelines.
 
@@ -4691,7 +4288,7 @@ Despite limited exposures to other ACTs (artesunate-amodiaquine, artesunate-mefl
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 184 and section 5.2.1.4.1 Justification match the printed WHO guidelines.
 
@@ -4705,7 +4302,7 @@ Despite limited exposures to other ACTs (artesunate-amodiaquine, artesunate-mefl
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.4 Special risk groups > 5.2.1.4.2 Young children and infants
 
-### 50. narrative-0073
+### 49. narrative-0073
 **Pages:** 17 | **Section:** 5.2.1.4.2 Strong recommendation for
 **Validation:** No validation data | **Condition:** Uncomplicated malaria | **Weight range:** 5.0+ kg
 
@@ -4753,7 +4350,7 @@ Delay in treating P. falciparum malaria in infants and young children can have f
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 185.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 185 and section 5.2.1.4.2 Young children and infants match the printed WHO guidelines.
 
@@ -4872,7 +4469,7 @@ ACT is recommended and should be given according to body weight at the same mg/k
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 186.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: infants (&lt.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: infants (&lt.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 186 and section 5.2.1.4.2 Practical info match the printed WHO guidelines.
 
@@ -4912,7 +4509,7 @@ Treat infants weighing &lt; 5 kg with uncomplicated P. falciparum malaria with a
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.4 Special risk groups > 5.2.1.4.3 Patients co-infected with HIV
 
-### 51. narrative-0074
+### 50. narrative-0074
 **Pages:** 17 | **Section:** 5.2.1.4.3 Practice Statement
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -4928,7 +4525,7 @@ In people who have HIV/AIDS and uncomplicated P. falciparum malaria, artesunate 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 17 and section 5.2.1.4.3 Practice Statement match the printed WHO guidelines.
 
@@ -4952,7 +4549,7 @@ There is considerable geographical overlap between malaria and HIV infection, an
 ```
 
 #### Extracted Clinical Flags
-- **Special populations:** HIVinfected patients who are partially immune to malaria may have more frequent, higher-density infe, pregnant women, the adverse effects of placental malaria on birth weight are increased
+- **Special populations:** pregnant women, the adverse effects of placental malaria on birth weight are increased, HIVinfected patients who are partially immune to malaria may have more frequent, higher-density infe
 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
@@ -5009,7 +4606,7 @@ In people who have HIV/AIDS and uncomplicated P. falciparum malaria, artesunate 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 187 and section 5.2.1.4.3 Patients co-infected with HIV (2015) match the printed WHO guidelines.
 
@@ -5055,7 +4652,7 @@ Studies of administration of quinine with lopinavir-ritonavir or ritonavir alone
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.4 Special risk groups > 5.2.1.4.5 Uncomplicated hyperparasitaemia
 
-### 52. narrative-0076
+### 51. narrative-0076
 **Pages:** 18 | **Section:** 5.2.1.4.5 Practice Statement
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -5156,7 +4753,7 @@ It is difficult to make a general recommendation about treatment of uncomplicate
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 189.
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: travellers presenting with uncomplicated hyperparasitaemia).
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: travellers presenting with uncomplicated hyperparasitaemia).
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 189 and section 5.2.1.4.5 Justification match the printed WHO guidelines.
 
@@ -5170,7 +4767,7 @@ It is difficult to make a general recommendation about treatment of uncomplicate
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.6 Testing for glucose-6-phosphate dehydrogenase (G6PD) deficiency
 
-### 53. narrative-0080
+### 52. narrative-0080
 **Pages:** 18 | **Section:** 5.2.1.6 Qualitative near-patient G6PD tests (2024)
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -5187,7 +4784,7 @@ Qualitative near-patient tests for G6PD deficiency should be used to inform admi
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 18.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency should be used to inform administration of specific treatment regimens to prevent re.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency should be used to inform administration of specific treatment regimens to prevent re.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 18 and section 5.2.1.6 Qualitative near-patient G6PD tests (2024) match the printed WHO guidelines.
 
@@ -5199,7 +4796,7 @@ Qualitative near-patient tests for G6PD deficiency should be used to inform admi
 
 ---
 
-### 54. narrative-0082
+### 53. narrative-0082
 **Pages:** 18 | **Section:** 5.2.1.6 Strong recommendation for , Moderate certainty evidence
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -5217,7 +4814,7 @@ Semi-quantitative near-patient tests with fixed standard thresholds for deficien
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 18.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 18 and section 5.2.1.6 Strong recommendation for , Moderate certainty evidence match the printed WHO guidelines.
 
@@ -5248,12 +4845,12 @@ No head-to-head comparisons have been done between the accuracy and/or cost-effe
 
 #### Extracted Clinical Flags
 - **Contraindications:** patients with G6PD deficiency, if G6PD status is unknown, or if G6PD activity ≤ 70%
-- **Special populations:** G6PD deficiency is a genetic abnormality, if a person is already aware of their G6PD status through , G6PD deficiency (between 30 and 70% of normal activity), G6PD deficient (&lt, G6PD deficient), and persons who have G6PD activity &gt, G6PD deficiency, if G6PD status is unknown, or if G6PD activity ≤ 70%
+- **Special populations:** G6PD deficient), and persons who have G6PD activity &gt, G6PD deficient (&lt, G6PD deficiency (between 30 and 70% of normal activity), G6PD deficiency is a genetic abnormality, if a person is already aware of their G6PD status through , G6PD deficiency, if G6PD status is unknown, or if G6PD activity ≤ 70%
 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: patients with G6PD deficiency, if G6PD status is unknown, or if G6PD activity ≤ 70%; Special populations: G6PD deficiency is a genetic abnormality, if a person is already aware of their G6PD status through , G6PD deficiency (between 30 and 70% of normal activity), G6PD deficient (&lt, G6PD deficient), and persons who have G6PD activity &gt, G6PD deficiency, if G6PD status is unknown, or if G6PD activity ≤ 70%.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: patients with G6PD deficiency, if G6PD status is unknown, or if G6PD activity ≤ 70%; Special populations: G6PD deficient), and persons who have G6PD activity &gt, G6PD deficient (&lt, G6PD deficiency (between 30 and 70% of normal activity), G6PD deficiency is a genetic abnormality, if a person is already aware of their G6PD status through , G6PD deficiency, if G6PD status is unknown, or if G6PD activity ≤ 70%.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 193 and section 5.2.1.6 Testing for glucose-6-phosphate dehydrogenase (G6PD) deficiency match the printed WHO guidelines.
 
@@ -5286,7 +4883,7 @@ Qualitative near-patient tests for G6PD deficiency should be used to inform admi
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 194.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency should be used to inform administration of specific treatment regimens to prevent re, G6PD deficiency are considered highly accurate to distinguish G6PD above or below a threshold of 30%, G6PD deficiency (30-70% G6PD activity) due to a heterozygous genotype.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency should be used to inform administration of specific treatment regimens to prevent re, G6PD deficiency are considered highly accurate to distinguish G6PD above or below a threshold of 30%, G6PD deficiency (30-70% G6PD activity) due to a heterozygous genotype.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 194 and section 5.2.1.6 Qualitative near-patient G6PD tests (2024) match the printed WHO guidelines.
 
@@ -5314,12 +4911,12 @@ If a test with these characteristics would be applied to a group of 10,000 patie
 ```
 
 #### Extracted Clinical Flags
-- **Special populations:** G6PD deficient (i, G6PD deficient, G6PD deficient (and 9139 will not be deficient but some of them, especially females, may have interm, G6PD deficient (&lt, G6PD deficiency, G6PD deficient), G6PD deficient patients will have a test result indicating that they are not deficient (false negati
+- **Special populations:** G6PD deficiency, G6PD deficient (i, G6PD deficient (&lt, G6PD deficient), G6PD deficient (and 9139 will not be deficient but some of them, especially females, may have interm, G6PD deficient, G6PD deficient patients will have a test result indicating that they are not deficient (false negati
 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 195.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficient (i, G6PD deficient, G6PD deficient (and 9139 will not be deficient but some of them, especially females, may have interm, G6PD deficient (&lt, G6PD deficiency, G6PD deficient), G6PD deficient patients will have a test result indicating that they are not deficient (false negati.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency, G6PD deficient (i, G6PD deficient (&lt, G6PD deficient), G6PD deficient (and 9139 will not be deficient but some of them, especially females, may have interm, G6PD deficient, G6PD deficient patients will have a test result indicating that they are not deficient (false negati.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 195 and section 5.2.1.6 Explanation match the printed WHO guidelines.
 
@@ -5350,7 +4947,7 @@ Like for the introduction of any new diagnostic tests, this should be implemente
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 195.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency should include all aspects of safe implementation of a new diagnostic test e.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency should include all aspects of safe implementation of a new diagnostic test e.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 195 and section 5.2.1.6 Guidance match the printed WHO guidelines.
 
@@ -5382,7 +4979,7 @@ Semi-quantitative near-patient tests with fixed standard thresholds for deficien
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 197.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficient, and are considered accurate at a threshold of ≤ 70% activity to indicate whether P, G6PD deficiency with fixed thresholds corresponding to &gt.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficient, and are considered accurate at a threshold of ≤ 70% activity to indicate whether P, G6PD deficiency with fixed thresholds corresponding to &gt.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 197 and section 5.2.1.6 Semi-quantitative near-patient G6PD tests (2024) match the printed WHO guidelines.
 
@@ -5394,7 +4991,46 @@ Semi-quantitative near-patient tests with fixed standard thresholds for deficien
 
 ---
 
-### 217. narrative-0690
+### 217. image-0032
+**Pages:** 197 | **Section:** 5.2.1.6 Practical info
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `45a24a9441142c67...`
+
+#### Extracted Content
+```
+[Image caption: Figure 5.4 Testing for G6PD deficiency before prescribing primaquine]
+G6PD testing algorithm. Test G6PD activity before giving primaquine or tafenoquine. If G6PD deficient, do not give primaquine. If G6PD normal, give primaquine 0.25 mg/kg single dose. Danger signs: refer immediately if severe haemolysis occurs.
+```
+
+#### Clinical Context
+> **Before this item** (narrative-0689): Therapeutic pathways of P. vivax and P. ovale anti-relapse treatment with 8-aminoquinolines in relation to G6PD testing
+>
+> **After this item** (narrative-0690): In order to prevent relapses of P. vivax and P. ovale , and when the G6PD status of the patient was previously unknown, the following recommendations are made:
+
+A. If only a qualitative near-patient test for G6PD deficiency is available, tafenoquine single dose treatment or high dose primaquine (1mg/kg/day for 7 days) should not be given. If by the qualitative test the patient is classified as nondeficient primaquine should be used at a regimen of 0.5 mg/kg/day for 14 days or for 7 days. Since m
+
+#### Extracted Clinical Flags
+- **Special populations:** G6PD deficient, do not give primaquine, G6PD deficiency before prescribing primaquine]
+G6PD testing algorithm
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 197.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficient, do not give primaquine, G6PD deficiency before prescribing primaquine]
+G6PD testing algorithm; Danger signs: refer immediately if severe haemolysis occurs.
+- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
+- [ ] **Provenance** — Confirm source page 197 and section 5.2.1.6 Practical info match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 218. narrative-0690
 **Pages:** 197 | **Section:** 5.2.1.6 Practical info
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -5414,12 +5050,12 @@ A. If only a qualitative near-patient test for G6PD deficiency is available, taf
 ```
 
 #### Extracted Clinical Flags
-- **Special populations:** G6PD deficiency is available, tafenoquine single dose treatment or high dose primaquine (1mg/kg/day , G6PD deficiency between 30 and 70% tafenoquine should not be given, G6PD deficient, consider primaquine 0, G6PD deficiency, the severity of the prevalent genotypes, the daily dose of primaquine and on the ca
+- **Special populations:** G6PD deficiency between 30 and 70% tafenoquine should not be given, G6PD deficient, consider primaquine 0, G6PD deficiency is available, tafenoquine single dose treatment or high dose primaquine (1mg/kg/day , G6PD deficiency, the severity of the prevalent genotypes, the daily dose of primaquine and on the ca
 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 197.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency is available, tafenoquine single dose treatment or high dose primaquine (1mg/kg/day , G6PD deficiency between 30 and 70% tafenoquine should not be given, G6PD deficient, consider primaquine 0, G6PD deficiency, the severity of the prevalent genotypes, the daily dose of primaquine and on the ca.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency between 30 and 70% tafenoquine should not be given, G6PD deficient, consider primaquine 0, G6PD deficiency is available, tafenoquine single dose treatment or high dose primaquine (1mg/kg/day , G6PD deficiency, the severity of the prevalent genotypes, the daily dose of primaquine and on the ca.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 197 and section 5.2.1.6 Practical info match the printed WHO guidelines.
 
@@ -5431,7 +5067,7 @@ A. If only a qualitative near-patient test for G6PD deficiency is available, taf
 
 ---
 
-### 218. narrative-0693
+### 219. narrative-0693
 **Pages:** 199 | **Section:** 5.2.1.6 Explanation
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -5449,12 +5085,12 @@ If a test with these characteristics would be applied in a group of 10 000 patie
 ```
 
 #### Extracted Clinical Flags
-- **Special populations:** G6PD deficient (i, G6PD deficient, G6PD deficient (&lt, G6PD deficient patients will have a test result indicating that they are not deficient (i, G6PD deficient or have intermediate activity (i, G6PD deficiency, G6PD deficient patients or intermediate will have a test result indicating that they are not deficie
+- **Special populations:** G6PD deficient patients or intermediate will have a test result indicating that they are not deficie, G6PD deficiency, G6PD deficient (i, G6PD deficient patients will have a test result indicating that they are not deficient (i, G6PD deficient (&lt, G6PD deficient or have intermediate activity (i, G6PD deficient
 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 199.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficient (i, G6PD deficient, G6PD deficient (&lt, G6PD deficient patients will have a test result indicating that they are not deficient (i, G6PD deficient or have intermediate activity (i, G6PD deficiency, G6PD deficient patients or intermediate will have a test result indicating that they are not deficie.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficient patients or intermediate will have a test result indicating that they are not deficie, G6PD deficiency, G6PD deficient (i, G6PD deficient patients will have a test result indicating that they are not deficient (i, G6PD deficient (&lt, G6PD deficient or have intermediate activity (i, G6PD deficient.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 199 and section 5.2.1.6 Explanation match the printed WHO guidelines.
 
@@ -5466,7 +5102,7 @@ If a test with these characteristics would be applied in a group of 10 000 patie
 
 ---
 
-### 219. narrative-0694
+### 220. narrative-0694
 **Pages:** 199 | **Section:** 5.2.1.6 Practical info
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -5493,7 +5129,7 @@ Depending on endemicity or regional differences, people may value the importance
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 199.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency enable optimal malaria treatment while at the same time limiting the risk of haemoly.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency enable optimal malaria treatment while at the same time limiting the risk of haemoly.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 199 and section 5.2.1.6 Practical info match the printed WHO guidelines.
 
@@ -5507,7 +5143,7 @@ Depending on endemicity or regional differences, people may value the importance
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.7 Anti-relapse treatment of P. vivax and P. ovale
 
-### 55. narrative-0084
+### 54. narrative-0084
 **Pages:** 19 | **Section:** 5.2.1.7 Tafenoquine as anti-relapse therapy (2024)
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5521,7 +5157,7 @@ Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 19.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 19 and section 5.2.1.7 Tafenoquine as anti-relapse therapy (2024) match the printed WHO guidelines.
 
@@ -5533,7 +5169,7 @@ Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose
 
 ---
 
-### 56. narrative-0085
+### 55. narrative-0085
 **Pages:** 19 | **Section:** 5.2.1.7 Remark:
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5555,7 +5191,7 @@ Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 19.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: pregnant and lactating women, patients receiving artemisinin-based combination therapies for the treatment of P.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: pregnant and lactating women, patients receiving artemisinin-based combination therapies for the treatment of P.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 19 and section 5.2.1.7 Remark: match the printed WHO guidelines.
 
@@ -5567,7 +5203,7 @@ Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose
 
 ---
 
-### 57. narrative-0086
+### 56. narrative-0086
 **Pages:** 19 | **Section:** 5.2.1.7 Primaquine as anti-relapse therapy (2024)
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5584,7 +5220,7 @@ To prevent relapse, children and adult (except pregnant women, infants aged &lt;
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 19.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency), primaquine should be given at a high total dose (7 mg/kg) at 0, pregnant women, infants aged &lt.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency), primaquine should be given at a high total dose (7 mg/kg) at 0, pregnant women, infants aged &lt.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 19 and section 5.2.1.7 Primaquine as anti-relapse therapy (2024) match the printed WHO guidelines.
 
@@ -5596,7 +5232,7 @@ To prevent relapse, children and adult (except pregnant women, infants aged &lt;
 
 ---
 
-### 58. narrative-0087
+### 57. narrative-0087
 **Pages:** 19 | **Section:** 5.2.1.7 Remark:
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5616,7 +5252,7 @@ To prevent relapse, children and adult (except pregnant women, infants aged &lt;
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 19.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 19 and section 5.2.1.7 Remark: match the printed WHO guidelines.
 
@@ -5628,7 +5264,7 @@ To prevent relapse, children and adult (except pregnant women, infants aged &lt;
 
 ---
 
-### 59. narrative-0088
+### 58. narrative-0088
 **Pages:** 20 | **Section:** 5.2.1.7 Conditional recommendation for , Very low certainty evidence
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5649,7 +5285,7 @@ In people with G6PD deficiency, primaquine base at 0
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 20.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency (2015)
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency (2015)
 
 In people with G6PD deficiency, primaquine base at 0.
 - ~~**Conditional Logic**~~ — Not applicable
@@ -5663,7 +5299,7 @@ In people with G6PD deficiency, primaquine base at 0.
 
 ---
 
-### 220. narrative-0698
+### 221. narrative-0698
 **Pages:** 202 | **Section:** 5.2.1.7 Tafenoquine as anti-relapse therapy (2024)
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5687,7 +5323,7 @@ Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 202.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: pregnant and lactating women, patients receiving artemisinin-based combination therapies for the treatment of P.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: pregnant and lactating women, patients receiving artemisinin-based combination therapies for the treatment of P.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 202 and section 5.2.1.7 Tafenoquine as anti-relapse therapy (2024) match the printed WHO guidelines.
 
@@ -5699,7 +5335,7 @@ Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose
 
 ---
 
-### 221. narrative-0700
+### 222. narrative-0700
 **Pages:** 202 | **Section:** 5.2.1.7 Dispersible tablet dose recommendations for children (&gt;10 kg to ≤ 35 kg)
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5716,7 +5352,7 @@ Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: pregnant or lactating women.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: pregnant or lactating women.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 202 and section 5.2.1.7 Dispersible tablet dose recommendations for children (&gt;10 kg to ≤ 35 kg) match the printed WHO guidelines.
 
@@ -5728,7 +5364,7 @@ Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose
 
 ---
 
-### 222. narrative-0701
+### 223. narrative-0701
 **Pages:** 202 | **Section:** 5.2.1.7 Benefits and harms
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5748,7 +5384,7 @@ Tafenoquine should not be deployed without accurate G6PD quantitative or semi-qu
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 202.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 202 and section 5.2.1.7 Benefits and harms match the printed WHO guidelines.
 
@@ -5760,7 +5396,7 @@ Tafenoquine should not be deployed without accurate G6PD quantitative or semi-qu
 
 ---
 
-### 223. narrative-0703
+### 224. narrative-0703
 **Pages:** 204 | **Section:** 5.2.1.7 Primaquine as anti-relapse therapy (2024)
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5782,7 +5418,7 @@ To prevent relapse, children and adult (except pregnant women, infants aged &lt;
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 204.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency), primaquine should be given at a high total dose (7 mg/kg) at 0, pregnant women, infants aged &lt.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency), primaquine should be given at a high total dose (7 mg/kg) at 0, pregnant women, infants aged &lt.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 204 and section 5.2.1.7 Primaquine as anti-relapse therapy (2024) match the printed WHO guidelines.
 
@@ -5794,7 +5430,7 @@ To prevent relapse, children and adult (except pregnant women, infants aged &lt;
 
 ---
 
-### 224. narrative-0704
+### 225. narrative-0704
 **Pages:** 204 | **Section:** 5.2.1.7 Practical info
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5814,7 +5450,7 @@ To prevent relapse, children and adult (except pregnant women, infants aged &lt;
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 204.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women, infants &lt.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: pregnant women, infants &lt.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 204 and section 5.2.1.7 Practical info match the printed WHO guidelines.
 
@@ -5826,7 +5462,7 @@ To prevent relapse, children and adult (except pregnant women, infants aged &lt;
 
 ---
 
-### 225. narrative-0705
+### 226. narrative-0705
 **Pages:** 204 | **Section:** 5.2.1.7 Benefits and harms
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5846,7 +5482,7 @@ Clinically relevant haemolysis is rare. However, the daily dose rather than the 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 204.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 204 and section 5.2.1.7 Benefits and harms match the printed WHO guidelines.
 
@@ -5858,7 +5494,7 @@ Clinically relevant haemolysis is rare. However, the daily dose rather than the 
 
 ---
 
-### 226. narrative-0706
+### 227. narrative-0706
 **Pages:** 205 | **Section:** 5.2.1.7 Benefits and harms
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5876,7 +5512,7 @@ The decision regarding total dose may impact the duration of therapy or the deci
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 205.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 205 and section 5.2.1.7 Benefits and harms match the printed WHO guidelines.
 
@@ -5888,7 +5524,7 @@ The decision regarding total dose may impact the duration of therapy or the deci
 
 ---
 
-### 227. narrative-0709
+### 228. narrative-0709
 **Pages:** 206 | **Section:** 5.2.1.7 Preventing relapse in people with G6PD deficiency (2015)
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5905,7 +5541,7 @@ In people with G6PD deficiency, primaquine base at 0.75 mg/kg bw once a week for
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 206.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency, primaquine base at 0.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency, primaquine base at 0.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 206 and section 5.2.1.7 Preventing relapse in people with G6PD deficiency (2015) match the printed WHO guidelines.
 
@@ -5917,7 +5553,7 @@ In people with G6PD deficiency, primaquine base at 0.75 mg/kg bw once a week for
 
 ---
 
-### 228. narrative-0712
+### 229. narrative-0712
 **Pages:** 207 | **Section:** 5.2.1.7 GRADE
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5946,7 +5582,7 @@ Twelve of the 15 trials included in the review explicitly excluded people with G
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 207.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 207 and section 5.2.1.7 GRADE match the printed WHO guidelines.
 
@@ -5958,7 +5594,7 @@ Twelve of the 15 trials included in the review explicitly excluded people with G
 
 ---
 
-### 229. narrative-0713
+### 230. narrative-0713
 **Pages:** 207 | **Section:** 5.2.1.7 Other considerations
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -5975,7 +5611,7 @@ In the absence of evidence to recommend alternatives, the guideline development 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 207.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 207 and section 5.2.1.7 Other considerations match the printed WHO guidelines.
 
@@ -5987,7 +5623,7 @@ In the absence of evidence to recommend alternatives, the guideline development 
 
 ---
 
-### 230. narrative-0716
+### 231. narrative-0716
 **Pages:** 208 | **Section:** 5.2.1.7 Remarks
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -6004,7 +5640,7 @@ Primaquine is contraindicated in pregnancy and women breastfeeding infants aged 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: pregnancy and women breastfeeding infants aged &lt.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: pregnancy and women breastfeeding infants aged &lt.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 208 and section 5.2.1.7 Remarks match the printed WHO guidelines.
 
@@ -6016,7 +5652,7 @@ Primaquine is contraindicated in pregnancy and women breastfeeding infants aged 
 
 ---
 
-### 231. narrative-0717
+### 232. narrative-0717
 **Pages:** 208 | **Section:** 5.2.1.7 Rationale for the recommendation:
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -6035,7 +5671,7 @@ Practice Statement
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 208.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 208 and section 5.2.1.7 Rationale for the recommendation: match the printed WHO guidelines.
 
@@ -6047,7 +5683,7 @@ Practice Statement
 
 ---
 
-### 232. narrative-0721
+### 233. narrative-0721
 **Pages:** 208 | **Section:** 5.2.1.7 Practical info
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -6069,7 +5705,7 @@ Few data are available on the safety of primaquine in infancy, and in the past p
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: pregnancy and women breastfeeding infants aged &lt, children aged 6 months to 1 year (provided they do not have G6PD deficiency), as this age group may suffer multiple relapses from vivax malaria, infants; Special populations: G6PD deficiency), as this age group may suffer multiple relapses from vivax malaria.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: pregnancy and women breastfeeding infants aged &lt, children aged 6 months to 1 year (provided they do not have G6PD deficiency), as this age group may suffer multiple relapses from vivax malaria, infants; Special populations: G6PD deficiency), as this age group may suffer multiple relapses from vivax malaria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 208 and section 5.2.1.7 Practical info match the printed WHO guidelines.
 
@@ -6081,7 +5717,7 @@ Few data are available on the safety of primaquine in infancy, and in the past p
 
 ---
 
-### 233. narrative-0725
+### 234. narrative-0725
 **Pages:** 209 | **Section:** 5.2.1.7 Recommendation
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -6098,7 +5734,7 @@ Primaquine is contraindicated in pregnant or breastfeeding women with P. vivax m
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: pregnant or breastfeeding women with P.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: pregnant or breastfeeding women with P.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 209 and section 5.2.1.7 Recommendation match the printed WHO guidelines.
 
@@ -6112,7 +5748,7 @@ Primaquine is contraindicated in pregnant or breastfeeding women with P. vivax m
 
 ### Section: 5.2 Treating malaria > 5.2.2 Treating severe malaria > 5.2.2.1 Artesunate
 
-### 60. narrative-0091
+### 59. narrative-0091
 **Pages:** 20 | **Section:** 5.2.2.1 Strong recommendation for , High certainty evidence
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6143,7 +5779,7 @@ Adults and children with severe malaria (including infants, pregnant women in al
 
 ---
 
-### 61. narrative-0092
+### 60. narrative-0092
 **Pages:** 20 | **Section:** 5.2.2.1 Strong recommendation for
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6173,7 +5809,7 @@ Children weighing &lt; 20 kg should receive a higher dose of artesunate (3 mg/kg
 
 ---
 
-### 252. narrative-0745
+### 253. narrative-0745
 **Pages:** 213 | **Section:** 5.2.2.1 Treating severe malaria (2015)
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6202,7 +5838,7 @@ Adults and children with severe malaria (including infants, pregnant women in al
 
 ---
 
-### 253. narrative-0746
+### 254. narrative-0746
 **Pages:** 214 | **Section:** 5.2.2.1 Practical info
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6218,7 +5854,7 @@ The solution should be prepared freshly for each administration and should not b
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 214.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 214 and section 5.2.2.1 Practical info match the printed WHO guidelines.
 
@@ -6230,7 +5866,7 @@ The solution should be prepared freshly for each administration and should not b
 
 ---
 
-### 254. narrative-0747
+### 255. narrative-0747
 **Pages:** 214 | **Section:** 5.2.2.1 Artesunate and post-treatment haemolysis
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6258,7 +5894,7 @@ Please refer to the Information note on delayed haemolytic anaemia following tre
 
 ---
 
-### 255. narrative-0749
+### 256. narrative-0749
 **Pages:** 214 | **Section:** 5.2.2.1 GRADE
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6299,7 +5935,7 @@ Undesirable effects:
 
 ---
 
-### 256. narrative-0752
+### 257. narrative-0752
 **Pages:** 215 | **Section:** 5.2.2.1 Remarks
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6328,7 +5964,7 @@ Parenteral artesunate is recommended as first-line treatment for adults, childre
 
 ---
 
-### 257. narrative-0754
+### 258. narrative-0754
 **Pages:** 215 | **Section:** 5.2.2.1 Treating severe malaria in children (2015)
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6356,7 +5992,7 @@ Children weighing &lt; 20 kg should receive a higher dose of artesunate (3 mg/kg
 
 ---
 
-### 258. narrative-0755
+### 259. narrative-0755
 **Pages:** 215 | **Section:** 5.2.2.1 Practical info
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6372,7 +6008,7 @@ The solution should be prepared freshly for each administration and should not b
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 215.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 215 and section 5.2.2.1 Practical info match the printed WHO guidelines.
 
@@ -6384,7 +6020,7 @@ The solution should be prepared freshly for each administration and should not b
 
 ---
 
-### 259. narrative-0756
+### 260. narrative-0756
 **Pages:** 215 | **Section:** 5.2.2.1 Artesunate and post-treatment haemolysis
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6410,7 +6046,7 @@ Delayed haemolysis starting &gt;1 week after artesunate treatment of severe mala
 
 ---
 
-### 260. narrative-0757
+### 261. narrative-0757
 **Pages:** 215 | **Section:** 5.2.2.1 Justification
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6440,7 +6076,7 @@ and 265 children) [262][263] . Simulations of artesunate and dihydroartemisinin 
 
 ---
 
-### 261. narrative-0758
+### 262. narrative-0758
 **Pages:** 216 | **Section:** 5.2.2.1 Other considerations
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6468,7 +6104,7 @@ Individual parenteral artesunate doses between 1.75 and 4 mg/kg have been studie
 
 ### Section: 5.2 Treating malaria > 5.2.2 Treating severe malaria > 5.2.2.2 Parenteral alternatives when artesunate is not available
 
-### 62. narrative-0093
+### 61. narrative-0093
 **Pages:** 20 | **Section:** 5.2.2.2 Parenteral alternatives when artesunate is not available
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6498,7 +6134,7 @@ If artesunate is not available, artemether should be used in preference to quini
 
 ---
 
-### 262. narrative-0760
+### 263. narrative-0760
 **Pages:** 216 | **Section:** 5.2.2.2 Parental alternatives when artesunate is not available (2015)
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6524,7 +6160,7 @@ If artesunate is not available, artemether should be used in preference to quini
 
 ---
 
-### 263. narrative-0761
+### 264. narrative-0761
 **Pages:** 216 | **Section:** 5.2.2.2 Artemether
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6554,7 +6190,7 @@ Therapeutic dose : The initial dose of artemether is 3.2 mg/kg bw intramuscularl
 
 ---
 
-### 264. narrative-0762
+### 265. narrative-0762
 **Pages:** 216 | **Section:** 5.2.2.2 Quinine
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6580,7 +6216,7 @@ As the first (loading) dose is the most important in the treatment of severe mal
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 216.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 216 and section 5.2.2.2 Quinine match the printed WHO guidelines.
 
@@ -6592,7 +6228,7 @@ As the first (loading) dose is the most important in the treatment of severe mal
 
 ---
 
-### 265. narrative-0763
+### 266. narrative-0763
 **Pages:** 217 | **Section:** 5.2.2.2 Evidence to decision
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6620,7 +6256,7 @@ Is parenteral artesunate superior to parenteral quinine in preventing death from
 
 ---
 
-### 266. narrative-0764
+### 267. narrative-0764
 **Pages:** 217 | **Section:** 5.2.2.2 GRADE
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6683,7 +6319,7 @@ Overall certainty of evidence for all critical outcomes: moderate.
 
 ---
 
-### 267. narrative-0765
+### 268. narrative-0765
 **Pages:** 218 | **Section:** 5.2.2.2 Other considerations
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6713,7 +6349,7 @@ Is parenteral artesunate superior to parenteral quinine in preventing death from
 
 ---
 
-### 268. narrative-0767
+### 269. narrative-0767
 **Pages:** 218 | **Section:** 5.2.2.2 Recommendation
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6739,7 +6375,7 @@ Treat children and adults with severe malaria with parenteral artesunate for at 
 
 ---
 
-### 269. narrative-0769
+### 270. narrative-0769
 **Pages:** 218 | **Section:** 5.2.2.2 Rationale for the recommendation
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6769,7 +6405,7 @@ Is intramuscular artemether superior to parenteral quinine in preventing death f
 
 ---
 
-### 270. narrative-0770
+### 271. narrative-0770
 **Pages:** 218 | **Section:** 5.2.2.2 Remarks
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6783,7 +6419,7 @@ Quinine is retained as an option for treating severe malaria when artesunate or 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 218 and section 5.2.2.2 Remarks match the printed WHO guidelines.
 
@@ -6795,7 +6431,7 @@ Quinine is retained as an option for treating severe malaria when artesunate or 
 
 ---
 
-### 271. narrative-0771
+### 272. narrative-0771
 **Pages:** 218 | **Section:** 5.2.2.2 Recommendation
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6821,7 +6457,7 @@ If parenteral artesunate is not available, use artemether in preference to quini
 
 ---
 
-### 272. narrative-0773
+### 273. narrative-0773
 **Pages:** 218 | **Section:** 5.2.2.2 Rationale for the recommendation
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6849,7 +6485,7 @@ The Guideline Development Group considered the possible superiority, the ease of
 
 ### Section: 5.2 Treating malaria > 5.2.2 Treating severe malaria > 5.2.2.3 Pre-referral treatment options
 
-### 63. narrative-0094
+### 62. narrative-0094
 **Pages:** 20 | **Section:** 5.2.2.3 Pre-referral treatment options
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6874,7 +6510,7 @@ Where intramuscular injection of artesunate is not available, children &lt; 6 ye
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 20.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: older children and adults.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: older children and adults.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 20 and section 5.2.2.3 Pre-referral treatment options match the printed WHO guidelines.
 
@@ -6886,7 +6522,7 @@ Where intramuscular injection of artesunate is not available, children &lt; 6 ye
 
 ---
 
-### 273. narrative-0774
+### 274. narrative-0774
 **Pages:** 218 | **Section:** 5.2.2.3 Pre-referral treatment options
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6922,7 +6558,7 @@ The single dose of 10 mg/kg bw of artesunate when given as a suppository should 
 
 ---
 
-### 274. narrative-0775
+### 275. narrative-0775
 **Pages:** 219 | **Section:** 5.2.2.3 Pre-referral treatment options (2015)
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6941,7 +6577,7 @@ Where intramuscular injection of artesunate is not available, children &lt; 6 ye
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 219.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: older children and adults.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: older children and adults.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 219 and section 5.2.2.3 Pre-referral treatment options (2015) match the printed WHO guidelines.
 
@@ -6953,7 +6589,7 @@ Where intramuscular injection of artesunate is not available, children &lt; 6 ye
 
 ---
 
-### 275. narrative-0776
+### 276. narrative-0776
 **Pages:** 219 | **Section:** 5.2.2.3 Adjustment of parenteral dosing in renal failure of hepatic dysfunction
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6979,7 +6615,7 @@ The dosage of artemisinin derivatives does not have to be adjusted for patients 
 
 ---
 
-### 276. narrative-0777
+### 277. narrative-0777
 **Pages:** 219 | **Section:** 5.2.2.3 Follow-on treatment
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -6999,7 +6635,7 @@ After initial parenteral treatment, once the patient can tolerate oral therapy, 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: children &lt; Special populations: pregnant women.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: children &lt; Special populations: pregnant women.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 219 and section 5.2.2.3 Follow-on treatment match the printed WHO guidelines.
 
@@ -7011,7 +6647,7 @@ After initial parenteral treatment, once the patient can tolerate oral therapy, 
 
 ---
 
-### 277. narrative-0778
+### 278. narrative-0778
 **Pages:** 219 | **Section:** 5.2.2.3 Continuing supportive care
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -7039,7 +6675,7 @@ Please refer to The use of rectal artesunate as a pre-referral treatment for sev
 
 ---
 
-### 278. narrative-0780
+### 279. narrative-0780
 **Pages:** 220 | **Section:** 5.2.2.3 GRADE
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -7070,7 +6706,7 @@ In comparison with placebo:
 
 ---
 
-### 279. narrative-0782
+### 280. narrative-0782
 **Pages:** 220 | **Section:** 5.2.2.3 Remarks
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -7103,7 +6739,7 @@ Where intramuscular artesunate is not available, use rectal artesunate (in child
 
 ### Section: 5.2 Treating malaria > 5.2.3 Other considerations in treating malaria > 5.2.3.3 Monitoring efficacy and safety of antimalarial drugs and resistance
 
-### 64. narrative-0096
+### 63. narrative-0096
 **Pages:** 21 | **Section:** 5.2.3.3 Practice Statement
 **Validation:** No validation data | **Condition:** Malaria treatment
 
@@ -7135,7 +6771,7 @@ The introduction of a new antimalarial medicine in the national treatment policy
 
 ---
 
-### 282. narrative-0796
+### 283. narrative-0796
 **Pages:** 223 | **Section:** 5.2.3.3 Therapeutic efficacy
 **Validation:** No validation data | **Condition:** Malaria treatment
 
@@ -7165,7 +6801,7 @@ An antimalarial medicine that is recommended in the national malaria treatment p
 
 ---
 
-### 283. narrative-0797
+### 284. narrative-0797
 **Pages:** 223 | **Section:** 5.2.3.3 Resistance
 **Validation:** No validation data | **Condition:** Malaria treatment
 
@@ -7200,7 +6836,7 @@ Clinical and parasitological assessment of therapeutic efficacy should include:
 
 ---
 
-### 284. narrative-0799
+### 285. narrative-0799
 **Pages:** 223 | **Section:** 5.2.3.3 Monitoring efficacy and safety of antimalarial drugs and resistance (2010)
 **Validation:** No validation data | **Condition:** Malaria treatment
 
@@ -7230,7 +6866,7 @@ The introduction of a new antimalarial medicine in the national treatment policy
 
 ---
 
-### 285. narrative-0800
+### 286. narrative-0800
 **Pages:** 224 | **Section:** 5.2.3.3 Practical info
 **Validation:** No validation data | **Condition:** Malaria treatment
 
@@ -7265,7 +6901,7 @@ Additional references include:
 
 ### Section: 5.3 National adaptation and implementation
 
-### 65. narrative-0097
+### 64. narrative-0097
 **Pages:** 21 | **Section:** 5.3 Practice Statement
 **Validation:** No validation data
 
@@ -7297,7 +6933,7 @@ Introduction of a new antimalarial medicine in the national treatment policy sho
 
 ---
 
-### 66. narrative-0098
+### 65. narrative-0098
 **Pages:** 21 | **Section:** 5.3 Practice Statement
 **Validation:** No validation data
 
@@ -7316,7 +6952,7 @@ Drugs used as first line treatment should not be used in IPTp, PMC, SMC, IPTsc o
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: IPTp, PMC, SMC, IPTsc or MDA.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: IPTp, PMC, SMC, IPTsc or MDA.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 21 and section 5.3 Practice Statement match the printed WHO guidelines.
 
@@ -7328,7 +6964,7 @@ Drugs used as first line treatment should not be used in IPTp, PMC, SMC, IPTsc o
 
 ---
 
-### 286. narrative-0803
+### 287. narrative-0803
 **Pages:** 224 | **Section:** 5.3 Information required for national decision-making
 **Validation:** No validation data
 
@@ -7354,7 +6990,7 @@ Selection of first- and second-line antimalarial medicines will require reliable
 
 ---
 
-### 287. narrative-0805
+### 288. narrative-0805
 **Pages:** 224 | **Section:** 5.3 General guiding principles for choosing a case management strategy and tools
 **Validation:** No validation data
 
@@ -7390,7 +7026,7 @@ For the diagnosis of severe malaria, microscopy is preferred, as it provides a d
 
 ---
 
-### 288. narrative-0807
+### 289. narrative-0807
 **Pages:** 225 | **Section:** 5.3 Considerations in use of artemisinin-based combination therapy
 **Validation:** No validation data
 
@@ -7416,7 +7052,7 @@ Although there are some minor differences in the oral absorption and bioavailabi
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 225.
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 225 and section 5.3 Considerations in use of artemisinin-based combination therapy match the printed WHO guidelines.
 
@@ -7428,7 +7064,7 @@ Although there are some minor differences in the oral absorption and bioavailabi
 
 ---
 
-### 289. narrative-0808
+### 290. narrative-0808
 **Pages:** 226 | **Section:** 5.3 Choosing among formulations
 **Validation:** No validation data
 
@@ -7444,7 +7080,7 @@ Paediatric formulations should allow accurate dosing without having to break tab
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 226.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 226 and section 5.3 Choosing among formulations match the printed WHO guidelines.
 
@@ -7456,7 +7092,7 @@ Paediatric formulations should allow accurate dosing without having to break tab
 
 ---
 
-### 290. narrative-0810
+### 291. narrative-0810
 **Pages:** 226 | **Section:** 5.3 Community case management of malaria
 **Validation:** No validation data
 
@@ -7482,7 +7118,7 @@ Community case management is recommended by WHO to improve access to prompt, eff
 
 ---
 
-### 291. narrative-0813
+### 292. narrative-0813
 **Pages:** 226 | **Section:** 5.3 National adaptation and implementation (2010)
 **Validation:** No validation data
 
@@ -7512,7 +7148,7 @@ Introduction of a new antimalarial medicine in the national treatment policy sho
 
 ---
 
-### 292. narrative-0815
+### 293. narrative-0815
 **Pages:** 227 | **Section:** 5.3 National adaptation and implementation (2022)
 **Validation:** No validation data
 
@@ -7531,7 +7167,7 @@ Practice Statement
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: IPTp, PMC, SMC, IPTsc or MDA.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: IPTp, PMC, SMC, IPTsc or MDA.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 227 and section 5.3 National adaptation and implementation (2022) match the printed WHO guidelines.
 
@@ -7545,7 +7181,7 @@ Practice Statement
 
 ### Section: 6.1 Interventions recommended for mass implementation in delimited geographical areas > 6.1.1 Mass testing and treatment (MTaT)
 
-### 67. narrative-0100
+### 66. narrative-0100
 **Pages:** 23 | **Section:** 6.1.1 Conditional recommendation against , Moderate certainty evidence
 **Validation:** No validation data
 
@@ -7565,7 +7201,7 @@ The GDG noted that there may be exceptional circumstances under which MTaT might
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 23 and section 6.1.1 Conditional recommendation against , Moderate certainty evidence match the printed WHO guidelines.
 
@@ -7577,7 +7213,7 @@ The GDG noted that there may be exceptional circumstances under which MTaT might
 
 ---
 
-### 294. narrative-0820
+### 295. narrative-0820
 **Pages:** 228 | **Section:** 6.1.1 Mass testing and treatment to reduce transmission of malaria (2022)
 **Validation:** No validation data
 
@@ -7593,7 +7229,7 @@ The GDG noted that there may be exceptional circumstances under which MTaT might
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 228 and section 6.1.1 Mass testing and treatment to reduce transmission of malaria (2022) match the printed WHO guidelines.
 
@@ -7607,7 +7243,7 @@ The GDG noted that there may be exceptional circumstances under which MTaT might
 
 ### Section: 6.2 Interventions targeting infections in people at higher-risk > 6.2.1 Targeted drug administration (TDA)
 
-### 68. narrative-0102
+### 67. narrative-0102
 **Pages:** 23 | **Section:** 6.2.1 Remark:
 **Validation:** No validation data
 
@@ -7625,7 +7261,7 @@ The GDG noted that there may be exceptional circumstances under which MTaT might
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 23 and section 6.2.1 Remark: match the printed WHO guidelines.
 
@@ -7637,7 +7273,7 @@ The GDG noted that there may be exceptional circumstances under which MTaT might
 
 ---
 
-### 295. narrative-0832
+### 296. narrative-0832
 **Pages:** 232 | **Section:** 6.2.1 Targeted drug administration to reduce transmission of malaria (2022)
 **Validation:** No validation data
 
@@ -7657,7 +7293,7 @@ In areas with very low to low transmission or post-elimination settings preventi
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 232 and section 6.2.1 Targeted drug administration to reduce transmission of malaria (2022) match the printed WHO guidelines.
 
@@ -7669,7 +7305,7 @@ In areas with very low to low transmission or post-elimination settings preventi
 
 ---
 
-### 296. narrative-0833
+### 297. narrative-0833
 **Pages:** 232 | **Section:** 6.2.1 Practical info
 **Validation:** No validation data
 
@@ -7703,7 +7339,7 @@ Programmes contemplating providing medicine for radical cure of P. vivax hypnozo
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 232.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e; Special populations: pregnant women in their first trimester, G6PD deficiency prior to treatment, an effective pharmacovigilance system and emergency access to bl.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e; Special populations: pregnant women in their first trimester, G6PD deficiency prior to treatment, an effective pharmacovigilance system and emergency access to bl.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 232 and section 6.2.1 Practical info match the printed WHO guidelines.
 
@@ -7715,7 +7351,7 @@ Programmes contemplating providing medicine for radical cure of P. vivax hypnozo
 
 ---
 
-### 297. narrative-0838
+### 298. narrative-0838
 **Pages:** 234 | **Section:** 6.2.1 Justification
 **Validation:** No validation data
 
@@ -7729,7 +7365,7 @@ Although the quality of evidence was very low, the GDG concluded that the balanc
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 234 and section 6.2.1 Justification match the printed WHO guidelines.
 
@@ -7743,7 +7379,7 @@ Although the quality of evidence was very low, the GDG concluded that the balanc
 
 ### Section: 6.2 Interventions targeting infections in people at higher-risk > 6.2.2 Targeted testing and treatment (TTaT)
 
-### 69. narrative-0103
+### 68. narrative-0103
 **Pages:** 23 | **Section:** 6.2.2 Targeted testing and treatment (TTaT)
 **Validation:** No validation data
 
@@ -7761,7 +7397,7 @@ Testing and treatment of people with an increased risk of infection relative to 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 23 and section 6.2.2 Targeted testing and treatment (TTaT) match the printed WHO guidelines.
 
@@ -7773,7 +7409,7 @@ Testing and treatment of people with an increased risk of infection relative to 
 
 ---
 
-### 298. narrative-0841
+### 299. narrative-0841
 **Pages:** 235 | **Section:** 6.2.2 Targeted testing and treatment to reduce transmission of malaria (2022)
 **Validation:** No validation data
 
@@ -7789,7 +7425,7 @@ The GDG noted that there may be limited circumstances under which targeted testi
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 235 and section 6.2.2 Targeted testing and treatment to reduce transmission of malaria (2022) match the printed WHO guidelines.
 
@@ -7803,7 +7439,7 @@ The GDG noted that there may be limited circumstances under which targeted testi
 
 ### Section: 6.2 Interventions targeting infections in people at higher-risk > 6.2.3 Testing and treatment at points of entry to reduce importation of malaria
 
-### 70. narrative-0106
+### 69. narrative-0106
 **Pages:** 24 | **Section:** 6.2.3 Routine malaria testing and treatment at points of entry (2022)
 **Validation:** No validation data
 
@@ -7817,7 +7453,7 @@ Routine malaria testing and treatment of people arriving at points of entry (lan
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 24 and section 6.2.3 Routine malaria testing and treatment at points of entry (2022) match the printed WHO guidelines.
 
@@ -7829,7 +7465,7 @@ Routine malaria testing and treatment of people arriving at points of entry (lan
 
 ---
 
-### 299. narrative-0846
+### 300. narrative-0846
 **Pages:** 237 | **Section:** 6.2.3 Routine malaria testing and treatment at points of entry (2022)
 **Validation:** No validation data
 
@@ -7845,7 +7481,7 @@ No studies of the impact of testing and treatment at points of entry on the rate
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 237 and section 6.2.3 Routine malaria testing and treatment at points of entry (2022) match the printed WHO guidelines.
 
@@ -7859,7 +7495,7 @@ No studies of the impact of testing and treatment at points of entry on the rate
 
 ### Section: 10.5 Recommendations for interventions in the final phase of elimination and prevention of reestablishment
 
-### 71. narrative-0116
+### 70. narrative-0116
 **Pages:** 29 | **Section:** 10.5 Scope
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -7900,7 +7536,7 @@ No guidance is given on the use of antimalarial agents to prevent malaria in peo
 
 ### Section: 2.1 Guideline translations
 
-### 72. narrative-0131
+### 71. narrative-0131
 **Pages:** 33 | **Section:** 2.1 Malaria transmission, acquisition of immunity, and clinical manifestations of disease
 **Validation:** No validation data
 
@@ -7947,7 +7583,7 @@ In moderate and high transmission areas with sustained high coverage of vector c
 
 ---
 
-### 73. narrative-0133
+### 72. narrative-0133
 **Pages:** 34 | **Section:** 2.1 Strategic information to tailor programmatic response and selection of interventions
 **Validation:** No validation data
 
@@ -7976,7 +7612,7 @@ The Guidelines provide a framework within which NMPs and their implementing part
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: provide prescriptive guidance on what should be done in every situation.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: provide prescriptive guidance on what should be done in every situation.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 34 and section 2.1 Strategic information to tailor programmatic response and selection of interventions match the printed WHO guidelines.
 
@@ -7990,7 +7626,7 @@ The Guidelines provide a framework within which NMPs and their implementing part
 
 ### Section: 4.1 Vector control
 
-### 74. narrative-0139
+### 73. narrative-0139
 **Pages:** 37 | **Section:** 4.1 Prevention, mitigation and management of insecticide resistance
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -8029,7 +7665,7 @@ Key technical principles for addressing insecticide resistance are as follows:
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 37 and section 4.1 Prevention, mitigation and management of insecticide resistance match the printed WHO guidelines.
 
@@ -8041,7 +7677,7 @@ Key technical principles for addressing insecticide resistance are as follows:
 
 ---
 
-### 75. narrative-0141
+### 74. narrative-0141
 **Pages:** 38 | **Section:** 4.1 Evidence-based planning
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -8061,7 +7697,7 @@ IRM plans should be revisited regularly to consider new information, and to inte
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 38 and section 4.1 Evidence-based planning match the printed WHO guidelines.
 
@@ -8073,7 +7709,7 @@ IRM plans should be revisited regularly to consider new information, and to inte
 
 ---
 
-### 76. narrative-0143
+### 75. narrative-0143
 **Pages:** 39 | **Section:** 4.1 Residual transmission
 **Validation:** No validation data | **Condition:** Vector control
 
@@ -8093,7 +7729,7 @@ There is an urgent need for greatly improved knowledge of the bionomics of the m
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 39 and section 4.1 Residual transmission match the printed WHO guidelines.
 
@@ -8107,7 +7743,7 @@ There is an urgent need for greatly improved knowledge of the bionomics of the m
 
 ### Section: 4.2 Preventive chemotherapies > 4.2.1 Intermittent preventive treatment of malaria in pregnancy (IPTp)
 
-### 93. narrative-0349
+### 92. narrative-0349
 **Pages:** 103 | **Section:** 4.2.1 Contraindications
 **Validation:** No validation data | **Condition:** Malaria in pregnancy
 
@@ -8125,7 +7761,7 @@ IPTp is not recommended for pregnant women before week 13 of pregnancy, or those
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 103.
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving a sulfa-based medicine as treatment or prophylaxis, including co-trimoxazole (trimethoprim-sulfamethoxazole) for HIV, pregnant women before week 13 of pregnancy, or those with severe acute illness, or who are unable to take oral medication, or women who during the last 30 days received a dose of any of the drugs being used for IPTp, or those allergic to any of the components of SP; Special populations: pregnant women before week 13 of pregnancy, or those with severe acute illness, or who are unable to.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving a sulfa-based medicine as treatment or prophylaxis, including co-trimoxazole (trimethoprim-sulfamethoxazole) for HIV, pregnant women before week 13 of pregnancy, or those with severe acute illness, or who are unable to take oral medication, or women who during the last 30 days received a dose of any of the drugs being used for IPTp, or those allergic to any of the components of SP; Special populations: pregnant women before week 13 of pregnancy, or those with severe acute illness, or who are unable to.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 103 and section 4.2.1 Contraindications match the printed WHO guidelines.
 
@@ -8137,7 +7773,7 @@ IPTp is not recommended for pregnant women before week 13 of pregnancy, or those
 
 ---
 
-### 94. narrative-0351
+### 93. narrative-0351
 **Pages:** 103 | **Section:** 4.2.1 Benefits and harms In the mother
 **Validation:** No validation data | **Condition:** Malaria in pregnancy
 
@@ -8173,7 +7809,7 @@ None of the studies in the systematic review reported on malaria infection , sev
 
 ---
 
-### 95. narrative-0352
+### 94. narrative-0352
 **Pages:** 104 | **Section:** 4.2.1 In the fetus and infant
 **Validation:** No validation data | **Condition:** Malaria in pregnancy
 
@@ -8210,7 +7846,7 @@ More information on the evidence can be found in the systematic review (Gutman e
 
 ---
 
-### 96. narrative-0354
+### 95. narrative-0354
 **Pages:** 106 | **Section:** 4.2.1 Feasibility
 **Validation:** No validation data | **Condition:** Malaria in pregnancy
 
@@ -8238,12 +7874,12 @@ More information on the evidence can be found in the summary of contextual facto
 ```
 
 #### Extracted Clinical Flags
-- **Special populations:** pregnant women reporting taking IPTp-SP under DOT [118][119][120][121], pregnant women
+- **Special populations:** pregnant women, pregnant women reporting taking IPTp-SP under DOT [118][119][120][121]
 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 106.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women reporting taking IPTp-SP under DOT [118][119][120][121], pregnant women.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: pregnant women, pregnant women reporting taking IPTp-SP under DOT [118][119][120][121].
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 106 and section 4.2.1 Feasibility match the printed WHO guidelines.
 
@@ -8255,7 +7891,7 @@ More information on the evidence can be found in the summary of contextual facto
 
 ---
 
-### 97. narrative-0356
+### 96. narrative-0356
 **Pages:** 106 | **Section:** 4.2.1 Sources of information
 **Validation:** No validation data | **Condition:** Malaria in pregnancy
 
@@ -8291,7 +7927,7 @@ The main outcomes of interest considered by the GDG in the systematic review wer
 
 ### Section: 4.2 Preventive chemotherapies > 4.2.5 Post-discharge malaria chemoprevention (PDMC)
 
-### 119. narrative-0428
+### 118. narrative-0428
 **Pages:** 124 | **Section:** 4.2.5 Contraindications
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -8310,7 +7946,7 @@ PDMC is not recommended in children who develop severe acute illness following d
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 124.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving a sulfa-based medication as treatment or prophylaxis, including co-trimoxazole (trimethoprim-sulfamethoxazole) for HIV, children who develop severe acute illness following discharge, those who are unable to take oral medication, children who during the last 30 days received a dose of any of the drugs being used for PDMC, or those allergic to any of the drugs being used for PDMC.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving a sulfa-based medication as treatment or prophylaxis, including co-trimoxazole (trimethoprim-sulfamethoxazole) for HIV, children who develop severe acute illness following discharge, those who are unable to take oral medication, children who during the last 30 days received a dose of any of the drugs being used for PDMC, or those allergic to any of the drugs being used for PDMC.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 124 and section 4.2.5 Contraindications match the printed WHO guidelines.
 
@@ -8322,7 +7958,7 @@ PDMC is not recommended in children who develop severe acute illness following d
 
 ---
 
-### 120. narrative-0430
+### 119. narrative-0430
 **Pages:** 124 | **Section:** 4.2.5 Benefits and harms
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -8359,7 +7995,7 @@ More information on the evidence can be found in the systematic review (Phiri et
 
 ---
 
-### 121. narrative-0434
+### 120. narrative-0434
 **Pages:** 127 | **Section:** 4.2.5 Feasibility
 **Validation:** No validation data | **Condition:** Malaria chemoprevention
 
@@ -8387,7 +8023,7 @@ post-discharge. The main outcomes of interest were the impact of PDMC on re-admi
 
 ### Section: 4.2 Preventive chemotherapies > 4.2.6 Mass drug administration (MDA) > 4.2.6.1 MDA for burden reduction
 
-### 122. narrative-0448
+### 121. narrative-0448
 **Pages:** 130 | **Section:** 4.2.6.1 Benefits and harms Moderate to high transmission areas
 **Validation:** No validation data
 
@@ -8417,7 +8053,7 @@ post-discharge. The main outcomes of interest were the impact of PDMC on re-admi
 
 ---
 
-### 123. narrative-0449
+### 122. narrative-0449
 **Pages:** 130 | **Section:** 4.2.6.1 Very low to low transmission areas
 **Validation:** No validation data
 
@@ -8451,7 +8087,7 @@ post-discharge. The main outcomes of interest were the impact of PDMC on re-admi
 
 ---
 
-### 124. narrative-0450
+### 123. narrative-0450
 **Pages:** 131 | **Section:** 4.2.6.1 P. vivax
 **Validation:** No validation data
 
@@ -8488,7 +8124,7 @@ The GDG considered the overall certainty of the evidence for the outcomes of int
 
 ---
 
-### 125. narrative-0456
+### 124. narrative-0456
 **Pages:** 133 | **Section:** 4.2.6.1 Sources of information
 **Validation:** No validation data
 
@@ -8507,7 +8143,7 @@ The systematic review identified 20 studies: eight provided data on P. falciparu
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 133.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 133 and section 4.2.6.1 Sources of information match the printed WHO guidelines.
 
@@ -8521,7 +8157,7 @@ The systematic review identified 20 studies: eight provided data on P. falciparu
 
 ### Section: 4.2 Preventive chemotherapies > 4.2.6 Mass drug administration (MDA) > 4.2.6.2 MDA for burden reduction in emergency settings
 
-### 126. narrative-0464
+### 125. narrative-0464
 **Pages:** 135 | **Section:** 4.2.6.2 Resources
 **Validation:** No validation data
 
@@ -8564,7 +8200,7 @@ There was limited evidence on the cost-effectiveness of MDA in emergency setting
 
 ### Section: 4.2 Preventive chemotherapies > 4.2.6 Mass drug administration (MDA) > 4.2.6.3 MDA to reduce transmission of P. falciparum in very low to low transmission settings
 
-### 127. narrative-0471
+### 126. narrative-0471
 **Pages:** 137 | **Section:** 4.2.6.3 Practical info
 **Validation:** No validation data | **Condition:** P. falciparum malaria
 
@@ -8598,7 +8234,7 @@ Depending on the medicine chosen, certain population groups may need to be exclu
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 137.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e; Special populations: pregnant women in their first trimester.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e; Special populations: pregnant women in their first trimester.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 137 and section 4.2.6.3 Practical info match the printed WHO guidelines.
 
@@ -8610,7 +8246,7 @@ Depending on the medicine chosen, certain population groups may need to be exclu
 
 ---
 
-### 128. narrative-0484
+### 127. narrative-0484
 **Pages:** 142 | **Section:** 4.2.6.3 MDA to reduce transmission of P. falciparum in moderate to high transmission settings (2022)
 **Validation:** No validation data | **Condition:** P. falciparum malaria
 
@@ -8627,7 +8263,7 @@ In areas with moderate to high levels of P. falciparum transmission, providing a
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 142 and section 4.2.6.3 MDA to reduce transmission of P. falciparum in moderate to high transmission settings (2022) match the printed WHO guidelines.
 
@@ -8641,7 +8277,7 @@ In areas with moderate to high levels of P. falciparum transmission, providing a
 
 ### Section: 4.2 Preventive chemotherapies > 4.2.6 Mass drug administration (MDA) > 4.2.6.5 MDA to reduce transmission of P. vivax
 
-### 129. narrative-0496
+### 128. narrative-0496
 **Pages:** 145 | **Section:** 4.2.6.5 Practical info
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -8675,7 +8311,7 @@ MDA for P. vivax is complicated because many P. vivax infections are likely to b
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 145.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e; Special populations: pregnant women in their first trimester, G6PD deficiency prior to treatment, an effective pharmacovigilance system and emergency access to bl.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e; Special populations: pregnant women in their first trimester, G6PD deficiency prior to treatment, an effective pharmacovigilance system and emergency access to bl.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 145 and section 4.2.6.5 Practical info match the printed WHO guidelines.
 
@@ -8689,7 +8325,7 @@ MDA for P. vivax is complicated because many P. vivax infections are likely to b
 
 ### Section: 4.2 Preventive chemotherapies > 4.2.6 Mass drug administration (MDA) > 4.2.6.6 Mass relapse prevention (MRP) to reduce transmission of P. vivax
 
-### 130. narrative-0507
+### 129. narrative-0507
 **Pages:** 150 | **Section:** 4.2.6.6 Mass relapse prevention (MRP) to reduce transmission of P. vivax (2022)
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -8709,7 +8345,7 @@ Mass treatment with an 8-aminoquinoline medicine alone to reduce the transmissio
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 150.
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency, the GDG noted the potential for severe harm from the use of a therapeutic dose of a.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency, the GDG noted the potential for severe harm from the use of a therapeutic dose of a.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 150 and section 4.2.6.6 Mass relapse prevention (MRP) to reduce transmission of P. vivax (2022) match the printed WHO guidelines.
 
@@ -8721,7 +8357,7 @@ Mass treatment with an 8-aminoquinoline medicine alone to reduce the transmissio
 
 ---
 
-### 131. narrative-0508
+### 130. narrative-0508
 **Pages:** 150 | **Section:** 4.2.6.6 Benefits and harms
 **Validation:** No validation data | **Condition:** P. vivax malaria
 
@@ -8751,7 +8387,7 @@ The systematic review identified two NRSs that provided data on MRP for P. vivax
 
 ### Section: 5.1 Diagnosing malaria
 
-### 138. narrative-0547
+### 137. narrative-0547
 **Pages:** 163 | **Section:** 5.1 Parasitological diagnosis
 **Validation:** No validation data | **Condition:** Malaria diagnosis
 
@@ -8783,7 +8419,7 @@ This document does not include recommendations for use of specific RDTs or for i
 
 ---
 
-### 139. narrative-0548
+### 138. narrative-0548
 **Pages:** 163 | **Section:** 5.1 Diagnosis of malaria
 **Validation:** No validation data | **Condition:** Malaria diagnosis
 
@@ -8801,7 +8437,7 @@ Where P. vivax malaria is common and microscopy is not available, it is recommen
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 163 and section 5.1 Diagnosis of malaria match the printed WHO guidelines.
 
@@ -8815,7 +8451,7 @@ Where P. vivax malaria is common and microscopy is not available, it is recommen
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria
 
-### 140. narrative-0554
+### 139. narrative-0554
 **Pages:** 165 | **Section:** 5.2.1 Definition of uncomplicated malaria
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -8841,7 +8477,7 @@ A patient who presents with symptoms of malaria and a positive parasitological t
 
 ---
 
-### 141. narrative-0557
+### 140. narrative-0557
 **Pages:** 166 | **Section:** 5.2.1 Incomplete dosing
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -8857,7 +8493,7 @@ Another potentially dangerous practice is to give only the first dose of a treat
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 166.
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 166 and section 5.2.1 Incomplete dosing match the printed WHO guidelines.
 
@@ -8869,7 +8505,7 @@ Another potentially dangerous practice is to give only the first dose of a treat
 
 ---
 
-### 142. narrative-0558
+### 141. narrative-0558
 **Pages:** 166 | **Section:** 5.2.1 Can the patient take oral medication?
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -8895,7 +8531,7 @@ Some patients cannot tolerate oral treatment and will require parenteral or rect
 
 ---
 
-### 143. narrative-0559
+### 142. narrative-0559
 **Pages:** 166 | **Section:** 5.2.1 Use of antipyretics
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -8921,7 +8557,7 @@ In young children, high fevers are often associated with vomiting, regurgitation
 
 ---
 
-### 144. narrative-0560
+### 143. narrative-0560
 **Pages:** 166 | **Section:** 5.2.1 Use of anti-emetics
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -8947,7 +8583,7 @@ Vomiting is common in acute malaria and may be severe. Parenteral antimalarial t
 
 ---
 
-### 145. narrative-0561
+### 144. narrative-0561
 **Pages:** 166 | **Section:** 5.2.1 Management of seizures
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -8961,7 +8597,7 @@ Generalized seizures are more common in children with P. falciparum malaria than
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 166 and section 5.2.1 Management of seizures match the printed WHO guidelines.
 
@@ -8975,7 +8611,7 @@ Generalized seizures are more common in children with P. falciparum malaria than
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.1 Artemisinin-based combination therapy > 5.2.1.1.1 Duration of treatment
 
-### 154. narrative-0581
+### 153. narrative-0581
 **Pages:** 171 | **Section:** 5.2.1.1.1 Duration of treatment
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -8989,7 +8625,7 @@ A 3-day course of the artemisinin component of ACTs covers two asexual cycles, e
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 171 and section 5.2.1.1.1 Duration of treatment match the printed WHO guidelines.
 
@@ -9001,7 +8637,7 @@ A 3-day course of the artemisinin component of ACTs covers two asexual cycles, e
 
 ---
 
-### 155. narrative-0583
+### 154. narrative-0583
 **Pages:** 171 | **Section:** 5.2.1.1.1 Benefits and harms Desirable effects
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -9028,7 +8664,7 @@ A 3-day course of the artemisinin component of ACTs covers two asexual cycles, e
 
 ---
 
-### 156. narrative-0585
+### 155. narrative-0585
 **Pages:** 171 | **Section:** 5.2.1.1.1 GRADE
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -9060,7 +8696,7 @@ Three days of artesunate reduced the number of participants who had gametocytaem
 
 ---
 
-### 157. narrative-0587
+### 156. narrative-0587
 **Pages:** 172 | **Section:** 5.2.1.1.1 Remarks
 **Validation:** No validation data | **Condition:** Uncomplicated malaria
 
@@ -9074,7 +8710,7 @@ Longer ACT treatment may be required to achieve &gt; 90% cure rate in areas with
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 172 and section 5.2.1.1.1 Remarks match the printed WHO guidelines.
 
@@ -9086,9 +8722,382 @@ Longer ACT treatment may be required to achieve &gt; 90% cure rate in areas with
 
 ---
 
+### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.1 Artemisinin-based combination therapy > 5.2.1.1.2 Dosing of ACTs
+
+### 157. narrative-0589
+**Pages:** 172 | **Section:** 5.2.1.1.2 Dosing of ACTs
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `38ee9bad3632ff80...`
+
+#### Extracted Content
+```
+ACT regimens must ensure optimal dosing to prolong their useful therapeutic life, i.e. to maximize the likelihood of rapid clinical and parasitological cure, minimize transmission and retard drug resistance.
+
+It is essential to achieve effective antimalarial drug concentrations for a sufficient time (exposure) in all target populations in order to ensure high cure rates. The dosage recommendations below are derived from understanding the relationship between dose and the profiles of exposure to the drug (pharmacokinetics) and the resulting therapeutic efficacy (pharmacodynamics) and safety. Some patient groups, notably younger children, are not dosed optimally with the "dosage regimens recommended by manufacturers, which compromises efficacy and fuels resistance. In these guidelines when there was pharmacological evidence that certain patient groups are not receiving optimal doses, dose regimens were adjusted to ensure similar exposure across all patient groups.
+
+Weight-based dosage recommendations are summarized below. While age-based dosing may be more practical in children, the relation between age and weight differs in different populations. Age-based dosing can therefore result in under- dosing or over-dosing of some patients, unless large, region-specific weight-for-age databases are available to guide dosing in that region.
+
+Factors other than dosage regimen may also affect exposure to a drug and thus treatment efficacy. The drug exposure of an individual patient also depends on factors such as the quality of the drug, the formulation, adherence and, for some drugs, co-administration with fat. Poor adherence is a major cause of treatment failure and drives the emergence and spread of drug resistance. Fixed-dose combinations encourage adherence and are preferred to loose (individual) tablets. Prescribers should take the time necessary to explain to patients why they should complete antimalarial course.
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 172.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
+- [ ] **Provenance** — Confirm source page 172 and section 5.2.1.1.2 Dosing of ACTs match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 158. narrative-0590
+**Pages:** 172 | **Section:** 5.2.1.1.2 Artemether + lumefantrine
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `540e46d6d02fe838...`
+
+#### Extracted Content
+```
+Formulations currently available: Dispersible or standard tablets containing 20 mg artemether and 120 mg lumefantrine, and standard tablets containing 40 mg artemether and 240 mg lumefantrine in a fixed-dose combination formulation. The flavoured dispersible tablet paediatric formulation facilitates use in young children.
+
+Target dose range: A total dose of 5-24 mg/kg bw of artemether and 29-144 mg/ kg bw of lumefantrine
+
+Recommended dosage regimen: Artemether + lumefantrine is given twice a day for 3 days (total, six doses). The first two doses should, ideally, be given 8 h apart.
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 172.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- ~~**Conditional Logic**~~ — Not applicable
+- [ ] **Provenance** — Confirm source page 172 and section 5.2.1.1.2 Artemether + lumefantrine match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 159. narrative-0591
+**Pages:** 172 | **Section:** 5.2.1.1.2 Artemether + lumefantrine
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `89d930453551879a...`
+
+#### Extracted Content
+```
+≥ 35
+
+80 + 480
+
+Factors associated with altered drug exposure and treatment response:
+
+- · Decreased exposure to lumefantrine has been documented in young children (&lt;3 years) as well as pregnant women, large adults, patients taking mefloquine, rifampicin or efavirenz and in smokers. As these target populations may be at increased risk for treatment failure, their responses to treatment should be monitored more closely and their full adherence ensured.
+- · Increased exposure to lumefantrine has been observed in patients concomitantly taking lopinavir- lopinavir/ritonavirbased antiretroviral agents but with no increase in toxicity; therefore, no dosage adjustment is indicated.
+```
+
+#### Extracted Clinical Flags
+- **Special populations:** pregnant women, large adults, patients taking mefloquine, rifampicin or efavirenz and in smokers
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 172.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
+- [ ] **Provenance** — Confirm source page 172 and section 5.2.1.1.2 Artemether + lumefantrine match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 160. narrative-0593
+**Pages:** 173 | **Section:** 5.2.1.1.2 Artesunate + amodiaquine
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `ceb2d1af93638102...`
+
+#### Extracted Content
+```
+Formulations currently available: A fixed-dose combination in tablets containing 25 + 67.5 mg, 50 + 135 mg or 100 + 270 mg of artesunate and amodiaquine, respectively
+
+Target dose and range: The target dose (and range) are 4 (2-10) mg/kg bw per day artesunate and 10 (7.5-15) mg/kg bw per day amodiaquine once a day for 3 days. A total therapeutic dose range of 6-30 mg/kg bw per day artesunate and 22.5-45 mg/kg bw per dose amodiaquine is recommended.
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 173.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- ~~**Conditional Logic**~~ — Not applicable
+- [ ] **Provenance** — Confirm source page 173 and section 5.2.1.1.2 Artesunate + amodiaquine match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 161. narrative-0594
+**Pages:** 173 | **Section:** 5.2.1.1.2 Artesunate + amodiaquine
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `124080328b81a783...`
+
+#### Extracted Content
+```
+Factors associated with altered drug exposure and treatment response:
+
+Treatment failure after amodiaquine monotherapy was more frequent among children who were underweight for their age. Therefore, their response to artesunate + amodiaquine treatment should be closely monitored.
+
+Artesunate + amodiaquine is associated with severe neutropenia, particularly in patients co-infected with HIV and especially in those on zidovudine and/or cotrimoxazole. Concomitant use of efavirenz increases exposure to amodiaquine and hepatotoxicity. Thus, concomitant use of artesunate + amodiaquine by patients taking zidovudine, efavirenz and cotrimoxazole should be avoided, unless this is the only ACT promptly available.
+```
+
+#### Verification Checklist
+- ~~**Dosage Accuracy**~~ — Not applicable
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
+- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
+- [ ] **Provenance** — Confirm source page 173 and section 5.2.1.1.2 Artesunate + amodiaquine match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 162. narrative-0596
+**Pages:** 174 | **Section:** 5.2.1.1.2 Artesunate + mefloquine
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `a92bba15004271dc...`
+
+#### Extracted Content
+```
+Formulations currently available: A fixed-dose formulation of paediatric tablets containing 25 mg artesunate and 55 mg mefloquine hydrochloride (equivalent to 50 mg mefloquine base) and adult tablets containing 100 mg artesunate and 220 mg mefloquine hydrochloride (equivalent to 200 mg mefloquine base)
+
+Target dose and range: Target doses (ranges) of 4 (2-10) mg/kg bw per day artesunate and 8.3 (7-11) mg/kg bw per day mefloquine, given once a day for 3 days
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 174.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- ~~**Conditional Logic**~~ — Not applicable
+- [ ] **Provenance** — Confirm source page 174 and section 5.2.1.1.2 Artesunate + mefloquine match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 163. narrative-0597
+**Pages:** 174 | **Section:** 5.2.1.1.2 Artesunate + mefloquine
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `121f247403df80e7...`
+
+#### Extracted Content
+```
+Additional comments:
+
+Mefloquine was associated with increased incidences of nausea, vomiting, dizziness, dysphoria and sleep disturbance in clinical trials, but these symptoms are seldom debilitating, and, where this ACT has been used, it has generally been well tolerated. To reduce acute vomiting and optimize absorption, the total mefloquine dose should preferably be split over 3 days, as in current fixed-dose combinations.
+
+As concomitant use of rifampicin decreases exposure to mefloquine, potentially decreasing its efficacy, patients taking this drug should be followed up carefully to identify treatment failures.
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 174.
+- ~~**Stratification**~~ — Not applicable
+- ~~**Contraindications**~~ — Not applicable
+- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
+- [ ] **Provenance** — Confirm source page 174 and section 5.2.1.1.2 Artesunate + mefloquine match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 164. narrative-0598
+**Pages:** 174 | **Section:** 5.2.1.1.2 Artesunate + sulfadoxine-pyrimethamine
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `5a65e37f1632cbb5...`
+
+#### Extracted Content
+```
+Formulations: Currently available as blister-packed, scored tablets containing 50 mg artesunate and fixed dose combination tablets comprising 500 mg sulfadoxine + 25 mg pyrimethamine. There is no fixed-dose combination.
+
+Target dose and range: A target dose (range) of 4 (2-10) mg/kg bw per day artesunate given once a day for 3 days and a single administration of at least 25 / 1.25 (25-70 / 1.25-3.5) mg/kg bw sulfadoxine / pyrimethamine given as a single dose on day 1.
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 174.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- ~~**Conditional Logic**~~ — Not applicable
+- [ ] **Provenance** — Confirm source page 174 and section 5.2.1.1.2 Artesunate + sulfadoxine-pyrimethamine match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 165. narrative-0601
+**Pages:** 175 | **Section:** 5.2.1.1.2 Strong recommendation for
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `dad08138862eef3f...`
+
+#### Extracted Content
+```
+Revised dose recommendation for dihydroartemisinin + piperaquine in young children (2015)
+
+Children weighing &lt;25kg treated with dihydroartemisinin + piperaquine should receive a minimum of 2.5 mg/kg bw per day of dihydroartemisinin and 20 mg/ kg bw per day of piperaquine daily for 3 days.
+
+*Not evaluated using the GRADE framework
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 175.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- ~~**Conditional Logic**~~ — Not applicable
+- [ ] **Provenance** — Confirm source page 175 and section 5.2.1.1.2 Strong recommendation for match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 166. narrative-0602
+**Pages:** 175 | **Section:** 5.2.1.1.2 Practical info
+**Validation:** No validation data | **Condition:** Uncomplicated malaria | **Weight range:** 25.0+ kg
+
+**Audit hash:** `9a2ea4fb214fd934...`
+
+#### Extracted Content
+```
+Formulations: Currently available as a fixed-dose combination in tablets containing 40 mg dihydroartemisinin and 320 mg piperaquine and paediatric tablets contain 20 mg dihydroartemisinin and 160 mg piperaquine.
+
+Target dose and range: A target dose (range) of 4 (2-10) mg/kg bw per day dihydroartemisinin and 18 (16-27) mg/kg bw per day piperaquine given once a day for 3 days for adults and children weighing ≥ 25 kg. The target doses and ranges for children weighing &lt; 25 kg are 4 (2.5-10) mg/kg bw per day dihydroartemisinin and 24 (20-32) mg/kg bw per day piperaquine once a day for 3 days.
+
+Recommended dosage regimen: The dose regimen currently recommended by the manufacturer provides adequate exposure to piperaquine and excellent cure rates (&gt; 95%), except in children &lt; 5 years, who have a threefold increased risk for treatment failure. Children in this age group have significantly lower plasma piperaquine concentrations than older children and adults given the same mg/kg bw dose. Children weighing &lt; 25 kg should receive at least 2.5 mg/kg bw dihydroartemisinin and 20 mg/kg bw piperaquine to achieve the same exposure as children weighing ≥ 25 kg and adults.
+
+Dihydroartemisinin + piperaquine should be given daily for 3 days.
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 175.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
+- [ ] **Provenance** — Confirm source page 175 and section 5.2.1.1.2 Practical info match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 167. narrative-0603
+**Pages:** 175 | **Section:** 5.2.1.1.2 Practical info
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `4b9853f778de5657...`
+
+#### Extracted Content
+```
+Factors associated with altered drug exposure and treatment response:
+
+High-fat meals should be avoided, as they significantly accelerate the absorption of piperaquine, thereby increasing the risk for potentially arrhythmogenic delayed ventricular repolarization (prolongation of the corrected electrocardiogram QT interval). Normal meals do not alter the absorption of piperaquine.
+
+As malnourished children are at increased risk for treatment failure, their response to treatment should be monitored closely.
+
+- · Dihydroartemisinin exposure is lower in pregnant women.
+- · Piperaquine is eliminated more rapidly by pregnant women, shortening the post-treatment prophylactic effect of dihydroartemisinin + piperaquine. As this does not affect primary efficacy, no dosage adjustment is recommended for pregnant women.
+
+
+
+Additional comments: Piperaquine prolongs the QT interval by approximately the same amount as chloroquine but by less than quinine. It is not necessary to perform an electrocardiogram before prescribing dihydroartemisinin + piperaquine, but this ACT should not be used in patients with congenital QT prolongation or who have a clinical condition or are on medications that prolong the QT interval. There has been no evidence of cardiotoxicity in large randomized trials or in extensive deployment.
+```
+
+#### Extracted Clinical Flags
+- **Contraindications:** patients with congenital QT prolongation or who have a clinical condition or are on medications that prolong the QT interval
+- **Special populations:** pregnant women, shortening the post-treatment prophylactic effect of dihydroartemisinin + piperaquin, pregnant women
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 175.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: patients with congenital QT prolongation or who have a clinical condition or are on medications that prolong the QT interval; Special populations: pregnant women, shortening the post-treatment prophylactic effect of dihydroartemisinin + piperaquin, pregnant women.
+- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
+- [ ] **Provenance** — Confirm source page 175 and section 5.2.1.1.2 Practical info match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 168. narrative-0604
+**Pages:** 176 | **Section:** 5.2.1.1.2 Justification
+**Validation:** No validation data | **Condition:** Uncomplicated malaria
+
+**Audit hash:** `a2506d0579c77531...`
+
+#### Extracted Content
+```
+The dosing subgroup reviewed all available dihydroartemisinin-piperaquine pharmacokinetic data (6 published studies and 10 studies from the WWARN database; total 652 patients) [208][211] and then conducted simulations of piperaquine exposures for each weight group. These showed lower exposure in younger children with higher risks of treatment failure. The revised dose regimens are predicted to provide equivalent piperaquine exposures across all age groups.
+```
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 176.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
+- [ ] **Provenance** — Confirm source page 176 and section 5.2.1.1.2 Justification match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.2 Recurrent falciparum malaria
 
-### 170. narrative-0606
+### 169. narrative-0606
 **Pages:** 176 | **Section:** 5.2.1.2 Recurrent falciparum malaria
 **Validation:** No validation data | **Condition:** Recurrent malaria
 
@@ -9116,7 +9125,7 @@ When possible, treatment failure must be confirmed parasitologically. This may r
 
 ---
 
-### 171. narrative-0607
+### 170. narrative-0607
 **Pages:** 176 | **Section:** 5.2.1.2 Failure within 28 days
 **Validation:** No validation data | **Condition:** Recurrent malaria
 
@@ -9142,7 +9151,7 @@ The recommended second-line treatment is an alternative ACT known to be effectiv
 
 ---
 
-### 172. narrative-0608
+### 171. narrative-0608
 **Pages:** 176 | **Section:** 5.2.1.2 Failure after 28 days
 **Validation:** No validation data | **Condition:** Recurrent malaria
 
@@ -9172,7 +9181,7 @@ As PCR is not routinely used in patient management, all presumed treatment failu
 
 ### Section: 5.2 Treating malaria > 5.2.1 Treating uncomplicated malaria > 5.2.1.3 Reducing the transmissibility of treated P. falciparum infections in areas of low-intensity transmission
 
-### 173. narrative-0609
+### 172. narrative-0609
 **Pages:** 177 | **Section:** 5.2.1.3 Reducing the transmissibility of treated P. falciparum infections (2024)
 **Validation:** No validation data | **Condition:** P. falciparum malaria
 
@@ -9189,7 +9198,7 @@ In low-transmission areas, a single dose of 0.25 mg/kg bw primaquine should be g
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 177.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women) to reduce transmission.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: pregnant women) to reduce transmission.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 177 and section 5.2.1.3 Reducing the transmissibility of treated P. falciparum infections (2024) match the printed WHO guidelines.
 
@@ -9201,7 +9210,7 @@ In low-transmission areas, a single dose of 0.25 mg/kg bw primaquine should be g
 
 ---
 
-### 174. narrative-0610
+### 173. narrative-0610
 **Pages:** 177 | **Section:** 5.2.1.3 Practical info
 **Validation:** No validation data | **Condition:** P. falciparum malaria
 
@@ -9215,12 +9224,12 @@ Dosing table based on the most widely currently available tablet strength (7.5mg
 ```
 
 #### Extracted Clinical Flags
-- **Special populations:** pregnant women, infants &lt, G6PD deficiency [223], G6PD deficiency, a WHO panel reviewed the safety of primaquine as a P
+- **Special populations:** G6PD deficiency [223], pregnant women, infants &lt, G6PD deficiency, a WHO panel reviewed the safety of primaquine as a P
 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 177.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women, infants &lt, G6PD deficiency [223], G6PD deficiency, a WHO panel reviewed the safety of primaquine as a P.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency [223], pregnant women, infants &lt, G6PD deficiency, a WHO panel reviewed the safety of primaquine as a P.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 177 and section 5.2.1.3 Practical info match the printed WHO guidelines.
 
@@ -9232,7 +9241,7 @@ Dosing table based on the most widely currently available tablet strength (7.5mg
 
 ---
 
-### 175. narrative-0613
+### 174. narrative-0613
 **Pages:** 177 | **Section:** 5.2.1.3 GRADE
 **Validation:** No validation data | **Condition:** P. falciparum malaria
 
@@ -9256,6 +9265,43 @@ In a systematic review of eight randomized controlled trials of the efficacy of 
 - ~~**Contraindications**~~ — Not applicable
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 177 and section 5.2.1.3 GRADE match the printed WHO guidelines.
+
+**Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
+
+**Reviewer notes:** _____
+
+**Corrections (if any):** _____
+
+---
+
+### 175. image-0029
+**Pages:** 178 | **Section:** 5.2.1.3 Undesirable effects
+**Validation:** No validation data | **Condition:** P. falciparum malaria
+
+**Audit hash:** `4a07701225d2b73f...`
+
+#### Extracted Content
+```
+Primaquine dosing for P. vivax radical cure. Weight-based dosing 0.25 mg/kg daily for 14 days.
+```
+
+#### Clinical Context
+> **Before this item** (narrative-0614): - · People with severe G6PD deficiency are at risk for haemolysis. At this dose, however, the risk is thought to be small; there are insufficient data to quantify this risk.
+>
+> **After this item** (narrative-0615): Overall certainty of evidence for all critical outcomes: low.
+
+
+- · single doses of &gt; 0.4 mg/kg bw primaquine reduced gametocyte carriage at day 8 by about two thirds (RR, 0.34; 95% CI, 0.19-0.59, two trials, 269 participants, high-certainty evidence ); and
+- · single doses of primaquine &gt; 0.6 mg/kg bw reduced gametocyte carriage at day 8 by about two thirds (RR, 0.29; 95% CI, 0.22-0.37, seven trials, 1380 participants, high-certainty evidence ).
+
+There have been no randomized controlled t
+
+#### Verification Checklist
+- [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 178.
+- [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
+- ~~**Contraindications**~~ — Not applicable
+- ~~**Conditional Logic**~~ — Not applicable
+- [ ] **Provenance** — Confirm source page 178 and section 5.2.1.3 Undesirable effects match the printed WHO guidelines.
 
 **Decision:** ☐ Approved  ☐ Flagged  ☐ Corrected
 
@@ -9343,7 +9389,7 @@ Life-threatening haemolysis is considered unlikely with the 0.25mg/kg bw dose an
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 178.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 178 and section 5.2.1.3 Remarks match the printed WHO guidelines.
 
@@ -9369,7 +9415,7 @@ The Guideline Development Group considered the evidence on dose-response relatio
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 178.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 178 and section 5.2.1.3 Rationale for the recommendation match the printed WHO guidelines.
 
@@ -9461,7 +9507,7 @@ There may be delays in obtaining artesunate, artemether or quinine for the manag
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: treatment.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: treatment.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 188 and section 5.2.1.4.4 Non-immune travellers match the printed WHO guidelines.
 
@@ -9553,7 +9599,7 @@ ACTs are highly effective in the treatment of vivax malaria, allowing simplifica
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 190.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 190 and section 5.2.1.5 In areas with chloroquine-sensitive P. vivax match the printed WHO guidelines.
 
@@ -9581,7 +9627,7 @@ ACTs are highly effective in the treatment of vivax malaria, allowing simplifica
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 191.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 191 and section 5.2.1.5 In areas with chloroquine-sensitive P. vivax match the printed WHO guidelines.
 
@@ -9675,7 +9721,7 @@ The Guideline Development Group recognized that, in the few settings in which P.
 
 ### Section: 5.2 Treating malaria > 5.2.2 Treating severe malaria
 
-### 234. narrative-0726
+### 235. narrative-0726
 **Pages:** 209 | **Section:** 5.2.2 Treating severe malaria
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9691,7 +9737,7 @@ Any patient with malaria who is unable to take oral medications reliably, shows 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 209 and section 5.2.2 Treating severe malaria match the printed WHO guidelines.
 
@@ -9703,7 +9749,7 @@ Any patient with malaria who is unable to take oral medications reliably, shows 
 
 ---
 
-### 235. narrative-0727
+### 236. narrative-0727
 **Pages:** 209 | **Section:** 5.2.2 Definitions
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9749,7 +9795,7 @@ Severe knowlesi malaria is defined as for falciparum malaria but with two differ
 
 ---
 
-### 236. narrative-0728
+### 237. narrative-0728
 **Pages:** 210 | **Section:** 5.2.2 Therapeutic objectives
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9777,7 +9823,7 @@ Death from severe malaria often occurs within hours of admission to a hospital o
 
 ---
 
-### 237. narrative-0729
+### 238. narrative-0729
 **Pages:** 210 | **Section:** 5.2.2 Clinical assessment
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9795,7 +9841,7 @@ The differential diagnosis of fever in a severely ill patient is broad. Coma and
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 210 and section 5.2.2 Clinical assessment match the printed WHO guidelines.
 
@@ -9807,7 +9853,7 @@ The differential diagnosis of fever in a severely ill patient is broad. Coma and
 
 ---
 
-### 238. narrative-0730
+### 239. narrative-0730
 **Pages:** 210 | **Section:** 5.2.2 Treatment of severe malaria
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9833,7 +9879,7 @@ It is essential that full doses of effective parenteral (or rectal) antimalarial
 
 ---
 
-### 239. narrative-0732
+### 240. narrative-0732
 **Pages:** 210 | **Section:** 5.2.2 Adjustment of parenteral dosing in renal failure or hepatic dysfunction
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9859,7 +9905,7 @@ The dosage of artemisinin derivatives does not have to be adjusted for patients 
 
 ---
 
-### 240. narrative-0733
+### 241. narrative-0733
 **Pages:** 210 | **Section:** 5.2.2 Follow-on treatment
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9883,7 +9929,7 @@ treatment. Doxycycline is preferred to other tetracyclines because it can be giv
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: children &lt; Special populations: pregnant women.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: children &lt; Special populations: pregnant women.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 210 and section 5.2.2 Follow-on treatment match the printed WHO guidelines.
 
@@ -9895,7 +9941,7 @@ treatment. Doxycycline is preferred to other tetracyclines because it can be giv
 
 ---
 
-### 241. narrative-0734
+### 242. narrative-0734
 **Pages:** 211 | **Section:** 5.2.2 Continuing supportive care
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9921,7 +9967,7 @@ Patients with severe malaria require intensive nursing care, preferably in an in
 
 ---
 
-### 242. narrative-0735
+### 243. narrative-0735
 **Pages:** 211 | **Section:** 5.2.2 Management of complications
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9949,7 +9995,7 @@ Immediate clinical management of severe manifestations and complications of P. f
 
 ---
 
-### 243. narrative-0736
+### 244. narrative-0736
 **Pages:** 211 | **Section:** 5.2.2 Management of complications
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9969,7 +10015,7 @@ b Prevent by avoiding excess hydration
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 211 and section 5.2.2 Management of complications match the printed WHO guidelines.
 
@@ -9981,7 +10027,7 @@ b Prevent by avoiding excess hydration
 
 ---
 
-### 244. narrative-0737
+### 245. narrative-0737
 **Pages:** 212 | **Section:** 5.2.2 Fluid therapy
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -9995,7 +10041,7 @@ Fluid requirements should be assessed individually. Adults with severe malaria a
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 212 and section 5.2.2 Fluid therapy match the printed WHO guidelines.
 
@@ -10007,7 +10053,7 @@ Fluid requirements should be assessed individually. Adults with severe malaria a
 
 ---
 
-### 245. narrative-0738
+### 246. narrative-0738
 **Pages:** 212 | **Section:** 5.2.2 Blood transfusion
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -10033,7 +10079,7 @@ Severe malaria is associated with rapid development of anaemia, as infected, onc
 
 ---
 
-### 246. narrative-0739
+### 247. narrative-0739
 **Pages:** 212 | **Section:** 5.2.2 Exchange blood transfusion
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -10065,7 +10111,7 @@ Exchange blood transfusion requires intensive nursing care and a relatively larg
 
 ---
 
-### 247. narrative-0740
+### 248. narrative-0740
 **Pages:** 212 | **Section:** 5.2.2 Concomitant use of antibiotics
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -10097,7 +10143,7 @@ cases of persistent fever, however, no other pathogen is identified after parasi
 
 ---
 
-### 248. narrative-0741
+### 249. narrative-0741
 **Pages:** 213 | **Section:** 5.2.2 Use of anticonvulsants
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -10113,7 +10159,7 @@ A 20 mg/kg bw dose of phenobarbital should not be given without respiratory supp
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 213.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 213 and section 5.2.2 Use of anticonvulsants match the printed WHO guidelines.
 
@@ -10125,7 +10171,7 @@ A 20 mg/kg bw dose of phenobarbital should not be given without respiratory supp
 
 ---
 
-### 249. narrative-0742
+### 250. narrative-0742
 **Pages:** 213 | **Section:** 5.2.2 Treatments that are not recommended
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -10141,7 +10187,7 @@ hyperimmune serum, N -acetylcysteine and bolus administration of albumin are not
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 213.
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 213 and section 5.2.2 Treatments that are not recommended match the printed WHO guidelines.
 
@@ -10153,7 +10199,7 @@ hyperimmune serum, N -acetylcysteine and bolus administration of albumin are not
 
 ---
 
-### 250. narrative-0743
+### 251. narrative-0743
 **Pages:** 213 | **Section:** 5.2.2 Treatment of severe malaria during pregnancy
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -10186,7 +10232,7 @@ Obstetric advice should be sought at an early stage, a paediatrician alerted and
 
 ---
 
-### 251. narrative-0744
+### 252. narrative-0744
 **Pages:** 213 | **Section:** 5.2.2 Treatment of severe P. vivax malaria
 **Validation:** No validation data | **Condition:** Severe malaria
 
@@ -10218,7 +10264,7 @@ Please refer to Management of severe malaria - A practical handbook, 3rd edition
 
 ### Section: 5.2 Treating malaria > 5.2.3 Other considerations in treating malaria > 5.2.3.1 Management of malaria cases in special situations
 
-### 280. narrative-0791
+### 281. narrative-0791
 **Pages:** 221 | **Section:** 5.2.3.1 Artemisinin-resistant falciparum malaria
 **Validation:** No validation data | **Condition:** Malaria treatment
 
@@ -10250,7 +10296,7 @@ It is strongly recommended that single-dose primaquine (as a gametocytocide) be 
 
 ### Section: 5.2 Treating malaria > 5.2.3 Other considerations in treating malaria > 5.2.3.2 Quality of antimalarial drugs
 
-### 281. narrative-0792
+### 282. narrative-0792
 **Pages:** 222 | **Section:** 5.2.3.2 Quality of antimalarial drugs
 **Validation:** No validation data | **Condition:** Malaria treatment
 
@@ -10286,7 +10332,7 @@ Practice Statement
 
 ### Section: 6.1 Interventions recommended for mass implementation in delimited geographical areas
 
-### 293. narrative-0818
+### 294. narrative-0818
 **Pages:** 228 | **Section:** 6.1 Interventions recommended for mass implementation in delimited geographical areas
 **Validation:** No validation data
 
@@ -10303,7 +10349,7 @@ In areas approaching elimination where transmission is generalized across the po
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: post-elimination settings unless there is a resumption of local transmission of malaria.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: post-elimination settings unless there is a resumption of local transmission of malaria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 228 and section 6.1 Interventions recommended for mass implementation in delimited geographical areas match the printed WHO guidelines.
 
@@ -10317,7 +10363,7 @@ In areas approaching elimination where transmission is generalized across the po
 
 ### Section: 6.3 Interventions in response to detection of confirmed malaria cases > 6.3.1 Reactive drug administration (RDA)
 
-### 300. narrative-0856
+### 301. narrative-0856
 **Pages:** 241 | **Section:** 6.3.1 Practical info
 **Validation:** No validation data
 
@@ -10351,7 +10397,7 @@ Programmes contemplating providing medicine for radical cure of P. vivax hypnozo
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 241.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e; Special populations: pregnant women in their first trimester, G6PD deficiency prior to treatment, an effective pharmacovigilance system and emergency access to bl.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Extracted contraindications: individuals receiving other forms of malaria chemoprevention (e; Special populations: pregnant women in their first trimester, G6PD deficiency prior to treatment, an effective pharmacovigilance system and emergency access to bl.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 241 and section 6.3.1 Practical info match the printed WHO guidelines.
 
@@ -10363,7 +10409,7 @@ Programmes contemplating providing medicine for radical cure of P. vivax hypnozo
 
 ---
 
-### 301. narrative-0857
+### 302. narrative-0857
 **Pages:** 242 | **Section:** 6.3.1 Values and preferences
 **Validation:** No validation data
 
@@ -10391,7 +10437,7 @@ The systematic review identified six cRCTs in four countries of sub-Saharan Afri
 
 ### Section: 6.3 Interventions in response to detection of confirmed malaria cases > 6.3.3 Reactive indoor residual spraying
 
-### 302. narrative-0890
+### 303. narrative-0890
 **Pages:** 254 | **Section:** 6.3.3 Evidence synthesis methods
 **Validation:** No validation data
 
@@ -10447,7 +10493,7 @@ To streamline processes, from 2024 onward, second-in-class vector control interv
 
 ### Section: 10.5 Recommendations for interventions in the final phase of elimination and prevention of re-establishment
 
-### 303. narrative-0996
+### 304. narrative-0996
 **Pages:** 294 | **Section:** 10.5 References
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -10513,7 +10559,7 @@ To streamline processes, from 2024 onward, second-in-class vector control interv
 
 ---
 
-### 304. narrative-0998
+### 305. narrative-0998
 **Pages:** 308 | **Section:** 10.5 Press 2022 . Journal
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -10574,12 +10620,12 @@ in early infancy. Clinical infectious diseases : an official publication of the 
 ```
 
 #### Extracted Clinical Flags
-- **Special populations:** Pregnant Women with Malaria, pregnant women in Lambaréné, Gabon, G6PD deficiency rapid diagnostic testing to support P, G6PD deficiency for safe use of primaquine in radical cure of P
+- **Special populations:** G6PD deficiency for safe use of primaquine in radical cure of P, Pregnant Women with Malaria, G6PD deficiency rapid diagnostic testing to support P, pregnant women in Lambaréné, Gabon
 
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: Pregnant Women with Malaria, pregnant women in Lambaréné, Gabon, G6PD deficiency rapid diagnostic testing to support P, G6PD deficiency for safe use of primaquine in radical cure of P.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency for safe use of primaquine in radical cure of P, Pregnant Women with Malaria, G6PD deficiency rapid diagnostic testing to support P, pregnant women in Lambaréné, Gabon.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 308 and section 10.5 Press 2022 . Journal match the printed WHO guidelines.
 
@@ -10591,7 +10637,7 @@ in early infancy. Clinical infectious diseases : an official publication of the 
 
 ---
 
-### 305. narrative-0999
+### 306. narrative-0999
 **Pages:** 308 | **Section:** 10.5 Press 2022 . Journal
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -10663,7 +10709,7 @@ in early infancy. Clinical infectious diseases : an official publication of the 
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 308.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: pregnant women in endemic areas: any drug regimen versus placebo or no treatment.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: pregnant women in endemic areas: any drug regimen versus placebo or no treatment.
 - [ ] **Conditional Logic** — Verify any IF/THEN logic, referral criteria, or decision pathways are intact.
 - [ ] **Provenance** — Confirm source page 308 and section 10.5 Press 2022 . Journal match the printed WHO guidelines.
 
@@ -10675,7 +10721,7 @@ in early infancy. Clinical infectious diseases : an official publication of the 
 
 ---
 
-### 306. narrative-1002
+### 307. narrative-1002
 **Pages:** 312 | **Section:** 10.5 Pyrethroid-only nets or curtains versus no ITNs or curtains:
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -10723,7 +10769,7 @@ Pyrethroid-only nets or curtains reduce the incidence of severe malaria episodes
 
 ---
 
-### 307. evidence_table-0050
+### 308. evidence_table-0050
 **Pages:** 318 | **Section:** 10.5 Pyrethroid-PBO ITNs vs pyrethroid-only LLINs
 **Validation:** No validation data
 
@@ -10765,7 +10811,7 @@ Blood-feeding success is decreased with unwash
 
 ---
 
-### 308. evidence_table-0051
+### 309. evidence_table-0051
 **Pages:** 319 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -10802,7 +10848,7 @@ Blood-feeding success is decreased with unwash
 
 ---
 
-### 309. evidence_table-0053
+### 310. evidence_table-0053
 **Pages:** 321 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -10847,7 +10893,7 @@ fewer to 48 more) and may have crossed many important decision-making threshold 
 
 ---
 
-### 310. evidence_table-0054
+### 311. evidence_table-0054
 **Pages:** 322 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -10886,7 +10932,7 @@ fewer to 48 more) and may have crossed many important decision-making threshold 
 
 ---
 
-### 311. evidence_table-0055
+### 312. evidence_table-0055
 **Pages:** 323 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -10930,7 +10976,7 @@ fewer to 48 more) and may have crossed many important decision-making threshold 
 
 ---
 
-### 312. evidence_table-0056
+### 313. evidence_table-0056
 **Pages:** 324 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -10965,7 +11011,7 @@ fewer to 48 more) and may have crossed many important decision-making threshold 
 
 ---
 
-### 313. evidence_table-0057
+### 314. evidence_table-0057
 **Pages:** 325 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -11003,7 +11049,7 @@ fewer to 48 more) and may have crossed many important decision-making threshold 
 
 ---
 
-### 314. evidence_table-0061
+### 315. evidence_table-0061
 **Pages:** 328 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -11046,7 +11092,7 @@ The review provided very low-certainty evidence that there was little or n
 
 ---
 
-### 315. evidence_table-0062
+### 316. evidence_table-0062
 **Pages:** 329 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -11088,7 +11134,7 @@ The review provided very low-certainty evidence that there was little or n
 
 ---
 
-### 316. evidence_table-0064
+### 317. evidence_table-0064
 **Pages:** 331 | **Section:** 10.5 IRS versus no IRS:
 **Validation:** No validation data
 
@@ -11131,7 +11177,7 @@ The evidence is very uncertain about the effect of IRS on P. vivax incidence com
 
 ---
 
-### 317. evidence_table-0074
+### 318. evidence_table-0074
 **Pages:** 338 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -11169,7 +11215,7 @@ No studies reported on clinical malaria, EIR or adult
 
 ---
 
-### 318. evidence_table-0084
+### 319. evidence_table-0084
 **Pages:** 346 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -11212,7 +11258,7 @@ Screening may have a small effect on malaria parasite preval
 
 ---
 
-### 319. evidence_table-0085
+### 320. evidence_table-0085
 **Pages:** 347 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data
 
@@ -11263,7 +11309,7 @@ No medicine
 
 ---
 
-### 320. evidence_table-0086
+### 321. evidence_table-0086
 **Pages:** 348 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data
 
@@ -11312,7 +11358,7 @@ No medicine
 
 ---
 
-### 321. evidence_table-0101
+### 322. evidence_table-0101
 **Pages:** 363 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data
 
@@ -11352,7 +11398,7 @@ Comparator: Placebo or no intervention
 
 ---
 
-### 322. narrative-1109
+### 323. narrative-1109
 **Pages:** 374 | **Section:** 10.5 Summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11380,7 +11426,7 @@ Meta-analyses of the results showed reductions in prevalence and incidence of P.
 
 ---
 
-### 323. narrative-1118
+### 324. narrative-1118
 **Pages:** 383 | **Section:** 10.5 Summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11406,7 +11452,7 @@ The systematic review identified two NRSs that provided data on MRP for P. vivax
 
 ---
 
-### 324. narrative-1121
+### 325. narrative-1121
 **Pages:** 385 | **Section:** 10.5 Systematic review summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11440,7 +11486,7 @@ The RCTs evaluating R21/Matrix-M showed that the vaccine reduces clinical malari
 
 ---
 
-### 325. narrative-1122
+### 326. narrative-1122
 **Pages:** 401 | **Section:** 10.5 Systematic review summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11471,7 +11517,7 @@ children, in the 12 months following administration of the first three doses, pr
 
 ---
 
-### 326. narrative-1123
+### 327. narrative-1123
 **Pages:** 401 | **Section:** 10.5 Systematic review summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11508,7 +11554,7 @@ children, in the 12 months following administration of the first three doses, pr
 
 ---
 
-### 327. narrative-1124
+### 328. narrative-1124
 **Pages:** 401 | **Section:** 10.5 Systematic review summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11551,7 +11597,7 @@ defined as radiographically proven pneumonia, meningitis established by analysis
 
 ---
 
-### 328. narrative-1125
+### 329. narrative-1125
 **Pages:** 401 | **Section:** 10.5 Systematic review summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11598,7 +11644,7 @@ RTS,S/AS01 alone, or a combination of RTS,S/AS01 and SMC.
 
 ---
 
-### 329. narrative-1126
+### 330. narrative-1126
 **Pages:** 401 | **Section:** 10.5 Systematic review summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11647,7 +11693,7 @@ areas among children who were eligible to receive three doses of malaria vaccine
 
 ---
 
-### 330. narrative-1131
+### 331. narrative-1131
 **Pages:** 407 | **Section:** 10.5 Publication bias: no serious.
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11689,7 +11735,7 @@ areas among children who were eligible to receive three doses of malaria vaccine
 
 ---
 
-### 331. narrative-1133
+### 332. narrative-1133
 **Pages:** 412 | **Section:** 10.5 References
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11753,7 +11799,7 @@ areas among children who were eligible to receive three doses of malaria vaccine
 
 ---
 
-### 332. narrative-1135
+### 333. narrative-1135
 **Pages:** 414 | **Section:** 10.5 1, 5. PCR unadjusted
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11789,7 +11835,7 @@ and the meta-analysis is adequately powered to detect this result.. Publication 
 
 ---
 
-### 333. evidence_table-0153
+### 334. evidence_table-0153
 **Pages:** 427 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data
 
@@ -11826,7 +11872,7 @@ Comparator: artemether-lumefantrine
 
 ---
 
-### 334. evidence_table-0154
+### 335. evidence_table-0154
 **Pages:** 428 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data
 
@@ -11867,7 +11913,7 @@ Comparator: artemether-lumefantrine
 
 ---
 
-### 335. evidence_table-0159
+### 336. evidence_table-0159
 **Pages:** 432 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data
 
@@ -11913,7 +11959,7 @@ Mefloquine plus artesunate
 
 ---
 
-### 336. narrative-1157
+### 337. narrative-1157
 **Pages:** 436 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11943,7 +11989,7 @@ Comparator: Artesunate 4 mg/kg bw once daily for 1 day plus sulfadoxine-pyrimeth
 
 ---
 
-### 337. narrative-1164
+### 338. narrative-1164
 **Pages:** 443 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11964,7 +12010,7 @@ Comparator: Artesunate 4 mg/kg bw once daily for 1 day plus sulfadoxine-pyrimeth
 #### Verification Checklist
 - ~~**Dosage Accuracy**~~ — Not applicable
 - ~~**Stratification**~~ — Not applicable
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency'). Special populations: G6PD deficiency.
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria. Special populations: G6PD deficiency.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 443 and section 10.5 Clinical question/ PICO match the printed WHO guidelines.
 
@@ -11976,7 +12022,7 @@ Comparator: Artesunate 4 mg/kg bw once daily for 1 day plus sulfadoxine-pyrimeth
 
 ---
 
-### 338. narrative-1178
+### 339. narrative-1178
 **Pages:** 448 | **Section:** 10.5 Summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -11992,7 +12038,7 @@ To evaluate the efficacy and safety of tafenoquine 300 mg (single dose) compared
 #### Verification Checklist
 - [ ] **Dosage Accuracy** — Verify any dose values mentioned match source PDF page 448.
 - [ ] **Stratification** — Confirm any age/weight stratifications mentioned are correctly preserved.
-- [ ] **Contraindications** — Check for warnings (e.g., 'Do not use in first trimester', 'contraindicated in G6PD deficiency').
+- [ ] **Contraindications** — Check for warnings, danger signs, and referral criteria.
 - ~~**Conditional Logic**~~ — Not applicable
 - [ ] **Provenance** — Confirm source page 448 and section 10.5 Summary match the printed WHO guidelines.
 
@@ -12004,7 +12050,7 @@ To evaluate the efficacy and safety of tafenoquine 300 mg (single dose) compared
 
 ---
 
-### 339. narrative-1180
+### 340. narrative-1180
 **Pages:** 448 | **Section:** 10.5 Types of interventions
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12034,7 +12080,7 @@ Co-interventions: Chloroquine 25 mg/kg given over 3 days
 
 ---
 
-### 340. evidence_table-0178
+### 341. evidence_table-0178
 **Pages:** 449 | **Section:** 10.5 Synthesizing results
 **Validation:** No validation data
 
@@ -12075,7 +12121,7 @@ Analysis: Tafenoquine plus chloroquine versus primaquine plus chloroquine
 
 ---
 
-### 341. evidence_table-0180
+### 342. evidence_table-0180
 **Pages:** 450 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data
 
@@ -12117,7 +12163,7 @@ PQ plus CQ
 
 ---
 
-### 342. narrative-1190
+### 343. narrative-1190
 **Pages:** 451 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12149,7 +12195,7 @@ Comparator: 3.5 mg/kg dose primaquine (low total dose including 7-day and 14-day
 
 ---
 
-### 343. narrative-1192
+### 344. narrative-1192
 **Pages:** 451 | **Section:** 10.5 Efficacy (7 mg/kg versus 3.5 mg/kg total dose primaquine)
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12178,7 +12224,7 @@ Comparator: 3.5 mg/kg dose primaquine (low total dose including 7-day and 14-day
 
 ---
 
-### 344. narrative-1193
+### 345. narrative-1193
 **Pages:** 451 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12212,7 +12258,7 @@ Comparator: 0.25 mg/kg dose primaquine (low daily dose)
 
 ---
 
-### 345. narrative-1195
+### 346. narrative-1195
 **Pages:** 451 | **Section:** 10.5 Tolerability and safety (1 mg/kg/day versus 0.25 mg/kg/day primaquine)
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12241,7 +12287,7 @@ Comparator: 0.25 mg/kg dose primaquine (low daily dose)
 
 ---
 
-### 346. narrative-1198
+### 347. narrative-1198
 **Pages:** 453 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12273,7 +12319,7 @@ tablets once a week until delivery. Imprecision: serious. Although the intervent
 
 ---
 
-### 347. narrative-1200
+### 348. narrative-1200
 **Pages:** 454 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12307,7 +12353,7 @@ Quinine
 
 ---
 
-### 348. narrative-1201
+### 349. narrative-1201
 **Pages:** 455 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12339,7 +12385,7 @@ Quinine
 
 ---
 
-### 349. narrative-1202
+### 350. narrative-1202
 **Pages:** 456 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12369,7 +12415,7 @@ Comparator: Intravenous or intramuscular artesunate
 
 ---
 
-### 350. narrative-1204
+### 351. narrative-1204
 **Pages:** 457 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12399,7 +12445,7 @@ Comparator: Intravenous or intramuscular quinine
 
 ---
 
-### 351. narrative-1205
+### 352. narrative-1205
 **Pages:** 458 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12429,7 +12475,7 @@ Comparator: Intravenous or intramuscular quinine
 
 ---
 
-### 352. narrative-1206
+### 353. narrative-1206
 **Pages:** 458 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12459,7 +12505,7 @@ Comparator: Intravenous or intramuscular quinine
 
 ---
 
-### 353. narrative-1208
+### 354. narrative-1208
 **Pages:** 460 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12491,7 +12537,7 @@ Comparator: Placebo plus referral for definitive treatment
 
 ---
 
-### 354. narrative-1210
+### 355. narrative-1210
 **Pages:** 460 | **Section:** 10.5 Clinical question/ PICO
 **Validation:** No validation data | **Condition:** Malaria prevention
 
@@ -12525,7 +12571,7 @@ Comparator: Placebo plus referral for definitive treatment
 
 ---
 
-### 355. evidence_table-0201
+### 356. evidence_table-0201
 **Pages:** 469 | **Section:** 10.5 Summary
 **Validation:** No validation data
 
@@ -12562,7 +12608,7 @@ Comparator: Placebo plus referral for definitive treatment
 
 ---
 
-### 356. narrative-1225
+### 357. narrative-1225
 **Pages:** 470 | **Section:** 10.5 Summary
 **Validation:** No validation data | **Condition:** Malaria prevention
 

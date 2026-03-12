@@ -30,9 +30,16 @@ from typing import Optional, List, Dict, Any, Tuple
 from collections import defaultdict
 from bisect import bisect_right
 
+from pipeline_config import (
+    load_config, get_document_title, get_condition_patterns,
+    get_biomarker_patterns, build_high_preservation_regex,
+    get_clinical_section_keywords, build_loc_regex,
+)
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 2.  CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
+CONFIG = load_config()
 OUTPUT_DIR = Path("extraction_output")
 
 # Chunk sizing
@@ -65,14 +72,14 @@ STRUCTURAL_HEADING_RES = [
     re.compile(r"^©", re.I),
 ]
 
-# Keywords that elevate a narrative chunk to "high" preservation
-HIGH_PRESERVATION_KW = re.compile(
-    r"mg/kg|mg\s*/\s*kg|contraindicated|do not give|not recommended|"
-    r"recommended dose|should not be used|avoid|"
-    r"first.?line treatment|second.?line|treatment failure|"
-    r"danger signs|severe malaria",
-    re.IGNORECASE,
-)
+# Keywords that elevate a narrative chunk to "high" preservation (from config)
+HIGH_PRESERVATION_KW = build_high_preservation_regex(CONFIG)
+
+# Level of Care regex for LOC extraction (HC2, HC3, etc.)
+LOC_RE = build_loc_regex(CONFIG)
+
+# Clinical section keywords for broader content classification
+CLINICAL_SECTION_KW = get_clinical_section_keywords(CONFIG)
 
 # Clinical metadata: age patterns
 AGE_PATTERN_RE = re.compile(
@@ -166,6 +173,14 @@ def load_stage_data() -> Dict[str, Any]:
     nll_path = OUTPUT_DIR / "tables_nll.txt"
     with open(nll_path, encoding="utf-8") as f:
         data["nll_text"] = f.read()
+
+    # Image inventory (Stage 1) — optional, may not exist for older runs
+    img_inv_path = OUTPUT_DIR / "image_inventory.json"
+    if img_inv_path.exists():
+        with open(img_inv_path, encoding="utf-8") as f:
+            data["image_inventory"] = json.load(f)
+    else:
+        data["image_inventory"] = []
 
     return data
 
@@ -699,6 +714,11 @@ def create_narrative_chunk(
             "duration": None,
             "contraindications": [],
             "special_populations": [],
+            "level_of_care": [],
+            "clinical_features": [],
+            "danger_signs": [],
+            "referral_criteria": [],
+            "clinical_section_type": None,
         },
         "related_chunks": {
             "prev_sibling": None,
@@ -794,6 +814,11 @@ def create_table_chunk(
             "duration": None,
             "contraindications": [],
             "special_populations": [],
+            "level_of_care": [],
+            "clinical_features": [],
+            "danger_signs": [],
+            "referral_criteria": [],
+            "clinical_section_type": None,
         },
         "related_chunks": {
             "prev_sibling": None,
@@ -815,11 +840,36 @@ def create_image_chunk(
     image_counter: int,
     page_markers: List[Tuple[int, int]],
     first_line_no: Optional[int] = None,
+    image_data: Optional[Dict] = None,
 ) -> Dict:
-    """Create an image placeholder chunk."""
+    """Create an image chunk, enriched with OCR text when available.
+
+    If image_data is provided (from image_inventory.json), the chunk
+    gets the OCR text as content and content_type 'image_ocr'.
+    Otherwise it remains a placeholder with content '<!-- image -->'.
+    """
     line = first_line_no if first_line_no is not None else section["start_line"]
     page = get_page_for_line(line, page_markers)
     domain = extract_clinical_domain(section.get("section_hierarchy", []))
+
+    # Build content from OCR text + caption when available
+    if image_data:
+        ocr_text = (image_data.get("ocr_text") or "").strip()
+        caption = (image_data.get("caption") or "").strip()
+        parts = []
+        if caption:
+            parts.append(f"[Image caption: {caption}]")
+        if ocr_text:
+            parts.append(ocr_text)
+        content = "\n".join(parts) if parts else "<!-- image -->"
+        content_type = "image_ocr" if parts else "image_placeholder"
+        image_path = image_data.get("saved_path", "")
+    else:
+        content = "<!-- image -->"
+        content_type = "image_placeholder"
+        image_path = ""
+
+    word_count = len(content.split()) if content_type == "image_ocr" else 0
 
     return {
         "chunk_id": f"image-{image_counter:04d}",
@@ -828,8 +878,9 @@ def create_image_chunk(
         "section_hierarchy": section.get("section_hierarchy", []),
         "section_number": section.get("section_number"),
         "section_title": section.get("section_title", ""),
-        "content": "<!-- image -->",
-        "content_type": "image_placeholder",
+        "content": content,
+        "content_type": content_type,
+        "image_path": image_path,
         "nll": None,
         "table_index": None,
         "table_classification": None,
@@ -861,6 +912,11 @@ def create_image_chunk(
             "duration": None,
             "contraindications": [],
             "special_populations": [],
+            "level_of_care": [],
+            "clinical_features": [],
+            "danger_signs": [],
+            "referral_criteria": [],
+            "clinical_section_type": None,
         },
         "related_chunks": {
             "prev_sibling": None,
@@ -870,8 +926,8 @@ def create_image_chunk(
             "context_for_tables": [],
             "section_siblings": [],
         },
-        "word_count": 0,
-        "token_estimate": 0,
+        "word_count": word_count,
+        "token_estimate": int(word_count * TOKEN_MULTIPLIER),
     }
 
 
@@ -915,13 +971,30 @@ def assign_safety_metadata(chunk: Dict) -> None:
         }
         return
 
-    # Rule 4: Narrative with dosing/contraindication keywords → high
-    if ct == "narrative":
+    # Rule 4: Narrative/image with danger signs or referral criteria → verbatim
+    if ct in ("narrative", "image"):
         content = chunk.get("content", "")
-        if HIGH_PRESERVATION_KW.search(content):
+        content_lower = content.lower() if content else ""
+        has_danger = "danger sign" in content_lower
+        has_referral = (
+            "refer immediately" in content_lower
+            or "refer urgently" in content_lower
+            or "referral criteria" in content_lower
+        )
+        if has_danger or has_referral:
+            chunk["safety"] = {
+                "preservation_level": "verbatim",
+                "reasoning": f"{'Image OCR' if ct == 'image' else 'Narrative'} contains danger signs or referral criteria — safety-critical",
+            }
+            return
+
+    # Rule 5: Narrative/image with dosing/contraindication/high-preservation keywords → high
+    if ct in ("narrative", "image"):
+        content = chunk.get("content", "")
+        if content and HIGH_PRESERVATION_KW.search(content):
             chunk["safety"] = {
                 "preservation_level": "high",
-                "reasoning": "Narrative contains dosing or contraindication information",
+                "reasoning": f"{'Image OCR' if ct == 'image' else 'Narrative'} contains dosing, contraindication, or clinical safety information",
             }
             return
 
@@ -986,19 +1059,7 @@ def _infer_condition_from_hierarchy(hierarchy: List[str]) -> Optional[str]:
 
     Walks the hierarchy looking for treatment/condition indicators.
     """
-    condition_keywords = [
-        (r"uncomplicated\s+malaria", "Uncomplicated malaria"),
-        (r"severe\s+malaria", "Severe malaria"),
-        (r"recurrent.*malaria", "Recurrent malaria"),
-        (r"treating\s+malaria", "Malaria treatment"),
-        (r"P\.\s*falciparum", "P. falciparum malaria"),
-        (r"P\.\s*vivax", "P. vivax malaria"),
-        (r"pregnancy", "Malaria in pregnancy"),
-        (r"chemoprevention", "Malaria chemoprevention"),
-        (r"prevention", "Malaria prevention"),
-        (r"vector\s+control", "Vector control"),
-        (r"diagnosing", "Malaria diagnosis"),
-    ]
+    condition_keywords = get_condition_patterns(CONFIG)
     for heading in reversed(hierarchy):
         for pattern, label in condition_keywords:
             if re.search(pattern, heading, re.I):
@@ -1070,6 +1131,66 @@ def extract_clinical_metadata_for_dosing_table(
         cm["condition"] = condition
 
 
+def _normalize_loc(raw: str) -> str:
+    """Normalize LOC mentions: 'HC III' -> 'HC3', 'HC IV' -> 'HC4', etc."""
+    norm = raw.upper().strip()
+    norm = norm.replace("HC II", "HC2").replace("HC III", "HC3").replace("HC IV", "HC4")
+    norm = norm.replace(" ", "")
+    return norm
+
+
+def extract_clinical_metadata_for_clinical_table(chunk: Dict, table_md: str) -> None:
+    """Populate clinical_metadata for a clinical_management table.
+
+    Extracts:
+      - Level of Care (HC2/HC3/HC4) indicators
+      - Danger signs mentioned in the table
+      - Referral criteria
+      - Condition from section hierarchy
+    """
+    cm = chunk["clinical_metadata"]
+    content_lower = table_md.lower()
+
+    # Level of Care extraction
+    if LOC_RE.pattern != r"(?!)":
+        loc_matches = LOC_RE.findall(table_md)
+        if loc_matches:
+            normalized = set(_normalize_loc(m) for m in loc_matches)
+            cm["level_of_care"] = sorted(normalized)
+
+    # Danger signs from table content
+    danger_patterns = [
+        r"danger\s+signs?\s*[:;]\s*([^|]+)",
+        r"danger\s+signs?\s+include\s*([^|]+)",
+        r"(?:refer|send)\s+(?:immediately|urgently)\s+(?:if|when)\s+([^|]+)",
+    ]
+    dangers = []
+    for pat in danger_patterns:
+        for m in re.finditer(pat, content_lower):
+            dangers.append(m.group(1).strip()[:120])
+    if dangers:
+        cm["danger_signs"] = dangers
+
+    # Referral criteria
+    referral_patterns = [
+        r"refer\s+(?:to|for)\s+([^|]+)",
+        r"refer\s+(?:immediately|urgently)[^|]*",
+    ]
+    referrals = []
+    for pat in referral_patterns:
+        for m in re.finditer(pat, content_lower):
+            referrals.append(m.group(0).strip()[:120])
+    if referrals:
+        cm["referral_criteria"] = list(set(referrals))
+
+    # Condition from section hierarchy (same logic as dosing tables)
+    condition = _infer_condition_from_hierarchy(
+        chunk.get("section_hierarchy", [])
+    )
+    if condition:
+        cm["condition"] = condition
+
+
 def extract_clinical_metadata_for_narrative(chunk: Dict) -> None:
     """Populate clinical_metadata for a narrative chunk by scanning content."""
     cm = chunk["clinical_metadata"]
@@ -1120,20 +1241,200 @@ def extract_clinical_metadata_for_narrative(chunk: Dict) -> None:
     if contras:
         cm["contraindications"] = contras
 
-    # Special populations
+    # Special populations (generic + config biomarkers)
     special_pop_patterns = [
         r"(pregnant\s+women[^.;]*)",
         r"(children\s+(?:under|<|weighing\s*<)\s*[\d]+\s*(?:kg|years?|months?)[^.;]*)",
         r"(infants?\s*(?:<|under)\s*[\d]+\s*(?:months?|weeks?)[^.;]*)",
         r"(HIV[^.;]*patients?[^.;]*)",
-        r"(G6PD\s+deficien[ct][^.;]*)",
     ]
+    # Add biomarker-specific patterns from config
+    for bm in get_biomarker_patterns(CONFIG):
+        special_pop_patterns.append(rf"({re.escape(bm)}\s+deficien[ct][^.;]*)")
     pops = []
     for pat in special_pop_patterns:
         for m in re.finditer(pat, content, re.I):
             pops.append(m.group(1).strip()[:100])  # cap length
     if pops:
         cm["special_populations"] = list(set(pops))
+
+    # ── NEW: Clinical section type inference from hierarchy ──
+    hierarchy = chunk.get("section_hierarchy", [])
+    for heading in hierarchy:
+        heading_lower = heading.lower()
+        for section_type, keywords in CLINICAL_SECTION_KW.items():
+            if any(kw in heading_lower for kw in keywords):
+                cm["clinical_section_type"] = section_type
+                break
+        if cm.get("clinical_section_type"):
+            break
+
+    # ── NEW: Level of Care extraction from narrative ──
+    if LOC_RE.pattern != r"(?!)":
+        loc_matches = LOC_RE.findall(content)
+        if loc_matches:
+            normalized = set(_normalize_loc(m) for m in loc_matches)
+            cm["level_of_care"] = sorted(normalized)
+
+    # ── NEW: Danger signs from narrative ──
+    danger_patterns = [
+        r"danger\s+signs?\s*[:;–-]\s*([^.;]+)",
+        r"danger\s+signs?\s+include\s*([^.;]+)",
+    ]
+    dangers = []
+    for pat in danger_patterns:
+        for m in re.finditer(pat, content, re.I):
+            dangers.append(m.group(1).strip()[:120])
+    if dangers:
+        cm["danger_signs"] = dangers
+
+    # ── NEW: Referral criteria from narrative ──
+    referral_patterns = [
+        r"refer\s+(?:immediately|urgently)\s+(?:if|when|to)\s+([^.;]+)",
+        r"refer(?:ral)?\s+(?:to|criteria)\s*[:;–-]\s*([^.;]+)",
+    ]
+    referrals = []
+    for pat in referral_patterns:
+        for m in re.finditer(pat, content, re.I):
+            referrals.append(m.group(1).strip()[:120])
+    if referrals:
+        cm["referral_criteria"] = list(set(referrals))
+
+    # ── NEW: Clinical features from narrative ──
+    feature_patterns = [
+        r"clinical\s+features?\s*[:;–-]\s*([^.;]{10,})",
+        r"(?:signs?\s+and\s+symptoms?|presenting\s+features?)\s*[:;–-]\s*([^.;]{10,})",
+    ]
+    features = []
+    for pat in feature_patterns:
+        for m in re.finditer(pat, content, re.I):
+            features.append(m.group(1).strip()[:150])
+    if features:
+        cm["clinical_features"] = features
+
+
+def extract_clinical_metadata_for_image(chunk: Dict) -> None:
+    """Populate clinical_metadata for an image chunk using its OCR text.
+
+    Reuses the same extraction patterns as narrative chunks (condition,
+    drug name, LOC, danger signs, referral, clinical features, age/weight,
+    contraindications, special populations) applied to the OCR text content.
+    """
+    cm = chunk["clinical_metadata"]
+    content = chunk.get("content", "")
+    if not content or content == "<!-- image -->":
+        return
+
+    # Condition from section hierarchy
+    condition = _infer_condition_from_hierarchy(
+        chunk.get("section_hierarchy", [])
+    )
+    if condition:
+        cm["condition"] = condition
+
+    # Age patterns
+    for m in AGE_PATTERN_RE.finditer(content):
+        groups = m.groups()
+        if groups[0]:
+            cm["patient_age_max"] = f"{groups[0]} {groups[1]}"
+        if groups[2]:
+            cm["patient_age_max"] = f"{groups[2]} {groups[3]}"
+        if groups[4]:
+            cm["patient_age_min"] = f"{groups[4]} {groups[5]}"
+        if groups[6] and groups[7]:
+            cm["patient_age_min"] = f"{groups[6]} {groups[8]}"
+            cm["patient_age_max"] = f"{groups[7]} {groups[8]}"
+
+    # Weight mentions
+    for m in WEIGHT_NARRATIVE_RE.finditer(content):
+        weight = float(m.group(1))
+        if "less" in m.group(0).lower() or "<" in m.group(0):
+            cm["patient_weight_max_kg"] = weight
+        else:
+            cm["patient_weight_min_kg"] = weight
+
+    # Contraindications
+    contraindication_patterns = [
+        r"contraindicated\s+(?:in|for)\s+([^.;]+)",
+        r"(?:do not give|should not be (?:given|used)|avoid)\s+(?:in|for|to)\s+([^.;]+)",
+        r"not recommended\s+(?:in|for)\s+([^.;]+)",
+    ]
+    contras = []
+    for pat in contraindication_patterns:
+        for m in re.finditer(pat, content, re.I):
+            contras.append(m.group(1).strip())
+    if contras:
+        cm["contraindications"] = contras
+
+    # Special populations
+    special_pop_patterns = [
+        r"(pregnant\s+women[^.;]*)",
+        r"(children\s+(?:under|<|weighing\s*<)\s*[\d]+\s*(?:kg|years?|months?)[^.;]*)",
+        r"(infants?\s*(?:<|under)\s*[\d]+\s*(?:months?|weeks?)[^.;]*)",
+        r"(HIV[^.;]*patients?[^.;]*)",
+    ]
+    for bm in get_biomarker_patterns(CONFIG):
+        special_pop_patterns.append(rf"({re.escape(bm)}\s+deficien[ct][^.;]*)")
+    pops = []
+    for pat in special_pop_patterns:
+        for m in re.finditer(pat, content, re.I):
+            pops.append(m.group(1).strip()[:100])
+    if pops:
+        cm["special_populations"] = list(set(pops))
+
+    # Clinical section type from hierarchy
+    hierarchy = chunk.get("section_hierarchy", [])
+    for heading in hierarchy:
+        heading_lower = heading.lower()
+        for section_type, keywords in CLINICAL_SECTION_KW.items():
+            if any(kw in heading_lower for kw in keywords):
+                cm["clinical_section_type"] = section_type
+                break
+        if cm.get("clinical_section_type"):
+            break
+
+    # Level of Care extraction
+    if LOC_RE.pattern != r"(?!)":
+        loc_matches = LOC_RE.findall(content)
+        if loc_matches:
+            normalized = set(_normalize_loc(m) for m in loc_matches)
+            cm["level_of_care"] = sorted(normalized)
+
+    # Danger signs
+    danger_patterns = [
+        r"danger\s+signs?\s*[:;–-]\s*([^.;]+)",
+        r"danger\s+signs?\s+include\s*([^.;]+)",
+    ]
+    dangers = []
+    for pat in danger_patterns:
+        for m in re.finditer(pat, content, re.I):
+            dangers.append(m.group(1).strip()[:120])
+    if dangers:
+        cm["danger_signs"] = dangers
+
+    # Referral criteria
+    referral_patterns = [
+        r"refer\s+(?:immediately|urgently)\s+(?:if|when|to)\s+([^.;]+)",
+        r"refer(?:ral)?\s+(?:to|criteria)\s*[:;–-]\s*([^.;]+)",
+    ]
+    referrals = []
+    for pat in referral_patterns:
+        for m in re.finditer(pat, content, re.I):
+            referrals.append(m.group(1).strip()[:120])
+    if referrals:
+        cm["referral_criteria"] = list(set(referrals))
+
+    # Clinical features
+    feature_patterns = [
+        r"clinical\s+features?\s*[:;–-]\s*([^.;]{10,})",
+        r"(?:signs?\s+and\s+symptoms?|presenting\s+features?)\s*[:;–-]\s*([^.;]{10,})",
+    ]
+    features = []
+    for pat in feature_patterns:
+        for m in re.finditer(pat, content, re.I):
+            features.append(m.group(1).strip()[:150])
+    if features:
+        cm["clinical_features"] = features
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1395,7 +1696,7 @@ def save_chunks(
 
     envelope = {
         "pipeline_version": "4a",
-        "source_document": "WHO guidelines for malaria - 13 August 2025",
+        "source_document": get_document_title(CONFIG),
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "total_chunks": len(chunks),
         "chunk_type_counts": dict(type_counts),
@@ -1450,6 +1751,16 @@ def main():
     print(f"        Reclassifications: {len(reclass_map)}")
     print(f"        Validation entries: {len(validation_map)}")
     print(f"        Stitched tables: {len(stitched_tables)}")
+
+    # Build page→image mapping for image chunk enrichment
+    image_inventory = data.get("image_inventory", [])
+    image_by_page: Dict[int, List[Dict]] = defaultdict(list)
+    for img in image_inventory:
+        pg = img.get("page_no")
+        if pg:
+            image_by_page[pg].append(img)
+    if image_inventory:
+        print(f"        Image inventory: {len(image_inventory)} images")
 
     # ── Step 3: Parse markdown ───────────────────────────────────────────
     print("\n  [3/7] Parsing markdown...")
@@ -1528,16 +1839,31 @@ def main():
 
             elif elem["type"] == "image":
                 image_counter += 1
+                # Match this image to its Stage 1 OCR data via page number
+                page = get_page_for_line(
+                    elem.get("first_line_no") or section["start_line"],
+                    page_markers,
+                )
+                img_data = None
+                if page and page in image_by_page:
+                    candidates = image_by_page[page]
+                    if candidates:
+                        img_data = candidates.pop(0)  # consume in order
                 chunk = create_image_chunk(
                     section, image_counter, page_markers,
                     first_line_no=elem.get("first_line_no"),
+                    image_data=img_data,
                 )
                 all_chunks.append(chunk)
 
     timings["create_chunks_s"] = round(time.perf_counter() - t0, 3)
+    enriched_images = sum(
+        1 for c in all_chunks
+        if c.get("chunk_type") == "image" and c.get("content_type") == "image_ocr"
+    )
     print(f"        Narrative chunks: {narrative_counter}")
     print(f"        Table chunks: {table_counter}")
-    print(f"        Image chunks: {image_counter}")
+    print(f"        Image chunks: {image_counter} ({enriched_images} with OCR text)")
 
     # ── Step 5: Safety + Clinical metadata ───────────────────────────────
     print("\n  [5/7] Enriching with safety + clinical metadata...")
@@ -1548,8 +1874,14 @@ def main():
             extract_clinical_metadata_for_dosing_table(
                 chunk, chunk.get("content", "")
             )
+        elif chunk["chunk_type"] == "clinical_table":
+            extract_clinical_metadata_for_clinical_table(
+                chunk, chunk.get("content", "")
+            )
         elif chunk["chunk_type"] == "narrative":
             extract_clinical_metadata_for_narrative(chunk)
+        elif chunk["chunk_type"] == "image" and chunk.get("content_type") == "image_ocr":
+            extract_clinical_metadata_for_image(chunk)
 
     # Add stitched table chunks
     stitched_chunks = create_stitched_table_chunks(

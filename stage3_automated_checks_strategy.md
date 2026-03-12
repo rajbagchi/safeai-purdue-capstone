@@ -1,8 +1,8 @@
 # Stage 3: Automated Plausibility Checks Strategy
 
 **Safe AI Uganda — Clinical Data Extraction Methodology**
-**Document:** WHO Consolidated Malaria Guidelines (B09514-eng.pdf, 478 pages)
-**Last updated:** 04.03.2026
+**Document:** Config-driven (reference: WHO Consolidated Malaria Guidelines, B09514-eng.pdf, 478 pages)
+**Last updated:** 11.03.2026
 
 ---
 
@@ -35,6 +35,8 @@ Stage 3 loads data from both previous stages before running checks:
 2. **Stage 2 reclassifications** (`cross_validation_report.json`) — 12 tables reclassified from "dosing" to "structural", reducing the set from 41 → 29
 3. **Docling cache** (`cache/docling_*.json`) — full table markdown for cell-level parsing
 4. **Stage 2 stitched table** (`cross_validation_report.json`) — the complete 4-row AL dosing table (pp.173–174) with the recovered `≥ 35 kg: 80 + 480` row
+
+Additionally, Stage 3 loads disease-specific parameters from the pipeline config JSON via `pipeline_config.py`, including dose reference ranges for clinical bounds checking.
 
 Only the 29 tables still classified as "dosing" after Stage 2 enter the validation pipeline. Of these, 7 have a parseable weight column (true dosing tables) and 22 do not (GRADE evidence tables and abbreviation lists that matched drug name keywords in Stage 1's classification).
 
@@ -138,6 +140,8 @@ All first-line ACT tables begin at < 10 kg (covering infants from ~3 months), an
 | Pyrimethamine | 0.5–2 | 0.2–5.0 |
 | Primaquine | 0.05–1 | 0.02–2.5 |
 
+These reference ranges are loaded from the `dose_reference_ranges` field in the pipeline config JSON. For documents without predefined dose ranges (e.g., when the config field is empty), this check is gracefully skipped.
+
 The wide tolerance ensures only gross errors are flagged — this check is a safety net for extraction failures, not a clinical accuracy audit.
 
 **Result:** 7/7 pass — all per-kg dose values fall within expected bounds. No false positives.
@@ -234,6 +238,16 @@ Data loading dominates because the Docling cache (16.5 MB serialised document mo
 
 ---
 
+## Changelog
+
+### v2.0 — PDF-Agnostic Config-Driven Architecture (tag: v2.0-pdf-agnostic)
+
+**Before:** Dose reference ranges were hardcoded in a Python dictionary (artemether 1.0–5.0 mg/kg, lumefantrine 6.0–18.0 mg/kg, etc.). Only malaria-specific drugs were covered.
+
+**After:** Dose reference ranges loaded from the `dose_reference_ranges` field in the pipeline config JSON. When the field is empty (e.g., for a general clinical guidelines document), the clinical bounds check is gracefully skipped rather than failing. All stages accept `--config` for document-specific configuration.
+
+---
+
 ## 6. What Stage 3 Does Not Cover
 
 The following are explicitly deferred to subsequent stages or future work:
@@ -243,5 +257,5 @@ The following are explicitly deferred to subsequent stages or future work:
 | Clinical correctness of actual dosing values (e.g., is 80 + 480 mg the right dose for ≥ 35 kg?) | Stage 4: IDI physician review |
 | Reclassification of the 22 skipped tables | Future: update Stage 2 classification rules or add a Stage 3 reclassification pass |
 | Validation of non-dosing tables (evidence, structural, clinical management) | Out of scope for plausibility checks (no clinical dose values to validate) |
-| Content chunking for RAG/LLM pipeline | Post-extraction chunking strategy (TBD) |
+| Content chunking for RAG/LLM pipeline | **Implemented** — Stage 4a chunking + metadata strategy |
 | Cross-referencing dosing tables against narrative text (e.g., verifying that body text matches table values) | Future: text-table concordance check |

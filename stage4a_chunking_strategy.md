@@ -1,8 +1,8 @@
 # Stage 4a: Chunking + Metadata Strategy
 
 **Safe AI Uganda — Clinical Data Extraction Methodology**
-**Document:** WHO Consolidated Malaria Guidelines (B09514-eng.pdf, 478 pages)
-**Last updated:** 04.03.2026
+**Document:** Config-driven (reference: WHO Consolidated Malaria Guidelines, B09514-eng.pdf, 478 pages)
+**Last updated:** 11.03.2026
 
 ---
 
@@ -42,6 +42,7 @@ Stage 4a loads outputs from all three previous stages:
 3. **Cross-validation report** (`cross_validation_report.json`) — 12 reclassifications, 1 stitched table, NLL regeneration
 4. **Plausibility report** (`plausibility_report.json`) — Stage 3 validation results for 29 dosing tables
 5. **NLL text** (`tables_nll.txt`) — Natural Language Logic representations for 43 tables
+6. **Image inventory** (`image_inventory.json`) — *Optional.* Per-image OCR text, caption, page number, PNG path, and dimensions from Stage 1. When present, enables enrichment of image chunks with OCR text content instead of empty placeholders.
 
 ### 1.2 Markdown Parsing
 
@@ -49,7 +50,7 @@ The markdown is split into sections on `## ` headings (1,547 sections). Each sec
 
 - **Narrative** — continuous text between headings, tables, and images
 - **Table** — lines starting with `|` (markdown table format)
-- **Image** — `<!-- image -->` placeholders
+- **Image** — `<!-- image -->` markers, enriched with OCR text from `image_inventory.json` when available
 
 Page footers (`N of 478`) and repeated WHO header lines are stripped during parsing.
 
@@ -86,7 +87,7 @@ Every chunk includes the following fields:
 | `section_number` | string | Section number (e.g., `5.2.1.1.2`) |
 | `section_title` | string | Section heading text |
 | `content` | string | Chunk text/markdown |
-| `content_type` | enum | `markdown`, `markdown_table`, `image_placeholder` |
+| `content_type` | enum | `markdown`, `markdown_table`, `image_placeholder`, `image_ocr` |
 | `nll` | string\|null | NLL representation (dosing tables only) |
 | `table_index` | int\|null | Inventory table index |
 | `table_classification` | object\|null | Stage 1 + Stage 2 classification cascade |
@@ -98,6 +99,30 @@ Every chunk includes the following fields:
 | `related_chunks` | object | Links to sibling, narrative, and section chunks |
 | `word_count` | int | Word count |
 | `token_estimate` | int | Estimated token count (words × 1.3) |
+
+### 2.1 Clinical Metadata Fields
+
+The `clinical_metadata` object contains 17 structured fields:
+
+| Field | Type | Description |
+|---|---|---|
+| `condition` | string\|null | Clinical condition inferred from section hierarchy |
+| `drug_name` | string\|null | Drug name extracted from table header |
+| `dosage_summary` | string\|null | Composed from frequency + duration |
+| `patient_weight_min_kg` | float\|null | Minimum weight from weight bands |
+| `patient_weight_max_kg` | float\|null | Maximum weight (null if open-ended) |
+| `patient_age_min` | string\|null | Minimum age from age patterns |
+| `patient_age_max` | string\|null | Maximum age from age patterns |
+| `route` | string\|null | Administration route |
+| `frequency` | string\|null | Dosing frequency |
+| `duration` | string\|null | Treatment duration |
+| `contraindications` | string[] | Contraindication phrases |
+| `special_populations` | string[] | Special population mentions |
+| `level_of_care` | string[] | Level of Care indicators (HC2, HC3, HC4, hospital) |
+| `clinical_features` | string[] | Clinical features/signs and symptoms |
+| `danger_signs` | string[] | Danger sign phrases |
+| `referral_criteria` | string[] | Referral criteria phrases |
+| `clinical_section_type` | string\|null | Section type: clinical_features, diagnostic_criteria, management, referral, prevention, complications, danger_signs |
 
 ---
 
@@ -116,8 +141,11 @@ Each chunk is assigned a preservation level that controls how a downstream RAG/L
 1. Dosing tables (final classification = "dosing") → **verbatim**
 2. Clinical management tables → **verbatim**
 3. Evidence tables → **high**
-4. Narrative chunks containing keywords (`mg/kg`, `contraindicated`, `do not give`, `recommended dose`, `severe malaria`, etc.) → **high**
-5. All other chunks → **standard**
+4. Narrative or image chunks containing danger signs ("danger sign") or referral language ("refer immediately", "refer urgently", "referral criteria") → **verbatim**
+5. Narrative or image chunks containing high-preservation keywords (`mg/kg`, `contraindicated`, `do not give`, etc., loaded from config) → **high**
+6. All other chunks → **standard**
+
+Rules 4–5 apply to both narrative and image chunks — images enriched with OCR text are subject to the same safety analysis as narratives.
 
 ---
 
@@ -198,6 +226,38 @@ For narrative chunks, the following are scanned via regex:
 | `contraindications` | Keyword scanning ("contraindicated in", "do not give to", "not recommended in") |
 | `special_populations` | Pattern scanning (pregnant women, children < N kg, G6PD deficiency, HIV patients) |
 
+### 5.3 Clinical Table Chunks
+
+For clinical management tables, the following are extracted:
+
+| Field | Source |
+|---|---|
+| `level_of_care` | LOC keywords (HC2, HC3, HC4, hospital, etc.) found in table content |
+| `danger_signs` | Danger sign patterns extracted from table cells |
+| `referral_criteria` | Referral phrases extracted from table cells |
+| `condition` | Inferred from section hierarchy |
+
+### 5.4 Image Chunks (OCR-Enriched)
+
+When `image_inventory.json` is available from Stage 1, image chunks are enriched with OCR text and clinical metadata:
+
+1. **Content enrichment**: OCR text + caption replace the `<!-- image -->` placeholder. `content_type` becomes `image_ocr`.
+2. **Page matching**: Each `<!-- image -->` marker in the markdown is matched to its `image_inventory.json` entry by page number.
+3. **Metadata extraction**: The same extraction patterns used for narratives are applied to the OCR text — condition inference, age/weight patterns, contraindications, special populations, LOC, danger signs, referral criteria, clinical features, and clinical section type.
+4. **Safety rules**: Images with danger signs or referral language get `verbatim` preservation; images with clinical keywords get `high` preservation; images without OCR text remain `standard` placeholders.
+
+### 5.5 Enhanced Narrative Extraction
+
+In addition to the fields listed in §5.2, narrative chunks now also extract:
+
+| Field | Source |
+|---|---|
+| `clinical_section_type` | Inferred from section hierarchy keywords (e.g., "management" heading → `management` type) |
+| `level_of_care` | LOC keywords found in narrative content |
+| `danger_signs` | Danger sign patterns |
+| `referral_criteria` | Referral phrases |
+| `clinical_features` | Clinical features/signs and symptoms phrases |
+
 ---
 
 ## 6. Related-Chunk Linking
@@ -259,6 +319,22 @@ The JSON envelope includes:
 
 ---
 
+## Changelog
+
+### v2.0 — PDF-Agnostic Config-Driven Architecture (tag: v2.0-pdf-agnostic)
+
+**Before:** High-preservation keywords were hardcoded (mg/kg, contraindicated, do not give, etc.). Condition patterns were hardcoded to malaria-specific terms. All clinical constants were embedded directly in `stage4a_chunking.py`.
+
+**After:** `high_preservation_keywords`, `conditions`, `biomarkers`, and `contraindication_terms` are all loaded from the pipeline config JSON via `pipeline_config.py`. The script accepts `--config` to select a document-specific configuration. New config fields (`clinical_section_keywords`, `loc_keywords`) support broader clinical content beyond drug/dosing.
+
+### v2.1 — Broader Clinical Content + Image OCR Enhancement
+
+**Before:** `clinical_metadata` had 12 fields (drug, condition, dosage, weight, age, route, frequency, duration, contraindications, special_populations). Only dosing tables and narratives had metadata extraction. Images were empty placeholders (`content: "<!-- image -->"`, `preservation_level: "standard"`, `word_count: 0`). Safety rules only checked narratives for high-preservation keywords.
+
+**After:** `clinical_metadata` now has 17 fields (+`level_of_care`, `clinical_features`, `danger_signs`, `referral_criteria`, `clinical_section_type`). Three metadata extractors: dosing table, clinical table (new), and image (new). Enhanced narrative extractor adds LOC, danger signs, referral, clinical features, and section type. Images enriched with OCR text from `image_inventory.json` — matched by page, `content_type: "image_ocr"`, actual word counts. Safety Rule 4: danger signs/referral in narratives OR images → verbatim. Rule 5: clinical keywords in narratives OR images → high.
+
+---
+
 ## 10. What's Not Covered (Deferred to Stage 4b or Later)
 
 | Gap | Reason / Mitigation |
@@ -266,6 +342,6 @@ The JSON envelope includes:
 | **Physician verification** | `verified_by` block is a placeholder; Stage 4b will implement the review workflow |
 | **Embedding generation** | chunks.json is ready for embedding but vectors are not computed in Stage 4a |
 | **Cross-chunk deduplication** | Some tables appear in both the "Summary of recommendations" (ToC area) and the main content; not deduplicated |
-| **Image OCR in chunks** | Image chunks are placeholders; Stage 2 verified one image via OCR but full image chunking is deferred |
-| **PDF-agnostic adaptation** | The script uses configurable constants (page footer regex, structural heading patterns) that can be adjusted per WHO PDF; formal generalization across WHO guideline PDFs is deferred to a future update of all strategy documents |
+| **Image OCR in chunks** | **Implemented** — `image_inventory.json` from Stage 1 carries OCR text through to Stage 4a. Images matched by page, enriched with OCR content and clinical metadata. Limitation: purely visual data (charts without text labels) still relies on upstream OCR quality. |
+| **PDF-agnostic adaptation** | **Implemented** — all disease-specific constants loaded from config JSON via `pipeline_config.py`. Scripts accept `--config` flag. Two reference configs shipped: `malaria_who_2025.json`, `uganda_clinical_2023.json`. |
 | **Drug name coverage gap** | 3/30 dosing tables lack `drug_name` due to non-standard header formats; can be resolved with physician annotation in Stage 4b |

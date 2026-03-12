@@ -1,8 +1,8 @@
 # Stage 4b: Clinical Verification Framework
 
 **Safe AI Uganda — Clinical Data Extraction Methodology**
-**Document:** WHO Consolidated Malaria Guidelines (B09514-eng.pdf, 478 pages)
-**Last updated:** 04.03.2026
+**Document:** Config-driven (reference: WHO Consolidated Malaria Guidelines, B09514-eng.pdf, 478 pages)
+**Last updated:** 11.03.2026
 
 ---
 
@@ -50,15 +50,15 @@ Every reviewed chunk is assessed against these 5 criteria by the IDI physician:
 
 Not all 5 checks apply equally to all chunk types. The review package marks which checks are applicable for each item:
 
-| Check | Dosing Tables | Clinical Tables | Evidence Tables | High Narratives |
-|---|:---:|:---:|:---:|:---:|
-| Dosage Accuracy | ✅ Primary | ✅ | — | ✅ if doses mentioned |
-| Stratification | ✅ Primary | ✅ | — | ✅ if ranges mentioned |
-| Contraindications | ✅ | ✅ | — | ✅ Primary |
-| Conditional Logic | ✅ (via NLL) | ✅ | — | ✅ if IF/THEN present |
-| Provenance | ✅ | ✅ | ✅ | ✅ |
+| Check | Dosing Tables | Clinical Tables | Evidence Tables | High Narratives | Images (OCR-enriched) |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Dosage Accuracy | ✅ Primary | ✅ | — | ✅ if doses mentioned | ✅ if doses in OCR text |
+| Stratification | ✅ Primary | ✅ | — | ✅ if ranges mentioned | ✅ if ranges in OCR text |
+| Contraindications | ✅ | ✅ | — | ✅ Primary | ✅ if contraindications in OCR text |
+| Conditional Logic | ✅ (via NLL) | ✅ | — | ✅ if IF/THEN present | ✅ if IF/THEN in OCR text |
+| Provenance | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-For narrative chunks, applicability is determined dynamically: the script scans for dosing keywords (mg/kg, tablet, dose), stratification terms (weight, age, infant, child), contraindication language (contraindicated, do not give, avoid), and conditional logic patterns (if/then, refer, danger sign).
+For narrative and image chunks, applicability is determined dynamically: the script scans for dosing keywords (mg/kg, tablet, dose), stratification terms (weight, age, infant, child), contraindication language (contraindicated, do not give, avoid), and conditional logic patterns (if/then, refer, danger sign). For images, this analysis operates on the OCR text extracted from `image_inventory.json` (see Stage 4a). Images without OCR enrichment (`content: "<!-- image -->"`) only have provenance as an applicable check.
 
 ---
 
@@ -78,8 +78,8 @@ The framework uses a 5-tier triage system that is more granular than Stage 4a's 
 
 1. **Tier 1**: `chunk_type == "dosing_table"` AND `validation.status == "pass"` (including stitched table)
 2. **Tier 2**: `chunk_type == "dosing_table"` AND validation was skipped or absent
-3. **Tier 3**: `chunk_type == "clinical_table"`
-4. **Tier 4**: `chunk_type == "evidence_table"` OR (`chunk_type == "narrative"` AND `safety.preservation_level == "high"`)
+3. **Tier 3**: `chunk_type == "clinical_table"` OR (`chunk_type == "other_table"` with Level-of-Care indicators or danger sign content)
+4. **Tier 4**: `chunk_type == "evidence_table"` OR (`chunk_type == "narrative"` AND `safety.preservation_level` in `["high", "verbatim"]`) OR (`chunk_type == "image"` AND `safety.preservation_level` in `["high", "verbatim"]`)
 5. **Tier 5**: Everything else
 
 ### Physician Review Workflow
@@ -87,7 +87,7 @@ The framework uses a 5-tier triage system that is more granular than Stage 4a's 
 1. **Start with Tier 1** (8 chunks): These dosing tables passed all 6 automated checks. The physician confirms the extraction matches the source PDF.
 2. **Proceed to Tier 2** (22 chunks): These dosing tables had no automated validation. Extra scrutiny required.
 3. **Review Tier 3** (1 chunk): Clinical management table — verify all management recommendations are correct.
-4. **Optionally review Tier 4** (325 chunks): Evidence tables and narratives containing dosing/contraindication keywords. Grouped by section for efficient review.
+4. **Optionally review Tier 4** (325 chunks): Evidence tables, narratives, and OCR-enriched images containing dosing/contraindication keywords or flagged with high/verbatim preservation. Grouped by section for efficient review.
 5. **Skip Tier 5**: 1,122 standard chunks have no safety-critical content and are not included in the review package.
 
 ---
@@ -272,6 +272,22 @@ The markdown report (`physician_review_report.md`) is organized for efficient ph
 | Generate markdown report | <0.01s |
 | Save outputs | 0.06s |
 | **Total** | **~0.4s** |
+
+---
+
+## Changelog
+
+### v2.0 — PDF-Agnostic Config-Driven Architecture (tag: v2.0-pdf-agnostic)
+
+**Before:** Contraindication regex patterns used to determine check applicability for narrative chunks were hardcoded in the script. The script only operated on a single hardcoded document.
+
+**After:** Contraindication terms loaded from config JSON via `build_contraindication_regex()` in `pipeline_config.py`. All stages accept `--config` for document-specific configuration. The review package generation works with any config-driven document, not only the WHO malaria PDF.
+
+### v2.1 — Broader Clinical Content + Image OCR Enhancement
+
+**Before:** Tier 3 included only `clinical_table` chunk type. Tier 4 included evidence tables and high-preservation narratives only. Images had no entry in the check applicability table and fell to the default (Tier 5 / excluded). No Level-of-Care (LOC) awareness in reviewer guidance.
+
+**After:** Tier 3 expanded to include `other_table` chunks that contain Level-of-Care indicators or danger sign content. Tier 4 now includes OCR-enriched images (`content_type: "image_ocr"`) with `high` or `verbatim` preservation level. New `image` row in the check applicability table — all 5 checks are conditional on OCR text content (provenance always applicable). LOC-aware guidance hints provided to the reviewer for chunks containing HC2/HC3/HC4/Hospital references.
 
 ---
 

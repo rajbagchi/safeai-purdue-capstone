@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-WHO Malaria Guidelines — PDF Extraction MVP v2
-================================================
+Clinical Guidelines — PDF Extraction Pipeline (Stage 1)
+========================================================
 Features:
   - Layout-aware parsing with Docling
   - Image region extraction + OCR (RapidOCR)
   - Table linearisation to Natural Language Logic
-  - Benchmark accuracy against pages 310-320
+  - Benchmark accuracy against configurable ground truth
   - Speed metrics
   - Pass / Fail report for tables AND images
+
+Config-driven: reads document-specific settings from pipeline_config.json
+    python extraction_mvp_v2.py                         # uses default config
+    python extraction_mvp_v2.py --config configs/X.json # uses custom config
 """
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -37,11 +41,19 @@ from docling.datamodel.base_models import InputFormat
 from PIL import Image
 import numpy as np
 
+# ── Pipeline config ──────────────────────────────────────────────────────────
+from pipeline_config import (
+    load_config, get_pdf_path, get_document_title, get_ground_truth,
+    get_all_table_keywords, get_benchmark_pages, get_clinical_table_keywords,
+)
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 2.  CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
-PDF_PATH = "B09514-eng.pdf"      # ← WHO consolidated malaria guidelines (478 pages)
-BENCHMARK_PAGES = (173, 212)           # dosing tables (173-178) + severe malaria (212)
+CONFIG = load_config()
+PDF_PATH = get_pdf_path(CONFIG)
+BENCHMARK_PAGES = get_benchmark_pages(CONFIG)
+GROUND_TRUTH = get_ground_truth(CONFIG)
 OUTPUT_DIR = Path("extraction_output")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
@@ -173,86 +185,11 @@ def _convert_chunk_worker(chunk_info: dict) -> dict:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 3.  GROUND-TRUTH SNIPPETS  (B09514-eng.pdf — verified page numbers)
+# 3.  GROUND-TRUTH SNIPPETS  (loaded from pipeline_config.json)
 #     Each entry: {"page": int, "type": "text"|"table"|"image", "must_contain": [str, ...]}
 #     Page numbers are PDF page numbers (1-indexed), NOT printed page numbers.
 # ─────────────────────────────────────────────────────────────────────────────
-GROUND_TRUTH = [
-    # ─────────────────────────────────────────────────────────────────────
-    # TEXT checks — exact phrases visible in the PDF on that page
-    # ─────────────────────────────────────────────────────────────────────
-
-    # p.173: ACT dosing intro + artemether+lumefantrine table begins
-    {"page": 173, "type": "text",
-     "must_contain": ["weight-based dosage recommendations", "artemether"]},
-
-    # p.174: AL dosing text — altered exposure factors
-    {"page": 174, "type": "text",
-     "must_contain": ["lumefantrine", "decreased exposure", "smokers"]},
-
-    # p.174: Artesunate + amodiaquine section text
-    {"page": 174, "type": "text",
-     "must_contain": ["amodiaquine", "neutropenia", "efavirenz"]},
-
-    # p.175: Artesunate + sulfadoxine-pyrimethamine section
-    {"page": 175, "type": "text",
-     "must_contain": ["sulfadoxine", "pyrimethamine", "folic acid"]},
-
-    # p.176: DHA + piperaquine — dose revision for children
-    {"page": 176, "type": "text",
-     "must_contain": ["dihydroartemisinin", "piperaquine", "2.5 mg/kg"]},
-
-    # p.177: DHA-PQP QT interval warning
-    {"page": 177, "type": "text",
-     "must_contain": ["piperaquine", "QT interval"]},
-
-    # p.178: Primaquine gametocytocidal dosing
-    {"page": 178, "type": "text",
-     "must_contain": ["primaquine", "0.25 mg/kg", "G6PD deficiency"]},
-
-    # p.212: Severe malaria management table text
-    {"page": 212, "type": "text",
-     "must_contain": ["hyperpyrexia", "convulsions", "maintain airway"]},
-
-    # ─────────────────────────────────────────────────────────────────────
-    # TABLE checks — dosing values that must appear in extracted tables
-    # ─────────────────────────────────────────────────────────────────────
-
-    # p.173-174: artemether + lumefantrine weight bands
-    {"page": 173, "type": "table",
-     "must_contain": ["20 + 120"]},
-    {"page": 174, "type": "table",
-     "must_contain": ["80 + 480"]},
-
-    # p.174: artesunate + amodiaquine
-    {"page": 174, "type": "table",
-     "must_contain": ["25 + 67.5", "200 + 540"]},
-
-    # p.175: artesunate + mefloquine
-    {"page": 175, "type": "table",
-     "must_contain": ["25 + 55", "200 + 440"]},
-
-    # p.175: artesunate + SP doses
-    {"page": 175, "type": "table",
-     "must_contain": ["250 / 12.5", "1500 / 75"]},
-
-    # p.176: dihydroartemisinin + piperaquine (8 weight bands)
-    {"page": 176, "type": "table",
-     "must_contain": ["20 + 160", "200 + 1600"]},
-
-    # p.178: primaquine single-dose table
-    {"page": 178, "type": "table",
-     "must_contain": ["3.75", "7.5"]},
-
-    # ─────────────────────────────────────────────────────────────────────
-    # IMAGE / FIGURE checks
-    # B09514-eng.pdf has very few embedded images (2 total).
-    # ─────────────────────────────────────────────────────────────────────
-
-    # p.198: Therapeutic pathway diagram for P. vivax anti-relapse treatment
-    {"page": 198, "type": "image",
-     "must_contain": ["G6PD", "primaquine"]},
-]
+# GROUND_TRUTH is loaded from config at the top of this file.
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 4.  HELPER: DOCLING CONVERTER  (with image pipeline enabled)
@@ -347,13 +284,7 @@ def table_to_nll(table_md: str) -> str:
 # Keywords used to classify each table into a category.
 # Only dosing and clinical_management tables get NLL linearisation.
 
-_DOSING_KEYWORDS = [
-    "body weight", "kg", "dose (mg)", "dose given", "mg/kg",
-    "tablet", "twice daily", "daily for 3 days", "single dose",
-    "artemether", "lumefantrine", "artesunate", "amodiaquine",
-    "mefloquine", "sulfadoxine", "pyrimethamine", "piperaquine",
-    "dihydroartemisinin", "primaquine", "quinine", "chloroquine",
-]
+_DOSING_KEYWORDS = get_all_table_keywords(CONFIG)
 _EVIDENCE_KEYWORDS = [
     "grade", "quality of evidence", "relative effect", "95% ci",
     "no. of par", "no of par", "cochrane", "rr ", "systematic review",
@@ -363,10 +294,11 @@ _STRUCTURAL_KEYWORDS = [
     "contents", "annex", "preparation of the guidelines",
     "abbreviation", "glossary", "introduction......",
 ]
-_CLINICAL_MGMT_KEYWORDS = [
+_CLINICAL_MGMT_KEYWORDS_DEFAULT = [
     "manifestation", "complication", "immediate management",
     "clinical feature", "danger sign", "referral", "severity",
 ]
+_CLINICAL_MGMT_KEYWORDS = get_clinical_table_keywords(CONFIG) or _CLINICAL_MGMT_KEYWORDS_DEFAULT
 
 
 def classify_table(table_md: str) -> str:
@@ -378,7 +310,7 @@ def classify_table(table_md: str) -> str:
     md_lower = table_md.lower()
 
     def _score(keywords):
-        return sum(1 for kw in keywords if kw in md_lower)
+        return sum(1 for kw in keywords if kw.lower() in md_lower)
 
     scores = {
         "dosing": _score(_DOSING_KEYWORDS),
@@ -387,8 +319,17 @@ def classify_table(table_md: str) -> str:
         "clinical_management": _score(_CLINICAL_MGMT_KEYWORDS),
     }
     best = max(scores, key=scores.get)
+
+    # Standard threshold: 2+ keyword matches
     if scores[best] >= 2:
         return best
+
+    # Relaxed threshold for clinical_management: a single clinical keyword
+    # is sufficient if no dosing keywords are present (catches TREATMENT|LOC
+    # tables where one strong indicator like "TREATMENT" or "HC3" appears)
+    if scores["clinical_management"] >= 1 and scores["dosing"] == 0:
+        return "clinical_management"
+
     return "other"
 
 
@@ -431,7 +372,7 @@ def extract_document(pdf_path: str) -> dict:
     Returns a dict with: text, tables, images, nll_tables, timings.
     """
     print(f"\n{'='*70}")
-    print(f"  WHO MALARIA GUIDELINES — EXTRACTION PIPELINE")
+    print(f"  CLINICAL GUIDELINES — EXTRACTION PIPELINE (Stage 1)")
     print(f"{'='*70}")
     print(f"  Source : {pdf_path}")
     if PAGE_RANGES:
@@ -676,7 +617,8 @@ def compute_accuracy(extraction: dict) -> dict:
     Returns pass/fail counts + per-item details.
     """
     print(f"\n{'='*70}")
-    print(f"  ACCURACY BENCHMARK  (Pages {BENCHMARK_PAGES[0]}–{BENCHMARK_PAGES[1]})")
+    bp_label = f"Pages {BENCHMARK_PAGES[0]}–{BENCHMARK_PAGES[-1]}" if BENCHMARK_PAGES else "all ground truth"
+    print(f"  ACCURACY BENCHMARK  ({bp_label})")
     print(f"{'='*70}")
 
     full_text_lower = extraction["full_markdown"].lower()
@@ -1041,6 +983,22 @@ def save_outputs(extraction: dict, accuracy: dict, tbl_report: dict,
     inv_path = OUTPUT_DIR / "table_inventory.json"
     inv_path.write_text(json.dumps(inventory, indent=2), encoding="utf-8")
     print(f"💾 Saved: {inv_path}")
+
+    # Image inventory — per-image OCR text + metadata for Stage 4a
+    img_inventory = []
+    for img in extraction["images"]:
+        img_inventory.append({
+            "index": img.get("index"),
+            "page_no": img.get("page_no"),
+            "caption": img.get("caption", ""),
+            "ocr_text": img.get("ocr_text", ""),
+            "saved_path": img.get("saved_path", ""),
+            "width": img.get("width"),
+            "height": img.get("height"),
+        })
+    img_inv_path = OUTPUT_DIR / "image_inventory.json"
+    img_inv_path.write_text(json.dumps(img_inventory, indent=2), encoding="utf-8")
+    print(f"💾 Saved: {img_inv_path}")
 
     # JSON summary
     summary = {

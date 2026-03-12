@@ -1,14 +1,14 @@
 # Extraction Pipeline Overview
 
 **Safe AI Uganda — Purdue Capstone Project**
-**Document:** WHO Consolidated Malaria Guidelines (B09514-eng.pdf, 478 pages)
-**Last updated:** 05.03.2026
+**Document:** Config-driven (reference: WHO Consolidated Malaria Guidelines, B09514-eng.pdf, 478 pages)
+**Last updated:** 11.03.2026
 
 ---
 
 ## What This Document Is
 
-This is the master reference for the clinical data extraction pipeline. It explains the full end-to-end flow from raw WHO PDF to physician-verified, deployment-ready chunks — what each stage does, what it reads, what it writes, and how data flows between stages.
+This is the master reference for the clinical data extraction pipeline. It explains the full end-to-end flow from raw clinical guidelines PDF to physician-verified, deployment-ready chunks — what each stage does, what it reads, what it writes, and how data flows between stages. The pipeline is **config-driven** and supports multiple documents via per-document JSON configs (see `configs/` directory). Metrics shown here use the WHO malaria guidelines as the reference configuration.
 
 For detailed implementation notes on any individual stage, see the corresponding strategy document listed in Section 6.
 
@@ -22,11 +22,13 @@ The extraction pipeline is the **foundational upstream process** that feeds the 
 ┌─────────────────────────────────────────────────────────────────┐
 │                    SAFE AI SYSTEM ARCHITECTURE                  │
 │                                                                 │
-│  ┌──────────────────────────────┐                               │
-│  │  WHO/MoH Clinical Guidelines │  (PDF — human-readable only)  │
-│  └──────────────┬───────────────┘                               │
-│                 │                                                │
-│                 ▼                                                │
+│  ┌──────────────────────────────┐  ┌────────────────────────┐   │
+│  │  WHO/MoH Clinical Guidelines │  │  Config JSON            │   │
+│  │  (PDF — human-readable only) │  │  (configs/*.json)       │   │
+│  └──────────────┬───────────────┘  └───────────┬────────────┘   │
+│                 │                               │                │
+│                 └───────────┬───────────────────┘                │
+│                             ▼                                    │
 │  ┌──────────────────────────────┐                               │
 │  │   EXTRACTION PIPELINE        │  ◄── YOU ARE HERE             │
 │  │   (Stages 1 → 4b)           │                               │
@@ -74,8 +76,8 @@ The extraction pipeline is the **foundational upstream process** that feeds the 
 
 ```
   ┌─────────────────────────────────────────────────────────────┐
-  │                  WHO PDF (B09514-eng.pdf)                   │
-  │                     478 pages                               │
+  │           Source PDF + Config JSON (configs/*.json)          │
+  │        (e.g., WHO malaria guidelines, 478 pages)            │
   └────────────────────────┬────────────────────────────────────┘
                            │
                            ▼
@@ -85,12 +87,14 @@ The extraction pipeline is the **foundational upstream process** that feeds the 
   │                                                             │
   │  • Docling layout-aware PDF parsing                         │
   │  • PyMuPDF for PDF manipulation                             │
-  │  • Table detection, classification, NLL generation          │
+  │  • Table detection, classification (config-driven keywords) │
+  │  • NLL generation, image OCR extraction                     │
   │  • 93.8% accuracy (15/16 ground-truth checks pass)          │
   │                                                             │
   │  OUT: full_extraction.md (2.2 MB)                           │
   │       table_inventory.json (207 tables)                     │
   │       tables_nll.txt (43 tables with NLL)                   │
+  │       image_inventory.json (per-image OCR text + metadata)  │
   └────────────────────────┬────────────────────────────────────┘
                            │
                            ▼
@@ -128,7 +132,9 @@ The extraction pipeline is the **foundational upstream process** that feeds the 
   │                                                             │
   │  • Splits 2.2 MB markdown into 1,478 discrete chunks        │
   │  • Safety preservation levels: verbatim / high / standard   │
-  │  • Clinical metadata: drug names, weight ranges, conditions │
+  │  • 17-field clinical metadata (drug, condition, LOC, danger │
+  │    signs, referral criteria, clinical features, etc.)       │
+  │  • Image OCR enrichment from image_inventory.json           │
   │  • Section hierarchy reconstruction + related-chunk linking │
   │  • 207/207 inventory tables matched (100%)                  │
   │                                                             │
@@ -140,8 +146,8 @@ The extraction pipeline is the **foundational upstream process** that feeds the 
   │  STAGE 4b: Clinical Verification Framework         (~0.4s)  │
   │  stage4b_review_package.py (1,461 lines)                    │
   │                                                             │
-  │  • 5-tier triage: 31 mandatory, 325 recommended, 1,122 skip│
-  │  • 5 Clinical Verification Checks per item                  │
+  │  • 5-tier triage: 31 mandatory, 325 recommended, 1122 skip  │
+  │  • 5 Clinical Verification Checks (images via OCR content)  │
   │  • SHA-256 audit hashes for tamper detection                │
   │  • Physician-readable markdown report by tier               │
   │  • Ingest mode: validates reviews, computes signatures      │
@@ -183,11 +189,11 @@ The extraction pipeline is the **foundational upstream process** that feeds the 
 
 | Stage | Reads | Writes | Key Metric |
 |---|---|---|---|
-| **1. Primary Extraction** | `B09514-eng.pdf` | `full_extraction.md`, `table_inventory.json`, `tables_nll.txt` | 207 tables, 93.8% accuracy |
-| **2. Cross-Validation** | PDF + `table_inventory.json` + `full_extraction.md` | `cross_validation_report.json`, updated `tables_nll.txt` | 12 reclassifications, 1 stitch |
-| **3. Plausibility Checks** | `table_inventory.json` + `cross_validation_report.json` + `tables_nll.txt` | `plausibility_report.json` | 8/29 pass all 6 checks |
-| **4a. Chunking** | `full_extraction.md` + all 3 reports above | `chunks.json` | 1,478 chunks, 207/207 matched |
-| **4b. Verification** | `chunks.json` | `review_package.json`, `physician_review_report.md` | 356 items, 31 mandatory |
+| **1. Primary Extraction** | Source PDF + `configs/*.json` | `full_extraction.md`, `table_inventory.json`, `tables_nll.txt`, `image_inventory.json` | 207 tables, 93.8% accuracy |
+| **2. Cross-Validation** | PDF + `table_inventory.json` + `full_extraction.md` + config | `cross_validation_report.json`, updated `tables_nll.txt` | 12 reclassifications, 1 stitch |
+| **3. Plausibility Checks** | `table_inventory.json` + `cross_validation_report.json` + `tables_nll.txt` + config | `plausibility_report.json` | 8/29 pass all 6 checks |
+| **4a. Chunking** | `full_extraction.md` + all 3 reports above + `image_inventory.json` + config | `chunks.json` | 1,478 chunks, 207/207 matched |
+| **4b. Verification** | `chunks.json` + config | `review_package.json`, `physician_review_report.md` | 356 items, 31 mandatory |
 
 ### How Tables Flow Through the Pipeline
 
@@ -227,7 +233,7 @@ Stage 4b: 356 review items generated (Tiers 1–4)
             ├── Tier 1:   8 validated dosing tables (MANDATORY)
             ├── Tier 2:  22 unvalidated dosing tables (MANDATORY)
             ├── Tier 3:   1 clinical management table (MANDATORY)
-            ├── Tier 4: 325 evidence + high-priority narratives (RECOMMENDED)
+            ├── Tier 4: 325 evidence + high-priority narratives + enriched images (RECOMMENDED)
             └── Tier 5: 1,122 standard chunks (EXCLUDED from review)
 ```
 
@@ -244,7 +250,8 @@ The pipeline is designed so that each stage resolves issues identified by the pr
 | DHA-piperaquine complex weight format (e.g., "60 < 80 kg") | Stage 1 | Stage 3 | Enhanced 8-format weight parser |
 | Dose monotonicity (does dose increase with weight?) | Not visible in raw extraction | Stage 3 | Automated plausibility check |
 | Weight band contiguity (are there gaps between bands?) | Not visible in raw extraction | Stage 3 | Automated plausibility check |
-| Clinical metadata extraction (drug name, condition, contraindications) | Not available in raw markdown | Stage 4a | Regex-based extraction from table headers + section hierarchy |
+| Clinical metadata extraction (drug, condition, LOC, danger signs, referral) | Not available in raw markdown | Stage 4a | Regex-based extraction from table headers + section hierarchy + OCR text |
+| Image content lost in chunking (empty `<!-- image -->` placeholders) | Stage 4a (original) | Stage 4a (v2.1) | OCR text from `image_inventory.json` enriches image chunks |
 | Content integrity for deployment | Not addressed pre-4b | Stage 4b | SHA-256 audit hashes + digital signatures |
 
 ---
@@ -256,31 +263,42 @@ The pipeline is designed so that each stage resolves issues identified by the pr
 - Python 3.9+
 - `pip install docling pymupdf` (Stages 1 and 2 only)
 - Stages 3–4b: **no external dependencies** (Python stdlib only)
-- Source PDF: `B09514-eng.pdf` in the working directory
+- Source PDF in the path specified by the config JSON
+- A config JSON file for the document (see `configs/` directory)
+
+### Onboarding a New Document
+
+To onboard a new clinical guidelines PDF, use the config generator:
+
+```bash
+python config_generator.py --pdf path/to/new_guidelines.pdf --output configs/new_guidelines.json
+```
+
+This generates an AI-assisted config JSON with document-specific keywords, ground-truth checks, and dose reference ranges. Review and edit the generated config before running the pipeline.
 
 ### Full Pipeline Execution
 
 ```bash
 # Stage 1: Primary extraction (~23 min first run, ~29s cached)
-python extraction_mvp_v2.py
+python extraction_mvp_v2.py --config configs/malaria_who_2025.json
 
 # Stage 2: Cross-validation (~8.5s)
-python stage2_cross_validation.py
+python stage2_cross_validation.py --config configs/malaria_who_2025.json
 
 # Stage 3: Automated plausibility checks (~0.2s)
-python stage3_automated_checks.py
+python stage3_automated_checks.py --config configs/malaria_who_2025.json
 
 # Stage 4a: Chunking + metadata (~1.1s)
-python stage4a_chunking.py
+python stage4a_chunking.py --config configs/malaria_who_2025.json
 
 # Stage 4b: Generate physician review package (~0.4s)
-python stage4b_review_package.py
+python stage4b_review_package.py --config configs/malaria_who_2025.json
 
 # --- HUMAN STEP: Physician reviews physician_review_report.md ---
 # --- Physician fills in review_package.json decisions ---
 
 # Stage 4b (ingest): Apply physician review to chunks
-python stage4b_review_package.py --ingest extraction_output/completed_review.json
+python stage4b_review_package.py --config configs/malaria_who_2025.json --ingest extraction_output/completed_review.json
 ```
 
 ### Total Automated Runtime
@@ -306,9 +324,10 @@ All outputs are written to `extraction_output/`.
 | `full_extraction.md` | 1 | 2.2 MB | Complete markdown extraction of all 478 PDF pages |
 | `table_inventory.json` | 1 | 28 KB | 207 tables with classifications, page numbers, and column metadata |
 | `tables_nll.txt` | 1+2 | 76 KB | Natural Language Logic for 43 tables (42 from Stage 1 + 1 stitched from Stage 2) |
+| `image_inventory.json` | 1 | varies | Per-image OCR text, caption, page number, PNG path, and dimensions |
 | `cross_validation_report.json` | 2 | 28 KB | Reclassification decisions, cell-level comparison results, stitch records |
 | `plausibility_report.json` | 3 | 13 KB | Per-table results for 6 automated checks (pass/fail/skipped per table) |
-| `chunks.json` | 4a | 10.6 MB | 1,478 chunks with full metadata: safety, clinical metadata, verified_by, related_chunks |
+| `chunks.json` | 4a | 10.6 MB | 1,478 chunks with full metadata: safety, 17-field clinical metadata, verified_by, related_chunks |
 | `review_package.json` | 4b | 1.8 MB | 356 review items with audit hashes, templates, and context for physician review |
 | `physician_review_report.md` | 4b | 1.0 MB | Human-readable review report organized by tier with checklists and decision fields |
 
@@ -316,7 +335,7 @@ All outputs are written to `extraction_output/`.
 
 ## Per-Chunk Schema (Stage 4a Output)
 
-Every chunk in `chunks.json` carries 16+ metadata fields. The fields most relevant to downstream systems (Brain 1, guardrails) are:
+Every chunk in `chunks.json` carries 20+ metadata fields, including 17 clinical metadata subfields (expanded from 12 in v2.1 to cover Level of Care, danger signs, referral criteria, clinical features, and clinical section type). The fields most relevant to downstream systems (Brain 1, guardrails) are:
 
 | Field | Purpose for Brain 1 / Guardrails |
 |---|---|
@@ -365,9 +384,9 @@ This system prevents the most dangerous failure mode in clinical AI — an LLM p
 
 | Level | Count | LLM Behavior | Example |
 |---|---|---|---|
-| **verbatim** | 31 | Must return content exactly as extracted. No paraphrasing, no summarization. | "80 + 480 mg artemether-lumefantrine twice daily for 3 days" |
-| **high** | 325 | Minimal paraphrasing. Core clinical facts must be preserved word-for-word. | "Lumefantrine exposure is decreased in pregnant women" |
-| **standard** | 1,122 | Paraphrasing acceptable. General narrative and structural content. | Background on malaria epidemiology |
+| **verbatim** | 31 | Must return content exactly as extracted. No paraphrasing, no summarization. | Dosing tables, clinical tables, narratives/images with danger signs or referral criteria |
+| **high** | 325 | Minimal paraphrasing. Core clinical facts must be preserved word-for-word. | Evidence tables, narratives/images with dosing or contraindication keywords |
+| **standard** | 1,122 | Paraphrasing acceptable. General narrative and structural content. | Background epidemiology, structural content, non-clinical images |
 
 **Clinical rationale:** If an LLM paraphrases "80+480 mg" as "approximately 500 mg" or "480+80 mg", a VHT may administer the wrong dosage. The `verbatim` tag is an instruction to the RAG retrieval layer and the LLM prompt engineering to return this content exactly — never rephrase, never summarize, never round.
 
@@ -392,12 +411,15 @@ Each stage has its own detailed strategy document:
 
 | Script | Lines | Dependencies | Purpose |
 |---|---|---|---|
-| `extraction_mvp_v2.py` | 1,104 | docling, pymupdf | Stage 1: PDF → markdown + table inventory + NLL |
+| `extraction_mvp_v2.py` | 1,104 | docling, pymupdf | Stage 1: PDF → markdown + table inventory + NLL + image inventory |
 | `stage2_cross_validation.py` | 1,056 | pymupdf | Stage 2: Independent extraction, reclassification, stitching |
 | `stage3_automated_checks.py` | 899 | stdlib only | Stage 3: 6 plausibility checks on dosing tables |
-| `stage4a_chunking.py` | 1,640 | stdlib only | Stage 4a: Markdown → 1,478 metadata-rich chunks |
+| `stage4a_chunking.py` | 1,640 | stdlib only | Stage 4a: Markdown → 1,478 metadata-rich chunks (image OCR enrichment) |
 | `stage4b_review_package.py` | 1,461 | stdlib only | Stage 4b: Review package generation + ingestion |
-| **Total** | **6,160** | | **5 scripts, 2 external dependencies** |
+| `pipeline_config.py` | ~90 | stdlib only | Shared config loader — validates and exposes config fields to all stages |
+| `config_generator.py` | ~400 | stdlib only | AI-assisted onboarding tool for new PDF documents |
+| `configs/` | — | — | Per-document JSON configs (e.g., `malaria_who_2025.json`, `uganda_clinical_2023.json`) |
+| **Total** | **~6,650** | | **7 scripts + config directory, 2 external dependencies** |
 
 ---
 
@@ -419,18 +441,36 @@ Each stage has its own detailed strategy document:
 | Weight range extraction coverage | 14/30 (47%) |
 | Total pipeline runtime (cached) | ~40 seconds |
 | External dependencies | 2 (docling, pymupdf — Stages 1–2 only) |
-| Total codebase | 6,160 lines across 5 scripts |
+| Total codebase | ~6,650 lines across 7 scripts + config directory |
 
 ---
 
 ## Git History
 
-| Commit | PR | Description |
+| Commit | PR / Tag | Description |
 |---|---|---|
 | `e5d653c` | — | Stage 1: Primary extraction pipeline and strategy document |
 | `0407a30` | PR #1 | Stage 2: Cross-validation with PyMuPDF |
 | `6fe057c` | PR #2 | Stage 3: Automated plausibility checks |
 | `dee03ae` | PR #3 | Stage 4a: Chunking and metadata strategy |
 | `1b57e73` | PR #4 | Stage 4b: Clinical verification framework |
+| `30c39bb` | **Tag: `v2.0-pdf-agnostic`** | Config-driven architecture — all disease-specific constants externalized to JSON configs |
+| `1337e08` | — | Pipeline overview documentation |
 
 Repository: [github.com/rajbagchi/safeai-purdue-capstone](https://github.com/rajbagchi/safeai-purdue-capstone)
+
+---
+
+## Changelog
+
+### v2.0 — PDF-Agnostic Config-Driven Architecture (tag: v2.0-pdf-agnostic)
+
+**Before:** Single-document pipeline hardcoded to the WHO malaria PDF. No config files — each script had its own hardcoded constants (drug keywords, ground-truth checks, dose reference ranges, dosing page numbers). Running the pipeline on a different PDF required editing multiple Python files.
+
+**After:** Config-driven architecture. A `configs/` directory holds per-document JSON configs (e.g., `malaria_who_2025.json`, `uganda_clinical_2023.json`). A shared loader (`pipeline_config.py`, ~90 lines) validates and exposes config fields to all stages. `config_generator.py` (~400 lines) provides AI-assisted onboarding for new PDFs. All scripts accept `--config` to select the active document configuration. Two reference configs ship with the pipeline.
+
+### v2.1 — Broader Clinical Content + Image OCR Enhancement
+
+**Before:** `clinical_metadata` had 12 fields (drug, condition, dosage, weight, age, route, frequency, duration, contraindications, special_populations, age_min, age_max). No image OCR persistence — images were empty placeholders in chunks (`content: "<!-- image -->"`, `preservation_level: "standard"`, `word_count: 0`). No clinical content expansion for Level of Care, danger signs, referral criteria, or clinical features. Stage 4b treated all images as Tier 5 (excluded).
+
+**After:** `clinical_metadata` now has 17 fields (+`level_of_care`, `clinical_features`, `danger_signs`, `referral_criteria`, `clinical_section_type`). Stage 1 persists `image_inventory.json` with per-image OCR text, captions, page numbers, PNG paths, and dimensions. Stage 4a loads the image inventory, matches images to chunks by page, and enriches them with OCR content (`content_type: "image_ocr"`) and full clinical metadata extraction. Safety Rules 4 and 5 now apply to images (danger signs/referral → verbatim; clinical keywords → high). Stage 4b includes enriched images in Tier 4 review when they have high/verbatim preservation. Three new metadata extractors: clinical table, image, and enhanced narrative (LOC, danger signs, referral, clinical features, section type).
