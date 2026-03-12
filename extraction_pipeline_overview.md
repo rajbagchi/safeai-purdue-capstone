@@ -1,14 +1,14 @@
 # Extraction Pipeline Overview
 
 **Safe AI Uganda — Purdue Capstone Project**
-**Document:** Config-driven (reference: WHO Consolidated Malaria Guidelines, B09514-eng.pdf, 478 pages)
-**Last updated:** 11.03.2026
+**Documents:** Config-driven — validated on WHO Malaria Guidelines (478 pp.) and Uganda Clinical Guidelines 2023 (1,161 pp.)
+**Last updated:** 12.03.2026
 
 ---
 
 ## What This Document Is
 
-This is the master reference for the clinical data extraction pipeline. It explains the full end-to-end flow from raw clinical guidelines PDF to physician-verified, deployment-ready chunks — what each stage does, what it reads, what it writes, and how data flows between stages. The pipeline is **config-driven** and supports multiple documents via per-document JSON configs (see `configs/` directory). Metrics shown here use the WHO malaria guidelines as the reference configuration.
+This is the master reference for the clinical data extraction pipeline. It explains the full end-to-end flow from raw clinical guidelines PDF to physician-verified, deployment-ready chunks — what each stage does, what it reads, what it writes, and how data flows between stages. The pipeline is **config-driven** and supports multiple documents via per-document JSON configs (see `configs/` directory). Metrics shown here cover both validated documents: WHO Malaria Guidelines (478 pages) and Uganda Clinical Guidelines 2023 (1,161 pages).
 
 For detailed implementation notes on any individual stage, see the corresponding strategy document listed in Section 6.
 
@@ -77,83 +77,80 @@ The extraction pipeline is the **foundational upstream process** that feeds the 
 ```
   ┌─────────────────────────────────────────────────────────────┐
   │           Source PDF + Config JSON (configs/*.json)          │
-  │        (e.g., WHO malaria guidelines, 478 pages)            │
+  │        Validated: Malaria WHO (478 pp), Uganda CG (1161 pp) │
   └────────────────────────┬────────────────────────────────────┘
                            │
                            ▼
   ┌─────────────────────────────────────────────────────────────┐
-  │  STAGE 1: Primary Extraction            (~23 min first run) │
+  │  STAGE 1: Primary Extraction                                │
   │  extraction_mvp_v2.py (1,104 lines)                         │
   │                                                             │
   │  • Docling layout-aware PDF parsing                         │
   │  • PyMuPDF for PDF manipulation                             │
   │  • Table detection, classification (config-driven keywords) │
   │  • NLL generation, image OCR extraction                     │
-  │  • 93.8% accuracy (15/16 ground-truth checks pass)          │
+  │  • Malaria: 93.8% accuracy, 207 tables, 29s (cached)       │
+  │  • Uganda:  87.5% accuracy, 899 tables, ~83 min             │
   │                                                             │
-  │  OUT: full_extraction.md (2.2 MB)                           │
-  │       table_inventory.json (207 tables)                     │
-  │       tables_nll.txt (43 tables with NLL)                   │
-  │       image_inventory.json (per-image OCR text + metadata)  │
+  │  OUT: full_extraction.md, table_inventory.json,             │
+  │       tables_nll.txt, image_inventory.json                  │
   └────────────────────────┬────────────────────────────────────┘
                            │
                            ▼
   ┌─────────────────────────────────────────────────────────────┐
-  │  STAGE 2: Cross-Validation                         (~8.5s)  │
+  │  STAGE 2: Cross-Validation                                  │
   │  stage2_cross_validation.py (1,056 lines)                   │
   │                                                             │
   │  • Independent PyMuPDF extraction for cell-level comparison │
-  │  • Table reclassification: 41 → 29 true dosing tables       │
-  │  • Page-boundary stitching: recovers ≥35 kg row (p.173-174)│
-  │  • 12 tables reclassified (dosing → structural/other)       │
+  │  • Table reclassification + page-boundary stitching         │
+  │  • Malaria: 12 reclassified, 1 stitch, 100% combined acc.  │
+  │  • Uganda:  96 reclassified, 3 stitches, 87.5% combined    │
   │                                                             │
   │  OUT: cross_validation_report.json                          │
-  │       (updates tables_nll.txt with stitched table)          │
+  │       (updates tables_nll.txt with stitched tables)         │
   └────────────────────────┬────────────────────────────────────┘
                            │
                            ▼
   ┌─────────────────────────────────────────────────────────────┐
-  │  STAGE 3: Automated Plausibility Checks            (~0.2s)  │
+  │  STAGE 3: Automated Plausibility Checks                     │
   │  stage3_automated_checks.py (899 lines)                     │
   │                                                             │
   │  • 6 automated checks on dosing tables:                     │
   │    Weight contiguity, dose monotonicity, weight coverage,   │
   │    clinical bounds, combination consistency, positive/empty  │
-  │  • 8 tables pass all 6 checks (7 individual + 1 stitched)  │
-  │  • 22 tables skipped (no weight column — not true dosing)   │
+  │  • Malaria: 29 dosing tables, 1 stitched (PASS)            │
+  │  • Uganda:  385 dosing tables, 1 stitched (FAIL)            │
   │                                                             │
   │  OUT: plausibility_report.json                              │
   └────────────────────────┬────────────────────────────────────┘
                            │
                            ▼
   ┌─────────────────────────────────────────────────────────────┐
-  │  STAGE 4a: Chunking + Metadata                     (~1.1s)  │
+  │  STAGE 4a: Chunking + Metadata                              │
   │  stage4a_chunking.py (1,640 lines)                          │
   │                                                             │
-  │  • Splits 2.2 MB markdown into 1,478 discrete chunks        │
+  │  • Splits markdown into discrete chunks with metadata       │
   │  • Safety preservation levels: verbatim / high / standard   │
-  │  • 17-field clinical metadata (drug, condition, LOC, danger │
-  │    signs, referral criteria, clinical features, etc.)       │
+  │  • 17-field clinical metadata (drug, condition, LOC, etc.)  │
   │  • Image OCR enrichment from image_inventory.json           │
-  │  • Section hierarchy reconstruction + related-chunk linking │
-  │  • 207/207 inventory tables matched (100%)                  │
+  │  • Malaria: 1,478 chunks (31 verbatim / 324 high / 1,123)  │
+  │  • Uganda:  3,735 chunks (18 verbatim / 227 high / 3,490)  │
   │                                                             │
-  │  OUT: chunks.json (1,478 chunks, 10.6 MB)                  │
+  │  OUT: chunks.json                                           │
   └────────────────────────┬────────────────────────────────────┘
                            │
                            ▼
   ┌─────────────────────────────────────────────────────────────┐
-  │  STAGE 4b: Clinical Verification Framework         (~0.4s)  │
+  │  STAGE 4b: Clinical Verification Framework                  │
   │  stage4b_review_package.py (1,461 lines)                    │
   │                                                             │
-  │  • 5-tier triage: 31 mandatory, 325 recommended, 1122 skip  │
+  │  • 5-tier triage for physician review prioritization        │
   │  • 5 Clinical Verification Checks (images via OCR content)  │
   │  • SHA-256 audit hashes for tamper detection                │
-  │  • Physician-readable markdown report by tier               │
-  │  • Ingest mode: validates reviews, computes signatures      │
+  │  • Malaria: 355 review items, 31 mandatory                 │
+  │  • Uganda:  245 review items, 3 mandatory                  │
   │                                                             │
-  │  OUT: review_package.json (356 items, 1.8 MB)              │
-  │       physician_review_report.md (1.0 MB)                  │
+  │  OUT: review_package.json, physician_review_report.md       │
   └────────────────────────┬────────────────────────────────────┘
                            │
                            ▼
@@ -187,54 +184,35 @@ The extraction pipeline is the **foundational upstream process** that feeds the 
 
 ### What Each Stage Reads and Writes
 
-| Stage | Reads | Writes | Key Metric |
-|---|---|---|---|
-| **1. Primary Extraction** | Source PDF + `configs/*.json` | `full_extraction.md`, `table_inventory.json`, `tables_nll.txt`, `image_inventory.json` | 207 tables, 93.8% accuracy |
-| **2. Cross-Validation** | PDF + `table_inventory.json` + `full_extraction.md` + config | `cross_validation_report.json`, updated `tables_nll.txt` | 12 reclassifications, 1 stitch |
-| **3. Plausibility Checks** | `table_inventory.json` + `cross_validation_report.json` + `tables_nll.txt` + config | `plausibility_report.json` | 8/29 pass all 6 checks |
-| **4a. Chunking** | `full_extraction.md` + all 3 reports above + `image_inventory.json` + config | `chunks.json` | 1,478 chunks, 207/207 matched |
-| **4b. Verification** | `chunks.json` + config | `review_package.json`, `physician_review_report.md` | 356 items, 31 mandatory |
+| Stage | Reads | Writes | Malaria Key Metric | Uganda Key Metric |
+|---|---|---|---|---|
+| **1. Primary Extraction** | Source PDF + `configs/*.json` | `full_extraction.md`, `table_inventory.json`, `tables_nll.txt`, `image_inventory.json` | 207 tables, 93.8% accuracy | 899 tables, 87.5% accuracy |
+| **2. Cross-Validation** | PDF + `table_inventory.json` + `full_extraction.md` + config | `cross_validation_report.json`, updated `tables_nll.txt` | 12 reclassified, 1 stitch, 100% combined | 96 reclassified, 3 stitches, 87.5% combined |
+| **3. Plausibility Checks** | `table_inventory.json` + `cross_validation_report.json` + `tables_nll.txt` + config | `plausibility_report.json` | 29 dosing, stitched PASS | 385 dosing, stitched FAIL |
+| **4a. Chunking** | `full_extraction.md` + all 3 reports above + `image_inventory.json` + config | `chunks.json` | 1,478 chunks, 207/207 matched | 3,735 chunks |
+| **4b. Verification** | `chunks.json` + config | `review_package.json`, `physician_review_report.md` | 355 items, 31 mandatory | 245 items, 3 mandatory |
 
 ### How Tables Flow Through the Pipeline
 
+**Malaria WHO Guidelines (478 pages)**
+
 ```
-Stage 1:  207 tables extracted from PDF
-            │
-            ├── 41 classified as "dosing"
-            ├── 21 classified as "evidence"
-            ├──  2 classified as "structural"
-            ├──  1 classified as "clinical"
-            └── 142 classified as "other"
-            │
-Stage 2:  41 dosing tables re-examined
-            │
-            ├── 29 confirmed as true dosing tables
-            ├── 12 reclassified to structural/other (no dose values)
-            └──  1 stitched table recovered (pp.173–174, ≥35 kg row)
-            │
-            │   NOTE: 29 confirmed + 1 stitched = 30 dosing table chunks
-            │
-Stage 3:  30 dosing tables checked (29 individual + 1 stitched)
-            │
-            ├──  8 pass all 6 plausibility checks (7 individual + 1 stitched)
-            └── 22 skipped (no weight column — GRADE evidence, abbreviations)
-            │
-Stage 4a: 207 tables + 1 stitched = 208 table chunks
-          (plus 1,235 narrative + 35 image = 1,478 total chunks)
-            │
-            ├── 30 dosing_table chunks (preservation: verbatim)
-            ├── 21 evidence_table chunks
-            ├── 14 structural_table chunks
-            ├──  1 clinical_table chunk (preservation: verbatim)
-            └── 142 other_table chunks
-            │
-Stage 4b: 356 review items generated (Tiers 1–4)
-            │
-            ├── Tier 1:   8 validated dosing tables (MANDATORY)
-            ├── Tier 2:  22 unvalidated dosing tables (MANDATORY)
-            ├── Tier 3:   1 clinical management table (MANDATORY)
-            ├── Tier 4: 325 evidence + high-priority narratives + enriched images (RECOMMENDED)
-            └── Tier 5: 1,122 standard chunks (EXCLUDED from review)
+Stage 1:  207 tables extracted
+            ├── 41 dosing │ 21 evidence │ 2 structural │ 1 clinical │ 142 other
+Stage 2:  41 dosing re-examined → 29 confirmed + 12 reclassified + 1 stitched (pp.173–174)
+Stage 3:  30 dosing checked → 29 skipped (no weight col) + 1 stitched PASS
+Stage 4a: 1,478 chunks (1,235 narrative + 30 dosing + 21 evidence + 14 structural + 1 clinical + 142 other + 35 image)
+Stage 4b: 355 review items → T1: 1 │ T2: 29 │ T3: 1 │ T4: 324 │ T5: 1,123 → 31 mandatory
+```
+
+**Uganda Clinical Guidelines (1,161 pages)**
+
+```
+Stage 1:  899 tables extracted (all classified as "other" or "dosing" by keyword match)
+Stage 2:  481 dosing re-examined → 385 confirmed + 96 reclassified + 3 stitched
+Stage 3:  385 dosing checked → 385 skipped (no weight col) + 1 stitched FAIL
+Stage 4a: 3,735 chunks (2,686 narrative + 3 dosing + 899 other + 147 image)
+Stage 4b: 245 review items → T1: 0 │ T2: 3 │ T3: 0 │ T4: 242 │ T5: 3,490 → 3 mandatory
 ```
 
 ---
@@ -278,58 +256,51 @@ This generates an AI-assisted config JSON with document-specific keywords, groun
 
 ### Full Pipeline Execution
 
+Each config JSON includes an `output_dir` field that determines where outputs are written (e.g., `"output_dir": "extraction_output_malaria"`). This allows multiple documents to be processed without overwriting each other.
+
 ```bash
-# Stage 1: Primary extraction (~23 min first run, ~29s cached)
+# --- Example: Malaria WHO Guidelines ---
 python extraction_mvp_v2.py --config configs/malaria_who_2025.json
-
-# Stage 2: Cross-validation (~8.5s)
 python stage2_cross_validation.py --config configs/malaria_who_2025.json
-
-# Stage 3: Automated plausibility checks (~0.2s)
 python stage3_automated_checks.py --config configs/malaria_who_2025.json
-
-# Stage 4a: Chunking + metadata (~1.1s)
 python stage4a_chunking.py --config configs/malaria_who_2025.json
-
-# Stage 4b: Generate physician review package (~0.4s)
 python stage4b_review_package.py --config configs/malaria_who_2025.json
+
+# --- Example: Uganda Clinical Guidelines ---
+python extraction_mvp_v2.py --config configs/uganda_clinical_2023.json
+python stage2_cross_validation.py --config configs/uganda_clinical_2023.json
+python stage3_automated_checks.py --config configs/uganda_clinical_2023.json
+python stage4a_chunking.py --config configs/uganda_clinical_2023.json
+python stage4b_review_package.py --config configs/uganda_clinical_2023.json
 
 # --- HUMAN STEP: Physician reviews physician_review_report.md ---
 # --- Physician fills in review_package.json decisions ---
 
 # Stage 4b (ingest): Apply physician review to chunks
-python stage4b_review_package.py --config configs/malaria_who_2025.json --ingest extraction_output/completed_review.json
+python stage4b_review_package.py --config configs/malaria_who_2025.json --ingest extraction_output_malaria/completed_review.json
 ```
 
 ### Total Automated Runtime
 
-| Stage | Time | Cumulative |
-|---|---|---|
-| Stage 1 (first run) | ~23 min | 23 min |
-| Stage 1 (cached) | ~29s | 29s |
-| Stage 2 | ~8.5s | 38s |
-| Stage 3 | ~0.2s | 38s |
-| Stage 4a | ~1.1s | 39s |
-| Stage 4b | ~0.4s | 40s |
-| **Total (cached)** | | **~40 seconds** |
+See the **Elapsed Time** table in [Key Metrics — Dual-Document Comparison](#key-metrics--dual-document-comparison) for per-stage timings for both the Malaria WHO and Uganda CG documents.
 
 ---
 
 ## Output Files Reference
 
-All outputs are written to `extraction_output/`.
+Each document's outputs are written to its own directory, configured via the `output_dir` field in the config JSON (e.g., `extraction_output_malaria/`, `extraction_output_uganda/`).
 
-| File | Stage | Size | Description |
-|---|---|---|---|
-| `full_extraction.md` | 1 | 2.2 MB | Complete markdown extraction of all 478 PDF pages |
-| `table_inventory.json` | 1 | 28 KB | 207 tables with classifications, page numbers, and column metadata |
-| `tables_nll.txt` | 1+2 | 76 KB | Natural Language Logic for 43 tables (42 from Stage 1 + 1 stitched from Stage 2) |
-| `image_inventory.json` | 1 | varies | Per-image OCR text, caption, page number, PNG path, and dimensions |
-| `cross_validation_report.json` | 2 | 28 KB | Reclassification decisions, cell-level comparison results, stitch records |
-| `plausibility_report.json` | 3 | 13 KB | Per-table results for 6 automated checks (pass/fail/skipped per table) |
-| `chunks.json` | 4a | 10.6 MB | 1,478 chunks with full metadata: safety, 17-field clinical metadata, verified_by, related_chunks |
-| `review_package.json` | 4b | 1.8 MB | 356 review items with audit hashes, templates, and context for physician review |
-| `physician_review_report.md` | 4b | 1.0 MB | Human-readable review report organized by tier with checklists and decision fields |
+| File | Stage | Description |
+|---|---|---|
+| `full_extraction.md` | 1 | Complete markdown extraction of all PDF pages |
+| `table_inventory.json` | 1 | Tables with classifications, page numbers, and column metadata |
+| `tables_nll.txt` | 1+2 | Natural Language Logic for dosing tables (incl. stitched from Stage 2) |
+| `image_inventory.json` | 1 | Per-image OCR text, caption, page number, PNG path, and dimensions |
+| `cross_validation_report.json` | 2 | Reclassification decisions, cell-level comparison results, stitch records |
+| `plausibility_report.json` | 3 | Per-table results for 6 automated checks (pass/fail/skipped per table) |
+| `chunks.json` | 4a | All chunks with full metadata: safety, 17-field clinical metadata, verified_by, related_chunks |
+| `review_package.json` | 4b | Review items with audit hashes, templates, and context for physician review |
+| `physician_review_report.md` | 4b | Human-readable review report organized by tier with checklists and decision fields |
 
 ---
 
@@ -366,7 +337,7 @@ Every link in this chain is designed to catch errors before they reach patients:
 
 | Layer | What it catches | Stage |
 |---|---|---|
-| Docling extraction | Layout/structure parsing (93.8% accuracy) | 1 |
+| Docling extraction | Layout/structure parsing (93.8% malaria / 87.5% Uganda) | 1 |
 | PyMuPDF cross-check | Cell-level extraction errors, page boundary truncation | 2 |
 | Table reclassification | Misclassified non-dosing tables that could pollute dosing retrieval | 2 |
 | Weight contiguity check | Missing weight bands (e.g., no dose for 25–35 kg children) | 3 |
@@ -382,11 +353,11 @@ Every link in this chain is designed to catch errors before they reach patients:
 
 This system prevents the most dangerous failure mode in clinical AI — an LLM paraphrasing exact medical dosages:
 
-| Level | Count | LLM Behavior | Example |
-|---|---|---|---|
-| **verbatim** | 31 | Must return content exactly as extracted. No paraphrasing, no summarization. | Dosing tables, clinical tables, narratives/images with danger signs or referral criteria |
-| **high** | 325 | Minimal paraphrasing. Core clinical facts must be preserved word-for-word. | Evidence tables, narratives/images with dosing or contraindication keywords |
-| **standard** | 1,122 | Paraphrasing acceptable. General narrative and structural content. | Background epidemiology, structural content, non-clinical images |
+| Level | Malaria | Uganda | LLM Behavior | Example |
+|---|---|---|---|---|
+| **verbatim** | 31 | 18 | Must return content exactly as extracted. No paraphrasing, no summarization. | Dosing tables, clinical tables, narratives/images with danger signs or referral criteria |
+| **high** | 324 | 227 | Minimal paraphrasing. Core clinical facts must be preserved word-for-word. | Evidence tables, narratives/images with dosing or contraindication keywords |
+| **standard** | 1,123 | 3,490 | Paraphrasing acceptable. General narrative and structural content. | Background epidemiology, structural content, non-clinical images |
 
 **Clinical rationale:** If an LLM paraphrases "80+480 mg" as "approximately 500 mg" or "480+80 mg", a VHT may administer the wrong dosage. The `verbatim` tag is an instruction to the RAG retrieval layer and the LLM prompt engineering to return this content exactly — never rephrase, never summarize, never round.
 
@@ -423,24 +394,86 @@ Each stage has its own detailed strategy document:
 
 ---
 
-## Key Metrics at a Glance
+## Key Metrics — Dual-Document Comparison
 
-| Metric | Value |
+### Accuracy
+
+| Metric | Malaria WHO 2025 | Uganda CG 2023 |
+|---|---|---|
+| Source PDF pages | 478 | 1,161 |
+| **Stage 1 accuracy (ground truth)** | **93.8%** (15/16) | **87.5%** (7/8) |
+| — Text checkpoints | 8/8 (100%) | 7/7 (100%) |
+| — Table checkpoints | 6/7 (85.7%) | 0/1 (0%) |
+| — Image checkpoints | 1/1 (100%) | — (no image checkpoints) |
+| **Stage 2 combined accuracy** | **100%** (16/16) | **87.5%** (7/8) |
+| Stage 2 text verification | 100% (16/16) | 100% (8/8) |
+| Cell-level agreement (Stage 2) | 86.7%–100% (avg 92.7%) | 6.7%–100% (avg 34.8%) |
+| Extraction passes to reach final accuracy | 1 pass (100% after Stage 2 recheck) | 1 pass (87.5% — table checkpoint unresolved) |
+
+### Tables & Images
+
+| Metric | Malaria WHO 2025 | Uganda CG 2023 |
+|---|---|---|
+| Tables extracted | 207 (174 pass / 33 fail) | 899 (450 pass / 449 fail) |
+| Reclassifications (Stage 2) | 12 | 96 |
+| True dosing tables (after reclassification) | 29 + 1 stitched = 30 | 385 |
+| Weight-based dosing tables checked (Stage 3) | 0 (29 skipped — no weight column) | 0 (385 skipped — no weight column) |
+| Stitched tables | 1 (PASS — all 6 checks) | 1 (FAIL — no weight column) |
+| Images extracted | 2 | 77 |
+
+### Chunks
+
+| Metric | Malaria WHO 2025 | Uganda CG 2023 |
+|---|---|---|
+| **Total chunks** | **1,478** | **3,735** |
+| — Narrative | 1,235 | 2,686 |
+| — Dosing table | 30 | 3 |
+| — Evidence table | 21 | 0 |
+| — Clinical table | 1 | 0 |
+| — Structural table | 14 | 0 |
+| — Other table | 142 | 899 |
+| — Image | 35 | 147 |
+| Verbatim preservation | 31 | 18 |
+| High preservation | 324 | 227 |
+| Standard preservation | 1,123 | 3,490 |
+| Drug name coverage (dosing tables) | 27/30 (90%) | 0/3 (0%) |
+| Weight range coverage (dosing tables) | 14/30 (47%) | 1/3 (33%) |
+
+### Physician Review
+
+| Metric | Malaria WHO 2025 | Uganda CG 2023 |
+|---|---|---|
+| Total review items (Tiers 1–4) | 355 | 245 |
+| Tier 1 — Validated dosing (mandatory) | 1 | 0 |
+| Tier 2 — Unvalidated dosing (mandatory) | 29 | 3 |
+| Tier 3 — Clinical management (mandatory) | 1 | 0 |
+| Tier 4 — Evidence + high-priority (recommended) | 324 | 242 |
+| Tier 5 — Standard (excluded) | 1,123 | 3,490 |
+| **Mandatory review** | **31 (2.1%)** | **3 (0.08%)** |
+| Estimated review time (all tiers) | ~224 min | ~127 min |
+
+### Elapsed Time
+
+| Stage | Malaria WHO 2025 | Uganda CG 2023 |
+|---|---|---|
+| Stage 1 — Primary Extraction | 29.3 s | 4,979.3 s (~83 min) |
+| Stage 2 — Cross-Validation | 33.2 s | 275.4 s (~4.6 min) |
+| Stage 3 — Plausibility Checks | 0.006 s | 0.014 s |
+| Stage 4a — Chunking + Metadata | 1.4 s | 1.9 s |
+| Stage 4b — Review Package | 0.5 s | 0.3 s |
+| **Total pipeline** | **~64 s (~1.1 min)** | **~5,257 s (~87.6 min)** |
+
+*Note: Malaria times reflect cached Docling conversion (first run ~23 min). Uganda times reflect first run on 1,161 pages.*
+
+### Compute Requirements
+
+| Requirement | Detail |
 |---|---|
-| Source PDF pages | 478 |
-| Total tables extracted | 207 |
-| True dosing tables (after reclassification) | 29 + 1 stitched = 30 |
-| Dosing tables passing all automated checks | 8 (7 individual + 1 stitched) |
-| Total chunks | 1,478 |
-| Chunks requiring mandatory physician review | 31 (2.1%) |
-| Chunks requiring recommended review | 325 (22.0%) |
-| Estimated mandatory review time | ~62 minutes |
-| Extraction accuracy (ground truth) | 93.8% |
-| Cell-level agreement (Stage 2) | 86.7%–100% |
-| Drug name extraction coverage | 27/30 (90%) |
-| Weight range extraction coverage | 14/30 (47%) |
-| Total pipeline runtime (cached) | ~40 seconds |
-| External dependencies | 2 (docling, pymupdf — Stages 1–2 only) |
+| GPU | Not required — all stages are CPU-only |
+| Stages 1–2 dependencies | `docling`, `pymupdf` (pip install) |
+| Stages 3–4b dependencies | Python stdlib only — no external packages |
+| Python version | 3.9+ |
+| Runtime scales with | PDF page count (Stage 1 dominates: ~4.3 s/page for Uganda, ~0.06 s/page for malaria cached) |
 | Total codebase | ~6,650 lines across 7 scripts + config directory |
 
 ---
@@ -455,7 +488,8 @@ Each stage has its own detailed strategy document:
 | `dee03ae` | PR #3 | Stage 4a: Chunking and metadata strategy |
 | `1b57e73` | PR #4 | Stage 4b: Clinical verification framework |
 | `30c39bb` | **Tag: `v2.0-pdf-agnostic`** | Config-driven architecture — all disease-specific constants externalized to JSON configs |
-| `1337e08` | — | Pipeline overview documentation |
+| `acb5272` | PR #6 | Broader clinical content extraction, image OCR enrichment, documentation updates |
+| — | (pending) | Per-document output directories + dual-document stats |
 
 Repository: [github.com/rajbagchi/safeai-purdue-capstone](https://github.com/rajbagchi/safeai-purdue-capstone)
 
@@ -468,6 +502,12 @@ Repository: [github.com/rajbagchi/safeai-purdue-capstone](https://github.com/raj
 **Before:** Single-document pipeline hardcoded to the WHO malaria PDF. No config files — each script had its own hardcoded constants (drug keywords, ground-truth checks, dose reference ranges, dosing page numbers). Running the pipeline on a different PDF required editing multiple Python files.
 
 **After:** Config-driven architecture. A `configs/` directory holds per-document JSON configs (e.g., `malaria_who_2025.json`, `uganda_clinical_2023.json`). A shared loader (`pipeline_config.py`, ~90 lines) validates and exposes config fields to all stages. `config_generator.py` (~400 lines) provides AI-assisted onboarding for new PDFs. All scripts accept `--config` to select the active document configuration. Two reference configs ship with the pipeline.
+
+### v2.2 — Dual-Document Validation + Per-Document Output Directories
+
+**Before:** Pipeline output was hardcoded to `extraction_output/`. Running a second document would overwrite the first. Metrics in the overview only covered the malaria WHO PDF.
+
+**After:** Each config JSON now includes an `output_dir` field (e.g., `"extraction_output_malaria"`, `"extraction_output_uganda"`), wired through all 5 stage scripts via `pipeline_config.get_output_dir()`. The overview now features a comprehensive dual-document comparison covering accuracy (text, table, image), cell-level agreement, elapsed times per stage, compute requirements, chunk breakdowns, and physician review tiers for both the WHO Malaria Guidelines (478 pages) and Uganda Clinical Guidelines 2023 (1,161 pages).
 
 ### v2.1 — Broader Clinical Content + Image OCR Enhancement
 

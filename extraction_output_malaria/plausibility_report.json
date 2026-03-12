@@ -1,0 +1,462 @@
+{
+  "tables_from_stage2": 29,
+  "tables_checked": 0,
+  "tables_skipped": 29,
+  "skipped_tables": [
+    {
+      "table_index": 3,
+      "page": 27,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 13,
+      "page": 173,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 14,
+      "page": 174,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 15,
+      "page": 175,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 16,
+      "page": 175,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 17,
+      "page": 176,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 18,
+      "page": 178,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 22,
+      "page": 203,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 23,
+      "page": 204,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 24,
+      "page": 206,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 141,
+      "page": 415,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 142,
+      "page": 416,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 151,
+      "page": 425,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 152,
+      "page": 427,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 163,
+      "page": 437,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 164,
+      "page": 438,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 165,
+      "page": 439,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 169,
+      "page": 441,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 170,
+      "page": 442,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 172,
+      "page": 444,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 173,
+      "page": 445,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 183,
+      "page": 454,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 185,
+      "page": 456,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 186,
+      "page": 457,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 187,
+      "page": 458,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 188,
+      "page": 459,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 189,
+      "page": 459,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 190,
+      "page": 460,
+      "reason": "No markdown content"
+    },
+    {
+      "table_index": 204,
+      "page": 473,
+      "reason": "No markdown content"
+    }
+  ],
+  "tables_passed_all": 0,
+  "tables_with_issues": 0,
+  "checks": {
+    "weight_contiguity": {
+      "pass": 0,
+      "fail": 0,
+      "details": []
+    },
+    "dose_monotonicity": {
+      "pass": 0,
+      "fail": 0,
+      "details": []
+    },
+    "weight_coverage": {
+      "pass": 0,
+      "fail": 0,
+      "details": []
+    },
+    "clinical_bounds": {
+      "pass": 0,
+      "fail": 0,
+      "details": []
+    },
+    "combination_consistency": {
+      "pass": 0,
+      "fail": 0,
+      "details": []
+    },
+    "positive_no_empty": {
+      "pass": 0,
+      "fail": 0,
+      "details": []
+    }
+  },
+  "stitched_table_result": {
+    "table_index": "S1",
+    "page": "173-174",
+    "parsed": true,
+    "num_rows": 4,
+    "weight_bands": 4,
+    "overall_passed": true,
+    "checks": {
+      "weight_contiguity": {
+        "passed": true,
+        "issues": []
+      },
+      "dose_monotonicity": {
+        "passed": true,
+        "issues": []
+      },
+      "weight_coverage": {
+        "passed": true,
+        "issues": [],
+        "range_low": 0.0,
+        "range_high": null
+      },
+      "clinical_bounds": {
+        "passed": true,
+        "issues": []
+      },
+      "combination_consistency": {
+        "passed": true,
+        "issues": []
+      },
+      "positive_no_empty": {
+        "passed": true,
+        "issues": []
+      }
+    }
+  },
+  "per_table_results": [
+    {
+      "table_index": 3,
+      "page": 27,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 13,
+      "page": 173,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 14,
+      "page": 174,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 15,
+      "page": 175,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 16,
+      "page": 175,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 17,
+      "page": 176,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 18,
+      "page": 178,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 22,
+      "page": 203,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 23,
+      "page": 204,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 24,
+      "page": 206,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 141,
+      "page": 415,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 142,
+      "page": 416,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 151,
+      "page": 425,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 152,
+      "page": 427,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 163,
+      "page": 437,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 164,
+      "page": 438,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 165,
+      "page": 439,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 169,
+      "page": 441,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 170,
+      "page": 442,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 172,
+      "page": 444,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 173,
+      "page": 445,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 183,
+      "page": 454,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 185,
+      "page": 456,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 186,
+      "page": 457,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 187,
+      "page": 458,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 188,
+      "page": 459,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 189,
+      "page": 459,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 190,
+      "page": 460,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    },
+    {
+      "table_index": 204,
+      "page": 473,
+      "parsed": false,
+      "overall_passed": false,
+      "checks": {},
+      "error": "No markdown content"
+    }
+  ],
+  "timings": {
+    "load_data_s": 0.003,
+    "validate_tables_s": 0.0,
+    "validate_stitched_s": 0.002,
+    "total_s": 0.006
+  }
+}

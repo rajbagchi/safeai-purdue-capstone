@@ -1,4 +1,5 @@
 {
+  "output_dir": "extraction_output_uganda",
   "document": {
     "pdf_path": "Uganda-Clinical-Guidelines-20231.pdf",
     "title": "Uganda Clinical Guidelines 2023",

@@ -34,13 +34,14 @@ from pipeline_config import (
     load_config, get_document_title, get_condition_patterns,
     get_biomarker_patterns, build_high_preservation_regex,
     get_clinical_section_keywords, build_loc_regex,
+    get_output_dir,
 )
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 2.  CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
 CONFIG = load_config()
-OUTPUT_DIR = Path("extraction_output")
+OUTPUT_DIR = Path(get_output_dir(CONFIG))
 
 # Chunk sizing
 MAX_NARRATIVE_TOKENS = 1500

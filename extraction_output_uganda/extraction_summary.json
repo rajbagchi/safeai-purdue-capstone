@@ -1,0 +1,3556 @@
+{
+  "accuracy": {
+    "accuracy_pct": 87.5,
+    "n_pass": 7,
+    "n_fail": 1,
+    "details": [
+      {
+        "page": 68,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "adult",
+          "cetrizine"
+        ],
+        "missing": []
+      },
+      {
+        "page": 80,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "adult",
+          "volumes"
+        ],
+        "missing": []
+      },
+      {
+        "page": 90,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "after",
+          "repeat"
+        ],
+        "missing": []
+      },
+      {
+        "page": 101,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "amoxicillin",
+          "every"
+        ],
+        "missing": []
+      },
+      {
+        "page": 110,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "after",
+          "suspected"
+        ],
+        "missing": []
+      },
+      {
+        "page": 117,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "after",
+          "18-30"
+        ],
+        "missing": []
+      },
+      {
+        "page": 130,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "adult",
+          "adults"
+        ],
+        "missing": []
+      },
+      {
+        "page": 68,
+        "type": "table",
+        "passed": false,
+        "found": [],
+        "missing": [
+          "hc3\nhc4"
+        ]
+      }
+    ]
+  },
+  "table_quality": {
+    "table_pass": 450,
+    "table_fail": 449,
+    "table_skip": 0,
+    "dosing_flagged": [
+      {
+        "table_index": 1,
+        "page": 4,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 5, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 2,
+        "page": 5,
+        "issues": [
+          "empty cells in rows [1, 5, 6, 10, 12]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 4,
+        "page": 7,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 5,
+        "page": 8,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 14,
+        "page": 17,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 19,
+        "page": 33,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 20,
+        "page": 34,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 21,
+        "page": 35,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 22,
+        "page": 36,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 23,
+        "page": 37,
+        "issues": [
+          "empty cells in rows [24]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 24,
+        "page": 38,
+        "issues": [
+          "empty cells in rows [24]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 25,
+        "page": 39,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 26,
+        "page": 40,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 27,
+        "page": 41,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 28,
+        "page": 42,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 29,
+        "page": 43,
+        "issues": [
+          "empty cells in rows [19, 20]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 31,
+        "page": 58,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 32,
+        "page": 59,
+        "issues": [
+          "empty cells in rows [1, 2, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 34,
+        "page": 68,
+        "issues": [
+          "empty cells in rows [4, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 35,
+        "page": 69,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 42,
+        "page": 75,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 43,
+        "page": 76,
+        "issues": [
+          "empty cells in rows [1, 3, 5, 6, 10]"
+        ]
+      },
+      {
+        "table_index": 44,
+        "page": 77,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 45,
+        "page": 77,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 46,
+        "page": 78,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 48,
+        "page": 80,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 51,
+        "page": 83,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 54,
+        "page": 85,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 56,
+        "page": 86,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 58,
+        "page": 87,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 60,
+        "page": 89,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 61,
+        "page": 90,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 62,
+        "page": 91,
+        "issues": [
+          "empty cells in rows [2, 3, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 67,
+        "page": 96,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 69,
+        "page": 100,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 71,
+        "page": 101,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 75,
+        "page": 108,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 76,
+        "page": 109,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 77,
+        "page": 110,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 79,
+        "page": 112,
+        "issues": [
+          "empty cells in rows [1]"
+        ]
+      },
+      {
+        "table_index": 84,
+        "page": 115,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]"
+        ]
+      },
+      {
+        "table_index": 88,
+        "page": 119,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 89,
+        "page": 120,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 102,
+        "page": 130,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 105,
+        "page": 133,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 6, 8]"
+        ]
+      },
+      {
+        "table_index": 106,
+        "page": 134,
+        "issues": [
+          "empty cells in rows [2, 5, 7, 8, 9]"
+        ]
+      },
+      {
+        "table_index": 107,
+        "page": 136,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 108,
+        "page": 137,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 109,
+        "page": 138,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 112,
+        "page": 141,
+        "issues": [
+          "empty cells in rows [1, 2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 113,
+        "page": 142,
+        "issues": [
+          "empty cells in rows [2, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 115,
+        "page": 143,
+        "issues": [
+          "empty cells in rows [1, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 117,
+        "page": 145,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 119,
+        "page": 146,
+        "issues": [
+          "empty cells in rows [1, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 123,
+        "page": 148,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 124,
+        "page": 149,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 125,
+        "page": 151,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 126,
+        "page": 152,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 132,
+        "page": 162,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 133,
+        "page": 163,
+        "issues": [
+          "empty cells in rows [1]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 134,
+        "page": 165,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 135,
+        "page": 166,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 136,
+        "page": 167,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 137,
+        "page": 169,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 138,
+        "page": 170,
+        "issues": [
+          "empty cells in rows [1, 4]"
+        ]
+      },
+      {
+        "table_index": 141,
+        "page": 175,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 143,
+        "page": 177,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 144,
+        "page": 178,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 149,
+        "page": 180,
+        "issues": [
+          "empty cells in rows [2, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 151,
+        "page": 183,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 153,
+        "page": 184,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 6]"
+        ]
+      },
+      {
+        "table_index": 155,
+        "page": 187,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 156,
+        "page": 188,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 158,
+        "page": 190,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 159,
+        "page": 191,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 160,
+        "page": 192,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 162,
+        "page": 195,
+        "issues": [
+          "empty cells in rows [1, 4]"
+        ]
+      },
+      {
+        "table_index": 163,
+        "page": 196,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 164,
+        "page": 197,
+        "issues": [
+          "empty cells in rows [2, 3, 5, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 165,
+        "page": 198,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 166,
+        "page": 200,
+        "issues": [
+          "empty cells in rows [2, 3, 4]"
+        ]
+      },
+      {
+        "table_index": 169,
+        "page": 203,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 176,
+        "page": 215,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 177,
+        "page": 216,
+        "issues": [
+          "empty cells in rows [4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 179,
+        "page": 218,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]"
+        ]
+      },
+      {
+        "table_index": 180,
+        "page": 220,
+        "issues": [
+          "empty cells in rows [1, 4, 5, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 181,
+        "page": 221,
+        "issues": [
+          "empty cells in rows [2]"
+        ]
+      },
+      {
+        "table_index": 182,
+        "page": 223,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 183,
+        "page": 224,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 184,
+        "page": 225,
+        "issues": [
+          "empty cells in rows [1, 2]"
+        ]
+      },
+      {
+        "table_index": 185,
+        "page": 226,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 187,
+        "page": 228,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 188,
+        "page": 229,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 189,
+        "page": 230,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 196,
+        "page": 237,
+        "issues": [
+          "empty cells in rows [4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 200,
+        "page": 240,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 201,
+        "page": 241,
+        "issues": [
+          "empty cells in rows [1]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 202,
+        "page": 241,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 203,
+        "page": 242,
+        "issues": [
+          "empty cells in rows [1]"
+        ]
+      },
+      {
+        "table_index": 205,
+        "page": 246,
+        "issues": [
+          "empty cells in rows [5, 7, 8, 9, 13]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 207,
+        "page": 249,
+        "issues": [
+          "empty cells in rows [1, 2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 208,
+        "page": 250,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 5]"
+        ]
+      },
+      {
+        "table_index": 210,
+        "page": 263,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 211,
+        "page": 264,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 213,
+        "page": 269,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 214,
+        "page": 270,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 215,
+        "page": 272,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 217,
+        "page": 274,
+        "issues": [
+          "empty cells in rows [1, 2]"
+        ]
+      },
+      {
+        "table_index": 218,
+        "page": 274,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 219,
+        "page": 275,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 220,
+        "page": 276,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 222,
+        "page": 278,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 223,
+        "page": 279,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 225,
+        "page": 281,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 226,
+        "page": 282,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 228,
+        "page": 285,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 231,
+        "page": 288,
+        "issues": [
+          "empty cells in rows [5, 7, 8, 9]"
+        ]
+      },
+      {
+        "table_index": 232,
+        "page": 289,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]"
+        ]
+      },
+      {
+        "table_index": 233,
+        "page": 290,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 234,
+        "page": 291,
+        "issues": [
+          "empty cells in rows [1, 3, 4, 6, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 236,
+        "page": 293,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 237,
+        "page": 294,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 238,
+        "page": 297,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 240,
+        "page": 299,
+        "issues": [
+          "empty cells in rows [1, 8]"
+        ]
+      },
+      {
+        "table_index": 241,
+        "page": 300,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 243,
+        "page": 302,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 244,
+        "page": 303,
+        "issues": [
+          "empty cells in rows [3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 247,
+        "page": 305,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 249,
+        "page": 307,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 253,
+        "page": 312,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 256,
+        "page": 315,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 257,
+        "page": 316,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 258,
+        "page": 319,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 260,
+        "page": 319,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 261,
+        "page": 320,
+        "issues": [
+          "empty cells in rows [4, 5]"
+        ]
+      },
+      {
+        "table_index": 262,
+        "page": 324,
+        "issues": [
+          "empty cells in rows [4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 263,
+        "page": 325,
+        "issues": [
+          "empty cells in rows [2, 3]"
+        ]
+      },
+      {
+        "table_index": 264,
+        "page": 326,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 265,
+        "page": 327,
+        "issues": [
+          "empty cells in rows [1]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 267,
+        "page": 329,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]"
+        ]
+      },
+      {
+        "table_index": 268,
+        "page": 330,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 270,
+        "page": 333,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 271,
+        "page": 335,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 273,
+        "page": 337,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 275,
+        "page": 344,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 276,
+        "page": 348,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 277,
+        "page": 349,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 278,
+        "page": 351,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 282,
+        "page": 357,
+        "issues": [
+          "empty cells in rows [1, 2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 283,
+        "page": 358,
+        "issues": [
+          "empty cells in rows [2, 3, 6, 8, 9]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 284,
+        "page": 359,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 286,
+        "page": 361,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 287,
+        "page": 362,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 288,
+        "page": 363,
+        "issues": [
+          "empty cells in rows [1, 2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 289,
+        "page": 365,
+        "issues": [
+          "empty cells in rows [3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 290,
+        "page": 366,
+        "issues": [
+          "empty cells in rows [3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 291,
+        "page": 367,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 292,
+        "page": 370,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 293,
+        "page": 372,
+        "issues": [
+          "empty cells in rows [6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 294,
+        "page": 373,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 297,
+        "page": 375,
+        "issues": [
+          "empty cells in rows [5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 299,
+        "page": 377,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 301,
+        "page": 379,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 302,
+        "page": 380,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 304,
+        "page": 383,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 306,
+        "page": 385,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 307,
+        "page": 386,
+        "issues": [
+          "empty cells in rows [3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 308,
+        "page": 387,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 310,
+        "page": 389,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 311,
+        "page": 390,
+        "issues": [
+          "empty cells in rows [2, 19]"
+        ]
+      },
+      {
+        "table_index": 314,
+        "page": 393,
+        "issues": [
+          "empty cells in rows [1]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 315,
+        "page": 394,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 316,
+        "page": 397,
+        "issues": [
+          "empty cells in rows [5, 6]"
+        ]
+      },
+      {
+        "table_index": 317,
+        "page": 398,
+        "issues": [
+          "empty cells in rows [5, 6, 7, 8, 9]"
+        ]
+      },
+      {
+        "table_index": 320,
+        "page": 399,
+        "issues": [
+          "empty cells in rows [5, 6, 9]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 321,
+        "page": 400,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]"
+        ]
+      },
+      {
+        "table_index": 322,
+        "page": 401,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 324,
+        "page": 404,
+        "issues": [
+          "empty cells in rows [2, 3, 5, 7, 8]"
+        ]
+      },
+      {
+        "table_index": 325,
+        "page": 405,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 327,
+        "page": 409,
+        "issues": [
+          "empty cells in rows [2, 3, 6, 7, 9]"
+        ]
+      },
+      {
+        "table_index": 328,
+        "page": 411,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 329,
+        "page": 413,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 331,
+        "page": 415,
+        "issues": [
+          "empty cells in rows [1, 2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 332,
+        "page": 416,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 333,
+        "page": 417,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 335,
+        "page": 420,
+        "issues": [
+          "empty cells in rows [2, 3, 6, 7, 8]"
+        ]
+      },
+      {
+        "table_index": 336,
+        "page": 421,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 337,
+        "page": 422,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 339,
+        "page": 425,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 340,
+        "page": 426,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 341,
+        "page": 427,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 342,
+        "page": 428,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 343,
+        "page": 429,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 344,
+        "page": 430,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 345,
+        "page": 430,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 346,
+        "page": 431,
+        "issues": [
+          "empty cells in rows [1, 3, 5, 7]"
+        ]
+      },
+      {
+        "table_index": 347,
+        "page": 433,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 350,
+        "page": 437,
+        "issues": [
+          "empty cells in rows [1, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 352,
+        "page": 443,
+        "issues": [
+          "empty cells in rows [4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 353,
+        "page": 444,
+        "issues": [
+          "empty cells in rows [1, 4, 6]"
+        ]
+      },
+      {
+        "table_index": 355,
+        "page": 445,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 358,
+        "page": 448,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 359,
+        "page": 449,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 360,
+        "page": 450,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 365,
+        "page": 454,
+        "issues": [
+          "empty cells in rows [1, 2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 366,
+        "page": 454,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]"
+        ]
+      },
+      {
+        "table_index": 368,
+        "page": 456,
+        "issues": [
+          "empty cells in rows [1, 3, 4, 5, 7]"
+        ]
+      },
+      {
+        "table_index": 369,
+        "page": 456,
+        "issues": [
+          "empty cells in rows [1, 2, 3]"
+        ]
+      },
+      {
+        "table_index": 370,
+        "page": 458,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 372,
+        "page": 461,
+        "issues": [
+          "empty cells in rows [2, 3]"
+        ]
+      },
+      {
+        "table_index": 373,
+        "page": 463,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 374,
+        "page": 464,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 376,
+        "page": 468,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 377,
+        "page": 469,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 379,
+        "page": 471,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 380,
+        "page": 472,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 381,
+        "page": 474,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 382,
+        "page": 476,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 383,
+        "page": 478,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 384,
+        "page": 481,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 385,
+        "page": 482,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 386,
+        "page": 484,
+        "issues": [
+          "empty cells in rows [3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 387,
+        "page": 485,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 388,
+        "page": 486,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 394,
+        "page": 495,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 404,
+        "page": 502,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 405,
+        "page": 503,
+        "issues": [
+          "empty cells in rows [2, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 407,
+        "page": 505,
+        "issues": [
+          "empty cells in rows [1]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 408,
+        "page": 505,
+        "issues": [
+          "empty cells in rows [2, 3, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 411,
+        "page": 508,
+        "issues": [
+          "empty cells in rows [4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 417,
+        "page": 515,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 420,
+        "page": 519,
+        "issues": [
+          "empty cells in rows [1, 2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 421,
+        "page": 522,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 422,
+        "page": 524,
+        "issues": [
+          "empty cells in rows [6]"
+        ]
+      },
+      {
+        "table_index": 423,
+        "page": 526,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 424,
+        "page": 528,
+        "issues": [
+          "empty cells in rows [3, 5, 7, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 426,
+        "page": 530,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 430,
+        "page": 535,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 431,
+        "page": 536,
+        "issues": [
+          "empty cells in rows [1, 2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 435,
+        "page": 541,
+        "issues": [
+          "empty cells in rows [2, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 438,
+        "page": 543,
+        "issues": [
+          "empty cells in rows [1, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 439,
+        "page": 544,
+        "issues": [
+          "empty cells in rows [3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 440,
+        "page": 546,
+        "issues": [
+          "empty cells in rows [1, 3, 5, 7, 9]"
+        ]
+      },
+      {
+        "table_index": 443,
+        "page": 549,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 444,
+        "page": 550,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 447,
+        "page": 555,
+        "issues": [
+          "empty cells in rows [5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 450,
+        "page": 558,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 451,
+        "page": 559,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 452,
+        "page": 560,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 453,
+        "page": 561,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 458,
+        "page": 567,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 459,
+        "page": 569,
+        "issues": [
+          "empty cells in rows [2, 3, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 460,
+        "page": 571,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 461,
+        "page": 573,
+        "issues": [
+          "empty cells in rows [3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 463,
+        "page": 577,
+        "issues": [
+          "empty cells in rows [7, 8, 9]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 467,
+        "page": 583,
+        "issues": [
+          "empty cells in rows [7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 468,
+        "page": 584,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 469,
+        "page": 585,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 470,
+        "page": 587,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 471,
+        "page": 588,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 472,
+        "page": 589,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 473,
+        "page": 590,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 474,
+        "page": 591,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 476,
+        "page": 595,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 6, 8]"
+        ]
+      },
+      {
+        "table_index": 480,
+        "page": 602,
+        "issues": [
+          "empty cells in rows [3, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 481,
+        "page": 603,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 483,
+        "page": 606,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 484,
+        "page": 607,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 485,
+        "page": 608,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 491,
+        "page": 621,
+        "issues": [
+          "empty cells in rows [3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 492,
+        "page": 622,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 493,
+        "page": 624,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 495,
+        "page": 626,
+        "issues": [
+          "empty cells in rows [2, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 498,
+        "page": 629,
+        "issues": [
+          "empty cells in rows [1, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 500,
+        "page": 631,
+        "issues": [
+          "empty cells in rows [5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 501,
+        "page": 632,
+        "issues": [
+          "empty cells in rows [2, 3, 4]"
+        ]
+      },
+      {
+        "table_index": 502,
+        "page": 633,
+        "issues": [
+          "empty cells in rows [2, 4, 6, 8, 9]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 505,
+        "page": 638,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 506,
+        "page": 638,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 507,
+        "page": 640,
+        "issues": [
+          "empty cells in rows [5, 6, 7, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 509,
+        "page": 644,
+        "issues": [
+          "empty cells in rows [1, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 510,
+        "page": 648,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 511,
+        "page": 649,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 512,
+        "page": 649,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 513,
+        "page": 651,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 514,
+        "page": 652,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 519,
+        "page": 679,
+        "issues": [
+          "empty cells in rows [1, 4, 7, 8, 9]"
+        ]
+      },
+      {
+        "table_index": 530,
+        "page": 691,
+        "issues": [
+          "empty cells in rows [6]"
+        ]
+      },
+      {
+        "table_index": 533,
+        "page": 694,
+        "issues": [
+          "empty cells in rows [6, 11]"
+        ]
+      },
+      {
+        "table_index": 534,
+        "page": 696,
+        "issues": [
+          "empty cells in rows [5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 536,
+        "page": 697,
+        "issues": [
+          "empty cells in rows [3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 540,
+        "page": 700,
+        "issues": [
+          "empty cells in rows [5, 6, 7, 8, 9]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 544,
+        "page": 702,
+        "issues": [
+          "empty cells in rows [1, 2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 548,
+        "page": 704,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 549,
+        "page": 704,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 550,
+        "page": 705,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 7, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 553,
+        "page": 707,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 555,
+        "page": 710,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 556,
+        "page": 712,
+        "issues": [
+          "empty cells in rows [1, 3, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 557,
+        "page": 713,
+        "issues": [
+          "empty cells in rows [1, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 561,
+        "page": 721,
+        "issues": [
+          "empty cells in rows [2, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 562,
+        "page": 722,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 7, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 565,
+        "page": 726,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 567,
+        "page": 727,
+        "issues": [
+          "empty cells in rows [22]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 575,
+        "page": 735,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 576,
+        "page": 738,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 577,
+        "page": 742,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 580,
+        "page": 749,
+        "issues": [
+          "empty cells in rows [2, 3, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 581,
+        "page": 750,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 585,
+        "page": 756,
+        "issues": [
+          "empty cells in rows [1, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 589,
+        "page": 761,
+        "issues": [
+          "empty cells in rows [1, 3, 4]"
+        ]
+      },
+      {
+        "table_index": 593,
+        "page": 765,
+        "issues": [
+          "empty cells in rows [5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 596,
+        "page": 774,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 598,
+        "page": 775,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 599,
+        "page": 776,
+        "issues": [
+          "empty cells in rows [3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 600,
+        "page": 778,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 601,
+        "page": 779,
+        "issues": [
+          "empty cells in rows [1, 2, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 602,
+        "page": 780,
+        "issues": [
+          "empty cells in rows [1, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 603,
+        "page": 781,
+        "issues": [
+          "empty cells in rows [2, 4, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 606,
+        "page": 784,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 609,
+        "page": 789,
+        "issues": [
+          "empty cells in rows [2, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 610,
+        "page": 790,
+        "issues": [
+          "empty cells in rows [2, 3, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 611,
+        "page": 792,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 615,
+        "page": 797,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 616,
+        "page": 798,
+        "issues": [
+          "empty cells in rows [1, 4, 5, 6, 8]"
+        ]
+      },
+      {
+        "table_index": 617,
+        "page": 800,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 618,
+        "page": 801,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 619,
+        "page": 802,
+        "issues": [
+          "empty cells in rows [3, 5, 7, 8, 9]"
+        ]
+      },
+      {
+        "table_index": 621,
+        "page": 807,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 622,
+        "page": 809,
+        "issues": [
+          "empty cells in rows [4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 623,
+        "page": 810,
+        "issues": [
+          "empty cells in rows [3]"
+        ]
+      },
+      {
+        "table_index": 624,
+        "page": 812,
+        "issues": [
+          "empty cells in rows [1, 13]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 625,
+        "page": 814,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 626,
+        "page": 815,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 627,
+        "page": 818,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 635,
+        "page": 826,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 639,
+        "page": 829,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 642,
+        "page": 837,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 650,
+        "page": 849,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 651,
+        "page": 852,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 655,
+        "page": 863,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 658,
+        "page": 868,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 659,
+        "page": 869,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 669,
+        "page": 882,
+        "issues": [
+          "empty cells in rows [1, 2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 673,
+        "page": 889,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 674,
+        "page": 890,
+        "issues": [
+          "empty cells in rows [5]"
+        ]
+      },
+      {
+        "table_index": 676,
+        "page": 893,
+        "issues": [
+          "empty cells in rows [3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 677,
+        "page": 893,
+        "issues": [
+          "empty cells in rows [5, 6]"
+        ]
+      },
+      {
+        "table_index": 678,
+        "page": 894,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 679,
+        "page": 895,
+        "issues": [
+          "empty cells in rows [5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 681,
+        "page": 897,
+        "issues": [
+          "empty cells in rows [6]"
+        ]
+      },
+      {
+        "table_index": 683,
+        "page": 899,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 686,
+        "page": 902,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 687,
+        "page": 903,
+        "issues": [
+          "empty cells in rows [1, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 689,
+        "page": 906,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 690,
+        "page": 907,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 691,
+        "page": 909,
+        "issues": [
+          "empty cells in rows [5, 6, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 693,
+        "page": 911,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 5]"
+        ]
+      },
+      {
+        "table_index": 694,
+        "page": 912,
+        "issues": [
+          "empty cells in rows [3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 695,
+        "page": 913,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 696,
+        "page": 914,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 697,
+        "page": 915,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 698,
+        "page": 916,
+        "issues": [
+          "empty cells in rows [1, 3]"
+        ]
+      },
+      {
+        "table_index": 700,
+        "page": 918,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 703,
+        "page": 921,
+        "issues": [
+          "empty cells in rows [5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 705,
+        "page": 922,
+        "issues": [
+          "empty cells in rows [2, 3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 706,
+        "page": 923,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 707,
+        "page": 924,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 709,
+        "page": 926,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 7, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 710,
+        "page": 927,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 711,
+        "page": 928,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 713,
+        "page": 930,
+        "issues": [
+          "empty cells in rows [3, 5, 6, 7, 8]"
+        ]
+      },
+      {
+        "table_index": 714,
+        "page": 931,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 718,
+        "page": 942,
+        "issues": [
+          "empty cells in rows [7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 719,
+        "page": 945,
+        "issues": [
+          "empty cells in rows [3]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 720,
+        "page": 945,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 721,
+        "page": 946,
+        "issues": [
+          "empty cells in rows [2, 5, 7, 10, 12]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 722,
+        "page": 947,
+        "issues": [
+          "empty cells in rows [5, 6, 10, 11, 12]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 723,
+        "page": 949,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 724,
+        "page": 950,
+        "issues": [
+          "empty cells in rows [3, 10]"
+        ]
+      },
+      {
+        "table_index": 725,
+        "page": 951,
+        "issues": [
+          "empty cells in rows [1, 2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 728,
+        "page": 954,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 730,
+        "page": 960,
+        "issues": [
+          "empty cells in rows [4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 733,
+        "page": 964,
+        "issues": [
+          "empty cells in rows [3, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 744,
+        "page": 990,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 746,
+        "page": 992,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 747,
+        "page": 994,
+        "issues": [
+          "empty cells in rows [2, 3, 7, 8, 9]"
+        ]
+      },
+      {
+        "table_index": 751,
+        "page": 998,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 752,
+        "page": 998,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 754,
+        "page": 1000,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 755,
+        "page": 1002,
+        "issues": [
+          "empty cells in rows [7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 756,
+        "page": 1003,
+        "issues": [
+          "empty cells in rows [1]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 757,
+        "page": 1004,
+        "issues": [
+          "empty cells in rows [4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 772,
+        "page": 1014,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 774,
+        "page": 1016,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 775,
+        "page": 1017,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 776,
+        "page": 1018,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 778,
+        "page": 1020,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 779,
+        "page": 1021,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 784,
+        "page": 1026,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 786,
+        "page": 1028,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 787,
+        "page": 1029,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 790,
+        "page": 1032,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 791,
+        "page": 1034,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 793,
+        "page": 1037,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 794,
+        "page": 1038,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 796,
+        "page": 1041,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]"
+        ]
+      },
+      {
+        "table_index": 797,
+        "page": 1043,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 798,
+        "page": 1045,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 801,
+        "page": 1046,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 802,
+        "page": 1048,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 803,
+        "page": 1049,
+        "issues": [
+          "empty cells in rows [2, 3, 5, 6, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 804,
+        "page": 1050,
+        "issues": [
+          "empty cells in rows [2, 4, 6, 7, 9]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 807,
+        "page": 1052,
+        "issues": [
+          "empty cells in rows [2, 3, 5, 7, 10]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 808,
+        "page": 1053,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 810,
+        "page": 1055,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 6, 7]"
+        ]
+      },
+      {
+        "table_index": 811,
+        "page": 1056,
+        "issues": [
+          "empty cells in rows [2, 3, 4]"
+        ]
+      },
+      {
+        "table_index": 814,
+        "page": 1059,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 816,
+        "page": 1062,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 817,
+        "page": 1063,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 818,
+        "page": 1064,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 830,
+        "page": 1076,
+        "issues": [
+          "empty cells in rows [2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 831,
+        "page": 1077,
+        "issues": [
+          "empty cells in rows [1, 2]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 834,
+        "page": 1079,
+        "issues": [
+          "empty cells in rows [2, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 835,
+        "page": 1080,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 836,
+        "page": 1081,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 5]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 840,
+        "page": 1084,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 841,
+        "page": 1086,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 844,
+        "page": 1088,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 845,
+        "page": 1089,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 848,
+        "page": 1093,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 849,
+        "page": 1094,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 850,
+        "page": 1095,
+        "issues": [
+          "empty cells in rows [2, 3, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 851,
+        "page": 1096,
+        "issues": [
+          "empty cells in rows [2, 3, 4]"
+        ]
+      },
+      {
+        "table_index": 857,
+        "page": 1100,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 859,
+        "page": 1101,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 861,
+        "page": 1102,
+        "issues": [
+          "empty cells in rows [2, 4, 5, 6, 7]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 864,
+        "page": 1106,
+        "issues": [
+          "empty cells in rows [2, 3, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 865,
+        "page": 1107,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 868,
+        "page": 1110,
+        "issues": [
+          "empty cells in rows [1, 2, 4, 5, 6]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 869,
+        "page": 1111,
+        "issues": [
+          "empty cells in rows [1, 2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 870,
+        "page": 1111,
+        "issues": [
+          "empty cells in rows [2, 3, 4]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 880,
+        "page": 1125,
+        "issues": [
+          "empty cells in rows [4, 7, 8]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 886,
+        "page": 1145,
+        "issues": [
+          "empty cells in rows [7, 8, 10]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 888,
+        "page": 1146,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 890,
+        "page": 1148,
+        "issues": [
+          "empty cells in rows [14]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 895,
+        "page": 1152,
+        "issues": [
+          "empty cells in rows [1, 9, 10, 17]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 897,
+        "page": 1154,
+        "issues": [
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      },
+      {
+        "table_index": 899,
+        "page": 1156,
+        "issues": [
+          "empty cells in rows [11]",
+          "dosing table may be missing special chars (\u2265 \u2264 < >)"
+        ]
+      }
+    ]
+  },
+  "image_quality": {
+    "image_pass": 1,
+    "image_fail": 76
+  },
+  "dosing_plausibility": {
+    "checked": 481,
+    "issues": [
+      {
+        "table_index": 139,
+        "page": 171,
+        "issues": [
+          "Dose not monotonic: row 1 has 600.0, row 2 has 450.0",
+          "Dose not monotonic: row 2 has 450.0, row 3 has 300.0",
+          "Dose not monotonic: row 3 has 300.0, row 4 has 10.0"
+        ]
+      },
+      {
+        "table_index": 196,
+        "page": 237,
+        "issues": [
+          "Weight gap: band 1 ends at 5.0, band 2 starts at 10.0"
+        ]
+      },
+      {
+        "table_index": 197,
+        "page": 238,
+        "issues": [
+          "Weight gap: band 1 ends at 5.0, band 2 starts at 10.0"
+        ]
+      },
+      {
+        "table_index": 198,
+        "page": 239,
+        "issues": [
+          "Weight gap: band 1 ends at 5.0, band 2 starts at 14.0"
+        ]
+      }
+    ]
+  },
+  "timings": {
+    "build_converter_s": 0.001,
+    "convert_pdf_s": 4591.493,
+    "export_text_s": 5.282,
+    "process_tables_s": 225.542,
+    "process_images_s": 156.954,
+    "total_s": 4979.271
+  },
+  "page_count": 1161,
+  "table_count": 899,
+  "image_count": 77
+}

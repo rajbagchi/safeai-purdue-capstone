@@ -1,0 +1,695 @@
+[
+  {
+    "index": 1,
+    "page_no": 1,
+    "caption": "",
+    "ocr_text": "THEREPUBLICOFUGANDA MINISTRYOFHEALTH",
+    "saved_path": "extraction_output_uganda/image_001.png",
+    "width": 216,
+    "height": 214
+  },
+  {
+    "index": 2,
+    "page_no": 3,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_002.png",
+    "width": 120,
+    "height": 50
+  },
+  {
+    "index": 3,
+    "page_no": 22,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_003.png",
+    "width": 146,
+    "height": 52
+  },
+  {
+    "index": 4,
+    "page_no": 32,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_004.png",
+    "width": 159,
+    "height": 51
+  },
+  {
+    "index": 5,
+    "page_no": 45,
+    "caption": "",
+    "ocr_text": "NEWTREATMENTS NEWGUIDELINES NEWPRIORITIES NEWPOLICIES NEWDISEASES NEWDIAGNOSTICS",
+    "saved_path": "extraction_output_uganda/image_005.png",
+    "width": 287,
+    "height": 137
+  },
+  {
+    "index": 6,
+    "page_no": 47,
+    "caption": "",
+    "ocr_text": "A",
+    "saved_path": "extraction_output_uganda/image_006.png",
+    "width": 202,
+    "height": 183
+  },
+  {
+    "index": 7,
+    "page_no": 49,
+    "caption": "",
+    "ocr_text": "R g",
+    "saved_path": "extraction_output_uganda/image_007.png",
+    "width": 321,
+    "height": 190
+  },
+  {
+    "index": 8,
+    "page_no": 51,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_008.png",
+    "width": 377,
+    "height": 142
+  },
+  {
+    "index": 9,
+    "page_no": 52,
+    "caption": "",
+    "ocr_text": "12",
+    "saved_path": "extraction_output_uganda/image_009.png",
+    "width": 214,
+    "height": 129
+  },
+  {
+    "index": 10,
+    "page_no": 52,
+    "caption": "",
+    "ocr_text": "11 10 2 7 4 U",
+    "saved_path": "extraction_output_uganda/image_010.png",
+    "width": 100,
+    "height": 102
+  },
+  {
+    "index": 11,
+    "page_no": 60,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_011.png",
+    "width": 99,
+    "height": 105
+  },
+  {
+    "index": 15,
+    "page_no": 65,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_015.png",
+    "width": 243,
+    "height": 144
+  },
+  {
+    "index": 16,
+    "page_no": 97,
+    "caption": "",
+    "ocr_text": "ASI-",
+    "saved_path": "extraction_output_uganda/image_016.png",
+    "width": 243,
+    "height": 143
+  },
+  {
+    "index": 17,
+    "page_no": 97,
+    "caption": "",
+    "ocr_text": "ASA+",
+    "saved_path": "extraction_output_uganda/image_017.png",
+    "width": 252,
+    "height": 144
+  },
+  {
+    "index": 18,
+    "page_no": 97,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_018.png",
+    "width": 242,
+    "height": 142
+  },
+  {
+    "index": 19,
+    "page_no": 97,
+    "caption": "Egyptian cobra (Najahaje) Black-necked spitting cobra (Najanigricollis)",
+    "ocr_text": "ASA",
+    "saved_path": "extraction_output_uganda/image_019.png",
+    "width": 248,
+    "height": 142
+  },
+  {
+    "index": 20,
+    "page_no": 98,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_020.png",
+    "width": 242,
+    "height": 143
+  },
+  {
+    "index": 21,
+    "page_no": 98,
+    "caption": "Jameson's mamba (Dendroaspisjamesoni) Boomslang (Dispholidus typus)",
+    "ocr_text": "ASI-",
+    "saved_path": "extraction_output_uganda/image_021.png",
+    "width": 248,
+    "height": 143
+  },
+  {
+    "index": 22,
+    "page_no": 98,
+    "caption": "Vine, bird, twig or tree snakes (Thelotornisspp.) Rhino-horned Viper (Bitis nasicornis)",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_022.png",
+    "width": 492,
+    "height": 145
+  },
+  {
+    "index": 23,
+    "page_no": 98,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_023.png",
+    "width": 242,
+    "height": 144
+  },
+  {
+    "index": 24,
+    "page_no": 98,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_024.png",
+    "width": 248,
+    "height": 144
+  },
+  {
+    "index": 25,
+    "page_no": 98,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_025.png",
+    "width": 242,
+    "height": 172
+  },
+  {
+    "index": 26,
+    "page_no": 98,
+    "caption": "Rock Python (Python sebae) Gaboon Adder (Bitis gabonica)",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_026.png",
+    "width": 249,
+    "height": 177
+  },
+  {
+    "index": 27,
+    "page_no": 99,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_027.png",
+    "width": 242,
+    "height": 142
+  },
+  {
+    "index": 28,
+    "page_no": 99,
+    "caption": "Battersby's green snake (Philothamnus battersbyi) Olive House Snake (Lycodonomorphis inornatus)",
+    "ocr_text": "ASL-",
+    "saved_path": "extraction_output_uganda/image_028.png",
+    "width": 248,
+    "height": 143
+  },
+  {
+    "index": 38,
+    "page_no": 160,
+    "caption": "",
+    "ocr_text": "COMPONENTCHECKLIST Flowmeter Oxygen level gauge Manometer with regulator Humidifier Nasal prongs todeliver oxygen to patient",
+    "saved_path": "extraction_output_uganda/image_038.png",
+    "width": 168,
+    "height": 273
+  },
+  {
+    "index": 40,
+    "page_no": 212,
+    "caption": "",
+    "ocr_text": "Patiententershealthfacilitygrounds Wash or sanitize hands Taketemperature(ifinfraredor axillarythermometeravailable) Low risk for No COVID-19: to All 1.Is thetemperatureT>37.5OC? Direct to facil- 2.Have had'a fever? 3.Do you have symptoms such as cough, ity for further shortness ofbreath,muscle aches,weakness, management sore throat,orheadache? Yes to at least 1 SUSPECTCASE Danger signs + Rapid breathing: >30 per min (adult/child>5y) Provide a medical mask to the >40 per min (child 1-5y) patient and direct to designated >50 per min (child<1y) triagearea + Difficult breathing and/or Stabilize chest indrawing Yes Danger signs Persistent high fever for 3 or (Oxygen if availa- more days ble) in a designat- Disorientation, seizures or ed isolation area No convulsions Collect samples for: + Lethargy (excessive weakness, COVID-19 tiredness) \u2022 Malaria RDT (if fever) Sunken eyes or other signs of severe dehydration \u2191 + Inability to drink or eat High risk for development of seriousillness or complications No Yes ADMIT FOR ISOLATION Admit for isolation to hos ADMIT FOR ISOLATION pital, another designated facility (if available), or Prioritize for admission to home (case-by-case basis: isolation ward with critical must have ability for close care capability follow up)",
+    "saved_path": "extraction_output_uganda/image_040.png",
+    "width": 579,
+    "height": 861
+  },
+  {
+    "index": 41,
+    "page_no": 213,
+    "caption": "",
+    "ocr_text": "WHOCOVID-19:CaseDefinitions World Health Organization Case Definitions Updated in Publichealth surveillance for COVID-19, published 16 December 2020 Suspected case of SAR5-CoV-2 infection Probable case ofSARS-CoV-2infection A person who meets the clinical AND epidemiological criteriac A patient who meets clinical criteria above AND is a contact of a probable or Clinical Criterla: confirmed case, or linked to a COvID-19 cluster* + Acute onset of fever AND cough; OR A suspect case with chest imaging showing findings suggestive of COvID-19 diseased Acute onset of ANY THREE OR MORE of the following signs or symptoms: absence of any other identified cause. A person with recent onset of anosmla (loss of smell) or ageusla (loss of taste) in the Fever, cough, general weakness/fatigue, headache, myalgia, sore throat, coryea, dyspnoea, anorexia/nausea/vomiting\u2019, diarrhoea, altered mental  AND was a contact of a probable er confirmed case or linked to a COvID-19 cluster* Death, not othenwlise explained, in an adult with respiratory distress preceding death AND status. Epidemiologlcal Criteria: Confirmedcase ofSARS-CoV-2infection potop sinujA jo uo(ssjwsuez jo xiju qRly yaym eaze ue u; Jupuom 3o 3utp(say + residential settings, humanitarian settings such as camp and camp-like settings A person with a positive Nucleic Acid Amplification Test (NAAT) for displaced personsi; anytime within the 14 days prior to symptom onset; or a gio lugaaw o oi-ualpy z-Ao-Ses ansod e ym uosad v  Residing or travel to an erea with community transmissien anytime within the probable case definition or suspect criteria A OR B 14 days prier to symgtom onset; or Woring in any health care setting, induding within health faclities or within An asymptomatic person with a positive SARS-CoV-2 Antigen-RDT who is a contat of a probable er coefirmed case the community; any time within the 14 diays prior of symgtom onset. A group of symptomati individuals linked by time, geographic locatien and commen expesures, A patient with severe acute respiratory illnessc containing at least ene NAAT-confirmed case or at least two epidemiologically linked, (SARl: acute respiratory infection with history of fever or measured fever of \u2265 38 RDTs (based on 297% specificity of test and desired >99.9% probebity ef at least one positive symptomatic (meeting clinical criteria of Suspect case definition A or B) persons with positive Ag- C\u00b0:; and cough; with onset within the last 10 days; and requires hospitalization). +Typical chest imaging findings sugestive of Covio-19 include the following: result being a true potitive) SARS-CoV-2 Antigen-RDT Asymptomatic person not meeting epidemiologic criteria with a positive Chest radiography: hary opacities, often rounded in morphology. with peripheral and Isigns segarated with slash /) are to be counted as one sign. Chest CT: multiple bilateral ground gless opacities, often rounded in morphology, with lower lung distribution  NAAT is reeuired for confrmartion, see Dingnoti.evting.for:SARS-CoV-2 Lang ultraseund: thickened plevral ines, 8 lines (multifocal, discrete, or confluent), uognquuip Bunj jamol pue (tairuduad See Aoticen.detectien.in.the.diagnosis.of.SARs-Cov-2 infectien.using.rapld immsoeassays Netei Clinical and pvbilic health judgmerft should be used te determine the need for further imvestigation in patik Surveilance case definitioms sheuld not be used as the sole basis fer guiding dinical man",
+    "saved_path": "extraction_output_uganda/image_041.png",
+    "width": 574,
+    "height": 346
+  },
+  {
+    "index": 43,
+    "page_no": 237,
+    "caption": "",
+    "ocr_text": "PYRONARIDINE TETRAPHOSPHATE/ ARTESUNATE (PYRAMAX) BodyWeight ProductDescription Day1Dose Day2Dose Day3 Dose 5kg to<8kg Pyronaridine/Artesunate 1Sachet 1 Sachet 1 Sachet 8kgto<15kg (60mg/20mg)Sacket 2Sachet 2Sachet 2Sachet granules for Oral 15kgto<20kg Suspension 3Sachet 3Sachet 3Sachet 20kg to<24kg 1 Tablet 1 Tablet 1 Tablet 24kg to<45kg Pyronaridine/Artesunate 2Tablet 2Tablet 2Tablet (180mg/60mg) Film 45kg to<65kg Coated Tablet 3Tablet 3Tablet 3Tablet >=65kg 4Tablet 4Tablet 4Tablet",
+    "saved_path": "extraction_output_uganda/image_043.png",
+    "width": 580,
+    "height": 313
+  },
+  {
+    "index": 44,
+    "page_no": 245,
+    "caption": "",
+    "ocr_text": "Patientwithnegative blood smear or RDT Is there evidence of non-malarial illness? Treat non-malarial Are there signs and illness symptoms suggestive ofsevere malaria? \u9762 Treatforsevere disease Withhold treatmentformalaria,give with artesunate and broad- symptomatic treatment and ask the spectrum antibiotics.Repeat patientto comebackimmediately testing (RDT) in 12-24 hours if the illness becomes worse or if it persists for more than two days.",
+    "saved_path": "extraction_output_uganda/image_044.png",
+    "width": 634,
+    "height": 545
+  },
+  {
+    "index": 46,
+    "page_no": 258,
+    "caption": "Serial HIV Testing Algorithm for testing persons above 18 months of age in Uganda.",
+    "ocr_text": "Uganda Serial HIV Testing Algorithm for testing persons above 18 months of Clinical Guidelines2023 age in Uganda. Screening Test DETERMINE REACTVE Report HIV Confirmatory Negative Test:STAT-PAK CHAPTER3:HIV/AIDSand Sexually Tie-Breaker Test Report HIV Positive SD BIOLINE Transmitted Infections Report HIV Report as Negative Inconclusive Re-Test after 14 days",
+    "saved_path": "extraction_output_uganda/image_046.png",
+    "width": 637,
+    "height": 740
+  },
+  {
+    "index": 47,
+    "page_no": 259,
+    "caption": "",
+    "ocr_text": "No, Only HIV Does client need both syphilis and HIV No, Only syphilis test (new, or previously negative) \u2190 Client tested positive Screening Test Client already know for syphilis and on HIV/Syphillis Duo Test HIV postitive+ve treatment within1 year (TRRK) Test for HIV using the Test for syphilis only National Algorithm Non-Reactive for Reactive for HIV* Reactive for syphilis using the single HIV and Syphilis Use appropriate syphilis rapid test treatment for and manage as \u2191 syphilis appropriate Reactive as Neg- Notify the partner ative for HIV and Syphilis Encourage partner testing Confirmatory test Statpak Non-Reactive Reactive Re-testimmediately with the National Report HIV positive Algorithm Notify the partner",
+    "saved_path": "extraction_output_uganda/image_047.png",
+    "width": 610,
+    "height": 453
+  },
+  {
+    "index": 48,
+    "page_no": 262,
+    "caption": "",
+    "ocr_text": "If monther' status cannotbe ascertained,mayuerapid test inbables todetermine HIV exposure status, should performDAPCRfor If breastfeding is stopped before 9 months then a final DNA PCR can be done at any point 6 weeks after cesation of breastfeeding. deoeess HIV Negat ive Infant Initiate infants on ART immediately send confirmatory PCRas youinitiateART HIV Negative Do not wait until results are back HIVPOSITIVE HIV Rapid Test on mother or infant BoN HIV POSITIVE Pos 3rd DNA PCR 6 week after cessation of breastfeeding Advise mother to sod \u2190 sod breastfeed up to 1 year HIV POSITIVE What is the mother's HIV status? 1st DNA PCR at 4-6 weeks (or if identified after, earliest HIV-EXPOSED INFANT sa Start cotrimoxazole Pos ? 2nd DNA PCR at 9 months Is the child breastfeeding or had baby who is symptomatic,mainourished or has TB as routine BaN AIH BeN Has child breastfed within 6wks of 1st PCR? Manage as HIV Negative HIV Negative Infant and one for HIVDR tseting ON FINAL OUTCOME: HIV Rapid testing at 18 moths \u2190 No HIV Negative",
+    "saved_path": "extraction_output_uganda/image_048.png",
+    "width": 571,
+    "height": 780
+  },
+  {
+    "index": 51,
+    "page_no": 283,
+    "caption": "",
+    "ocr_text": "Provide IAC(3-6 months);3.C-good Conduct HIV DR testing switch to appropriate regimen Conduct CD4 testing 6manage Continue PSs 8 counselling NON SUPPRESSED High level Viremia Plasma & DBS: \u2265 1,00 IAC sessions scores > 95% Repeat VL using2 plasma samples \u22651,00 copies/mL appropriately Maintain preferred ARV drug regimen DoVLafter6monthsforalland after3months Provide IAC(3-6months);3.C-good Intensive Adherence counselling & support TransitionPLHIVsonnon-DTGtoDTGbased IAC sessions scores > 95% Repeat VLusing Plasma Continueroutine viral load Routine Viralload monitoring: Maintain preferred ARTregimen regimens Maintain preferredARV drug regimen Continue routine viral load Plasma:\u2264 200 copies/mL DBS:Target Not Detected Suppressed 200copies/mL V1",
+    "saved_path": "extraction_output_uganda/image_051.png",
+    "width": 553,
+    "height": 688
+  },
+  {
+    "index": 53,
+    "page_no": 322,
+    "caption": "",
+    "ocr_text": "ART naive patient with CD4<100 or suspected treatment failure \u2191 Do serum CRAG test the serum CRAG YES test positive NO \u2190 Can you do a lumbar Does patient have YES puncture (LP) at site? signs and symptoms of meningitis NO NO Screen for signs StartART and symptoms of immediately meningitis Screen for signs and symptoms of Start Fluconazole meningitis 1200 mg \u2191 Refer to facility Do LP and CSF where LP can analysis CRAG test be done \u2191 Is CSF CRAG positive? YES Start Fluconazole Treat as Cryptococcal Meningitis \u00b7 400 mg BD for 2 weeks \u00b7Then 400 mg OD for 8 weeks \u00b7 Then 200 mg OD for 14 weeks Start ART 4-6 weeks after initiating treatment for Start ART 2 weeks after starting Cryptococcal Meningitis Fluconazole",
+    "saved_path": "extraction_output_uganda/image_053.png",
+    "width": 525,
+    "height": 835
+  },
+  {
+    "index": 54,
+    "page_no": 323,
+    "caption": "",
+    "ocr_text": "Donot Wait Start 1stline Art Naive startARTat for4-6 ARTregimen as admission weeks perguidelines ART experiencedreportedly StopARTat Wait restart1st,2nd not adherent or uncertain Admission for4-6 or3rd line ART ofadherence weeks regimen* ARTexperiencedreportedly Stop ART at Wait restart1st,2nd adherentonART>6months Admission for4-6 or3rd line ART weeks regimen* ARTexperiencedreportedly adherentonART<14days-6 Stop ART at Wait restart 1st, 2nd monthsveryrecentARTintro- Admission for4-6 or 3rd line ART duction orre-introduction weeks regimen' ARTexperiencedreportedly adherentonART<14days-6 Continue ART at Continue 1st, months RecentART introduction Admission** 2ndor3rdline ARTregimen* orre-introduction",
+    "saved_path": "extraction_output_uganda/image_054.png",
+    "width": 562,
+    "height": 404
+  },
+  {
+    "index": 55,
+    "page_no": 343,
+    "caption": "",
+    "ocr_text": "Patient complains of urethral discharge or dysuria Take history and examine. Milk urethra if necessary. Retract prepuce and examine for ulcers. Discharge not Discharge confirmed confirmed \u00b7Reassure Cefixime 400 mg stat plus Doxycycline \u00b7Educate and counsel 100 mg 12 hourly for 7 days. Treat \u00b7Promote and provide partner with similar drugs. condoms If partner is pregnant, instead of Doxycy- \u00b7Offer or refer for HCT cline give Erythromycim 500 mg every 6 hours for 7 days. If discharge persists, find out if partners were treated If partners were treated, If partners were not repeat Doxycycline 100 treated:Re-start mg 12 hourly for 7 days treatmentallover plus Metronidazole 2 g single dose If dischargepersists \u2191 Ceftriaxone injection, 1g stat Refer for specialist's Ifdischargepersists management",
+    "saved_path": "extraction_output_uganda/image_055.png",
+    "width": 467,
+    "height": 644
+  },
+  {
+    "index": 56,
+    "page_no": 347,
+    "caption": "",
+    "ocr_text": "Take history and examine for gen tal ulcers and abdominal tenderness. Perform speculum examin If there are ulcers, tion for cervical lesions. If there is abdominal treat as genital tendermess,treat as ulcers lower abdominal  On speculum examin tion, are signs of cancer of the cervix NO Refer to Gynaecolo Check for erythema gist immediately YES excoriations or thrush NO Cexfixime 400 mg stat plus Fluconazole 150 mg-200mg plus Doxycycline 100 mg 12 hourly Metronidazole tablets,2g single for 7 days plus Metronidazole dose. 2 g single dose.Treat sexual If pregnant replace Fluconazole partners. If pregnant replace with Clotrimazole pessary 100 mg Doxycycline with Erythromycin once for 6 days and add Metroni- 500 mg 6 hourly for 7 days dazole only after 1st trimester \u2191 If discharge persists beyond 7 days and partners were If discharge persists treated, refer for specialist's beyond 7 days management Give cefixime 400 mg stat plus doxycycline 100 mg 12 hourly for 7 days and if pregnant give Erythro- mycin 500 mg 6 hourly for 7 days and treat sexual partners.",
+    "saved_path": "extraction_output_uganda/image_056.png",
+    "width": 508,
+    "height": 703
+  },
+  {
+    "index": 57,
+    "page_no": 350,
+    "caption": "",
+    "ocr_text": "Patient complains of ulcers or sores Take history and examine. Is there presence of history of recurrent painful ulcers/ vesicles? NO Acyclovir 400 mg 6hourly for 7 days and perform RPR test, if Ciprofloxacin 500 mg bd for 3 positive, give Bezathine penicillin days plus Bezathine penicillin 2.4 MU IM single does (half 2.4 MU IM single does (half into each buttock). If allergic to into each buttock).If allergic to penicillin, give Erythromycin 500 penicillin, give Erythromycin 500 mg every 6 hours for 14 days. mg every 6 hours for 14 days. In Apply acyclovir cream pregnancy avoid Ciprofloxacin. If vesicle or blisters persist If ulcers persist for>10 days M and partner was treated \u2191 Repeat Acyclovir for 7 days If ulcers persist for >10 days and partner was treated If ulcers still persist Refer for specialist's management",
+    "saved_path": "extraction_output_uganda/image_057.png",
+    "width": 533,
+    "height": 612
+  },
+  {
+    "index": 58,
+    "page_no": 353,
+    "caption": "",
+    "ocr_text": "Patient complains of inguinal swelling Take history and examine for genital ulcers,rule out infection of thefoot,leg or buttock and exclude inguinal hernia If genital ulcer is present Inguinal/femoral buboes present and no ulcer Treat as genital ulcer Give Doxycycline 100 mg 12 hourly for 14 days. Treat partner.If partner pregnant,instead of Dox- ycycline give Erythromycin 500mg every 6 hours for 14 days. Do not incise bubo. Aspirate through normal skin with a large bore needle gauge<20 every 2 days until resolution. If buboes persist, check to see if partner was treated.If partner not treated \u2190 Continue withDoxycycline100 mg12 hourly for 14 days or Erythromycin 500 mg every 6 hours for 14 days. If no improvement Refer for specialist's management",
+    "saved_path": "extraction_output_uganda/image_058.png",
+    "width": 596,
+    "height": 690
+  },
+  {
+    "index": 63,
+    "page_no": 402,
+    "caption": "",
+    "ocr_text": "PRIMARYCARE-Patientpresentswith acute or sub-acuteasthma exacerbation ASSESSthePATIENT-Isitasthma?Riskfactor forasthmarelateddeath?Severityofexacerbation MILD ORMODER- SEVERE Talks in words, LIFE THREAT- ATE Talks in phrases, sits hunched forwards, ENING Cyanosis, prefers sitting not agitated Respiratory drowsy, confused lying,not agitated. rate>30/min Accessory or silent chest Respiratory rate muscles in use Pulse increased Accessory rate >120 bpm muscles not used TRANSFERTOHIGH- START TREATMENT- ERCAREFACILITY- HC3Salbutamol:5mg by While waiting:repeat nebulizer orinhaler+spacer inhaled Salbutamol 4 - 6 puffs (200\u03bcg) every 20 WORSENING Aminophylline:250mg minutes for 1 hour Predni- slowIV bolus if not tak- solone: adults 1 mg/kg max ing an oral theophylline 50mg,children1-2 mg/kg WORSENING CONTINUETREATMENTwithsalbutamolasneeded ASSESSFORRESPONSEAT1HOUR(orearlier) IMPROVING ASSESSFORDISCHARGE Symptoms improved,not need- ARRANGEATDISCHARGE ingsalbutamolPEFimproving, Reliever: continue as needed and> 60-80% of personal best Controller:start or step up,check inhaler orpredicted Oxygen techniques,adherencePredniso saturation >94% room air lone: continue usually for5 days",
+    "saved_path": "extraction_output_uganda/image_063.png",
+    "width": 486,
+    "height": 635
+  },
+  {
+    "index": 64,
+    "page_no": 457,
+    "caption": "",
+    "ocr_text": "2 3 2 3 nmended number of tablets per body weight in kilograms kgs 6-9.9Kgs 10- 16- 24- 31- 35- >45kgs 15kgs 23kgs 30kgs34kgs s45kgs 1.5 2 2.5 1 1 1 1 4 4 1 1 1",
+    "saved_path": "extraction_output_uganda/image_064.png",
+    "width": 640,
+    "height": 716
+  },
+  {
+    "index": 65,
+    "page_no": 460,
+    "caption": "",
+    "ocr_text": "Gastrointestinal and Hepatic Diseases",
+    "saved_path": "extraction_output_uganda/image_065.png",
+    "width": 340,
+    "height": 114
+  },
+  {
+    "index": 66,
+    "page_no": 534,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_066.png",
+    "width": 57,
+    "height": 115
+  },
+  {
+    "index": 67,
+    "page_no": 634,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_067.png",
+    "width": 83,
+    "height": 115
+  },
+  {
+    "index": 73,
+    "page_no": 665,
+    "caption": "",
+    "ocr_text": "below Give antihistamine,e.g.prometh- 10mg asop Temporarily stop the transfusion stable,thennocauseforalarm Temporarily stop the transfusion stable,thennocauseforalarm Restart transfusion slowly with Evaluate the patient; take vitals Restart transfusion slowlywith closemonitoring Re-assure patient. (B closemonitoring Re-assure patient. mg/kg(adult:1 Alternatives: Check vitals 50 MANAGEMENT AImos azine O O O POSSIBLECAUSES allergic sensitiv- Minor hyper- Febrile non-he- molytic due to transfu- sion re- action; dueto inflam- matory sponse reac- tions, re- CATEGORY 1: MILD REACTIONs O SIGNS AND SYMPTOMS Localised cutaneous reactions, urticaria/ respirato- ry or oth- er signs/ symptoms Mildfever (<38.9 C), without ANY oth- Withno er symp- hives, itching rash, toms/ e.g. signs. O",
+    "saved_path": "extraction_output_uganda/image_073.png",
+    "width": 554,
+    "height": 849
+  },
+  {
+    "index": 74,
+    "page_no": 666,
+    "caption": "",
+    "ocr_text": "Stop the transfusion, and DO NOT Resuscitate patient,as appropriate. Administer an anti-histamine,e.g., Stop the transfusion, and DO NOT Resuscitate patient, as appropriate. Evaluate thepatient;take vitals Notify the hospital blood bank. Evaluate the patient; take vitals Airwaysupport,giveoxygen and bloodbankimmediately Management promethazine(i.v) oxygen by mask kgIVand MANAGEMENT re-start. re-start. Possible Causes Acutehemolytic Severe allergic contamination (anaphylaxis) Any one of; POSSIBLECAUSES Category 2: Severe And Life Threatening Reactions transfusion reaction reaction Bacterial CATEGORY1:MILDREACTIONs SIGNSANDSYMPTOMS  Signs And Symptoms Severe generalised andobstruction Airway edema (wheezing or Hypoxia, and Fever (39 C), rigors,chills Hypotension, tachycardia, Nausea& vomiting, dyspnea. stridor) rash shock \u53e3",
+    "saved_path": "extraction_output_uganda/image_074.png",
+    "width": 514,
+    "height": 797
+  },
+  {
+    "index": 75,
+    "page_no": 667,
+    "caption": "",
+    "ocr_text": "systolicBP[withhold fluids ONLYif Start a 24-hour urine collection and adrenaline(epinephrine)injection; Send the blood bag with infusion and one anti-coagulated)from the 20-30mL/kg;bolus to maintain set,a freshly collected urine, and bankforlaboratoryinvestigations fluid balance chart,and record all vein opposite infusion site,with If signs/symptoms of sepsis,start I.V fluids; sodium chloride 0.9% new blood samples (one clotted Checkfresh urine specimenfor there is hypertensioninstead] Referforfurthermanagement Give a diuretic:Furosemide broadspectrumantibiotics 0.01 mg/kg slow IM Maintainfluidbalance haemoglobinuria intakeandoutput wherenecessary 1mg/kgIV overload (TACO) Transfusion- Transfusion- relatedacute associated circulatory lunginjury (TRALI) of>20% in systolic Haemoglobinuria Pain: in the chest, distress,shortness ofbreath,dyspoea Hypotension (fall or near infusion bleeding (DIC) site,or in loin/ back,headache Restlessness, Tachycardia Unexplained Respiratory anxiety BP)",
+    "saved_path": "extraction_output_uganda/image_075.png",
+    "width": 492,
+    "height": 799
+  },
+  {
+    "index": 76,
+    "page_no": 691,
+    "caption": "",
+    "ocr_text": "Pain persisting orincreasing Strongopioid formoderate Step2 toseverepain Weakopioid (eg.morphine) formildto +/-non-opioid moderatepain +/-adjuvant Pain persisting (eg.codeine) orincreasing +/-non-opioid +/-adjuvant Step 1 Non-opiod (eg. aspirin, paracetamol orNSAID +/-adjuvant Pain controlled",
+    "saved_path": "extraction_output_uganda/image_076.png",
+    "width": 498,
+    "height": 384
+  },
+  {
+    "index": 85,
+    "page_no": 835,
+    "caption": "",
+    "ocr_text": "Assess and treat for pre-eclamp- tinue appropriate antihyperten- If no pre-eclampsia,give/contin- If not pre-eclampsia,give/con- ue appropriate antihypertensive as in non-pregnant women (see) sia (section 16.3.7).Refer to Assess for pre-eclampsia No additional treatment Review in one week TREAT AND ADVISE (section 4.1.6) (section 4.1.6) hospital SevereHypertension Moderate Hyper- Blood Pressure CLASSIFY tension Normal Diastolic mmHg Diastolic mmHg readings Diastolic mmHg 2 read- 110 Zuo BP BP 06> uo ings BP 90 SIGNS Blood pressure Diastolic BP History of 90 mmHg, repeat after eclampsia or pre-ec- ASSESSMENT lampsia an hour",
+    "saved_path": "extraction_output_uganda/image_085.png",
+    "width": 512,
+    "height": 818
+  },
+  {
+    "index": 86,
+    "page_no": 836,
+    "caption": "",
+    "ocr_text": "Give double dose of iron sulphate 200 mg (or Fe- Refer urgently to hospital Follow up in 2 weeks to ferous sulphate 200 mg If anaemia persists, refer fol):1 tablet 2-3 times check clinical progress (orFefol)1 tablet twice and compliance with Givedoubledoseof Reassess in 4 weeks daily for3months daily for 3 months TREATANDADVISE treatment to hospital CLASSIFY Anaemia Moderate Anaemia Severe Any pallorand any of: RR>30breaths Severepalmar Breathlessness Palmar or con- or conjuctival juctivalpallor Hb <7 g/dL perminute Tires easily Hb 7-11 g/ And/or pallor atrest 10TP SIGNS Checkforanaemia Checkrecord forbleeding inpregnan- heavy bleed- cy, delivery Do you tire duringrou- MeasureHb breathless tinehouse- ASSESSMENT Ask any ingsince delivery? orafter delivery Areyou easily?",
+    "saved_path": "extraction_output_uganda/image_086.png",
+    "width": 517,
+    "height": 826
+  },
+  {
+    "index": 87,
+    "page_no": 837,
+    "caption": "",
+    "ocr_text": "Give appropriateIM/IVantibi- Give oxytocin 10 IU IM Refer urgently to hospital See PPH section 16.4.6 Referurgently tohospital SeePPH section16.4.6 TREATMENT otics Postpartum Postpartum CLASSIFY Bleeding Bleeding minutes bleeing 6weeks soaked delivery More than 1 pad in 5 Still after SIGNS Heavy vaginal Heavy/light vaginalbleed- ingafter6 ASSESSMENT bleeding weeks",
+    "saved_path": "extraction_output_uganda/image_087.png",
+    "width": 270,
+    "height": 861
+  },
+  {
+    "index": 88,
+    "page_no": 839,
+    "caption": "",
+    "ocr_text": " Insert IV line and give fluids (See puerperal fever 16.4.7) Refer urgently to hospital Give appropriate IM/IV antibiotics TREATMENT rapidly Uterine Infec- tion/Puer- peral Fever CLASSIFY >38 C and any of: inal bleeding Veryweak Abdominal tenderness Foul-smell- inglochia Uterusnot abdominal History of heavyvag- Temperature Profuse well con- lochia tracted Lower pain SIGNS foul-smelling lochia,burn- ing on urina- tion or heavy abdomen and presenceof temperature had fever? Feellower flanksand tenderness lochia, stiff Have you bleeding Look for abnormal neck and ASSESSMENT Ask for lethargy Measure",
+    "saved_path": "extraction_output_uganda/image_088.png",
+    "width": 535,
+    "height": 859
+  },
+  {
+    "index": 89,
+    "page_no": 840,
+    "caption": "",
+    "ocr_text": "Counselon care andhygiene Remove sutures,if present Giveparacetamolforpain If no improvement,refer to Follow up in 2 days Refer tohospital Cleanwound TREATMENT hospital Perineal Trau- Perineal Infec- tion orPain CLASSIFY ma Excessive swellingof vulva orperineum perineum perineum Pus in Pain in SIGNS pus or perineal Askif thereis ASSESSMENT pain",
+    "saved_path": "extraction_output_uganda/image_089.png",
+    "width": 249,
+    "height": 862
+  },
+  {
+    "index": 90,
+    "page_no": 841,
+    "caption": "",
+    "ocr_text": "Give appropriate oral appropriate oral anti- Give clotrimazole pes- saries 1 each evening the woman to hospital antibiotics to woman Counsel on safer sex Counselon safer sex Treat partner with If no improvement, for6days TREATMENT biotics doms doms refer Gonorrhoea Possible Can- dida Infection Chlamydia (see section (seesection CLASSIFY Possible Infection and/or 3.2.2) 2.2.1) Abnormal vaginal dis- charge, and partnerhas urethral discharge or burning on passing Curd-like discharge vaginal and/or Intense itching urine vulval SIGNS Has your partner had If partner is present in the clinic,ask him Any itching of the a urinary problem? burning on passing be approached,ex- plain importance of partnerassessment ifhehas:urethral discharge or pus, and treatment to avoid reinfection after delivery, ask ASSESSMENT vulva? urine",
+    "saved_path": "extraction_output_uganda/image_090.png",
+    "width": 505,
+    "height": 862
+  },
+  {
+    "index": 91,
+    "page_no": 843,
+    "caption": "",
+    "ocr_text": "Encourage the mother to Teach correct positioning teachthemotherhowto express breast milkfrom Teach correct positioning continuebreastfeeding (or 1 day). If not better, Reassess after 2feeds theaffectedbreastand continue breastfeeding on the healthy side Advise tofeed more and attachment and attachment frequently TREATMENT Engorgement Soreness or CLASSIFY Nipple Fissure Breast Nipple sore or fissured onebreasts and patchy Tempera- ture<38C are swol- len, shiny not well attached Both or Baby a SIGNS swelling, shini- How do your ness,redness Feel gently for  painful part of Measure tem- breasts feel? Look at the Look at the breastfeedif not yet done breasts for: nipplefor the breast Observea ASSESSMENT perature fissure Ask",
+    "saved_path": "extraction_output_uganda/image_091.png",
+    "width": 524,
+    "height": 831
+  },
+  {
+    "index": 92,
+    "page_no": 846,
+    "caption": "",
+    "ocr_text": "Givemetronidazole2g Counsel on safer sexin- cluding use of condoms singledosetowoman TREATMENT Trichomonas Infection(see section 3.2.2) Bacterialor CLASSIFY Possible malvag- Abnor- inal dis- charge SIGNS discharge:amount, seen,examinewith labia andlookfor abnormalvaginal colour,odour and Ifnodischargeis discharge on the a gloved finger andlookatthe Separate the ASSESSMENT smell glove",
+    "saved_path": "extraction_output_uganda/image_092.png",
+    "width": 313,
+    "height": 863
+  },
+  {
+    "index": 93,
+    "page_no": 864,
+    "caption": "",
+    "ocr_text": "Ensure warmth,cord care,hygiene,other baby carefRoutine visit at Next immunization at 6 weeksfWhen to return if danger signs f Record Feed more frequently,day and night.Reassure mother she has enoughmilk Ifirst visit (baby not delivered in health facilities) give Continue exclusive breastfeeding on demand Tetracycline eye ointment on home-based record Stop other food/drinks MANAGEBY/ADVISEON Vitamin K 1 mg IM age 3-7 days \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 CLASSIFY Well Baby Feeding Problem Feeding well effectively>8 >2,500 g or and gaining other foods/ drinks or giv- times in 24 small baby but eating weight well (suckling No danger No special treatment Receiving en pacifier hours) Weight signs needs SIGNS O O",
+    "saved_path": "extraction_output_uganda/image_093.png",
+    "width": 480,
+    "height": 811
+  },
+  {
+    "index": 94,
+    "page_no": 871,
+    "caption": "",
+    "ocr_text": "Helpmother breastfeed or teach mother alternative Refer for special evaluation and treatment salinesolutionbeforereferral method if not possible MANAGEBY/ADVISEON \u53e3 \u53e3 \u53e3 Malformation CLASSIFY position of legs Asymmetrical armmovement afterbreech presentation or arm does Cleft palate Oddlooking appearance Open tissue on thehead/ perineum or Abnormal notmove abdomen/ Club foot unusual genitalia or lip back/ SIGNS O \u4e1a",
+    "saved_path": "extraction_output_uganda/image_094.png",
+    "width": 506,
+    "height": 876
+  },
+  {
+    "index": 95,
+    "page_no": 874,
+    "caption": "",
+    "ocr_text": "Give 1st dose of IM antibiotics: ampicillin 50 Or if HC2, Benzylpenicillin 50,000 IU/Kg IM Advise mother how to keep infant warm on the Continue ampicillin (twice daily if< 7 days,thrice  Gentamicin once daily for at least 5 days Refer URGENTLY to Hospital singleprereferraldose If referral not possible, daily if > 7 days) way tohospital cup or NGT) TREATMENT \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 CLASSIFYAS Very Severe Disease Anyof thefollowing: Convulsions or Fast breathing Severe chest in Fever (>37.5 C temp (<35.5 C (>60breaths/ Blood in stool Notfeeding drawing or or feels hot) or feels cold) ulatedorno Movement when stim- movements Low body well or min) or at all SIGNS O O O O O O O",
+    "saved_path": "extraction_output_uganda/image_095.png",
+    "width": 529,
+    "height": 806
+  },
+  {
+    "index": 96,
+    "page_no": 875,
+    "caption": "",
+    "ocr_text": "1/2 tab (if 1-2 months,4-6 kg) every 12 hours Teach mother to treat local infection at home Advisemother onhome carefor the young infant Gentian Violet paint twice daily for five days) Continue assessment of other problems If better: praise the mother, advise to Advise mother to give home care If same or worse:refertohospital fFOLLOW UPin two days: for 5 days complete treatment (apply TREATMENT juwnseau hrexe uo paseq are saneadua rpog \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 Rectal readings are approximately 0.5 C higher LocalBacterial SevereDisease or LocalInfec- tion Unikely CLASSIFYAS Infection None of the signs of very severe diseaseorlocalbacterialinfection Any of the following: Umbilicusred or dischargingpus Skin pustules Notes SIGNS O \u53e3 \u53e3",
+    "saved_path": "extraction_output_uganda/image_096.png",
+    "width": 509,
+    "height": 859
+  },
+  {
+    "index": 97,
+    "page_no": 884,
+    "caption": "",
+    "ocr_text": "If breastfeeding less than 8 times in 24 hours, the mother to breastfeed as often and as long Advise the mother how to feed and keep the If thrush, teach the mother to treat thrush at home (apply gentian violet paint 4 times daily for 7 days with clean hands, use a soft cloth) If not able to attach well immediately, teach the mother to express breast  as the infant wants, day and night low weight infantwarm athome milk and feed by a cup If not breastfeeding at all MANAGEMENT \u53e3 \u53e3 \u53e3 \u53e3 FeedingProblem or CLASSIFYAS Low Weight Not well attached to breast Not suckling effectively or Less than 8 breastfeeds in Thrush (ulcers or white Any of these signs Low weight for age CLINICALFEATURES foods or drinks or patches in mouth) Receives other 24 hours or Feeding or",
+    "saved_path": "extraction_output_uganda/image_097.png",
+    "width": 443,
+    "height": 864
+  },
+  {
+    "index": 98,
+    "page_no": 885,
+    "caption": "",
+    "ocr_text": "Advise mother to give home care for the FOLLOW UP any feeding problem or thrush FOLLOW UP low weight for age in 14 days: satisfactory feeding. If loosing weight, mother and FOLLOW UP in 14 days treatment is given correctly. If better, praise the mother and encourage to If stillow weight for age but feeding If low weight for age, still feeding If no longer low weight for age, problem or lost weight: refer to If thrush is worse, check that ContinueFOLLOW UP till complete 7-day treatment. in 2 days and reassess. well, praise the young infant continue. MANAGEMENT hospital refer. \u53e3 \u53e3 CLASSIFYAS CLINICALFEATURES",
+    "saved_path": "extraction_output_uganda/image_098.png",
+    "width": 523,
+    "height": 865
+  },
+  {
+    "index": 99,
+    "page_no": 887,
+    "caption": "",
+    "ocr_text": "Explain the guidelinesfor safe replacement howtofeed andkeep infant warm at home If thrush,teach the mother to treat thrushat Advise mother to give home care for the FOLLOW UP any feeding problem or thrush treatment is given correctly.If better, If thrush is worse, check that ContinueFOLLOW UP till complete7-day treatment Counsel about feeding young infant weight,refer in 2 days MANAGEMENT bottle, \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 FeedingProblem or CLASSIFYAS Low Weight inappropriate An HIV posi- mixingbreast replacement replacement teedsbefore 6months or Using a feed- CLINICALFEATURES rectlyorun- tivemother ing bottle or. Milk incor- hygienically preparedor insufficient andother feedsor feedsor Giving Giving O",
+    "saved_path": "extraction_output_uganda/image_099.png",
+    "width": 496,
+    "height": 821
+  },
+  {
+    "index": 103,
+    "page_no": 894,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_103.png",
+    "width": 201,
+    "height": 272
+  },
+  {
+    "index": 106,
+    "page_no": 905,
+    "caption": "",
+    "ocr_text": "Give 1st dose of appropriate antibiotic for severe bacterial infection: ampicillin 50 mg/Kg IM and hdde :ana woy buuep snd io eaus jo bupnop f Benzylpenicillin 50,000 IU/Kg IM if at HC2 Refer to the relevant IMCI sections REFER URGENTLY to hospital  gentamicin 7.5 mg/Kg IM or tetracyclineeyeointment If measles now or in last 3 months, classify as: Give vitamin A MANAGEMENT \u53e3 \u53e3 \u53e3 \u53e3 \u53e3 Severe Compli- cated Measles CLASSIFYAS Complicated Measles mouth ulcers CLINICALFEATURES Any general danger sign Clouding of Difficulty in malnutrition Ear problem extensive breathing Diarrhoea Deep or cornea Stridor Acute O",
+    "saved_path": "extraction_output_uganda/image_106.png",
+    "width": 511,
+    "height": 836
+  },
+  {
+    "index": 116,
+    "page_no": 935,
+    "caption": "",
+    "ocr_text": "Weight-for-ageBOYS World Health Birth to 5 years (z-scores) Organization 2 Weight (kg)",
+    "saved_path": "extraction_output_uganda/image_116.png",
+    "width": 537,
+    "height": 757
+  },
+  {
+    "index": 117,
+    "page_no": 936,
+    "caption": "",
+    "ocr_text": "Birth to5years(z-scores) rganiza Weight (kg)",
+    "saved_path": "extraction_output_uganda/image_117.png",
+    "width": 543,
+    "height": 862
+  },
+  {
+    "index": 120,
+    "page_no": 937,
+    "caption": "",
+    "ocr_text": "00L Height (cm) 282624",
+    "saved_path": "extraction_output_uganda/image_120.png",
+    "width": 521,
+    "height": 839
+  },
+  {
+    "index": 122,
+    "page_no": 938,
+    "caption": "",
+    "ocr_text": "to5years(z-scores) Organi 2 Height (cm) Weight (kg)",
+    "saved_path": "extraction_output_uganda/image_122.png",
+    "width": 519,
+    "height": 857
+  },
+  {
+    "index": 124,
+    "page_no": 939,
+    "caption": "",
+    "ocr_text": "S 3 2 0 N + N 8 7 Arm circumference (cm)",
+    "saved_path": "extraction_output_uganda/image_124.png",
+    "width": 518,
+    "height": 830
+  },
+  {
+    "index": 126,
+    "page_no": 940,
+    "caption": "",
+    "ocr_text": "3 2 1 \u4e59",
+    "saved_path": "extraction_output_uganda/image_126.png",
+    "width": 514,
+    "height": 824
+  },
+  {
+    "index": 140,
+    "page_no": 1013,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_140.png",
+    "width": 96,
+    "height": 114
+  },
+  {
+    "index": 142,
+    "page_no": 1040,
+    "caption": "",
+    "ocr_text": "Skin Diseases",
+    "saved_path": "extraction_output_uganda/image_142.png",
+    "width": 307,
+    "height": 115
+  },
+  {
+    "index": 145,
+    "page_no": 1130,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_145.png",
+    "width": 96,
+    "height": 85
+  },
+  {
+    "index": 146,
+    "page_no": 1130,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_146.png",
+    "width": 84,
+    "height": 84
+  },
+  {
+    "index": 147,
+    "page_no": 1132,
+    "caption": "",
+    "ocr_text": "",
+    "saved_path": "extraction_output_uganda/image_147.png",
+    "width": 186,
+    "height": 158
+  }
+]

@@ -37,6 +37,7 @@ from datetime import datetime, timezone
 from pipeline_config import (
     load_config, get_document_title, get_source_pdf_label,
     get_contraindication_terms, build_contraindication_regex,
+    get_output_dir,
 )
 
 # ═══════════════════════════════════════════════════════════════════
@@ -45,7 +46,7 @@ from pipeline_config import (
 
 CONFIG = load_config()
 BASE_DIR = Path(__file__).resolve().parent
-OUTPUT_DIR = BASE_DIR / "extraction_output"
+OUTPUT_DIR = BASE_DIR / get_output_dir(CONFIG)
 CHUNKS_PATH = OUTPUT_DIR / "chunks.json"
 REVIEW_PKG_PATH = OUTPUT_DIR / "review_package.json"
 PHYSICIAN_REPORT_PATH = OUTPUT_DIR / "physician_review_report.md"

@@ -1,4 +1,5 @@
 {
+  "output_dir": "extraction_output_malaria",
   "document": {
     "pdf_path": "B09514-eng.pdf",
     "title": "WHO guidelines for malaria - 13 August 2025",

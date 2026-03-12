@@ -35,6 +35,7 @@ import fitz  # PyMuPDF
 
 from pipeline_config import (
     load_config, get_pdf_path, get_ground_truth, get_dosing_pages,
+    get_output_dir,
 )
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -42,7 +43,7 @@ from pipeline_config import (
 # ─────────────────────────────────────────────────────────────────────────────
 CONFIG = load_config()
 PDF_PATH = get_pdf_path(CONFIG)
-OUTPUT_DIR = Path("extraction_output")
+OUTPUT_DIR = Path(get_output_dir(CONFIG))
 
 # Pages to cross-validate — from config, or auto-discover from Stage 1
 _dosing_pages_cfg = get_dosing_pages(CONFIG)

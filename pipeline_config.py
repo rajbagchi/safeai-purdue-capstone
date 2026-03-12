@@ -179,6 +179,11 @@ def get_dosing_pages(config: Dict) -> Any:
     return config.get("cross_validation", {}).get("dosing_pages", "auto")
 
 
+def get_output_dir(config: Dict) -> str:
+    """Return the output directory path from config, defaulting to 'extraction_output'."""
+    return config.get("output_dir", "extraction_output")
+
+
 def get_source_pdf_label(config: Dict) -> str:
     """Human-readable label like 'B09514-eng.pdf (478 pages)'."""
     doc = config["document"]

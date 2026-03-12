@@ -1,0 +1,1128 @@
+{
+  "raw_text_verification": {
+    "accuracy_pct": 100.0,
+    "n_pass": 16,
+    "n_fail": 0,
+    "details": [
+      {
+        "page": 173,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "weight-based dosage recommendations",
+          "artemether"
+        ],
+        "missing": []
+      },
+      {
+        "page": 174,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "lumefantrine",
+          "decreased exposure",
+          "smokers"
+        ],
+        "missing": []
+      },
+      {
+        "page": 174,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "amodiaquine",
+          "neutropenia",
+          "efavirenz"
+        ],
+        "missing": []
+      },
+      {
+        "page": 175,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "sulfadoxine",
+          "pyrimethamine",
+          "folic acid"
+        ],
+        "missing": []
+      },
+      {
+        "page": 176,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "dihydroartemisinin",
+          "piperaquine",
+          "2.5 mg/kg"
+        ],
+        "missing": []
+      },
+      {
+        "page": 177,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "piperaquine",
+          "QT interval"
+        ],
+        "missing": []
+      },
+      {
+        "page": 178,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "primaquine",
+          "0.25 mg/kg",
+          "G6PD deficiency"
+        ],
+        "missing": []
+      },
+      {
+        "page": 212,
+        "type": "text",
+        "passed": true,
+        "found": [
+          "hyperpyrexia",
+          "convulsions",
+          "maintain airway"
+        ],
+        "missing": []
+      },
+      {
+        "page": 173,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "20 + 120"
+        ],
+        "missing": []
+      },
+      {
+        "page": 174,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "80 + 480"
+        ],
+        "missing": []
+      },
+      {
+        "page": 174,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "25 + 67.5",
+          "200 + 540"
+        ],
+        "missing": []
+      },
+      {
+        "page": 175,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "25 + 55",
+          "200 + 440"
+        ],
+        "missing": []
+      },
+      {
+        "page": 175,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "250 / 12.5",
+          "1500 / 75"
+        ],
+        "missing": []
+      },
+      {
+        "page": 176,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "20 + 160",
+          "200 + 1600"
+        ],
+        "missing": []
+      },
+      {
+        "page": 178,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "3.75",
+          "7.5"
+        ],
+        "missing": []
+      },
+      {
+        "page": 198,
+        "type": "image",
+        "passed": true,
+        "found": [
+          "G6PD",
+          "primaquine"
+        ],
+        "missing": []
+      }
+    ]
+  },
+  "pymupdf_tables": {
+    "173": [
+      {
+        "table_index_on_page": 0,
+        "markdown": "|Body weight (kg)|Dose (mg) of artemether + lumefantrine given twice daily for<br>3 days|\n|---|---|\n|< 15|20 + 120|\n|15 to < 25|40 + 240|\n|25 to < 35|60 + 360|\n\n",
+        "num_rows": 3,
+        "num_cols": 2,
+        "bbox": [
+          144.03439331054688,
+          706.148681640625,
+          511.2410888671875,
+          801.1986694335938
+        ],
+        "cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "value": "< 15"
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": "20 + 120"
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": "15 to < 25"
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": "40 + 240"
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": "25 to < 35"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": "60 + 360"
+          }
+        ],
+        "headers": [
+          "Body weight (kg)",
+          "Dose (mg) of artemether + lumefantrine given twice daily for\n3 days"
+        ]
+      }
+    ],
+    "174": [
+      {
+        "table_index_on_page": 0,
+        "markdown": "|\u2265 35|80 + 480|\n|---|---|\n\n",
+        "num_rows": 0,
+        "num_cols": 2,
+        "bbox": [
+          144.03439331054688,
+          67.875,
+          511.2410888671875,
+          88.42498779296875
+        ],
+        "cells": [],
+        "headers": [
+          "\u2265 35",
+          "80 + 480"
+        ]
+      },
+      {
+        "table_index_on_page": 1,
+        "markdown": "|Body weight (kg)|Artesunate + amodiaquine dose (mg) given daily for 3 days|\n|---|---|\n|< 9|25 + 67.5|\n|9 to < 18|50 + 135|\n|18 to < 36|100 + 270|\n|\u2265 36|200 + 540|\n\n",
+        "num_rows": 4,
+        "num_cols": 2,
+        "bbox": [
+          144.03439331054688,
+          435.14996948242185,
+          511.2410888671875,
+          537.0499267578125
+        ],
+        "cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "value": "< 9"
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": "25 + 67.5"
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": "9 to < 18"
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": "50 + 135"
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": "18 to < 36"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": "100 + 270"
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": "\u2265 36"
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": "200 + 540"
+          }
+        ],
+        "headers": [
+          "Body weight (kg)",
+          "Artesunate + amodiaquine dose (mg) given daily for 3 days"
+        ]
+      }
+    ],
+    "175": [
+      {
+        "table_index_on_page": 0,
+        "markdown": "|Body weight (kg)|Artesunate + mefloquine dose (mg) given daily for 3 days|\n|---|---|\n|< 9|25 + 55|\n|9 to < 18|50 + 110|\n|18 to < 30|100 + 220|\n|\u2265 30|200 + 440|\n\n",
+        "num_rows": 4,
+        "num_cols": 2,
+        "bbox": [
+          143.97189331054688,
+          161.2499755859375,
+          511.3036193847656,
+          263.14996337890625
+        ],
+        "cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "value": "< 9"
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": "25 + 55"
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": "9 to < 18"
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": "50 + 110"
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": "18 to < 30"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": "100 + 220"
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": "\u2265 30"
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": "200 + 440"
+          }
+        ],
+        "headers": [
+          "Body weight (kg)",
+          "Artesunate + mefloquine dose (mg) given daily for 3 days"
+        ]
+      },
+      {
+        "table_index_on_page": 1,
+        "markdown": "|Body weight (kg)|Artesunate dose given daily<br>for 3 days (mg)|Sulfadoxine / pyrimethamine dose<br>(mg) given as a single dose on<br>day 1|\n|---|---|---|\n|< 10|25 mg|250 / 12.5|\n|10 to < 25|50 mg|500 / 25|\n|25 to < 50|100 mg|1000 / 50|\n|\u2265 50|200 mg|1500 / 75|\n\n",
+        "num_rows": 4,
+        "num_cols": 3,
+        "bbox": [
+          143.97189331054688,
+          472.3249816894531,
+          511.3036193847656,
+          599.449951171875
+        ],
+        "cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "value": "< 10"
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": "25 mg"
+          },
+          {
+            "row": 0,
+            "col": 2,
+            "value": "250 / 12.5"
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": "10 to < 25"
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": "50 mg"
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "value": "500 / 25"
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": "25 to < 50"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": "100 mg"
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "value": "1000 / 50"
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": "\u2265 50"
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": "200 mg"
+          },
+          {
+            "row": 3,
+            "col": 2,
+            "value": "1500 / 75"
+          }
+        ],
+        "headers": [
+          "Body weight (kg)",
+          "Artesunate dose given daily\nfor 3 days (mg)",
+          "Sulfadoxine / pyrimethamine dose\n(mg) given as a single dose on\nday 1"
+        ]
+      }
+    ],
+    "176": [
+      {
+        "table_index_on_page": 0,
+        "markdown": "|Body weight (kg)|Dihydroartemisinin + piperaquine dose (mg) given<br>daily for 3 days|\n|---|---|\n|< 8|20 + 160|\n|8 to < 11|30 + 240|\n|11 to < 17|40 + 320|\n|17 to < 25|60 + 480|\n|25 to < 36|80 + 640|\n|36 to < 60|120 + 960|\n|60 < 80|160 + 1280|\n|>80|200 + 1600|\n\n",
+        "num_rows": 8,
+        "num_cols": 2,
+        "bbox": [
+          144.03439331054688,
+          423.4141845703125,
+          511.2410888671875,
+          610.4141845703125
+        ],
+        "cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "value": "< 8"
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": "20 + 160"
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": "8 to < 11"
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": "30 + 240"
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": "11 to < 17"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": "40 + 320"
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": "17 to < 25"
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": "60 + 480"
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": "25 to < 36"
+          },
+          {
+            "row": 4,
+            "col": 1,
+            "value": "80 + 640"
+          },
+          {
+            "row": 5,
+            "col": 0,
+            "value": "36 to < 60"
+          },
+          {
+            "row": 5,
+            "col": 1,
+            "value": "120 + 960"
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "value": "60 < 80"
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "value": "160 + 1280"
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": ">80"
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "value": "200 + 1600"
+          }
+        ],
+        "headers": [
+          "Body weight (kg)",
+          "Dihydroartemisinin + piperaquine dose (mg) given\ndaily for 3 days"
+        ]
+      }
+    ],
+    "177": [],
+    "178": [
+      {
+        "table_index_on_page": 0,
+        "markdown": "|Body weight (kg)|Single dose of primaquine (mg base)|\n|---|---|\n|5 to < 25a|3.75|\n|25 to < 50|7.5|\n|50 to 100|15|\n\n",
+        "num_rows": 3,
+        "num_cols": 2,
+        "bbox": [
+          130.90939331054688,
+          313.46417236328125,
+          509.3660888671875,
+          382.6575622558594
+        ],
+        "cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "value": "5 to < 25a"
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": "3.75"
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": "25 to < 50"
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": "7.5"
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": "50 to 100"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": "15"
+          }
+        ],
+        "headers": [
+          "Body weight (kg)",
+          "Single dose of primaquine (mg base)"
+        ]
+      }
+    ],
+    "212": [
+      {
+        "table_index_on_page": 0,
+        "markdown": "|Manifestation or<br>complication|Immediate managementa|\n|---|---|\n|**Coma (cerebral**<br>**malaria)**|Maintain airway, place patient on his or her side, exclude other<br>treatable causes of coma (e.g. hypoglycaemia, bacterial meningitis);<br>avoid harmful ancillary treatments, intubate if necessary.|\n|**Hyperpyrexia**|Administer tepid sponging, fanning, a cooling blanket and<br>paracetamol.|\n|**Convulsions**|Maintain airways; treat promptly with intravenous or rectal<br>diazepam, lorazepam, midazolam or intramuscular paraldehyde.<br>Check blood glucose.|\n|**Hypoglycaemia**|Check blood glucose, correct hypoglycaemia and maintain with<br>glucose-containing infusion. Although hypoglycaemia is defined as<br>glucose < 2.2 mmol/L, the threshold for intervention is < 3 mmol/L<br>for children < 5 years and <2.2 mmol/L for older children and adults.|\n|**Severe anaemia**|Transfuse with screened fresh whole blood.|\n|**Acute pulmonary**<br>**oedemab**|Prop patient up at an angle of 45o, give oxygen, give a diuretic, stop<br>intravenous fluids, intubate and add positive end-expiratory pressure<br>or continuous positive airway pressure in life-threatening<br>hypoxaemia.|\n|**Acute kidney injury**|Exclude pre-renal causes, check fluid balance and urinary sodium; if<br>in established renal failure, add haemofiltration or haemodialysis, or,<br>if not available, peritoneal dialysis.|\n|**Spontaneous bleeding**<br>**and coagulopathy**|Transfuse with screened fresh whole blood (cryoprecipitate, fresh<br>frozen plasma and platelets, if available); give vitamin K injection.|\n|**Metabolic acidosis**|Exclude or treat hypoglycaemia, hypovolaemia and septicaemia. If<br>severe, add haemofiltration or haemodialysis.|\n\n",
+        "num_rows": 9,
+        "num_cols": 2,
+        "bbox": [
+          117.7844009399414,
+          247.449951171875,
+          507.4910888671875,
+          797.5999755859375
+        ],
+        "cells": [
+          {
+            "row": 0,
+            "col": 0,
+            "value": "Coma (cerebral\nmalaria)"
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": "Maintain airway, place patient on his or her side, exclude other\ntreatable causes of coma (e.g. hypoglycaemia, bacterial meningitis);\navoid harmful ancillary treatments, intubate if necessary."
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": "Hyperpyrexia"
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": "Administer tepid sponging, fanning, a cooling blanket and\nparacetamol."
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": "Convulsions"
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": "Maintain airways; treat promptly with intravenous or rectal\ndiazepam, lorazepam, midazolam or intramuscular paraldehyde.\nCheck blood glucose."
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": "Hypoglycaemia"
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": "Check blood glucose, correct hypoglycaemia and maintain with\nglucose-containing infusion. Although hypoglycaemia is defined as\nglucose < 2.2 mmol/L, the threshold for intervention is < 3 mmol/L\nfor children < 5 years and <2.2 mmol/L for older children and adults."
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": "Severe anaemia"
+          },
+          {
+            "row": 4,
+            "col": 1,
+            "value": "Transfuse with screened fresh whole blood."
+          },
+          {
+            "row": 5,
+            "col": 0,
+            "value": "Acute pulmonary\noedemab"
+          },
+          {
+            "row": 5,
+            "col": 1,
+            "value": "Prop patient up at an angle of 45o, give oxygen, give a diuretic, stop\nintravenous fluids, intubate and add positive end-expiratory pressure\nor continuous positive airway pressure in life-threatening\nhypoxaemia."
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "value": "Acute kidney injury"
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "value": "Exclude pre-renal causes, check fluid balance and urinary sodium; if\nin established renal failure, add haemofiltration or haemodialysis, or,\nif not available, peritoneal dialysis."
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": "Spontaneous bleeding\nand coagulopathy"
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "value": "Transfuse with screened fresh whole blood (cryoprecipitate, fresh\nfrozen plasma and platelets, if available); give vitamin K injection."
+          },
+          {
+            "row": 8,
+            "col": 0,
+            "value": "Metabolic acidosis"
+          },
+          {
+            "row": 8,
+            "col": 1,
+            "value": "Exclude or treat hypoglycaemia, hypovolaemia and septicaemia. If\nsevere, add haemofiltration or haemodialysis."
+          }
+        ],
+        "headers": [
+          "Manifestation or\ncomplication",
+          "Immediate managementa"
+        ]
+      }
+    ]
+  },
+  "page_boundary_stitches": [
+    {
+      "pages": [
+        173,
+        174
+      ],
+      "num_rows": 4,
+      "num_cols": 2,
+      "headers": [
+        "Body weight (kg)",
+        "Dose (mg) of artemether + lumefantrine given twice daily for\n3 days"
+      ],
+      "markdown": "| Body weight (kg) | Dose (mg) of artemether + lumefantrine given twice daily for 3 days |\n| --- | --- |\n| < 15 | 20 + 120 |\n| 15 to < 25 | 40 + 240 |\n| 25 to < 35 | 60 + 360 |\n| \u2265 35 | 80 + 480 |",
+      "top_table_rows": 3,
+      "bottom_table_rows": 1
+    }
+  ],
+  "cell_level_comparison": [
+    {
+      "page": 173,
+      "docling_table_idx": 13,
+      "pymupdf_table_idx": 0,
+      "docling_rows": 4,
+      "pymupdf_rows": 4,
+      "total_cells": 8,
+      "matching_cells": 7,
+      "agreement_pct": 87.5,
+      "cell_diffs": [
+        {
+          "row": 0,
+          "col": 1,
+          "docling": "Dose (mg) of artemether + lumefantrine given twice daily for 3 days",
+          "pymupdf": "Dose (mg) of artemether + lumefantrine given twice daily for<br>3 days"
+        }
+      ]
+    },
+    {
+      "page": 174,
+      "docling_table_idx": 14,
+      "pymupdf_table_idx": 1,
+      "docling_rows": 5,
+      "pymupdf_rows": 5,
+      "total_cells": 10,
+      "matching_cells": 10,
+      "agreement_pct": 100.0,
+      "cell_diffs": []
+    },
+    {
+      "page": 175,
+      "docling_table_idx": 15,
+      "pymupdf_table_idx": 0,
+      "docling_rows": 5,
+      "pymupdf_rows": 5,
+      "total_cells": 10,
+      "matching_cells": 10,
+      "agreement_pct": 100.0,
+      "cell_diffs": []
+    },
+    {
+      "page": 175,
+      "docling_table_idx": 16,
+      "pymupdf_table_idx": 1,
+      "docling_rows": 5,
+      "pymupdf_rows": 5,
+      "total_cells": 15,
+      "matching_cells": 13,
+      "agreement_pct": 86.7,
+      "cell_diffs": [
+        {
+          "row": 0,
+          "col": 1,
+          "docling": "Artesunate dose given daily for 3 days (mg)",
+          "pymupdf": "Artesunate dose given daily<br>for 3 days (mg)"
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "docling": "Sulfadoxine / pyrimethamine dose (mg) given as a single dose on day 1",
+          "pymupdf": "Sulfadoxine / pyrimethamine dose<br>(mg) given as a single dose on<br>day 1"
+        }
+      ]
+    },
+    {
+      "page": 176,
+      "docling_table_idx": 17,
+      "pymupdf_table_idx": 0,
+      "docling_rows": 9,
+      "pymupdf_rows": 9,
+      "total_cells": 18,
+      "matching_cells": 17,
+      "agreement_pct": 94.4,
+      "cell_diffs": [
+        {
+          "row": 0,
+          "col": 1,
+          "docling": "Dihydroartemisinin + piperaquine dose (mg) given daily for 3 days",
+          "pymupdf": "Dihydroartemisinin + piperaquine dose (mg) given<br>daily for 3 days"
+        }
+      ]
+    },
+    {
+      "page": 178,
+      "docling_table_idx": 18,
+      "pymupdf_table_idx": 0,
+      "docling_rows": 4,
+      "pymupdf_rows": 4,
+      "total_cells": 8,
+      "matching_cells": 7,
+      "agreement_pct": 87.5,
+      "cell_diffs": [
+        {
+          "row": 1,
+          "col": 0,
+          "docling": "5 to < 25 a",
+          "pymupdf": "5 to < 25a"
+        }
+      ]
+    }
+  ],
+  "classification_refinements": [
+    {
+      "table_index": 5,
+      "page": 29,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 19,
+      "page": 185,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 143,
+      "page": 417,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 144,
+      "page": 417,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 145,
+      "page": 418,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 146,
+      "page": 419,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 147,
+      "page": 420,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 148,
+      "page": 421,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 149,
+      "page": 422,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 150,
+      "page": 423,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 184,
+      "page": 455,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    },
+    {
+      "table_index": 203,
+      "page": 472,
+      "old_classification": "dosing",
+      "new_classification": "structural",
+      "reason": "No numeric weight bands or dose values found"
+    }
+  ],
+  "nll_regeneration": [
+    {
+      "pages": [
+        173,
+        174
+      ],
+      "nll": "IF Body weight (kg) is < 15, THEN Dose (mg) of artemether + lumefantrine given twice daily for 3 days is 20 + 120.\nIF Body weight (kg) is 15 to < 25, THEN Dose (mg) of artemether + lumefantrine given twice daily for 3 days is 40 + 240.\nIF Body weight (kg) is 25 to < 35, THEN Dose (mg) of artemether + lumefantrine given twice daily for 3 days is 60 + 360.\nIF Body weight (kg) is \u2265 35, THEN Dose (mg) of artemether + lumefantrine given twice daily for 3 days is 80 + 480.",
+      "num_rows": 4
+    }
+  ],
+  "accuracy_recheck": {
+    "table_accuracy_pct": 100.0,
+    "table_pass": 7,
+    "table_fail": 0,
+    "table_details": [
+      {
+        "page": 173,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "20 + 120"
+        ],
+        "missing": []
+      },
+      {
+        "page": 174,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "80 + 480"
+        ],
+        "missing": []
+      },
+      {
+        "page": 174,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "25 + 67.5",
+          "200 + 540"
+        ],
+        "missing": []
+      },
+      {
+        "page": 175,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "25 + 55",
+          "200 + 440"
+        ],
+        "missing": []
+      },
+      {
+        "page": 175,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "250 / 12.5",
+          "1500 / 75"
+        ],
+        "missing": []
+      },
+      {
+        "page": 176,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "20 + 160",
+          "200 + 1600"
+        ],
+        "missing": []
+      },
+      {
+        "page": 178,
+        "type": "table",
+        "passed": true,
+        "found": [
+          "3.75",
+          "7.5"
+        ],
+        "missing": []
+      }
+    ],
+    "combined_accuracy_pct": 100.0,
+    "combined_pass": 16,
+    "combined_total": 16
+  },
+  "discrepancies": [
+    {
+      "page": 173,
+      "type": "cell_mismatch",
+      "docling_table_idx": 13,
+      "agreement_pct": 87.5,
+      "n_diffs": 1
+    },
+    {
+      "page": 175,
+      "type": "cell_mismatch",
+      "docling_table_idx": 16,
+      "agreement_pct": 86.7,
+      "n_diffs": 2
+    },
+    {
+      "page": 176,
+      "type": "cell_mismatch",
+      "docling_table_idx": 17,
+      "agreement_pct": 94.4,
+      "n_diffs": 1
+    },
+    {
+      "page": 178,
+      "type": "cell_mismatch",
+      "docling_table_idx": 18,
+      "agreement_pct": 87.5,
+      "n_diffs": 1
+    },
+    {
+      "page": 173,
+      "type": "page_boundary_resolved",
+      "pages": [
+        173,
+        174
+      ],
+      "rows_recovered": 1
+    },
+    {
+      "page": 29,
+      "type": "reclassification",
+      "table_index": 5,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 185,
+      "type": "reclassification",
+      "table_index": 19,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 417,
+      "type": "reclassification",
+      "table_index": 143,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 417,
+      "type": "reclassification",
+      "table_index": 144,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 418,
+      "type": "reclassification",
+      "table_index": 145,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 419,
+      "type": "reclassification",
+      "table_index": 146,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 420,
+      "type": "reclassification",
+      "table_index": 147,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 421,
+      "type": "reclassification",
+      "table_index": 148,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 422,
+      "type": "reclassification",
+      "table_index": 149,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 423,
+      "type": "reclassification",
+      "table_index": 150,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 455,
+      "type": "reclassification",
+      "table_index": 184,
+      "old": "dosing",
+      "new": "structural"
+    },
+    {
+      "page": 472,
+      "type": "reclassification",
+      "table_index": 203,
+      "old": "dosing",
+      "new": "structural"
+    }
+  ],
+  "timings": {
+    "raw_text_verification_s": 0.246,
+    "pymupdf_table_extraction_s": 6.907,
+    "page_boundary_stitching_s": 0.013,
+    "cell_comparison_s": 25.971,
+    "classification_refinement_s": 0.02,
+    "accuracy_recheck_s": 0.0,
+    "nll_regeneration_s": 0.001,
+    "total_s": 33.157
+  }
+}

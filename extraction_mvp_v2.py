@@ -45,6 +45,7 @@ import numpy as np
 from pipeline_config import (
     load_config, get_pdf_path, get_document_title, get_ground_truth,
     get_all_table_keywords, get_benchmark_pages, get_clinical_table_keywords,
+    get_output_dir,
 )
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -54,7 +55,7 @@ CONFIG = load_config()
 PDF_PATH = get_pdf_path(CONFIG)
 BENCHMARK_PAGES = get_benchmark_pages(CONFIG)
 GROUND_TRUTH = get_ground_truth(CONFIG)
-OUTPUT_DIR = Path("extraction_output")
+OUTPUT_DIR = Path(get_output_dir(CONFIG))
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 # ── Speed optimisation settings ───────────────────────────────────────────

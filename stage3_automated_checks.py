@@ -30,13 +30,14 @@ from typing import Optional
 
 from pipeline_config import (
     load_config, get_drug_keywords, get_dose_reference_ranges,
+    get_output_dir,
 )
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 2.  CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
 CONFIG = load_config()
-OUTPUT_DIR = Path("extraction_output")
+OUTPUT_DIR = Path(get_output_dir(CONFIG))
 
 # Weight-band coverage thresholds (kg)
 COVERAGE_PEDIATRIC_LOW = 10.0    # table should start at or below this
