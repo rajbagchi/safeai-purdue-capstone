@@ -22,3 +22,10 @@ extraction_output*/tables_nll.txt
 
 # Claude
 .claude/
+
+# Modular medical pipeline: generated run reports (regenerate with scripts/who_malaria_pipeline_report.py)
+reports/
+
+# Local knowledge bases built by pipeline (optional if created under repo)
+medical_knowledge_base/
+medical_kb_*/
