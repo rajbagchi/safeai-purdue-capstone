@@ -1,28 +1,42 @@
 # WHO Malaria pipeline run report
 
-- **Generated (UTC)**: 2026-03-19T23:10:31.482476+00:00
+- **Generated (UTC)**: 2026-03-19T23:56:20.427900+00:00
 - **Preset**: who-malaria (NIH Bookshelf)
 - **PDF**: `C:\temp\capstone\Bookshelf_NBK588130.pdf`
 - **KB output directory**: `C:\temp\capstone\medical_kb_who_malaria`
-- **Reuse KB flag**: `True`
+- **Reuse KB flag**: `False`
 
 ---
 ## Stage 1: Multi-pass extraction
 
-_Loaded from existing `knowledge_base.json` (pass-level log not in memory)._
-
 | Metric | Value |
 |--------|-------|
-| Pages (summary) | 478 |
-| Tables (summary) | 0 |
-| Extraction passes (summary) | 3 |
+| PDF path | `C:\temp\capstone\Bookshelf_NBK588130.pdf` |
+| Extraction timestamp | 2026-03-19T18:56:03.587250 |
+| Total pages extracted | 478 |
+| Tables extracted | 200 |
+| Embedded images saved | 2 |
+| OCR / manual-review flags | 0 |
+| Cross-validation method | pdfplumber |
+| Cross-validation consistency score | 0.8272014394238952 |
+| Passes logged | 5 |
+
+### Extraction passes
+
+| Pass | Strategy | Details |
+|------|----------|---------|
+| 0 | `analysis` | `{"pass": 0, "strategy": "analysis", "profile_pages_sample": "[{'page': 1, 'text_length': 0, 'has_images': False, 'has_vector_graphics': True}"}` |
+| 1 | `text_extraction` | `{"pass": 1, "strategy": "text_extraction", "pages": 478}` |
+| 2 | `table_extraction` | `{"pass": 2, "strategy": "table_extraction", "tables_found": 200}` |
+| 4 | `cross_validation` | `{"pass": 4, "strategy": "cross_validation", "results": {"method": "pdfplumber", "page_matches": [{"page": 2, "similarity": 0.9791284403669723}, {"page": 3, "similarity": 0.983258352385869}, {"page": 4, "similarity": 0.9833528722157092}, {"p` |
+| images | `embedded_raster` | `{"pass": "images", "strategy": "embedded_raster", "images_saved": 2}` |
 
 ## Stage 2: Validation
 
 ### Overall
 
 - **Passed (threshold)**: False
-- **Confidence**: -8.00%
+- **Confidence**: 70.54%
 - **Needs human review**: True
 
 ### Structure
@@ -49,17 +63,13 @@ _Loaded from existing `knowledge_base.json` (pass-level log not in memory)._
 ```json
 {
   "stage": "tables",
-  "passed": false,
-  "issues": [
-    "Document estimated 1 tables but none extracted"
-  ],
-  "confidence": 0.3,
-  "suggestions": [
-    "Review tables with low confidence"
-  ],
+  "passed": true,
+  "issues": [],
+  "confidence": 1.0,
+  "suggestions": [],
   "metadata": {
-    "tables_extracted": 0,
-    "valid_tables": 0
+    "tables_extracted": 200,
+    "valid_tables": 200
   }
 }
 ```
@@ -69,12 +79,16 @@ _Loaded from existing `knowledge_base.json` (pass-level log not in memory)._
 ```json
 {
   "stage": "cross_consistency",
-  "passed": true,
-  "issues": [],
-  "confidence": 1.0,
-  "suggestions": [],
+  "passed": false,
+  "issues": [
+    "Low cross-validation consistency: 82.7%"
+  ],
+  "confidence": 0.8272014394238952,
+  "suggestions": [
+    "Review pages with low consistency scores"
+  ],
   "metadata": {
-    "consistency_score": 1.0
+    "consistency_score": 0.8272014394238952
   }
 }
 ```
@@ -113,6 +127,76 @@ _Loaded from existing `knowledge_base.json` (pass-level log not in memory)._
   "stage": "human_review",
   "passed": false,
   "issues": [
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
+    "Dosing accuracy critical - requires human verification",
     "Safety-critical information - verify accuracy",
     "Safety-critical information - verify accuracy",
     "Safety-critical information - verify accuracy",
@@ -158,209 +242,51 @@ _Loaded from existing `knowledge_base.json` (pass-level log not in memory)._
     "Safety-critical information - verify accuracy",
     "Safety-critical information - verify accuracy"
   ],
-  "confidence": -3.4000000000000004,
+  "confidence": 0.0,
   "suggestions": [
     "Prioritize flagged items for manual review"
   ],
   "metadata": {
     "items_for_review": [
       {
-        "type": "contraindication",
-        "page": 7,
-        "reason": "Safety-critical information - verify accuracy"
+        "type": "dosing_table",
+        "page": 28,
+        "reason": "Dosing accuracy critical - requires human verification"
       },
       {
-        "type": "contraindication",
-        "page": 8,
-        "reason": "Safety-critical information - verify accuracy"
+        "type": "dosing_table",
+        "page": 29,
+        "reason": "Dosing accuracy critical - requires human verification"
       },
       {
-        "type": "contraindication",
-        "page": 9,
-        "reason": "Safety-critical information - verify accuracy"
+        "type": "dosing_table",
+        "page": 173,
+        "reason": "Dosing accuracy critical - requires human verification"
       },
       {
-        "type": "contraindication",
-        "page": 10,
-        "reason": "Safety-critical information - verify accuracy"
+        "type": "dosing_table",
+        "page": 174,
+        "reason": "Dosing accuracy critical - requires human verification"
       },
       {
-        "type": "contraindication",
-        "page": 14,
-        "reason": "Safety-critical information - verify accuracy"
+        "type": "dosing_table",
+        "page": 175,
+        "reason": "Dosing accuracy critical - requires human verification"
       },
       {
-        "type": "contraindication",
-        "page": 17,
-        "reason": "Safety-critical information - verify accuracy"
+        "type": "dosing_table",
+        "page": 175,
+        "reason": "Dosing accuracy critical - requires human verification"
       },
       {
-        "type": "contraindication",
-        "page": 20,
-        "reason": "Safety-critical information - verify accuracy"
+        "type": "dosing_table",
+        "page": 176,
+        "reason": "Dosing accuracy critical - requires human verification"
       },
       {
-        "type": "contraindication",
-        "page": 24,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 25,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 54,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 61,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 65,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 72,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 83,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 85,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 94,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 104,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 110,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 115,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 119,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 120,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 125,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 131,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 139,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 143,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 147,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 151,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 155,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 156,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 167,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 168,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 172,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 185,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 188,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 191,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 192,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 203,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 209,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
-        "type": "contraindication",
-        "page": 214,
-        "reason": "Safety-critical information - verify accuracy"
-      },
-      {
- 
+        "type": "dosing_table",
+        "page": 178,
+        "reason": "Dosing accuracy critical - requir
 ... (truncated)
 ```
 
@@ -368,26 +294,26 @@ _Loaded from existing `knowledge_base.json` (pass-level log not in memory)._
 
 | Metric | Value |
 |--------|-------|
-| Total chunks | 954 |
-| Chunks with tables | 0 |
+| Total chunks | 5534 |
+| Chunks with tables | 4738 |
 
 ### Sample chunk headings (first 15)
 
 - p.2 — **WHO guidelines for malaria - 13 August 2025**
+- p.2 — **Contact**
+- p.2 — **Sponsors/Funding**
+- p.2 — **Disclaimer**
 - p.2 — **2025**
+- p.2 — **Suggested citation**
+- p.2 — **Cataloguing-in-Publication (CIP) data.**
+- p.2 — **Sales, rights and licensing.**
+- p.2 — **Third-party materials.**
 - p.2 — **isclaimers.**
 - p.3 — **Sections**
 - p.4 — **Untitled**
 - p.5 — **Pyrethroid-only nets (2019)**
 - p.5 — **Pyrethroid-PBO ITNs (2022)**
 - p.6 — **Untitled**
-- p.6 — **Pyrethroid-chlorfenapyr ITNs vs pyrethroid-PBO ITNs (2023)**
-- p.6 — **Pyrethroid-pyriproxyfen ITNs vs pyrethroid-only LLINs (2023)**
-- p.7 — **Insecticide-treated nets: Humanitarian emergency setting (2022)**
-- p.7 — **Achieving and maintaining optimal coverage with ITNs for malaria prevention and **
-- p.7 — **Management of old ITNs (2019)**
-- p.8 — **Indoor residual spraying: Humanitarian emergency setting (2022)**
-- p.8 — **Prioritize optimal coverage with either ITNs or IRS over combination (2019)**
 
 ## Stage 4: Guardrail brain
 
@@ -402,11 +328,11 @@ BM25 top-5 excerpts per query; guardrail summary below each.
 > What is the treatment for uncomplicated Plasmodium falciparum malaria?
 
 **Sources (top hits)**
-- Page 170: Artesunate-pyronaridine for uncomplicated malaria (2022)
-- Page 17: Artesunate-pyronaridine for uncomplicated malaria (2022)
+- Page 437: References
+- Page 308: Untitled
+- Page 435: References
 - Page 190: knowlesi
-- Page 185: Justification
-- Page 190: Justification
+- Page 310: Untitled
 
 **Response**
 
@@ -415,53 +341,47 @@ BM25 top-5 excerpts per query; guardrail summary below each.
 
 **Question:** What is the treatment for uncomplicated Plasmodium falciparum malaria?
 
-### 1. Artesunate-pyronaridine for uncomplicated malaria (2022)
+### 1. References
 
-### Artesunate-pyronaridine for uncomplicated malaria (2022)
+### References
 
-Artesunate-pyronaridine for uncomplicated malaria (2022)
+References
 
-Artesunate-pyronaridine (ASPY) is recommended as an artemisinin-based combination therapy option for the treatment of
+219. Pryce J, Taylor M, Fox T, Hine P. Pyronaridine-artesunate for treating uncomplicated Plasmodium falciparum malaria.
 
-uncomplicated P. falciparum malaria.
+Cochrane Database Syst Rev 2022;6(6) Pubmed Journal...
 
-•
+📄 **Reference:** Page 437
 
-ASPY should be avoided by individuals with known liver disease (clinically apparent liver disease) because ASPY is
+### 2. Untitled
 
-associated with liver transaminitis.
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
-•
+220. . The effect of dosing regimens on the antimalarial efficacy of dihydroartemisinin-piperaquine: a pooled analysis of individual patient
 
-Pharmacovigilance should be strengthened where ASPY is used for...
+data. PLoS medicine 2013;10(12):e1001564; discussion e1001564 Pubmed Journal
 
-📄 **Reference:** Page 170
+221. Graves PM, Gelband H, Garner P. Primaquine or other 8-aminoquinoline for reducing P. falciparum transmission. The Cochrane
 
-### 2. Artesunate-pyronaridine for uncomplicated malaria (2022)
+database of systematic reviews 2014;(6):CD008152 Pubmed Journal
 
-### Artesunate-pyronaridine for uncomplicated malaria (2022)
+222. Wh...
 
-Artesunate-pyronaridine for uncomplicated malaria (2022)
+📄 **Reference:** Page 308
 
-Artesunate-pyronaridine (ASPY) is recommended as an artemisinin-based combination therapy option for the
+### 3. References
 
-treatment of uncomplicated P. falciparum malaria.
+### References
 
-Remark:
+References
 
-•
+219. Pryce J, Taylor M, Fox T, Hine P. Pyronaridine-artesunate for treating uncomplicated Plasmodium falciparum malaria.
 
-ASPY should be avoided by individuals with known liver disease (clinically apparent liver disease) because ASPY is
+Cochrane Database Syst Rev 2022;6(6) Pubmed Journal...
 
-associated with liver transaminitis.
+📄 **Reference:** Page 435
 
-•
-
-Pharmacovigilance should be strengthened where ASPY is...
-
-📄 **Reference:** Page 17
-
-### 3. knowlesi
+### 4. knowlesi
 
 ### knowlesi
 
@@ -479,41 +399,21 @@ Mauritania and ...
 
 📄 **Reference:** Page 190
 
-### 4. Justification
+### 5. Untitled
 
-### Justification
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
-Justification
+in early infancy. Clinical infectious diseases : an official publication of the Infectious Diseases Society of America 2009;48(12):1704-12
 
-The GDG reached a consensus on a strong recommendation for artemether-lumefantrine as the preferred treatment of
+Pubmed Journal
 
-uncomplicated Plasmodium falciparum malaria during the first trimester of pregnancy, despite the low certainty of evidence
+256. Genton B, D'Acremont V, Rare L, Baea K, Reeder JC, Alpers MP, et al. Plasmodium vivax and mixed infections are associated with
 
-because:
+severe malaria in children: a prospective cohort study from Papua New Guinea. PLoS medicine 2008;5(6):e127 Pubmed Journal
 
-•
+257. Koch...
 
-there was a large magnitude of beneficial effect of treatment on efficacy (demonstrated in the second and third
-
-trimesters of pregnancy), specifically a six-fold reduction in treatment failures following artemether...
-
-📄 **Reference:** Page 185
-
-### 5. Justification
-
-### Justification
-
-Justification
-
-In falciparum malaria, the risk for progression to severe malaria with vital organ dysfunction increases at higher parasite
-
-densities. In low-transmission settings, mortality begins to increase when the parasite density exceeds 100 000/µL (~2%
-
-parasitaemia). On the north-west border of Thailand, before the general introduction of ACT, parasitaemia > 4% without
-
-signs of severity was associated with a 3% mortality rate (about 30-times higher than from uncomplic...
-
-📄 **Reference:** Page 190
+📄 **Reference:** Page 310
 
 
 ---
@@ -526,7 +426,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 17, Page 170, Page 185, Page 190
+Citations: Page 190, Page 308, Page 310, Page 435, Page 437
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -543,10 +443,10 @@ Citations: Page 17, Page 170, Page 185, Page 190
 
 **Sources (top hits)**
 - Page 226: Considerations in use of artemisinin-based combination therapy
-- Page 168: Artemisinin-based combination therapy (2015)
-- Page 3: Sections
-- Page 170: Untitled
-- Page 203: Tafenoquine as anti-relapse therapy (2024)
+- Page 443: Intervention:
+- Page 443: h
+- Page 443: High
+- Page 443: High
 
 **Response**
 
@@ -569,95 +469,39 @@ to co-blistered or co-dispensed loose tablets and should be used when they are r
 
 📄 **Reference:** Page 226
 
-### 2. Artemisinin-based combination therapy (2015)
+### 2. Intervention:
 
-### Artemisinin-based combination therapy (2015)
+### Intervention:
 
-Artemisinin-based combination therapy (2015)
+Intervention: Artemisinin-based combination therapy...
 
-Children and adults with uncomplicated P. falciparum malaria should be treated with one of the following ACTs*:
+📄 **Reference:** Page 443
 
-•
+### 3. h
 
-artemether-lumefantrine (AL)
+### h
 
-•
+h...
 
-artesunate-amodiaquine (AS+AQ)
+📄 **Reference:** Page 443
 
-•
+### 4. High
 
-artesunate-mefloquine (ASMQ)
+### High
 
-•
+High...
 
-dihydroartemisinin-piperaquine (DHAP)
+📄 **Reference:** Page 443
 
-•
+### 5. High
 
-artesunate + sulfadoxine-pyrimethamine (AS+SP)
+### High
 
-•
+High
 
-artesunate-pyronaridine (ASPY) (2022)
+1...
 
-*Artesunate + sulfadoxine-pyrimethamine and artesunate-...
-
-📄 **Reference:** Page 168
-
-### 3. Sections
-
-## Sections
-
-Sections
-
-Summary of recommendations ........................................................................................................................................................................ 5
-
-1. Abbreviations.............................................................................................................................................................................................. 27
-
-2. Executive summary .................................................
-
-📄 **Reference:** Page 3
-
-### 4. Untitled
-
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
-
-The Guideline Development Group decided to recommend a “menu” of approved combinations from which countries can select
-
-first- and second- line therapies. Modelling studies suggest that having multiple first-line ACTs available for use may help to
-
-prevent or delay the development of resistance.
-
-Recommendation: Dihydroartemisinin + piperaquine is recommended for general use.
-
-A systematic review showed that the dosin...
-
-📄 **Reference:** Page 170
-
-### 5. Tafenoquine as anti-relapse therapy (2024)
-
-### Tafenoquine as anti-relapse therapy (2024)
-
-Tafenoquine as anti-relapse therapy (2024)
-
-Tafenoquine is recommended as an alternative to primaquine (3.5 mg/kg total dose) for preventing relapses of P. vivax in
-
-patients ≥ 2years of age, who have ≥ 70% G6PD activity and who receive chloroquine treatment.
-
-•
-
-These recommendations pertain only to South America.
-
-•
-
-Quantitative or semi-quantitative determination of G6PD activity must be done before tafenoquine administration.
-
-•
-
-Tafenoquine is...
-
-📄 **Reference:** Page 203
+📄 **Reference:** Page 443
 
 
 ---
@@ -670,7 +514,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 3, Page 168, Page 170, Page 203, Page 226
+Citations: Page 226, Page 443
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -687,10 +531,10 @@ Citations: Page 3, Page 168, Page 170, Page 203, Page 226
 
 **Sources (top hits)**
 - Page 403: Publication bias: no serious.
-- Page 210: 5.2.2 Treating severe malaria
 - Page 402: 167
-- Page 214: malaria
 - Page 404: Publication bias: no serious.
+- Page 210: 5.2.2 Treating severe malaria
+- Page 402: Intervention
 
 **Response**
 
@@ -713,23 +557,7 @@ illness in a child brought to a study facility with a measured temperature of 37
 
 📄 **Reference:** Page 403
 
-### 2. 5.2.2 Treating severe malaria
-
-### 5.2.2 Treating severe malaria
-
-5.2.2 Treating severe malaria
-
-Mortality from untreated severe malaria (particularly cerebral malaria) approaches 100%. With prompt, effective antimalarial
-
-treatment and supportive care, the rate falls to 10–20% overall. Within the broad definition of severe malaria some syndromes are
-
-associated with lower mortality rates (e.g. severe anaemia) and others with higher mortality rates (e.g. acidosis). The risk for death
-
-increases in the presence of multiple com...
-
-📄 **Reference:** Page 210
-
-### 3. 167
+### 2. 167
 
 ### 167
 
@@ -755,23 +583,7 @@ with a measured temperature of 37.5°C and P. falciparum asexual parasitaemia at
 
 📄 **Reference:** Page 402
 
-### 4. malaria
-
-### malaria
-
-Treatment of severe P. vivax malaria
-
-Although P. vivax malaria is considered to be benign, with a low case-fatality rate, it may cause a debilitating febrile illness with
-
-progressive anaemia and can also occasionally cause severe disease, as in P. falciparum malaria. Reported manifestations of
-
-severe P. vivax malaria include severe anaemia, thrombocytopenia, acute pulmonary oedema and, less commonly, cerebral
-
-malaria, pancytopenia, jaundice, splenic rupture, haemoglobinuria, acu...
-
-📄 **Reference:** Page 214
-
-### 5. Publication bias: no serious.
+### 3. Publication bias: no serious.
 
 ### Publication bias: no serious.
 
@@ -785,6 +597,38 @@ The study included 450 total participants with three study a...
 
 📄 **Reference:** Page 404
 
+### 4. 5.2.2 Treating severe malaria
+
+### 5.2.2 Treating severe malaria
+
+5.2.2 Treating severe malaria
+
+Mortality from untreated severe malaria (particularly cerebral malaria) approaches 100%. With prompt, effective antimalarial
+
+treatment and supportive care, the rate falls to 10–20% overall. Within the broad definition of severe malaria some syndromes are
+
+associated with lower mortality rates (e.g. severe anaemia) and others with higher mortality rates (e.g. acidosis). The risk for death
+
+increases in the presence of multiple com...
+
+📄 **Reference:** Page 210
+
+### 5. Intervention
+
+### Intervention
+
+Outcome
+
+Timeframe
+
+Study results and
+
+Intervention
+
+Malaria vaccination...
+
+📄 **Reference:** Page 402
+
 
 ---
 
@@ -796,7 +640,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 210, Page 214, Page 402, Page 403, Page 404
+Citations: Page 210, Page 402, Page 403, Page 404
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -814,9 +658,9 @@ Citations: Page 210, Page 214, Page 402, Page 403, Page 404
 **Sources (top hits)**
 - Page 220: Follow-on treatment
 - Page 128: Research needs
-- Page 211: Therapeutic objectives
 - Page 163: 4. Appropriate weight-based dosing
 - Page 177: 5.2.1.2 Recurrent falciparum malaria
+- Page 211: Follow-on treatment
 
 **Response**
 
@@ -859,25 +703,7 @@ discharge death and/or re-admission, and the higher risk of some groups dying so
 
 📄 **Reference:** Page 128
 
-### 3. Therapeutic objectives
-
-### Therapeutic objectives
-
-Therapeutic objectives
-
-The main objective of the treatment of severe malaria is to prevent the patient from dying. Secondary objectives are prevention of
-
-disabilities and prevention of recrudescent infection.
-
-Death from severe malaria often occurs within hours of admission to a hospital or clinic, so it is essential that therapeutic
-
-concentrations of a highly effective antimalarial drug be achieved as soon as possible. Management of severe malaria comprises
-
-mainl...
-
-📄 **Reference:** Page 211
-
-### 4. 4. Appropriate weight-based dosing
+### 3. 4. Appropriate weight-based dosing
 
 ### 4. Appropriate weight-based dosing
 
@@ -893,7 +719,7 @@ patient’s we...
 
 📄 **Reference:** Page 163
 
-### 5. 5.2.1.2 Recurrent falciparum malaria
+### 4. 5.2.1.2 Recurrent falciparum malaria
 
 ### 5.2.1.2 Recurrent falciparum malaria
 
@@ -908,6 +734,22 @@ pharmacokinetics in an individual, or substandard medicines. It is important to 
 or she vomited the previous treatment or...
 
 📄 **Reference:** Page 177
+
+### 5. Follow-on treatment
+
+### Follow-on treatment
+
+Follow-on treatment
+
+The current recommendation of experts is to give parenteral antimalarial drugs for the treatment of severe malaria for a minimum
+
+of 24 h once started (irrespective of the patient’s ability to tolerate oral medication earlier) or until the patient can tolerate oral
+
+medication, before giving the oral follow-up treatment.
+
+After initial parenteral treatment, once the patient can tolerate oral therapy, it is essential to continue and complete treatment...
+
+📄 **Reference:** Page 211
 
 
 ---
@@ -936,11 +778,11 @@ Citations: Page 128, Page 163, Page 177, Page 211, Page 220
 > Pregnancy and malaria treatment recommendations
 
 **Sources (top hits)**
-- Page 108: Implementation
 - Page 185: Feasibility
-- Page 184: Untitled
-- Page 30: Scope
 - Page 302: Untitled
+- Page 30: Scope
+- Page 108: Implementation
+- Page 184: Untitled
 
 **Response**
 
@@ -949,23 +791,7 @@ Citations: Page 128, Page 163, Page 177, Page 211, Page 220
 
 **Question:** Pregnancy and malaria treatment recommendations
 
-### 1. Implementation
-
-### Implementation
-
-Implementation
-
-Please refer to the WHO policy brief for the implementation of intermittent preventive treatment of malaria in pregnancy using
-
-sulfadoxine-pyrimethamine (IPTp-SP) [128] and the WHO recommendations on antenatal care for a positive pregnancy
-
-experience [130]. A field guide on community deployment of intermittent preventive treatment of malaria in pregnancy with
-
-sulfadoxine-pyrimethamine was released in January 2024 [129]. A manual for subnational tailoring of...
-
-📄 **Reference:** Page 108
-
-### 2. Feasibility
+### 1. Feasibility
 
 ### Feasibility
 
@@ -983,23 +809,23 @@ malaria treatment. As observed by national programmes, the contraindicati...
 
 📄 **Reference:** Page 185
 
-### 3. Untitled
+### 2. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
-based therapies, and in how different cultures would value the outcomes being monitored, such
+temperature, and relative humidity: an experimental study in rural Gambia. The Lancet Planetary Health 2018;2(11):e498-e508 Pubmed
 
-as perceptions around early trimester pregnancy losses, low birthweight and anaemia. However,
+Journal Website
 
-artemether-lumefantrine compared to quinine is likely to be a more attractive option because of its
+114. Norms, standards and processes underpinning development of WHO recommendations on vector control. Geneva: World Health
 
-greater availability and the convenience of a shorter, better tolerated treatment. Policy-makers and
+Organization 2020. Website
 
-implementers will obviously ...
+115. Sicuri E, Bardají A, Nhampossa T, Maixenchs M, Nhacolo A, Nhalungo D, et al. Cost-effectiveness of intermittent pr...
 
-📄 **Reference:** Page 184
+📄 **Reference:** Page 302
 
-### 4. Scope
+### 3. Scope
 
 ### Scope
 
@@ -1015,21 +841,37 @@ use of information to drive impact, surveillance, monitoring and evaluation, op.
 
 📄 **Reference:** Page 30
 
+### 4. Implementation
+
+### Implementation
+
+Implementation
+
+Please refer to the WHO policy brief for the implementation of intermittent preventive treatment of malaria in pregnancy using
+
+sulfadoxine-pyrimethamine (IPTp-SP) [128] and the WHO recommendations on antenatal care for a positive pregnancy
+
+experience [130]. A field guide on community deployment of intermittent preventive treatment of malaria in pregnancy with
+
+sulfadoxine-pyrimethamine was released in January 2024 [129]. A manual for subnational tailoring of...
+
+📄 **Reference:** Page 108
+
 ### 5. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
-temperature, and relative humidity: an experimental study in rural Gambia. The Lancet Planetary Health 2018;2(11):e498-e508 Pubmed
+based therapies, and in how different cultures would value the outcomes being monitored, such
 
-Journal Website
+as perceptions around early trimester pregnancy losses, low birthweight and anaemia. However,
 
-114. Norms, standards and processes underpinning development of WHO recommendations on vector control. Geneva: World Health
+artemether-lumefantrine compared to quinine is likely to be a more attractive option because of its
 
-Organization 2020. Website
+greater availability and the convenience of a shorter, better tolerated treatment. Policy-makers and
 
-115. Sicuri E, Bardají A, Nhampossa T, Maixenchs M, Nhacolo A, Nhalungo D, et al. Cost-effectiveness of intermittent pr...
+implementers will obviously ...
 
-📄 **Reference:** Page 302
+📄 **Reference:** Page 184
 
 
 ---
@@ -1060,9 +902,9 @@ Citations: Page 30, Page 108, Page 184, Page 185, Page 302
 **Sources (top hits)**
 - Page 184: Untitled
 - Page 185: Acceptability
-- Page 186: Untitled
-- Page 185: Justification
-- Page 181: Dosing in pregnancy
+- Page 118: Antimalarial medicine
+- Page 173: Remarks
+- Page 173: 5.2.1.1.2 Dosing of ACTs
 
 **Response**
 
@@ -1107,61 +949,54 @@ trimester of pregnancy. O...
 
 📄 **Reference:** Page 185
 
-### 3. Untitled
+### 3. Antimalarial medicine
 
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+### Antimalarial medicine
 
-outcomes in the first trimester of pregnancy;
+Antimalarial medicine
 
-•
+Drug regimens evaluated for IPTsc and found to be effective include SP combined with an aminoquinoline (either AQ or
 
-artemether-lumefantrine had much better tolerability compared to quinine-based therapies; and
+piperaquine), SP+AS, and artemisinin-based combination therapy including an aminoquinoline (AS-AQ or DHAP)1. SP+AQ has
 
-•
+been widely used for chemoprevention in West Africa and has been shown to be efficacious, safe, well tolerated, available and
 
-there is probably increased equity, acceptability and feasibility, resulting from better access to artemether-lumefantrine
+inexpensive. In order to reduce the risk of drug resistance to life-saving drugs, fir...
 
-and more efficient implementation of ACTs compared to quinine-based treatments.
+📄 **Reference:** Page 118
 
-Despite limited exposures to other ACTs (artesunate-amodiaquine, art...
+### 4. Remarks
 
-📄 **Reference:** Page 186
+### Remarks
 
-### 4. Justification
+Remarks
 
-### Justification
+Longer ACT treatment may be required to achieve > 90% cure rate in areas with artemisinin-resistant P. falciparum, but
 
-Justification
+there are insufficient trials to make definitive recommendations. A 3-day course of the artemisinin component of ACTs
 
-The GDG reached a consensus on a strong recommendation for artemether-lumefantrine as the preferred treatment of
+covers two asexual cycles, ensuring that only a small fraction of parasites remain for clearance by the partner drug, thus
 
-uncomplicated Plasmodium falciparum malaria during the first trimester of pregnancy, despite the low certainty of evidence
+reducing the potential development of resistance to the partner drug. Shorter courses (1–2 days) are therefore not
+...
 
-because:
+📄 **Reference:** Page 173
 
-•
+### 5. 5.2.1.1.2 Dosing of ACTs
 
-there was a large magnitude of beneficial effect of treatment on efficacy (demonstrated in the second and third
+### 5.2.1.1.2 Dosing of ACTs
 
-trimesters of pregnancy), specifically a six-fold reduction in treatment failures following artemether...
+5.2.1.1.2 Dosing of ACTs
 
-📄 **Reference:** Page 185
+ACT regimens must ensure optimal dosing to prolong their useful therapeutic life, i.e. to maximize the likelihood of rapid
 
-### 5. Dosing in pregnancy
+clinical and parasitological cure, minimize transmission and retard drug resistance.
 
-### Dosing in pregnancy
+It is essential to achieve effective antimalarial drug concentrations for a sufficient time (exposure) in all target populations in
 
-Dosing in pregnancy
+order to ensure high cure rates. The dosage recommendations below are derived from understanding the ...
 
-Data on the pharmacokinetics of antimalarial agents used during pregnancy are limited. Those available indicate that
-
-pharmacokinetic properties are often altered during pregnancy but that the alterations are insufficient to warrant dose
-
-modifications at this time. With quinine, no significant differences in exposure have been seen during pregnancy. Studies
-
-of the pharmacokinetics of SP used in IPTp in many sites show significantly decreased exposu...
-
-📄 **Reference:** Page 181
+📄 **Reference:** Page 173
 
 
 ---
@@ -1174,7 +1009,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 181, Page 184, Page 185, Page 186
+Citations: Page 118, Page 173, Page 184, Page 185
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -1190,11 +1025,11 @@ Citations: Page 181, Page 184, Page 185, Page 186
 > Prophylaxis for travelers to endemic areas
 
 **Sources (top hits)**
-- Page 103: Untitled
-- Page 102: Protection for travellers to malaria-endemic areas
-- Page 120: Untitled
-- Page 189: 5.2.1.4.4 Non-immune travellers
-- Page 146: Practical info
+- Page 453: Moderate
+- Page 453: Moderate
+- Page 453: Untitled
+- Page 453: Intervention:
+- Page 453: Population:
 
 **Response**
 
@@ -1203,81 +1038,47 @@ Citations: Page 181, Page 184, Page 185, Page 186
 
 **Question:** Prophylaxis for travelers to endemic areas
 
-### 1. Untitled
+### 1. Moderate
 
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+### Moderate
 
-In summary, travellers should start chemoprophylaxis before entering an endemic area, to assess tolerability and, for slowly eliminated
+Moderate
 
-drugs, to build up therapeutic concentrations. Malaria may be prevented by taking drugs that inhibit liver-stage (pre-erythrocytic)
+Due to serious...
 
-development (causal prophylaxis) or drugs that kill asexual blood stages (suppressive prophylaxis). Causal prophylactics (atovaquone
+📄 **Reference:** Page 453
 
-+ proguanil) can ...
+### 2. Moderate
 
-📄 **Reference:** Page 103
+### Moderate
 
-### 2. Protection for travellers to malaria-endemic areas
+Moderate
 
-### Protection for travellers to malaria-endemic areas
+Due to serious...
 
-Protection for travellers to malaria-endemic areas
-
-The primary target for these guidelines is people living in endemic areas and no formal recommendations regarding preventive
-
-chemotherapy are currently included for non-immune people travelling to malaria endemic regions.
-
-People growing up in endemic countries will increasingly be non-immune as malaria control improves. However, epidemiological
-
-changes will be heterogeneous and future g...
-
-📄 **Reference:** Page 102
+📄 **Reference:** Page 453
 
 ### 3. Untitled
 
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)...
 
-IPTsc can be safely given with other medicines and whether there are any additional contraindications as a result. Additionally,
+📄 **Reference:** Page 453
 
-there is a need to consider how to include girls of reproductive age who should not be given certain antimalarials for prophylaxis
+### 4. Intervention:
 
-without first confirming that they are not pregnant (see "Age group' above for further information).
+### Intervention:
 
-IPTsc is not recommended in children with severe acute il...
+Intervention: Chloroquine prophylaxis...
 
-📄 **Reference:** Page 120
+📄 **Reference:** Page 453
 
-### 4. 5.2.1.4.4 Non-immune travellers
+### 5. Population:
 
-### 5.2.1.4.4 Non-immune travellers
+### Population:
 
-5.2.1.4.4 Non-immune travellers
+Population: Malaria-endemic areas...
 
-Travellers who acquire malaria are often non-immune people living in cities in endemic countries with little or no
-
-transmission or are visitors from non-endemic countries travelling to areas with malaria transmission. Both are at higher
-
-risk for severe malaria. In a malaria-endemic country, they should be treated according to national policy, provided the
-
-treatment recommended has a recent proven cure rate > 90%. Travellers...
-
-📄 **Reference:** Page 189
-
-### 5. Practical info
-
-### Practical info
-
-Practical info
-
-MDA without an 8-aminoquinoline medicine may have a short-term (1–3 months) impact on P. vivax transmission. For MDA to
-
-contribute meaningfully towards achievement of malaria elimination, activities must already be in place to capitalize on the
-
-reduction in transmission achieved through the strategy. For that reason, MDA should be implemented as a component of a
-
-robust malaria elimination programme that includes, at minimum, good coverage of case-based surv...
-
-📄 **Reference:** Page 146
+📄 **Reference:** Page 453
 
 
 ---
@@ -1290,7 +1091,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 102, Page 103, Page 120, Page 146, Page 189
+Citations: Page 453
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -1306,11 +1107,11 @@ Citations: Page 102, Page 103, Page 120, Page 146, Page 189
 > Rapid diagnostic test interpretation false positives
 
 **Sources (top hits)**
-- Page 447: Target conditions
-- Page 446: Target condition
 - Page 267: Untitled
-- Page 201: preferences
 - Page 307: Untitled
+- Page 447: Target conditions
+- Page 447: Untitled
+- Page 447: Summary
 
 **Response**
 
@@ -1319,55 +1120,7 @@ Citations: Page 102, Page 103, Page 120, Page 146, Page 189
 
 **Question:** Rapid diagnostic test interpretation false positives
 
-### 1. Target conditions
-
-### Target conditions
-
-•
-
-Patients with malaria who undergoing G6PD testing to inform treatment with primaquine or tafenoquine to prevent
-
-relapses of P. vivax and P. ovale.
-
-•
-
-Index test is semi-quantitative near-patient tests for G6PD.
-
-•
-
-Reference standard is the quality assured G6PD spectrophotometric assay using the adjusted male median (AMM) as
-
-the standardised metric of 100% G6PD activity. For the Standard G6PD biosensor used with the STANDARD G6PD
-
-Analyzer (SB Biosensor, Inc) a suppl...
-
-📄 **Reference:** Page 447
-
-### 2. Target condition
-
-### Target condition
-
-•
-
-Patients with confirmed P. vivax or P. ovale malaria undergoing G6PD testing to inform treatment with primaquine to
-
-prevent relapses.
-
-•
-
-Index test is qualitative near-patient tests for G6PD.
-
-•
-
-Reference standard is quality assured spectrophotometric assay for G6PD. The reference standard value for the studies
-
-included in the systematic review was based on the adjusted male median (AMM) G6PD activity (100% G6PD activity)
-
-calculated for each G6PD spectrophotometric ...
-
-📄 **Reference:** Page 446
-
-### 3. Untitled
+### 1. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
@@ -1393,27 +1146,7 @@ rapid diagnostic ...
 
 📄 **Reference:** Page 267
 
-### 4. preferences
-
-### preferences
-
-Values and
-
-preferences
-
-The contextual factors review included 10 studies on values, mainly for quantitative tests. These
-
-studies found that there is a variation between health care workers in how they value the outcomes of
-
-interest (true and false positive and negative test results plus the subsequent consequences thereof).
-
-Still, governments ask for evidence regarding the value of G6PD testing as a way to prevent
-
-haemolysis cases while still being able to treat patients f...
-
-📄 **Reference:** Page 201
-
-### 5. Untitled
+### 2. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
@@ -1429,6 +1162,52 @@ WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
 📄 **Reference:** Page 307
 
+### 3. Target conditions
+
+### Target conditions
+
+•
+
+Patients with malaria who undergoing G6PD testing to inform treatment with primaquine or tafenoquine to prevent
+
+relapses of P. vivax and P. ovale.
+
+•
+
+Index test is semi-quantitative near-patient tests for G6PD.
+
+•
+
+Reference standard is the quality assured G6PD spectrophotometric assay using the adjusted male median (AMM) as
+
+the standardised metric of 100% G6PD activity. For the Standard G6PD biosensor used with the STANDARD G6PD
+
+Analyzer (SB Biosensor, Inc) a suppl...
+
+📄 **Reference:** Page 447
+
+### 4. Untitled
+
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+
+Qualitative FST and (d) consists of 753 participants assessed by CareStart G6PD enrolled in the Lao People’s Democratic Republic. Henriques 2018 (a) and
+
+(c) were chosen, due to having a more complete sample size.
+
+Bancone 2015(a)excluded from meta-analysis, because Bancone 2015 (a) and (b) use the same participants. Difference between two studies are
+
+that(a) uses capillary blood and (b) uses venous blood samples. Ba...
+
+📄 **Reference:** Page 447
+
+### 5. Summary
+
+### Summary
+
+Summary...
+
+📄 **Reference:** Page 447
+
 
 ---
 
@@ -1440,7 +1219,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 201, Page 267, Page 307, Page 446, Page 447
+Citations: Page 267, Page 307, Page 447
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -1458,8 +1237,8 @@ Citations: Page 201, Page 267, Page 307, Page 446, Page 447
 **Sources (top hits)**
 - Page 208: Primaquine and glucose-6-phosphate dehydrogenase deficiency
 - Page 195: Practical info
-- Page 208: Benefits and harms
 - Page 199: Untitled
+- Page 208: Benefits and harms
 - Page 195: Qualitative near-patient G6PD tests (2024)
 
 **Response**
@@ -1501,7 +1280,23 @@ probability and benefits of preventing relapse against the risks of primaquine-i
 
 📄 **Reference:** Page 195
 
-### 3. Benefits and harms
+### 3. Untitled
+
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+
+In order to prevent relapses of P. vivax and P. ovale, and when the G6PD status of the patient was previously unknown, the
+
+following recommendations are made:
+
+A. If only a qualitative near-patient test for G6PD deficiency is available, tafenoquine single dose treatment or high
+
+dose primaquine (1mg/kg/day for 7 days) should not be given. If by the qualitative test the patient is classified as non-
+
+deficient primaqu...
+
+📄 **Reference:** Page 199
+
+### 4. Benefits and harms
 
 ### Benefits and harms
 
@@ -1530,22 +1325,6 @@ deficiency; in three trials, it was unclear whether participants were tested for
 excluded. None of the trials rep...
 
 📄 **Reference:** Page 208
-
-### 4. Untitled
-
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
-
-In order to prevent relapses of P. vivax and P. ovale, and when the G6PD status of the patient was previously unknown, the
-
-following recommendations are made:
-
-A. If only a qualitative near-patient test for G6PD deficiency is available, tafenoquine single dose treatment or high
-
-dose primaquine (1mg/kg/day for 7 days) should not be given. If by the qualitative test the patient is classified as non-
-
-deficient primaqu...
-
-📄 **Reference:** Page 199
 
 ### 5. Qualitative near-patient G6PD tests (2024)
 
@@ -1597,10 +1376,10 @@ Citations: Page 195, Page 199, Page 208
 
 **Sources (top hits)**
 - Page 159: Certainty of the evidence related to the safety of R21/Matrix-M
-- Page 162: immunization systems.
 - Page 386: Systematic review summary
-- Page 160: The resources required are likely to be comparable to other new vaccine introductions.
-- Page 158: Untitled
+- Page 162: immunization systems.
+- Page 386: RTS,S/AS01 vs
+- Page 386: Summary
 
 **Response**
 
@@ -1625,7 +1404,23 @@ the cont...
 
 📄 **Reference:** Page 159
 
-### 2. immunization systems.
+### 2. Systematic review summary
+
+### Systematic review summary
+
+Systematic review summary
+
+Six studies form the basis of these recommendations: five were individual randomized controlled trials (RCTs) and one was an open-
+
+label extension study of an included RCT. One RCT was a multicentre study evaluating three or four doses of the RTS,S/AS01 malaria
+
+vaccine compared to no malaria vaccination. One RCT evaluated the seasonal administration of RTS,S/AS01 malaria vaccine alone
+
+compared to SMC alone, and also compared a combinat...
+
+📄 **Reference:** Page 386
+
+### 3. immunization systems.
 
 ### immunization systems.
 
@@ -1651,57 +1446,21 @@ All three countries reached ...
 
 📄 **Reference:** Page 162
 
-### 3. Systematic review summary
+### 4. RTS,S/AS01 vs
 
-### Systematic review summary
+### RTS,S/AS01 vs
 
-Systematic review summary
-
-Six studies form the basis of these recommendations: five were individual randomized controlled trials (RCTs) and one was an open-
-
-label extension study of an included RCT. One RCT was a multicentre study evaluating three or four doses of the RTS,S/AS01 malaria
-
-vaccine compared to no malaria vaccination. One RCT evaluated the seasonal administration of RTS,S/AS01 malaria vaccine alone
-
-compared to SMC alone, and also compared a combinat...
+RTS,S/AS01 vs...
 
 📄 **Reference:** Page 386
 
-### 4. The resources required are likely to be comparable to other new vaccine introductions.
+### 5. Summary
 
-### The resources required are likely to be comparable to other new vaccine introductions.
+### Summary
 
-Resources
+Summary...
 
-The resources required are likely to be comparable to other new vaccine introductions.
-
-Mathematical models examined the addition of the vaccine to existing malaria control interventions and
-
-treatment (Full evidence report on the RTS,S/AS01 malaria vaccine, unpublished evidence) [184].
-
-At an assumed RTS,S/AS01 vaccine price of US$ 5 per dose and PfPR2-10 of 10–50%, two different malaria
-
-mode...
-
-📄 **Reference:** Page 160
-
-### 5. Untitled
-
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
-
-◦
-
-Among children who received a combination of RTS,S/AS01 seasonal vaccination and SMC, there
-
-was a substantially greater reduction in clinical malaria (72%; 95% CI: 64–78), compared to SMC
-
-alone, during 12 months of follow-up after the third dose. Results were similar after three years of
-
-follow-up, with significant reductions in clinical malaria (63%; 95% CI: 58–67), hospital admissions
-
-with severe malaria (71%...
-
-📄 **Reference:** Page 158
+📄 **Reference:** Page 386
 
 
 ---
@@ -1714,7 +1473,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 158, Page 159, Page 160, Page 162, Page 386
+Citations: Page 159, Page 162, Page 386
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -1730,11 +1489,11 @@ Citations: Page 158, Page 159, Page 160, Page 162, Page 386
 > Resistance to artemisinin in Southeast Asia
 
 **Sources (top hits)**
-- Page 222: Artemisinin-resistant falciparum malaria
 - Page 226: Untitled
+- Page 222: Artemisinin-resistant falciparum malaria
 - Page 226: Considerations in use of artemisinin-based combination therapy
-- Page 192: P. vivax
 - Page 191: P. vivax
+- Page 192: P. vivax
 
 **Response**
 
@@ -1743,23 +1502,7 @@ Citations: Page 158, Page 159, Page 160, Page 162, Page 386
 
 **Question:** Resistance to artemisinin in Southeast Asia
 
-### 1. Artemisinin-resistant falciparum malaria
-
-### Artemisinin-resistant falciparum malaria
-
-Artemisinin-resistant falciparum malaria
-
-Artemisinin resistance in P. falciparum is now prevalent in parts of Cambodia, the Lao People’s Democratic Republic,
-
-Myanmar, Thailand and Viet Nam. There is currently no evidence for artemisinin resistance outside these areas. The particular
-
-advantage of artemisinins over other antimalarial drugs is that they kill circulating ring-stage parasites and thus accelerate
-
-therapeutic responses. This is lost in ...
-
-📄 **Reference:** Page 222
-
-### 2. Untitled
+### 1. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
@@ -1774,6 +1517,22 @@ testing [207].
 For the diagno...
 
 📄 **Reference:** Page 226
+
+### 2. Artemisinin-resistant falciparum malaria
+
+### Artemisinin-resistant falciparum malaria
+
+Artemisinin-resistant falciparum malaria
+
+Artemisinin resistance in P. falciparum is now prevalent in parts of Cambodia, the Lao People’s Democratic Republic,
+
+Myanmar, Thailand and Viet Nam. There is currently no evidence for artemisinin resistance outside these areas. The particular
+
+advantage of artemisinins over other antimalarial drugs is that they kill circulating ring-stage parasites and thus accelerate
+
+therapeutic responses. This is lost in ...
+
+📄 **Reference:** Page 222
 
 ### 3. Considerations in use of artemisinin-based combination therapy
 
@@ -1801,9 +1560,9 @@ Lower total doses are not recommended, as these encourage the emergence of resis
 
 dose of 10 mg base/kg bw, followed by 10 mg/kg bw on the second day and 5 mg/kg bw on the third day. In the past, the initial
 
-10-mg/kg bw dose was followed by 5 mg/kg bw at 6 h, 24 h and 4...
+10 mg/kg bw dose was followed by 5 mg/kg bw at 6 h, 24 h and 4...
 
-📄 **Reference:** Page 192
+📄 **Reference:** Page 191
 
 ### 5. P. vivax
 
@@ -1817,9 +1576,9 @@ Lower total doses are not recommended, as these encourage the emergence of resis
 
 dose of 10 mg base/kg bw, followed by 10 mg/kg bw on the second day and 5 mg/kg bw on the third day. In the past, the initial
 
-10 mg/kg bw dose was followed by 5 mg/kg bw at 6 h, 24 h and 4...
+10-mg/kg bw dose was followed by 5 mg/kg bw at 6 h, 24 h and 4...
 
-📄 **Reference:** Page 191
+📄 **Reference:** Page 192
 
 
 ---
@@ -1848,11 +1607,11 @@ Citations: Page 191, Page 192, Page 222, Page 226
 > Hypoglycemia in severe malaria
 
 **Sources (top hits)**
+- Page 268: Untitled
+- Page 458: Population:
 - Page 211: Treatment of severe malaria
-- Page 214: malaria
-- Page 214: Treatment of severe malaria during pregnancy
+- Page 386: Systematic review summary
 - Page 157: Benefits and harms
-- Page 215: GRADE
 
 **Response**
 
@@ -1861,7 +1620,39 @@ Citations: Page 191, Page 192, Page 222, Page 226
 
 **Question:** Hypoglycemia in severe malaria
 
-### 1. Treatment of severe malaria
+### 1. Untitled
+
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+
+severe anaemia
+
+Haemoglobin concentration of < 5 g/100 mL (haematocrit < 15%)
+
+severe falciparum
+
+malaria
+
+Acute falciparum malaria with signs of severe illness and/or evidence of vital organ dysfunction
+
+single-dose regimen
+
+Administration of a medicine as a single dose to achieve a therapeutic objective
+
+slide positivity rate
+
+Proportion of blood smears found to be positive for Plasmodium among all blood smears exam...
+
+📄 **Reference:** Page 268
+
+### 2. Population:
+
+### Population:
+
+Population: Children with severe malaria (malaria-endemic countries)...
+
+📄 **Reference:** Page 458
+
+### 3. Treatment of severe malaria
 
 ### Treatment of severe malaria
 
@@ -1877,39 +1668,23 @@ Parenteral artesunate is the trea...
 
 📄 **Reference:** Page 211
 
-### 2. malaria
+### 4. Systematic review summary
 
-### malaria
+### Systematic review summary
 
-Treatment of severe P. vivax malaria
+Systematic review summary
 
-Although P. vivax malaria is considered to be benign, with a low case-fatality rate, it may cause a debilitating febrile illness with
+Six studies form the basis of these recommendations: five were individual randomized controlled trials (RCTs) and one was an open-
 
-progressive anaemia and can also occasionally cause severe disease, as in P. falciparum malaria. Reported manifestations of
+label extension study of an included RCT. One RCT was a multicentre study evaluating three or four doses of the RTS,S/AS01 malaria
 
-severe P. vivax malaria include severe anaemia, thrombocytopenia, acute pulmonary oedema and, less commonly, cerebral
+vaccine compared to no malaria vaccination. One RCT evaluated the seasonal administration of RTS,S/AS01 malaria vaccine alone
 
-malaria, pancytopenia, jaundice, splenic rupture, haemoglobinuria, acu...
+compared to SMC alone, and also compared a combinat...
 
-📄 **Reference:** Page 214
+📄 **Reference:** Page 386
 
-### 3. Treatment of severe malaria during pregnancy
-
-### Treatment of severe malaria during pregnancy
-
-Treatment of severe malaria during pregnancy
-
-Women in the second and third trimesters of pregnancy are more likely to have severe malaria than other adults, and, in low-
-
-transmission settings, this is often complicated by pulmonary oedema and hypoglycaemia. Maternal mortality is approximately
-
-50%, which is higher than in non-pregnant adults. Fetal death and premature labour are common.
-
-Parenteral antimalarial drugs should be given to pregnant...
-
-📄 **Reference:** Page 214
-
-### 4. Benefits and harms
+### 5. Benefits and harms
 
 ### Benefits and harms
 
@@ -1927,28 +1702,6 @@ programmes in Ghana, Kenya and Malawi r...
 
 📄 **Reference:** Page 157
 
-### 5. GRADE
-
-### GRADE
-
-GRADE
-
-In a systematic review of artesunate for severe malaria [281], eight randomized controlled trials with a total of 1664 adults and
-
-5765 children, directly compared parenteral artesunate with parenteral quinine. The trials were conducted in various African
-
-and Asian countries between 1989 and 2010.
-
-In comparison with quinine, parenteral artesunate:
-
-•
-
-reduced mortality from severe malaria by about 40% in adults (RR, 0.61; 95% CI, 0.50–0.75, five trials, 1664 participants,
-
-hi...
-
-📄 **Reference:** Page 215
-
 
 ---
 
@@ -1960,7 +1713,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 157, Page 211, Page 214, Page 215
+Citations: Page 157, Page 211, Page 268, Page 386, Page 458
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -1977,9 +1730,9 @@ Citations: Page 157, Page 211, Page 214, Page 215
 
 **Sources (top hits)**
 - Page 213: Additional aspects of management
-- Page 218: Benefits and harms
+- Page 212: Management of complications
 - Page 211: Clinical assessment
-- Page 215: GRADE
+- Page 218: Benefits and harms
 - Page 404: Publication bias: no serious.
 
 **Response**
@@ -2007,7 +1760,37 @@ metabolic...
 
 📄 **Reference:** Page 213
 
-### 2. Benefits and harms
+### 2. Management of complications
+
+### Management of complications
+
+Management of complications
+
+Severe malaria is associated with a variety of manifestations and complications, which must be recognized promptly and treated
+
+as shown below.
+
+Immediate clinical management of severe manifestations and complications of P. falciparum malaria...
+
+📄 **Reference:** Page 212
+
+### 3. Clinical assessment
+
+### Clinical assessment
+
+Clinical assessment
+
+Severe malaria is a medical emergency. An open airway should be secured in unconscious patients and breathing and circulation
+
+assessed. The patient should be weighed or body weight estimated, so that medicines, including antimalarial drugs and fluids, can
+
+be given appropriately. An intravenous cannula should be inserted, and blood glucose (rapid test), haematocrit or haemoglobin,
+
+parasitaemia and, in adults, renal function should be measured immed...
+
+📄 **Reference:** Page 211
+
+### 4. Benefits and harms
 
 ### Benefits and harms
 
@@ -2032,44 +1815,6 @@ No randomized controlled trials have been conducted in children aged ≤ 12 year
 Is intramuscular artemether superior to parenteral quinine in preventing death from severe malaria...
 
 📄 **Reference:** Page 218
-
-### 3. Clinical assessment
-
-### Clinical assessment
-
-Clinical assessment
-
-Severe malaria is a medical emergency. An open airway should be secured in unconscious patients and breathing and circulation
-
-assessed. The patient should be weighed or body weight estimated, so that medicines, including antimalarial drugs and fluids, can
-
-be given appropriately. An intravenous cannula should be inserted, and blood glucose (rapid test), haematocrit or haemoglobin,
-
-parasitaemia and, in adults, renal function should be measured immed...
-
-📄 **Reference:** Page 211
-
-### 4. GRADE
-
-### GRADE
-
-GRADE
-
-In a systematic review of artesunate for severe malaria [281], eight randomized controlled trials with a total of 1664 adults and
-
-5765 children, directly compared parenteral artesunate with parenteral quinine. The trials were conducted in various African
-
-and Asian countries between 1989 and 2010.
-
-In comparison with quinine, parenteral artesunate:
-
-•
-
-reduced mortality from severe malaria by about 40% in adults (RR, 0.61; 95% CI, 0.50–0.75, five trials, 1664 participants,
-
-hi...
-
-📄 **Reference:** Page 215
 
 ### 5. Publication bias: no serious.
 
@@ -2096,7 +1841,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 211, Page 213, Page 215, Page 218, Page 404
+Citations: Page 211, Page 212, Page 213, Page 218, Page 404
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -2114,9 +1859,9 @@ Citations: Page 211, Page 213, Page 215, Page 218, Page 404
 **Sources (top hits)**
 - Page 213: Additional aspects of management
 - Page 128: Untitled
-- Page 120: mortality
 - Page 235: Research needs
-- Page 114: Seasonal malaria chemoprevention (2022)
+- Page 245: Research needs
+- Page 150: Research needs
 
 **Response**
 
@@ -2157,25 +1902,7 @@ included in the review. All the trials were con...
 
 📄 **Reference:** Page 128
 
-### 3. mortality
-
-### mortality
-
-None of the studies that met the inclusion criteria for the review systematically collected data on school
-
-attendance, severe malaria, hospital admissions (all-cause and malaria-specific), or mortality (all-
-
-cause and malaria-specific)2.
-
-More information on the evidence can be found in the systematic review [145].
-
-1 Adjusted for age, sex and transmission intensity.
-
-2 School achievement was not ranked by the GDG as a critical outcome and therefore was not considered. However, ...
-
-📄 **Reference:** Page 120
-
-### 4. Research needs
+### 3. Research needs
 
 ### Research needs
 
@@ -2195,23 +1922,49 @@ level) and potential harms/unintended consequences (death, hospital admission, s
 
 📄 **Reference:** Page 235
 
-### 5. Seasonal malaria chemoprevention (2022)
+### 4. Research needs
 
-### Seasonal malaria chemoprevention (2022)
+### Research needs
 
-Seasonal malaria chemoprevention (2022)
-
-In areas of seasonal malaria transmission, children belonging to age groups at high risk of severe malaria should be given
-
-antimalarial medicines during peak malaria transmission seasons to reduce disease burden.
+Research needs
 
 •
 
-Eligibility for seasonal malaria chemoprevention (SMC) is defined by the seasonality of malaria transmission and age groups
+Further evidence is needed on the impact (prevalence and incidence of malaria infection at the community level) and potential
 
-at risk of severe malaria. Thresholds for assessing these criteria chan...
+harms/unintended consequences of RDA.
 
-📄 **Reference:** Page 114
+•
+
+Evidence is needed on the acceptability, feasibility, impact (prevalence and incidence of malaria infection at the community
+
+level) and potential harms/unintended consequences (death, hospital admission, severe anaemia or any severe adverse
+
+event) of safe provision (including testing for G...
+
+📄 **Reference:** Page 245
+
+### 5. Research needs
+
+### Research needs
+
+Research needs
+
+•
+
+Further evidence is needed on the impact (incidence or prevalence of malaria infection at the community level) and
+
+potential harms/ unintended consequences of MDA for P. vivax.
+
+•
+
+Evidence is needed on the acceptability, feasibility, impact (incidence or prevalence of malaria infection at the community
+
+level) and potential harms/unintended consequences (death, hospital admission, severe anaemia or any severe adverse
+
+event) of safe provision (including t...
+
+📄 **Reference:** Page 150
 
 
 ---
@@ -2224,7 +1977,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 114, Page 120, Page 128, Page 213, Page 235
+Citations: Page 128, Page 150, Page 213, Page 235, Page 245
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -2241,10 +1994,10 @@ Citations: Page 114, Page 120, Page 128, Page 213, Page 235
 
 **Sources (top hits)**
 - Page 210: 5.2.2 Treating severe malaria
+- Page 212: Continuing supportive care
 - Page 220: Continuing supportive care
 - Page 211: Therapeutic objectives
 - Page 411: Publication bias: no serious.
-- Page 167: Management of seizures
 
 **Response**
 
@@ -2279,6 +2032,22 @@ Patients with severe malaria require intensive nursing care, preferably in an in
 
 observations should be made as frequently
 
+as possible and should include monitoring of vital signs, coma score and urine output.
+
+Blood glucose should be monitored every 4 h, if possible, particularly in unconscious patients....
+
+📄 **Reference:** Page 212
+
+### 3. Continuing supportive care
+
+### Continuing supportive care
+
+Continuing supportive care
+
+Patients with severe malaria require intensive nursing care, preferably in an intensive care unit where possible. Clinical
+
+observations should be made as frequently
+
 as possible and should include monitoring of vital signs, coma score and urine
 
 output. Blood glucose should be monitored every 4 h, if possible, particularly in unconscious patients.
@@ -2287,7 +2056,7 @@ Please refer to The use of rectal artesunate as a pre-referral treatment for sev
 
 📄 **Reference:** Page 220
 
-### 3. Therapeutic objectives
+### 4. Therapeutic objectives
 
 ### Therapeutic objectives
 
@@ -2305,7 +2074,7 @@ mainl...
 
 📄 **Reference:** Page 211
 
-### 4. Publication bias: no serious.
+### 5. Publication bias: no serious.
 
 ### Publication bias: no serious.
 
@@ -2321,22 +2090,6 @@ Unresponsive”). Pilot ...
 
 📄 **Reference:** Page 411
 
-### 5. Management of seizures
-
-### Management of seizures
-
-Management of seizures
-
-Generalized seizures are more common in children with P. falciparum malaria than in those with malaria due to other species. This
-
-suggests an overlap between the cerebral pathology resulting from falciparum malaria and febrile convulsions. As seizures may
-
-be a prodrome of cerebral malaria, patients who have more than two seizures within a 24 h period should be treated as for severe
-
-malaria. If the seizures continue, the airways should be mai...
-
-📄 **Reference:** Page 167
-
 
 ---
 
@@ -2348,7 +2101,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 167, Page 210, Page 211, Page 220, Page 411
+Citations: Page 210, Page 211, Page 212, Page 220, Page 411
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -2364,11 +2117,11 @@ Citations: Page 167, Page 210, Page 211, Page 220, Page 411
 > Artesunate dose for severe malaria IV
 
 **Sources (top hits)**
-- Page 211: Treatment of severe malaria
 - Page 155: Schedule
+- Page 211: Treatment of severe malaria
 - Page 22: Untitled
+- Page 217: Artemether
 - Page 220: Pre-referral treatment options (2015)
-- Page 311: Untitled
 
 **Response**
 
@@ -2377,23 +2130,7 @@ Citations: Page 167, Page 210, Page 211, Page 220, Page 411
 
 **Question:** Artesunate dose for severe malaria IV
 
-### 1. Treatment of severe malaria
-
-### Treatment of severe malaria
-
-Treatment of severe malaria
-
-It is essential that full doses of effective parenteral (or rectal) antimalarial treatment be given promptly in the initial treatment of
-
-severe malaria. This should be followed by a full dose of effective ACT orally. Two classes of medicine are available for parenteral
-
-treatment of severe malaria: artemisinin derivatives (artesunate or artemether) and the cinchona alkaloids (quinine and quinidine).
-
-Parenteral artesunate is the trea...
-
-📄 **Reference:** Page 211
-
-### 2. Schedule
+### 1. Schedule
 
 ### Schedule
 
@@ -2411,6 +2148,22 @@ The minimum interval between any doses is four weeks; however, to achieve prolon
 
 📄 **Reference:** Page 155
 
+### 2. Treatment of severe malaria
+
+### Treatment of severe malaria
+
+Treatment of severe malaria
+
+It is essential that full doses of effective parenteral (or rectal) antimalarial treatment be given promptly in the initial treatment of
+
+severe malaria. This should be followed by a full dose of effective ACT orally. Two classes of medicine are available for parenteral
+
+treatment of severe malaria: artemisinin derivatives (artesunate or artemether) and the cinchona alkaloids (quinine and quinidine).
+
+Parenteral artesunate is the trea...
+
+📄 **Reference:** Page 211
+
 ### 3. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
@@ -2427,7 +2180,23 @@ Where intramuscular injection of artesunate is n...
 
 📄 **Reference:** Page 22
 
-### 4. Pre-referral treatment options (2015)
+### 4. Artemether
+
+### Artemether
+
+Artemether
+
+Artemether is two to three times less active than its main metabolite dihydroartemisinin. Artemether can be given as an oil-
+
+based intramuscular injection or orally. In severe falciparum malaria, the concentration of the parent compound predominates
+
+after intramuscular injection, whereas parenteral artesunate is hydrolysed rapidly and almost completely to dihydroartemisinin.
+
+Given intramuscularly, artemether may be absorbed more slowly and more erratically than wat...
+
+📄 **Reference:** Page 217
+
+### 5. Pre-referral treatment options (2015)
 
 ### Pre-referral treatment options (2015)
 
@@ -2443,22 +2212,6 @@ Where intramuscular injection of artesunate is...
 
 📄 **Reference:** Page 220
 
-### 5. Untitled
-
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
-
-272. Verma R, Commons RJ, Gupta A, Rahi M, Nitika, Bharti PK, et al. Safety and efficacy of primaquine in patients with Plasmodium
-
-vivax malaria from South Asia: a systematic review and individual patient data meta-analysis. BMJ global health 2023;8(12) Pubmed
-
-Journal
-
-273. Mehdipour P, Rajasekhar M, Dini S, Zaloumis S, Abreha T, Adam I, et al. Effect of adherence to primaquine on the risk of
-
-Plasmodium vivax recur...
-
-📄 **Reference:** Page 311
-
 
 ---
 
@@ -2470,7 +2223,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 22, Page 155, Page 211, Page 220, Page 311
+Citations: Page 22, Page 155, Page 211, Page 217, Page 220
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -2488,9 +2241,9 @@ Citations: Page 22, Page 155, Page 211, Page 220, Page 311
 **Sources (top hits)**
 - Page 219: 5.2.2.3 Pre-referral treatment options
 - Page 221: GRADE
+- Page 187: Untitled
 - Page 220: Pre-referral treatment options (2015)
 - Page 221: Other considerations
-- Page 187: Untitled
 
 **Response**
 
@@ -2541,7 +2294,23 @@ Recta...
 
 📄 **Reference:** Page 221
 
-### 3. Pre-referral treatment options (2015)
+### 3. Untitled
+
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+
+exposure in this vulnerable population. The available evidence for artemether + lumefantrine, SP and chloroquine does not
+
+indicate dose modification at this time, but young children should be closely monitored, as reduced drug exposure may
+
+increase the risk for treatment failure. Limited studies of amodiaquine and mefloquine showed no significant effect of age
+
+on plasma concentration profiles.
+
+In community situati...
+
+📄 **Reference:** Page 187
+
+### 4. Pre-referral treatment options (2015)
 
 ### Pre-referral treatment options (2015)
 
@@ -2557,7 +2326,7 @@ Where intramuscular injection of artesunate is...
 
 📄 **Reference:** Page 220
 
-### 4. Other considerations
+### 5. Other considerations
 
 ### Other considerations
 
@@ -2572,22 +2341,6 @@ clarification but are unlikely to be done. The group was therefore unable to rec
 In the absence of direct evaluations of parenteral antimalarial drugs for pre- referral ...
 
 📄 **Reference:** Page 221
-
-### 5. Untitled
-
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
-
-exposure in this vulnerable population. The available evidence for artemether + lumefantrine, SP and chloroquine does not
-
-indicate dose modification at this time, but young children should be closely monitored, as reduced drug exposure may
-
-increase the risk for treatment failure. Limited studies of amodiaquine and mefloquine showed no significant effect of age
-
-on plasma concentration profiles.
-
-In community situati...
-
-📄 **Reference:** Page 187
 
 
 ---
@@ -2618,9 +2371,9 @@ Citations: Page 187, Page 219, Page 220, Page 221
 **Sources (top hits)**
 - Page 188: 5.2.1.4.3 Patients co-infected with HIV
 - Page 156: Vaccination of special populations
-- Page 164: Diagnosis of malaria
 - Page 230: Acceptability
-- Page 3: Sections
+- Page 443: 5.2.1.4.3. Patients co-infected with HIV
+- Page 164: Diagnosis of malaria
 
 **Response**
 
@@ -2661,25 +2414,7 @@ exposed or in HIV-infected infants and children, and in malnourished infants and
 
 📄 **Reference:** Page 156
 
-### 3. Diagnosis of malaria
-
-### Diagnosis of malaria
-
-Diagnosis of malaria
-
-In patients with suspected severe malaria and in other high-risk groups, such as patients living with HIV/AIDS, absence or delay of
-
-parasitological diagnosis should not delay an immediate start of antimalarial treatment.
-
-At present, molecular diagnostic tools based on nucleic-acid amplification techniques (e.g. loop-mediated isothermal amplification or
-
-polymerase chain reaction [PCR]) do not have a role in the clinical management of malaria.
-
-Wh...
-
-📄 **Reference:** Page 164
-
-### 4. Acceptability
+### 3. Acceptability
 
 ### Acceptability
 
@@ -2697,19 +2432,31 @@ asymptomatic malaria. Other issues related to acceptabi...
 
 📄 **Reference:** Page 230
 
-### 5. Sections
+### 4. 5.2.1.4.3. Patients co-infected with HIV
 
-## Sections
+### 5.2.1.4.3. Patients co-infected with HIV
 
-Sections
+5.2.1.4.3. Patients co-infected with HIV...
 
-Summary of recommendations ........................................................................................................................................................................ 5
+📄 **Reference:** Page 443
 
-1. Abbreviations.............................................................................................................................................................................................. 27
+### 5. Diagnosis of malaria
 
-2. Executive summary .................................................
+### Diagnosis of malaria
 
-📄 **Reference:** Page 3
+Diagnosis of malaria
+
+In patients with suspected severe malaria and in other high-risk groups, such as patients living with HIV/AIDS, absence or delay of
+
+parasitological diagnosis should not delay an immediate start of antimalarial treatment.
+
+At present, molecular diagnostic tools based on nucleic-acid amplification techniques (e.g. loop-mediated isothermal amplification or
+
+polymerase chain reaction [PCR]) do not have a role in the clinical management of malaria.
+
+Wh...
+
+📄 **Reference:** Page 164
 
 
 ---
@@ -2722,7 +2469,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 3, Page 156, Page 164, Page 188, Page 230
+Citations: Page 156, Page 164, Page 188, Page 230, Page 443
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -2739,8 +2486,8 @@ Citations: Page 3, Page 156, Page 164, Page 188, Page 230
 
 **Sources (top hits)**
 - Page 190: knowlesi
-- Page 34: Etiology
 - Page 310: Untitled
+- Page 34: Etiology
 - Page 311: Untitled
 - Page 153: Malaria vaccine pipeline
 
@@ -2769,23 +2516,7 @@ Mauritania and ...
 
 📄 **Reference:** Page 190
 
-### 2. Etiology
-
-### Etiology
-
-Etiology
-
-Malaria is a life-threatening disease caused by the infection of red blood cells with protozoan parasites of the genus Plasmodium that are
-
-transmitted to people through the bites of infected female Anopheles mosquitoes. Four species of Plasmodium (P. falciparum, P. vivax, P.
-
-malariae and P. ovale) most commonly infect humans. P. falciparum and P. vivax are the most prevalent species and P. falciparum is the
-
-most dangerous. A fifth species, P. knowlesi (a species of Pla...
-
-📄 **Reference:** Page 34
-
-### 3. Untitled
+### 2. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
@@ -2800,6 +2531,22 @@ severe malaria in children: a prospective cohort study from Papua New Guinea. PL
 257. Koch...
 
 📄 **Reference:** Page 310
+
+### 3. Etiology
+
+### Etiology
+
+Etiology
+
+Malaria is a life-threatening disease caused by the infection of red blood cells with protozoan parasites of the genus Plasmodium that are
+
+transmitted to people through the bites of infected female Anopheles mosquitoes. Four species of Plasmodium (P. falciparum, P. vivax, P.
+
+malariae and P. ovale) most commonly infect humans. P. falciparum and P. vivax are the most prevalent species and P. falciparum is the
+
+most dangerous. A fifth species, P. knowlesi (a species of Pla...
+
+📄 **Reference:** Page 34
 
 ### 4. Untitled
 
@@ -2986,7 +2733,7 @@ Citations: Page 22, Page 224, Page 227
 - Page 225: General guiding principles for choosing a case management strategy and tools
 - Page 164: Parasitological diagnosis
 - Page 196: Guidance
-- Page 200: Practical info
+- Page 307: Untitled
 
 **Response**
 
@@ -3077,23 +2824,21 @@ the guidance should also include specific information on the an...
 
 📄 **Reference:** Page 196
 
-### 5. Practical info
+### 5. Untitled
 
-### Practical info
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
-Practical info
+200. Malaria diagnosis: memorandum from a WHO meeting. Bulletin of the World Health Organization 1988;66(5):575-94 Pubmed
 
-Although it may be important to know whether a female has an intermediate G6PD activity,
+201. Malaria microscopy quality assurance manual, version 2. Geneva: World Health Organization 2016. Website
 
-programmatically it may not be feasible to tailor the treatments for women differently than for men.
+202. Kawamoto F, Billingsley PF. Rapid diagnosis of malaria by fluorescence microscopy. Parasitology today (Personal ed.)
 
-Practical guidance should cover all aspects of safe implementation of a new diagnostic test e.g.
+1992;8(2):69-71 Pubmed
 
-implementation plan, clear national guidelines, quality assurance/prequalification of tests, training of
+203. Malaria diagnosis: new perspectives....
 
-users, quality assurance of testing, and the type of health care fac...
-
-📄 **Reference:** Page 200
+📄 **Reference:** Page 307
 
 
 ---
@@ -3106,7 +2851,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 164, Page 165, Page 196, Page 200, Page 225
+Citations: Page 164, Page 165, Page 196, Page 225, Page 307
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -3125,8 +2870,8 @@ Citations: Page 164, Page 165, Page 196, Page 200, Page 225
 - Page 164: Untitled
 - Page 227: Other operational issues in managing effective treatment
 - Page 225: General guiding principles for choosing a case management strategy and tools
-- Page 260: Untitled
 - Page 37: Global vector control response 2017–2030
+- Page 28: Untitled
 
 **Response**
 
@@ -3179,35 +2924,7 @@ including the skills available, the patient case-load, t...
 
 📄 **Reference:** Page 225
 
-### 4. Untitled
-
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
-
-available
-
-antimalarial medicine
-
-A pharmaceutical product used in humans for the prevention, treatment or reduction of transmission of
-
-malaria
-
-artemisinin-based
-
-combination therapy
-
-A combination of an artemisinin derivative with a longer-acting antimalarial drug that has a different mode of
-
-action
-
-basic reproduction
-
-number
-
-The number of secondary cases that a single infection (index case) would generate in a ...
-
-📄 **Reference:** Page 260
-
-### 5. Global vector control response 2017–2030
+### 4. Global vector control response 2017–2030
 
 ### Global vector control response 2017–2030
 
@@ -3223,6 +2940,48 @@ management (IVM), but wit...
 
 📄 **Reference:** Page 37
 
+### 5. Untitled
+
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+
+G6PD
+
+glucose-6-phosphate dehydrogenase
+
+HBHI
+
+High burden to high impact approach
+
+HFCA
+
+health-facility catchment area
+
+HRP2
+
+histidine-rich protein 2
+
+ICER
+
+incremental cost-effectiveness ratio
+
+IHR
+
+International Health Regulation
+
+IPTi
+
+intermittent preventive treatment in infants, now referred to as perennial malaria chemoprevention (PMC)
+
+IPTp
+
+intermittent preventive treatment in pregnancy
+
+IPTsc
+
+intermittent...
+
+📄 **Reference:** Page 28
+
 
 ---
 
@@ -3234,7 +2993,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 37, Page 164, Page 225, Page 227, Page 260
+Citations: Page 28, Page 37, Page 164, Page 225, Page 227
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -3250,11 +3009,11 @@ Citations: Page 37, Page 164, Page 225, Page 227, Page 260
 > Ethics of placebo-controlled malaria trials
 
 **Sources (top hits)**
+- Page 280: Untitled
 - Page 108: Untitled
-- Page 221: GRADE
+- Page 453: parasitaemia
+- Page 453: Anaemia in third
 - Page 128: Untitled
-- Page 105: Maternal death
-- Page 208: GRADE
 
 **Response**
 
@@ -3264,6 +3023,28 @@ Citations: Page 37, Page 164, Page 225, Page 227, Page 260
 **Question:** Ethics of placebo-controlled malaria trials
 
 ### 1. Untitled
+
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+
+•
+
+Dr Anna Maria van Eijk, Liverpool School of Tropical Medicine, Liverpool, United Kingdom of Great Britain and Northern Ireland
+
+Perennial Malaria Chemoprevention (PMC) (formerly Intermittent Preventive Treatment in infants or IPTi)
+
+•
+
+Dr Christina Carlson, Division of Parasitic Diseases and Malaria, Centers for Disease Control and Prevention, Atlanta, United
+
+States of America
+
+•
+
+Dr Laura Steinhardt, Malaria Bran...
+
+📄 **Reference:** Page 280
+
+### 2. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
@@ -3277,33 +3058,45 @@ included representatives from the WHO Departments for Se...
 
 📄 **Reference:** Page 108
 
-### 2. GRADE
+### 3. parasitaemia
 
-### GRADE
+### parasitaemia
 
-GRADE
+P. vivax
 
-In a systematic review of pre-referral treatment for suspected severe malaria, in a single large randomized controlled trial of 17
+parasitaemia
 
-826 children and adults in Bangladesh, Ghana and the United Republic of Tanzania, pre-referral rectal artesunate was
+Relative risk 0.02
 
-compared with placebo [286].
+(CI 95% 0 — 0.26)
 
-In comparison with placebo:
+Based on data from 951
 
-•
+participants in 1 studies.
 
-Rectal artesunate reduced mortality by about 25% in children < 6 years (RR, 0.74; 95% CI, 0.59–0.93; one trial, 8050
+(Randomized controlled)...
 
-participants, moderate- quality evidence).
+📄 **Reference:** Page 453
 
-•
+### 4. Anaemia in third
 
-Recta...
+### Anaemia in third
 
-📄 **Reference:** Page 221
+Anaemia in third
 
-### 3. Untitled
+Relative risk 0.95
+
+(CI 95% 0.9 — 1.01)
+
+Based on data from 951
+
+participants in 1 studies.
+
+(Randomized controlled)...
+
+📄 **Reference:** Page 453
+
+### 5. Untitled
 
 WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
 
@@ -3317,46 +3110,6 @@ included in the review. All the trials were con...
 
 📄 **Reference:** Page 128
 
-### 4. Maternal death
-
-### Maternal death
-
-variable (risk ratio for maternal malaria: 0.73; 95% CI: 0.53–1.01; and for placental malaria: 0.89;
-
-95% CI: 0.68–1.15).
-
-•
-
-Adverse events: IPTp-SP had a pooled prevalence of serious adverse events of 3.84% (95% CI:
-
-2.20–5.88%) and a pooled prevalence of adverse events of 14.3% (95% CI: 4.9–27.5%). In two trials
-
-comparing IPTp-SP to placebo or case management, the pooled risk ratio showed that IPTp-SP may
-
-reduce maternal adverse events (risk ratio: 0.56; 95% CI: 0.30–1.0...
-
-📄 **Reference:** Page 105
-
-### 5. GRADE
-
-### GRADE
-
-GRADE
-
-In a systematic review of primaquine for radical cure of P. vivax malaria [276], 14 days of primaquine was compared with
-
-placebo or no treatment in 10 trials, and 14 days was compared with 7 days in one trial. The trials were conducted in
-
-Colombia, Ethiopia, India, Pakistan and Thailand between 1992 and 2006.
-
-In comparison with placebo or no primaquine:
-
-14 days of primaquine (0.25 mg/kg bw per day) reduced relapses during 15 months of follow-up by about 40% (RR, 0.60; 95%
-
-...
-
-📄 **Reference:** Page 208
-
 
 ---
 
@@ -3368,7 +3121,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 105, Page 108, Page 128, Page 208, Page 221
+Citations: Page 108, Page 128, Page 280, Page 453
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -3386,9 +3139,9 @@ Citations: Page 105, Page 108, Page 128, Page 208, Page 221
 **Sources (top hits)**
 - Page 297: Untitled
 - Page 298: Untitled
+- Page 338: measurements
 - Page 68: Acceptability
-- Page 276: Untitled
-- Page 66: Untitled
+- Page 41: 4.1.1 Interventions recommended for large-scale deployment
 
 **Response**
 
@@ -3427,7 +3180,25 @@ treatment of bed nets upon malaria transmission...
 
 📄 **Reference:** Page 298
 
-### 3. Acceptability
+### 3. measurements
+
+### measurements
+
+measurements
+
+IRS
+
+IRS
+
+0.01) in intervention villages. (Data on
+
+numbers of participants at follow-up not
+
+provided)...
+
+📄 **Reference:** Page 338
+
+### 4. Acceptability
 
 ### Acceptability
 
@@ -3445,37 +3216,21 @@ insecticide alpha-cypermethrin. In this same study, i...
 
 📄 **Reference:** Page 68
 
-### 4. Untitled
+### 5. 4.1.1 Interventions recommended for large-scale deployment
 
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+### 4.1.1 Interventions recommended for large-scale deployment
 
-Charles Wondji declared receiving research support, including grants, collaborations, sponsorships, and other funding from the
+4.1.1 Interventions recommended for large-scale deployment
 
-Innovative Vector Control Consortium (IVCC) exceeding US$ 5000. Ongoing studies aim to evaluate the entomological impact
+Interventions that are recommended for large-scale deployment in terms of malaria vector control are those that have proven
 
-of more recently developed indoor residual spraying (IRS) products, dual active ingredient nets and pyrethroid-PBO nets
+protective efficacy to reduce or prevent infection and/or disease in humans and are broadly applicable for populations at risk of
 
-against insecticide-resistant mosquitoes.
+malaria in most epidemiological and ecological settings.
 
-Josh Yu...
+Vector control interventions applicable for all populations at...
 
-📄 **Reference:** Page 276
-
-### 5. Untitled
-
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
-
-individual studies reported an RR of malaria infection of 0.70 (95% CI: 0.65–0.75) one month after
-
-application and of 0.68 (95% CI: 0.66–0.70) one year after deployment, compared to no IRS.
-
-The systematic review excluded studies in which other vector control interventions were being used,
-
-including insecticide-treated nets (ITNs). A separate systematic review investigating the impact of co-
-
-deploying IRS and ITNs ...
-
-📄 **Reference:** Page 66
+📄 **Reference:** Page 41
 
 
 ---
@@ -3488,7 +3243,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 66, Page 68, Page 276, Page 297, Page 298
+Citations: Page 41, Page 68, Page 297, Page 298, Page 338
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed
@@ -3505,10 +3260,10 @@ Citations: Page 66, Page 68, Page 276, Page 297, Page 298
 
 **Sources (top hits)**
 - Page 228: 6. Interventions in the final phase of elimination and prevention of re-establishment
-- Page 26: Untitled
-- Page 253: 7. Surveillance
-- Page 245: Reactive case detection and treatment to reduce transmission of malaria (2022)
+- Page 30: Scope
 - Page 146: (2022)
+- Page 15: (2022)
+- Page 36: Untitled
 
 **Response**
 
@@ -3531,55 +3286,23 @@ part of universal health coverage; recommendations relate...
 
 📄 **Reference:** Page 228
 
-### 2. Untitled
+### 2. Scope
 
-WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+### Scope
 
-Remark:
+Scope
 
-Until an area is nearing elimination or is post-elimination, it is unlikely that reactive case detection and treatment (RACDT) will
+The consolidated WHO Guidelines for malaria bring together all recommendations for malaria, including prevention using vector control,
 
-have any effect on malaria transmission. However, RACDT becomes an essential component of surveillance when countries are
+preventive chemotherapy and the vaccine; diagnosis, treatment and elimination strategies. The Guidelines also provide links to other
 
-nearing interruption of transmission to monitor progress towards elimination. When countries are post-elimination and working
+resources including unpublished evidence reviewed at the time of formulating recommendations, guidance and information on strategic
 
-towards certification, RACDT ...
+use of information to drive impact, surveillance, monitoring and evaluation, op...
 
-📄 **Reference:** Page 26
+📄 **Reference:** Page 30
 
-### 3. 7. Surveillance
-
-### 7. Surveillance
-
-7. Surveillance
-
-Surveillance is “the continuous and systematic collection, analysis and interpretation of disease-specific data, and the use of that data in
-
-the planning, implementation and evaluation of public health practice” [300].
-
-Pillar 3 of the Global technical strategy for malaria 2016–2030 [4] is to transform malaria surveillance into a key intervention in all malaria-
-
-endemic countries and in those countries that have eliminated malaria but remain susceptible to...
-
-📄 **Reference:** Page 253
-
-### 4. Reactive case detection and treatment to reduce transmission of malaria (2022)
-
-### Reactive case detection and treatment to reduce transmission of malaria (2022)
-
-Reactive case detection and treatment to reduce transmission of malaria (2022)
-
-In areas approaching elimination or post-elimination settings preventing re-establishment of transmission, all people residing with
-
-or near a confirmed malaria case and all people who share the same risk of infection (e.g. co-travellers and co-workers) can be
-
-tested for malaria and treated if positive.
-
-Until an area is nearing elim...
-
-📄 **Reference:** Page 245
-
-### 5. (2022)
+### 3. (2022)
 
 ### (2022)
 
@@ -3599,6 +3322,42 @@ good coverage of case-based surveillance with parasi...
 
 📄 **Reference:** Page 146
 
+### 4. (2022)
+
+### (2022)
+
+MDA to reduce transmission of P. vivax (2022)
+
+In areas with P. vivax transmission, antimalarial medicine can be given as chemoprevention through mass drug
+
+administration (MDA) to reduce transmission.
+
+Remark:
+
+•
+
+MDA may quickly reduce transmission of P. vivax, but the effect wanes within 1–3 months. Therefore, if MDA is
+
+implemented, it should be one of several components of a robust malaria elimination programme (including, at
+
+minimum, good coverage of case-based surveillance wi...
+
+📄 **Reference:** Page 15
+
+### 5. Untitled
+
+WHO guidelines for malaria - 13 August 2025 - World Health Organization (WHO)
+
+problem-solving approach using local data to identify recommendations that are relevant at a country level and based on local
+
+context, defining stratum-specific packages of interventions that optimize impact and are prioritized for resource allocation. This shift
+
+moves away from overly prescriptive recommendations and will clearly distinguish evidence-informed recommendations from contextual
+
+considerations. The con...
+
+📄 **Reference:** Page 36
+
 
 ---
 
@@ -3610,7 +3369,7 @@ Next Steps / Monitoring: Consult the full source guideline or a clinician for pa
 
 When to Refer: Per excerpts and national guidance; seek urgent care if danger signs, severe disease, or instability is suspected.
 
-Citations: Page 26, Page 146, Page 228, Page 245, Page 253
+Citations: Page 15, Page 30, Page 36, Page 146, Page 228
 
 ---
 **🧪 Guardrail Brain Validation:** ✅ Passed

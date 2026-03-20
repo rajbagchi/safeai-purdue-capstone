@@ -26,6 +26,7 @@ extraction_output*/tables_nll.txt
 # Modular medical pipeline: timestamped reports stay local; latest copy is tracked for the repo
 reports/*
 !reports/who_malaria_pipeline_report.md
+!reports/uganda_clinical_pipeline_report.md
 
 # Local knowledge bases built by pipeline (optional if created under repo)
 medical_knowledge_base/

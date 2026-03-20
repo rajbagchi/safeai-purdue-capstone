@@ -134,6 +134,7 @@ class MedicalQASystem:
             "extraction_summary": {
                 "pages": len(self.extraction_result.get("pages", [])),
                 "tables": len(self.extraction_result.get("tables", [])),
+                "images": len(self.extraction_result.get("images", [])),
                 "passes": len(
                     self.extraction_result.get("extraction_log", [])
                 ),

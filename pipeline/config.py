@@ -98,6 +98,10 @@ class ExtractionConfig:
     enable_ocr: bool = True
     enable_table_detection: bool = True
     enable_image_extraction: bool = True
+    # Scan every page for PyMuPDF tables (not only the Pass-0 sample); slower but catches tables after page ~20.
+    full_document_table_scan: bool = True
+    # Bump to invalidate extraction pickle cache after engine changes.
+    extraction_engine_version: int = 2
     min_chunk_size: int = 500
     max_chunk_size: int = 2000
     chunk_overlap: int = 200

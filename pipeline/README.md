@@ -21,6 +21,13 @@ python run_pipeline.py --preset uganda
 python run_pipeline.py --pdf "D:\other\guide.pdf" --output-dir ./my_kb
 ```
 
+Markdown reports (stages + 25 searches):
+
+```bash
+python scripts/who_malaria_pipeline_report.py --preset who-malaria
+python scripts/who_malaria_pipeline_report.py --preset uganda --reuse-kb
+```
+
 ## Structure
 
 | Module | Purpose |
@@ -58,9 +65,15 @@ result = qa.answer("What is the dose for severe malaria in children?")
 
 ## Dependencies
 
-- PyMuPDF (`fitz`)
-- numpy
-- pandas (for table handling in extractor)
-- rank_bm25
-- rapidfuzz
-- Optional: camelot, pdfplumber (for extra table extraction / cross-validation)
+Install from repo root:
+
+```bash
+pip install -r requirements-pipeline.txt
+```
+
+Includes: **PyMuPDF**, **numpy**, **pandas**, **rank-bm25**, **rapidfuzz**, **tabulate** (for `DataFrame.to_markdown` on tables), **pdfplumber** (cross-validation vs. Pass 1 text). Optional: **camelot** for borderless tables.
+
+Extractor behavior:
+
+- **Full-document table scan** (`ExtractionConfig.full_document_table_scan`, default `true`) finds all pages with PyMuPDF tables (not only the first 20 sampled in Pass 0).
+- **Embedded images** saved under `{output_dir}/images/` as PNG plus `image_inventory.json` when `enable_image_extraction` is true.

@@ -1,9 +1,10 @@
 """
-Run WHO-malaria preset end-to-end and write a Markdown report:
+Run clinical pipeline preset end-to-end and write a Markdown report:
 per-stage metrics + 25 BM25/guardrail searches.
 
 Usage (from repo root):
   python scripts/who_malaria_pipeline_report.py
+  python scripts/who_malaria_pipeline_report.py --preset uganda
   python scripts/who_malaria_pipeline_report.py --reuse-kb
 """
 
@@ -21,7 +22,10 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from pipeline.config import extraction_config_who_malaria_nih
+from pipeline.config import (
+    extraction_config_uganda_clinical_2023,
+    extraction_config_who_malaria_nih,
+)
 from pipeline.orchestrator import MedicalQASystem
 from pipeline.extractor import MultiPassExtractor
 from pipeline.validator import ExtractionValidator
@@ -78,6 +82,7 @@ def extraction_section(extraction: Dict[str, Any] | None, qa: MedicalQASystem) -
             "|--------|-------|",
             f"| Pages (summary) | {summ.get('pages', '—')} |",
             f"| Tables (summary) | {summ.get('tables', '—')} |",
+            f"| Images (summary) | {summ.get('images', '—')} |",
             f"| Extraction passes (summary) | {summ.get('passes', '—')} |",
             "",
         ]
@@ -86,6 +91,7 @@ def extraction_section(extraction: Dict[str, Any] | None, qa: MedicalQASystem) -
     meta = extraction.get("metadata", {})
     pages = extraction.get("pages", [])
     tables = extraction.get("tables", [])
+    images = extraction.get("images", [])
     ocr = extraction.get("ocr_data", [])
     cross = extraction.get("cross_validation", {})
     log = extraction.get("extraction_log", [])
@@ -108,6 +114,7 @@ def extraction_section(extraction: Dict[str, Any] | None, qa: MedicalQASystem) -
         f"| Extraction timestamp | {meta.get('extraction_date', '—')} |",
         f"| Total pages extracted | {len(pages)} |",
         f"| Tables extracted | {len(tables)} |",
+        f"| Embedded images saved | {len(images)} |",
         f"| OCR / manual-review flags | {len(ocr)} |",
         f"| Cross-validation method | {cross.get('method', '—')} |",
         f"| Cross-validation consistency score | {cross.get('consistency_score', '—')} |",
@@ -191,7 +198,7 @@ def guardrail_section() -> str:
     )
 
 
-SEARCH_QUERIES = [
+MALARIA_SEARCH_QUERIES = [
     "What is the treatment for uncomplicated Plasmodium falciparum malaria?",
     "Dosing artemisinin-based combination therapy in children under 5",
     "Severe malaria definition and management",
@@ -219,15 +226,61 @@ SEARCH_QUERIES = [
     "Elimination strategies and surveillance",
 ]
 
+# Broad clinical topics typical of national guideline compendia (Uganda CG 2023).
+UGANDA_SEARCH_QUERIES = [
+    "Integrated management of childhood illness pneumonia classification",
+    "Diarrhea dehydration ORS zinc treatment plan",
+    "HIV antiretroviral therapy first-line regimen adults",
+    "Tuberculosis treatment regimen and contact investigation",
+    "Malaria uncomplicated case management ACT dosing children",
+    "Postpartum hemorrhage emergency management oxytocin",
+    "Family planning contraceptive counseling methods",
+    "Hypertension diagnosis and management primary care",
+    "Diabetes mellitus type 2 glycemic targets",
+    "Acute stroke referral and supportive care",
+    "Syndromic management sexually transmitted infections",
+    "Cervical cancer screening VIA HPV",
+    "Routine immunization schedule infants Uganda",
+    "Severe acute malnutrition inpatient management",
+    "Tuberculosis preventive therapy isoniazid",
+    "Depression screening and management primary care",
+    "Asthma chronic management inhaler technique",
+    "Chronic kidney disease staging referral",
+    "Exclusive breastfeeding six months",
+    "Pre-eclampsia severe features magnesium sulfate",
+    "Sepsis empirical antibiotics adults",
+    "Rabies post-exposure prophylaxis dog bite",
+    "Burns initial wound care and referral",
+    "Snake bite envenomation hospital referral",
+    "Neonatal sepsis danger signs referral",
+]
 
-def searches_section(qa: MedicalQASystem) -> str:
+PRESET_META = {
+    "who-malaria": {
+        "config_fn": extraction_config_who_malaria_nih,
+        "report_title": "WHO Malaria pipeline run report",
+        "preset_label": "who-malaria (NIH Bookshelf)",
+        "file_slug": "who_malaria_pipeline_report",
+        "queries": MALARIA_SEARCH_QUERIES,
+    },
+    "uganda": {
+        "config_fn": extraction_config_uganda_clinical_2023,
+        "report_title": "Uganda Clinical Guidelines 2023 pipeline run report",
+        "preset_label": "uganda (MoH Clinical Guidelines 2023)",
+        "file_slug": "uganda_clinical_pipeline_report",
+        "queries": UGANDA_SEARCH_QUERIES,
+    },
+}
+
+
+def searches_section(qa: MedicalQASystem, queries: List[str]) -> str:
     lines = [
         "## Stage 5: Search & Q&A (25 queries)",
         "",
         "BM25 top-5 excerpts per query; guardrail summary below each.",
         "",
     ]
-    for i, q in enumerate(SEARCH_QUERIES, 1):
+    for i, q in enumerate(queries, 1):
         result = qa.answer(q)
         resp = result["response"]
         val = result["validation"]
@@ -265,6 +318,12 @@ def searches_section(qa: MedicalQASystem) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--preset",
+        choices=tuple(PRESET_META.keys()),
+        default="who-malaria",
+        help="Document preset (default: who-malaria)",
+    )
+    parser.add_argument(
         "--reuse-kb",
         action="store_true",
         help="Load existing KB if present instead of rebuilding.",
@@ -277,22 +336,30 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    cfg = extraction_config_who_malaria_nih()
+    meta = PRESET_META[args.preset]
+    cfg = meta["config_fn"]()
+    queries = meta["queries"]
+    slug = meta["file_slug"]
+
     reports_dir = os.path.join(ROOT, "reports")
     os.makedirs(reports_dir, exist_ok=True)
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     out_path = args.output or os.path.join(
-        reports_dir, f"who_malaria_pipeline_report_{ts}.md"
+        reports_dir, f"{slug}_{ts}.md"
     )
+
+    if not os.path.isfile(cfg.pdf_path):
+        print(f"ERROR: PDF not found: {cfg.pdf_path}")
+        sys.exit(1)
 
     qa, extraction = load_or_build(cfg, reuse_kb=args.reuse_kb)
 
     header = "\n".join(
         [
-            "# WHO Malaria pipeline run report",
+            f"# {meta['report_title']}",
             "",
             f"- **Generated (UTC)**: {datetime.now(timezone.utc).isoformat()}",
-            f"- **Preset**: who-malaria (NIH Bookshelf)",
+            f"- **Preset**: {meta['preset_label']}",
             f"- **PDF**: `{cfg.pdf_path}`",
             f"- **KB output directory**: `{cfg.output_dir}`",
             f"- **Reuse KB flag**: `{args.reuse_kb}`",
@@ -308,16 +375,17 @@ def main() -> None:
             validation_section(qa),
             chunking_section(qa),
             guardrail_section(),
-            searches_section(qa),
+            searches_section(qa, queries),
         ]
     )
 
+    full = header + body
     with open(out_path, "w", encoding="utf-8") as f:
-        f.write(header + body)
+        f.write(full)
 
-    latest = os.path.join(reports_dir, "who_malaria_pipeline_report.md")
+    latest = os.path.join(reports_dir, f"{slug}.md")
     with open(latest, "w", encoding="utf-8") as f:
-        f.write(header + body)
+        f.write(full)
 
     print(f"Wrote report: {out_path}")
     print(f"Also wrote: {latest}")

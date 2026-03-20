@@ -29,6 +29,22 @@ try:
 except ImportError:
     PDFPLUMBER_AVAILABLE = False
 
+try:
+    import tabulate  # noqa: F401 — pandas uses for DataFrame.to_markdown
+    TABULATE_AVAILABLE = True
+except ImportError:
+    TABULATE_AVAILABLE = False
+
+
+def _dataframe_to_markdown(df) -> str:
+    """Prefer pandas to_markdown (needs tabulate); fall back to CSV-like text."""
+    if hasattr(df, "to_markdown"):
+        try:
+            return df.to_markdown(index=False)
+        except Exception:
+            pass
+    return df.to_string(index=False)
+
 
 class MultiPassExtractor:
     """
@@ -93,6 +109,9 @@ class MultiPassExtractor:
             if text_len < 100 and page_info["has_images"]:
                 page_info["likely_scanned"] = True
                 profile["has_scanned_pages"] = True
+
+            if page_info["has_images"]:
+                profile["has_images"] = True
 
             profile["page_types"].append(page_info)
 
@@ -199,6 +218,72 @@ class MultiPassExtractor:
         headings.sort(key=lambda x: x["y_pos"])
         return headings
 
+    def _scan_all_pages_for_tables(self) -> List[int]:
+        """Find every 1-based page index that has at least one PyMuPDF-detected table."""
+        pages_out: List[int] = []
+        doc = fitz.open(self.config.pdf_path)
+        try:
+            for i in range(len(doc)):
+                page = doc[i]
+                try:
+                    tabs = page.find_tables()
+                    if tabs and tabs.tables:
+                        pages_out.append(i + 1)
+                except Exception:
+                    continue
+        finally:
+            doc.close()
+        return pages_out
+
+    def pass_images_extraction(self) -> List[Dict[str, Any]]:
+        """
+        Rasterize embedded images per page to PNG under output_dir/images/.
+        Returns an inventory list (paths relative to output_dir where useful).
+        """
+        print("\n🖼️ [Pass images] Extracting embedded images...")
+        img_dir = os.path.join(self.config.output_dir, "images")
+        os.makedirs(img_dir, exist_ok=True)
+        inventory: List[Dict[str, Any]] = []
+        doc = fitz.open(self.config.pdf_path)
+        min_pixels = 400  # skip tiny icons / bullets (~20x20)
+        try:
+            for page_index in range(len(doc)):
+                page = doc[page_index]
+                page_no = page_index + 1
+                for img_index, img in enumerate(page.get_images(full=True)):
+                    xref = img[0]
+                    try:
+                        pix = fitz.Pixmap(doc, xref)
+                        if pix.width * pix.height < min_pixels:
+                            pix = None
+                            continue
+                        if pix.n - pix.alpha > 3:
+                            pix = fitz.Pixmap(fitz.csRGB, pix)
+                        fname = f"page{page_no}_img{img_index + 1}.png"
+                        out_path = os.path.join(img_dir, fname)
+                        pix.save(out_path)
+                        inventory.append({
+                            "page": page_no,
+                            "image_index": img_index + 1,
+                            "xref": xref,
+                            "width": pix.width,
+                            "height": pix.height,
+                            "file": out_path,
+                        })
+                        pix = None
+                    except Exception as e:
+                        print(f"  Warning: image xref {xref} page {page_no}: {e}")
+        finally:
+            doc.close()
+
+        self.passes.append({
+            "pass": "images",
+            "strategy": "embedded_raster",
+            "images_saved": len(inventory),
+        })
+        print(f"  Saved {len(inventory)} image(s) to {img_dir}")
+        return inventory
+
     def pass2_table_extraction(self, pages_with_tables: List[int]) -> List[Dict]:
         """Pass 2: Specialized table extraction."""
         print(f"\n📊 [Pass 2] Table extraction on {len(pages_with_tables)} pages...")
@@ -228,7 +313,7 @@ class MultiPassExtractor:
                             "method": "pymupdf",
                             "data": df.to_dict(orient="records"),
                             "headers": df.columns.tolist(),
-                            "markdown": df.to_markdown() if hasattr(df, "to_markdown") else df.to_string(),
+                            "markdown": _dataframe_to_markdown(df),
                             "num_rows": len(df),
                             "num_cols": len(df.columns),
                             "file": table_file,
@@ -251,7 +336,7 @@ class MultiPassExtractor:
                             "method": "camelot_lattice",
                             "data": df.to_dict(orient="records"),
                             "headers": df.iloc[0].tolist(),
-                            "markdown": df.to_markdown() if hasattr(df, "to_markdown") else df.to_string(),
+                            "markdown": _dataframe_to_markdown(df),
                             "confidence": 0.95,
                         })
 
@@ -263,7 +348,7 @@ class MultiPassExtractor:
                             "method": "camelot_stream",
                             "data": df.to_dict(orient="records"),
                             "headers": df.iloc[0].tolist(),
-                            "markdown": df.to_markdown() if hasattr(df, "to_markdown") else df.to_string(),
+                            "markdown": _dataframe_to_markdown(df),
                             "confidence": 0.85,
                         })
 
@@ -367,16 +452,28 @@ class MultiPassExtractor:
             with open(cache_file, "rb") as f:
                 return pickle.load(f)
 
+        print(
+            f"  Dependencies: tabulate={'yes' if TABULATE_AVAILABLE else 'NO (install for table markdown)'}, "
+            f"pdfplumber={'yes' if PDFPLUMBER_AVAILABLE else 'NO'}"
+        )
+
         profile = self.analyze_document()
         pages = self.pass1_text_extraction()
 
-        pages_with_tables = []
         scanned_pages = []
         for page_info in profile["page_types"]:
-            if page_info.get("has_tables", False):
-                pages_with_tables.append(page_info["page"])
             if page_info.get("likely_scanned", False):
                 scanned_pages.append(page_info["page"])
+
+        if self.config.enable_table_detection and self.config.full_document_table_scan:
+            print("\n📋 Scanning all pages for tables (full-document scan)...")
+            pages_with_tables = self._scan_all_pages_for_tables()
+            print(f"  Pages with tables: {len(pages_with_tables)}")
+        else:
+            pages_with_tables = []
+            for page_info in profile["page_types"]:
+                if page_info.get("has_tables", False):
+                    pages_with_tables.append(page_info["page"])
 
         tables = []
         if pages_with_tables and self.config.enable_table_detection:
@@ -391,6 +488,10 @@ class MultiPassExtractor:
             "pass2": tables,
         })
 
+        images: List[Dict[str, Any]] = []
+        if self.config.enable_image_extraction:
+            images = self.pass_images_extraction()
+
         extraction_result = {
             "metadata": {
                 "pdf_path": self.config.pdf_path,
@@ -401,6 +502,7 @@ class MultiPassExtractor:
             },
             "pages": pages,
             "tables": tables,
+            "images": images,
             "ocr_data": ocr_data,
             "cross_validation": cross_validation,
             "extraction_log": self.passes,
@@ -408,6 +510,13 @@ class MultiPassExtractor:
 
         with open(cache_file, "wb") as f:
             pickle.dump(extraction_result, f)
+
+        inv_path = os.path.join(self.config.output_dir, "image_inventory.json")
+        try:
+            with open(inv_path, "w", encoding="utf-8") as f:
+                json.dump(images, f, indent=2, default=str)
+        except OSError:
+            pass
 
         return extraction_result
 
