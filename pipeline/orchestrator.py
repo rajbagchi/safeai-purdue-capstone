@@ -395,7 +395,12 @@ class MedicalQASystem:
         # framing, expands medical synonyms).  The original query is kept for
         # triage inference, response formatting, and display.
         retrieval_query = self._preprocess_query(query)
-        _, sources, retrieved_chunks = self._retrieve_top_k(retrieval_query, 5)
+        # Retrieve 8 candidates so the demographic context filter has more to
+        # work with.  For a late-pregnancy query the filter may discard 2-3
+        # postpartum / pediatric / early-pregnancy chunks; starting from 8
+        # means the APH-specific chunk is more likely to survive into the
+        # top-3 that drive content extraction.
+        _, sources, retrieved_chunks = self._retrieve_top_k(retrieval_query, 8)
 
         response = f"**{self.config.document_title}**\n\n"
         response += f"**Question:** {query}\n\n"

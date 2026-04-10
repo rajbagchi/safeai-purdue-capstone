@@ -415,31 +415,37 @@ class ResponseOrchestrator:
         source: MedicalSource,
         dosage_info: Optional[Dict[str, Any]] = None,
     ) -> ResponseContent:
-        # Improvement 1: escalate triage if chunk evidence contains danger signs
+        # Apply demographic context filter ONCE here.  Every sub-method receives
+        # the same filtered set so citations, actions, monitoring, danger signs,
+        # and family message all come from contextually appropriate chunks.
+        # Previously the filter was applied independently inside each sub-method,
+        # but _build_citations still used the unfiltered set — causing wrong
+        # section headings and page numbers to appear in the output.
+        filtered = self._filter_chunks_by_query_context(query, retrieved_chunks)
+        if not filtered:
+            filtered = retrieved_chunks  # safety: nothing matched filter — use all
+
+        # Triage escalation uses the filtered set so danger signs from the wrong
+        # demographic don't trigger a false RED escalation.
         triage, triage_reasons = self._escalate_triage_from_chunks(
-            query, triage, triage_reasons, retrieved_chunks
+            query, triage, triage_reasons, filtered
         )
 
-        actions = self._select_actions(query, triage, retrieved_chunks)
-        monitoring = self._select_monitoring(query, retrieved_chunks)
-        referral_criteria = self._select_referral_criteria(triage, retrieved_chunks, query)
+        actions          = self._select_actions(query, triage, filtered)
+        monitoring       = self._select_monitoring(query, filtered)
+        referral_criteria = self._select_referral_criteria(triage, filtered, query)
 
-        # Improvement 5: cross-section deduplication
         actions, monitoring, referral_criteria = self._deduplicate_sections(
             actions, monitoring, referral_criteria
         )
 
-        citations = self._build_citations(retrieved_chunks, source)
+        # Citations and danger signs now also use the filtered chunk set.
+        citations = self._build_citations(filtered, source)
 
-        # Improvement 2: collect danger signs from chunk metadata for formatter
-        # Use only high-confidence chunks to avoid signs from unrelated sections.
-        relevant_chunks = self._relevant_chunks(retrieved_chunks)
-        danger_signs = self._collect_metadata_field(
-            relevant_chunks, "danger_signs", max_items=8
-        )
+        relevant = self._relevant_chunks(filtered)
+        danger_signs = self._collect_metadata_field(relevant, "danger_signs", max_items=8)
 
-        # Improvement 3: PDF-first family message
-        family_message = self._generate_family_message(query, triage, retrieved_chunks)
+        family_message = self._generate_family_message(triage, filtered)
 
         warnings = list(guardrail_output.get("warnings", []))
         return ResponseContent(
@@ -453,9 +459,7 @@ class ResponseOrchestrator:
             medication_dosage=dosage_info,
             family_message=family_message,
             validation_warnings=warnings,
-            confidence_score=self._calculate_confidence(
-                guardrail_output, retrieved_chunks
-            ),
+            confidence_score=self._calculate_confidence(guardrail_output, filtered),
             danger_signs=danger_signs,
         )
 
@@ -777,8 +781,8 @@ class ResponseOrchestrator:
            into clean prose — no artefacts possible).
         3. Generic three-item fallback (not condition-specific).
         """
+        # Demographic filtering was applied in create() before this call.
         relevant = self._relevant_chunks(chunks)
-        relevant = self._filter_chunks_by_query_context(query, relevant)
 
         # 1. Parse text from narrative chunks only (skip raw table cells)
         narrative = [c for c in relevant if not c.get("is_table_only")]
@@ -811,8 +815,8 @@ class ResponseOrchestrator:
         3. Bullet/action-verb lines from narrative chunks only.
         4. Generic fallback (not condition-specific).
         """
+        # Demographic filtering was applied in create() before this call.
         relevant = self._relevant_chunks(chunks)
-        relevant = self._filter_chunks_by_query_context(query, relevant)
 
         features = self._collect_metadata_field(relevant, "clinical_features")
         if features:
@@ -833,24 +837,59 @@ class ResponseOrchestrator:
             "Watch for any worsening of symptoms",
         ]
 
+    # Drug / dosage administration pattern — used to filter treatment lines
+    # that were incorrectly placed in clinical_metadata.referral_criteria.
+    # Referral criteria should describe WHEN to refer, not HOW to treat.
+    _DRUG_ADMIN_RE = re.compile(
+        r"\b(?:iv\b|im\b|oral\b|mg/kg|mcg/kg|units?\s+of\b|"
+        r"ampicillin|gentamicin|metronidazole|cephalosporin|amoxicillin|"
+        r"penicillin|clindamycin|erythromycin|benzylpenicillin|"
+        r"ceftriaxone|chloramphenicol|tetracycline|doxycycline|"
+        r"vancomycin|meropenem|piperacillin)\b",
+        re.IGNORECASE,
+    )
+    # Query signals that indicate the user IS asking about drug treatment
+    # (in which case drug lines in referral criteria are acceptable)
+    _TREATMENT_QUERY_RE = re.compile(
+        r"\bdose\b|\bdosage\b|\btreat\b|\bantibiotic\b|\bmedication\b|\bdrug\b",
+        re.IGNORECASE,
+    )
+
     def _select_referral_criteria(
         self, triage: TriageLevel, chunks: List[Dict[str, Any]], query: str = ""
     ) -> List[str]:
+        """
+        Extract referral criteria from chunk clinical_metadata.
+
+        Drug administration lines (IV ampicillin, gentamicin doses, etc.) are
+        filtered out when the query is about clinical presentation rather than
+        treatment — those lines are treatment steps that ended up in the
+        referral_criteria metadata field, and showing them in the "When to refer"
+        section produces clinically wrong guidance (e.g. antibiotic lines for APH).
+        """
+        # Demographic filtering was applied in create() before this call.
         relevant = self._relevant_chunks(chunks)
-        relevant = self._filter_chunks_by_query_context(query, relevant)
-        # Primary: referral criteria extracted from chunk clinical_metadata.
         criteria = self._collect_metadata_field(relevant, "referral_criteria")
         if criteria:
-            return criteria
-        # Fallback: template-based criteria.
+            # Remove drug treatment lines when query is not about medication
+            if not self._TREATMENT_QUERY_RE.search(query):
+                criteria = [c for c in criteria if not self._DRUG_ADMIN_RE.search(c)]
+            if criteria:
+                return criteria
+        # Fallback: generic criteria that work for any condition/document
         if triage == TriageLevel.RED:
-            return list(self.referral_templates["immediate"])
+            return [
+                "Refer immediately — this is an emergency",
+                "Do not delay transport to health facility",
+            ]
         if triage == TriageLevel.YELLOW:
-            return list(self.referral_templates["urgent"])
+            return [
+                "Go to health facility today for assessment",
+                "Return immediately if condition worsens or danger signs appear",
+            ]
         return [
-            "If symptoms worsen",
-            "If new danger signs appear",
-            "If you are unsure about the condition",
+            "Return to health facility if symptoms worsen or do not improve",
+            "Refer if any danger signs appear",
         ]
 
     def _build_citations(
@@ -890,7 +929,7 @@ class ResponseOrchestrator:
     # ------------------------------------------------------------------
 
     def _generate_family_message(
-        self, query: str, triage: TriageLevel, chunks: List[Dict[str, Any]]
+        self, triage: TriageLevel, chunks: List[Dict[str, Any]]
     ) -> str:
         """
         Generate a caregiver-education message.
