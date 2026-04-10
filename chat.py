@@ -363,10 +363,15 @@ def main() -> None:
             # scores 1.0 relative to the others regardless of true relevance.
             # CE logit > 0  = the model thinks query and chunk are related
             # CE logit < 0  = the model thinks they are unrelated
-            # Threshold -1.5 is conservative: we only reject when the best
-            # match is clearly off-topic. Borderline (-1.5 to 0) queries
-            # show the response with a low-confidence warning.
-            _NO_MATCH_CE_THRESHOLD = -1.5
+            #
+            # Threshold set conservatively at -4.0:
+            # ms-marco-MiniLM-L-6-v2 was trained on general web search, not
+            # medical text. A logit of -1.5 can simply mean vocabulary mismatch
+            # ("appendicitis" query vs "acute abdomen" chunk) — not truly
+            # out-of-domain. Genuinely irrelevant queries (weather, sports, etc.)
+            # score around -5 to -8. Using -4.0 avoids false "no match" on
+            # legitimate medical queries with terminology differences.
+            _NO_MATCH_CE_THRESHOLD = -4.0
             chunks = result.get("_retrieved_chunks", [])
             ce_best = chunks[0].get("_ce_best_raw") if chunks else None
 
