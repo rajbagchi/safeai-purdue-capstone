@@ -54,6 +54,50 @@ _RED_DANGER_SIGNS = [
     "lethargic",
 ]
 
+# ---------------------------------------------------------------------------
+# Demographic context signals — used to reject mismatched chunks
+# ---------------------------------------------------------------------------
+
+# Chunk heading/text signals that indicate pediatric content
+_PEDIATRIC_CHUNK_SIGNALS = (
+    "sick child", "young infant", "imci", "paediatric", "pediatric",
+    "under 5", "under five", "child cannot", "infant cannot",
+    "carry child", "do not let", "child is unable", "sips of water",
+    "recovery position",  # specific to paediatric iCCM algorithms
+)
+
+# Chunk heading/text signals that indicate postpartum (wrong for antepartum queries)
+_POSTPARTUM_CHUNK_SIGNALS = (
+    "postpartum", "post-partum", "postnatal", "post-natal", "pph ",
+    "after delivery", "after birth", "post delivery", "post birth",
+    "puerperal", "after caesarean", "after c-section", "4th stage",
+    "third stage of labour", "third stage of labor",
+)
+
+# Chunk heading/text signals that indicate early pregnancy / first trimester
+# (wrong for queries about >20 weeks gestation)
+_EARLY_PREGNANCY_CHUNK_SIGNALS = (
+    "abortion", "miscarriage", "ectopic", "first trimester",
+    "early pregnancy bleeding", "incomplete abortion", "threatened abortion",
+    "complete abortion",
+)
+
+# Query keywords that signal the patient is in late pregnancy (>20 weeks)
+_LATE_PREGNANCY_QUERY = re.compile(
+    r"\bpregnan|\bantenatal|\bprenatal|\bobstetric|"
+    r"\b(?:2[0-9]|3[0-9]|4[0-2])\s*weeks?\s*(?:gestation|pregnant|of\s*pregnancy)|"
+    r"\bweeks?\s*pregnant\b|\bgestation\b",
+    re.IGNORECASE,
+)
+
+# Query keywords that signal a pediatric patient
+_PEDIATRIC_QUERY = re.compile(
+    r"\bchild\b|\binfant\b|\bbaby\b|\btoddler\b|\bnewborn\b|\bneonate\b|"
+    r"\bpaediatric\b|\bpediatric\b|\bunder\s*5\b|"
+    r"\b\d+\s*(?:months?\s*old|years?\s*old|month[- ]old|year[- ]old)\b",
+    re.IGNORECASE,
+)
+
 # Query keywords that indicate a patient-clinical context (vs. purely
 # informational queries).  Escalation only fires when at least one of these
 # is present — so "What are danger signs?" stays GREEN even if chunks contain
@@ -429,7 +473,7 @@ class ResponseOrchestrator:
 
         actions = self._select_actions(query, triage, retrieved_chunks)
         monitoring = self._select_monitoring(query, retrieved_chunks)
-        referral_criteria = self._select_referral_criteria(triage, retrieved_chunks)
+        referral_criteria = self._select_referral_criteria(triage, retrieved_chunks, query)
 
         # Improvement 5: cross-section deduplication
         actions, monitoring, referral_criteria = self._deduplicate_sections(
@@ -553,6 +597,62 @@ class ResponseOrchestrator:
     )
     # Bold markdown items: **some instruction**
     _BOLD_ITEM_RE = re.compile(r"^\s*\*\*(.{10,200})\*\*\s*$", re.MULTILINE)
+
+    @staticmethod
+    def _filter_chunks_by_query_context(
+        query: str,
+        chunks: List[Dict[str, Any]],
+    ) -> List[Dict[str, Any]]:
+        """
+        Remove chunks whose patient demographic clearly conflicts with the query.
+
+        Problem: the retriever finds semantically adjacent sections that score
+        above the relevance threshold but are clinically wrong — a "vaginal
+        bleeding at 28 weeks" query retrieves pediatric "very sick child"
+        chunks and postpartum PPH chunks because they all contain danger-sign
+        vocabulary. Extracting actions from these gives clinically wrong steps
+        for the wrong age group.
+
+        Rules:
+        - Late-pregnancy query → reject pediatric chunks, postpartum chunks,
+          and early-pregnancy/abortion chunks.
+        - Pediatric query → reject postpartum/obstetric adult chunks.
+        - If filtering removes ALL chunks, return the original list (safe
+          fallback: caller will use hardcoded templates instead).
+        """
+        is_late_pregnancy = bool(_LATE_PREGNANCY_QUERY.search(query))
+        is_pediatric = bool(_PEDIATRIC_QUERY.search(query))
+
+        if not is_late_pregnancy and not is_pediatric:
+            return chunks  # No demographic signal — no filtering needed
+
+        def _chunk_text_sample(chunk: Dict) -> str:
+            heading = (chunk.get("heading") or "").lower()
+            text    = (chunk.get("text") or "")[:300].lower()
+            return heading + " " + text
+
+        kept: List[Dict[str, Any]] = []
+        for chunk in chunks:
+            sample = _chunk_text_sample(chunk)
+
+            if is_late_pregnancy:
+                if any(sig in sample for sig in _PEDIATRIC_CHUNK_SIGNALS):
+                    continue  # pediatric content — wrong for pregnant adult
+                if any(sig in sample for sig in _POSTPARTUM_CHUNK_SIGNALS):
+                    continue  # postpartum content — wrong for antepartum query
+                if any(sig in sample for sig in _EARLY_PREGNANCY_CHUNK_SIGNALS):
+                    continue  # early pregnancy / abortion — wrong for >20 wk query
+
+            if is_pediatric:
+                if any(sig in sample for sig in _POSTPARTUM_CHUNK_SIGNALS):
+                    continue  # postpartum content — wrong for child query
+
+            kept.append(chunk)
+
+        # If everything was filtered out, return the original set so the
+        # caller's template fallback can still run (empty list would silently
+        # produce no actions at all).
+        return kept if kept else []  # empty → triggers template fallback
 
     @staticmethod
     def _relevant_chunks(
@@ -687,14 +787,16 @@ class ResponseOrchestrator:
     def _select_actions(
         self, query: str, triage: TriageLevel, chunks: List[Dict[str, Any]]
     ) -> List[str]:
-        # Only use high-confidence relevant chunks to avoid content from
-        # unrelated guideline sections leaking into actions.
+        # Only use high-confidence relevant chunks, then filter out chunks
+        # from the wrong demographic/clinical context.
         relevant = self._relevant_chunks(chunks)
+        relevant = self._filter_chunks_by_query_context(query, relevant)
         # Primary: extract list items directly from the retrieved guideline text.
         extracted = self._extract_list_items_from_chunks(relevant, max_items=6)
         if extracted:
             return extracted
-        # Fallback: hardcoded templates when the PDF chunks contain no lists.
+        # Fallback: hardcoded templates when the PDF chunks contain no lists
+        # or when all retrieved chunks were from the wrong clinical context.
         q = query.lower()
         if triage == TriageLevel.RED:
             if "cannot drink" in q or "unable to drink" in q:
@@ -724,6 +826,7 @@ class ResponseOrchestrator:
         self, query: str, chunks: List[Dict[str, Any]]
     ) -> List[str]:
         relevant = self._relevant_chunks(chunks)
+        relevant = self._filter_chunks_by_query_context(query, relevant)
         # Primary: danger signs extracted from chunk clinical_metadata.
         danger_signs = self._collect_metadata_field(relevant, "danger_signs")
         if danger_signs:
@@ -734,9 +837,10 @@ class ResponseOrchestrator:
         return list(self.monitoring_templates["generic"])
 
     def _select_referral_criteria(
-        self, triage: TriageLevel, chunks: List[Dict[str, Any]]
+        self, triage: TriageLevel, chunks: List[Dict[str, Any]], query: str = ""
     ) -> List[str]:
         relevant = self._relevant_chunks(chunks)
+        relevant = self._filter_chunks_by_query_context(query, relevant)
         # Primary: referral criteria extracted from chunk clinical_metadata.
         criteria = self._collect_metadata_field(relevant, "referral_criteria")
         if criteria:
