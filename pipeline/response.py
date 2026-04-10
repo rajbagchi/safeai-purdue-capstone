@@ -42,7 +42,10 @@ except ImportError:
 # Danger-sign vocabulary for triage escalation (Improvement 1)
 # ---------------------------------------------------------------------------
 
-# Signs that warrant RED triage when found in chunk clinical_metadata
+# Signs that warrant RED triage when found in chunk clinical_metadata.
+# These are checked as substrings of danger-sign strings from the PDF —
+# e.g. "bleed" matches "heavy vaginal bleeding" or "bleeding from gums".
+# Kept universal so they fire for any document without condition-specific tuning.
 _RED_DANGER_SIGNS = [
     "unable to drink",
     "cannot drink",
@@ -52,6 +55,14 @@ _RED_DANGER_SIGNS = [
     "not waking",
     "very weak",
     "lethargic",
+    "bleed",          # covers bleeding, haemorrhage text in chunk metadata
+    "haemorrhag",
+    "hemorrhag",
+    "not breathing",
+    "severe pain",
+    "collapse",
+    "in shock",
+    "shock",
 ]
 
 # ---------------------------------------------------------------------------
@@ -392,68 +403,6 @@ class ResponseOrchestrator:
     def __init__(self, default_format: ResponseFormat = ResponseFormat.VHT_STANDARD):
         self.default_format = default_format
         self.formatter = VHTResponseFormatter()
-        self.action_templates: Dict[str, List[str]] = {
-            "cannot_drink": [
-                "Check if child can swallow: gently try small sips of water",
-                "If cannot swallow, do NOT force – spitting out means cannot drink",
-                "Keep child lying on side (recovery position)",
-                "Keep warm, not hot",
-                "Do NOT give food or medicine",
-                "Arrange transport NOW – carry child, do not let them walk",
-            ],
-            "convulsions": [
-                "Place child on soft surface (mat, blanket)",
-                "Remove dangerous objects nearby",
-                "Loosen tight clothing",
-                "DO NOT: put anything in mouth, hold child down, or give water",
-                "After shaking stops: place on side, check breathing",
-                "Go to health facility IMMEDIATELY",
-            ],
-            "fever": [
-                "Check temperature – feel child's body, hot to touch?",
-                "Remove extra clothing",
-                "Wipe with cool (not cold) cloth",
-                "Offer frequent small drinks if able to swallow",
-                "Continue breastfeeding if baby",
-                "Monitor for danger signs every 2-4 hours",
-            ],
-            "rash": [
-                "Keep skin clean and dry",
-                "Do NOT scratch or apply any ointment",
-                "Do NOT give any medicine at home",
-                "Monitor for fever or spread of rash",
-                "Refer to health facility for assessment",
-            ],
-        }
-        self.monitoring_templates: Dict[str, List[str]] = {
-            "generic": [
-                "Check if patient can drink normally",
-                "Watch for convulsions or shaking",
-                "Monitor breathing – is it fast or difficult?",
-                "Check if patient is awake and alert",
-                "Look for pale or yellow skin/eyes",
-            ],
-            "fever": [
-                "Check temperature every 4 hours",
-                "Watch for danger signs (cannot drink, convulsions, lethargy)",
-                "If fever >3 days → refer immediately",
-            ],
-        }
-        self.referral_templates: Dict[str, List[str]] = {
-            "immediate": [
-                "Cannot drink or breastfeed",
-                "Convulsions/shaking",
-                "Unconscious or cannot wake",
-                "Vomiting everything",
-                "Difficulty breathing",
-            ],
-            "urgent": [
-                "Fever >3 days",
-                "Cough >3 weeks",
-                "Painful rash",
-                "Fatigue with night sweats (elderly)",
-            ],
-        }
 
     def create(
         self,
@@ -729,6 +678,36 @@ class ResponseOrchestrator:
         return items[:max_items]
 
     @staticmethod
+    def _extract_nll_from_chunks(
+        chunks: List[Dict[str, Any]], max_items: int = 6
+    ) -> List[str]:
+        """
+        Extract NLL (natural-language descriptions) from embedded tables.
+
+        The chunker pre-processes every table into a clean prose NLL string
+        during indexing.  Using NLL avoids all raw table cell content — no
+        tilde separators, no merged-cell artefacts, no truncated fragments.
+        """
+        seen: set = set()
+        items: List[str] = []
+        _SENT_SPLIT = re.compile(r"(?<=[.!?])\s+")
+        for chunk in chunks:
+            for table in (chunk.get("tables") or []):
+                nll = (table.get("nll") or "").strip()
+                if not nll:
+                    continue
+                for sentence in _SENT_SPLIT.split(nll):
+                    sentence = sentence.strip()
+                    if 20 <= len(sentence) <= 250:
+                        key = sentence[:60].lower()
+                        if key not in seen:
+                            seen.add(key)
+                            items.append(sentence)
+            if len(items) >= max_items:
+                break
+        return items[:max_items]
+
+    @staticmethod
     def _collect_metadata_field(
         chunks: List[Dict[str, Any]], field_name: str, max_items: int = 5
     ) -> List[str]:
@@ -787,54 +766,72 @@ class ResponseOrchestrator:
     def _select_actions(
         self, query: str, triage: TriageLevel, chunks: List[Dict[str, Any]]
     ) -> List[str]:
-        # Only use high-confidence relevant chunks, then filter out chunks
-        # from the wrong demographic/clinical context.
+        """
+        Extract recommended actions from retrieved chunks.
+
+        Source priority (document-agnostic, no per-condition logic):
+        1. Bullet/numbered/action-verb lines from NARRATIVE chunks only.
+           Skipping is_table_only chunks avoids raw table cell artefacts
+           (tilde separators, merged-cell fragments) entirely.
+        2. NLL sentences from embedded tables (pre-processed by the chunker
+           into clean prose — no artefacts possible).
+        3. Generic three-item fallback (not condition-specific).
+        """
         relevant = self._relevant_chunks(chunks)
         relevant = self._filter_chunks_by_query_context(query, relevant)
-        # Primary: extract list items directly from the retrieved guideline text.
-        extracted = self._extract_list_items_from_chunks(relevant, max_items=6)
+
+        # 1. Parse text from narrative chunks only (skip raw table cells)
+        narrative = [c for c in relevant if not c.get("is_table_only")]
+        extracted = self._extract_list_items_from_chunks(narrative, max_items=6)
         if extracted:
             return extracted
-        # Fallback: hardcoded templates when the PDF chunks contain no lists
-        # or when all retrieved chunks were from the wrong clinical context.
-        q = query.lower()
-        if triage == TriageLevel.RED:
-            if "cannot drink" in q or "unable to drink" in q:
-                return list(self.action_templates["cannot_drink"])
-            if "convulsion" in q or "seizure" in q:
-                return list(self.action_templates["convulsions"])
-            return list(self.action_templates["cannot_drink"])
-        if "fever" in q:
-            return list(self.action_templates["fever"])
-        if "rash" in q:
-            return list(self.action_templates["rash"])
-        if "dose" in q or "dosage" in q:
-            return [
-                "Confirm patient weight before calculating dose",
-                "Explain dosing schedule to caregiver",
-                "Observe first dose if possible",
-                "Complete full course even if symptoms improve",
-            ]
+
+        # 2. NLL from any embedded tables (already clean prose)
+        nll = self._extract_nll_from_chunks(relevant, max_items=6)
+        if nll:
+            return nll
+
+        # 3. Generic fallback — no condition-specific content
         return [
-            "Assess patient carefully",
-            "Check for danger signs (see below)",
-            "If unsure, refer to health facility",
-            "Record all findings",
+            "Assess the patient and check for danger signs",
+            "If condition is severe or worsening, refer to the health facility",
+            "Follow the treatment protocol in the loaded guidelines",
         ]
 
     def _select_monitoring(
         self, query: str, chunks: List[Dict[str, Any]]
     ) -> List[str]:
+        """
+        Extract monitoring / watch-for items from retrieved chunks.
+
+        Source priority (document-agnostic):
+        1. clinical_features from chunk clinical_metadata (pre-extracted
+           by the chunker — clean, no artefacts).
+        2. danger_signs from chunk clinical_metadata, formatted as watch-for.
+        3. Bullet/action-verb lines from narrative chunks only.
+        4. Generic fallback (not condition-specific).
+        """
         relevant = self._relevant_chunks(chunks)
         relevant = self._filter_chunks_by_query_context(query, relevant)
-        # Primary: danger signs extracted from chunk clinical_metadata.
+
+        features = self._collect_metadata_field(relevant, "clinical_features")
+        if features:
+            return features
+
         danger_signs = self._collect_metadata_field(relevant, "danger_signs")
         if danger_signs:
             return [f"Watch for: {s}" for s in danger_signs]
-        # Fallback: template-based monitoring.
-        if "fever" in query.lower():
-            return list(self.monitoring_templates["fever"])
-        return list(self.monitoring_templates["generic"])
+
+        narrative = [c for c in relevant if not c.get("is_table_only")]
+        extracted = self._extract_list_items_from_chunks(narrative, max_items=5)
+        if extracted:
+            return extracted
+
+        return [
+            "Check if patient can drink or eat normally",
+            "Monitor breathing and level of consciousness",
+            "Watch for any worsening of symptoms",
+        ]
 
     def _select_referral_criteria(
         self, triage: TriageLevel, chunks: List[Dict[str, Any]], query: str = ""
@@ -934,31 +931,20 @@ class ResponseOrchestrator:
                         continue
                 return sentence
 
-        # Fallback: hardcoded templates
-        q = query.lower()
+        # Fallback: generic templates — not condition-specific
         if triage == TriageLevel.RED:
-            if "cannot drink" in q or "unable to drink" in q:
-                return (
-                    "Your child is very sick because they cannot drink. This is a danger sign. "
-                    "The child needs to be seen by a health worker TODAY. Do not give any medicine at home. "
-                    "We need to go to the health facility now."
-                )
-            if "convulsion" in q or "seizure" in q:
-                return (
-                    "Your child had a fit/shaking. This is a serious sign. The child needs help from a health worker. "
-                    "We must go to the health facility now."
-                )
             return (
                 "This is a serious condition. The patient needs to go to the health facility immediately. "
-                "Do not delay."
+                "Do not delay — refer now."
             )
         if triage == TriageLevel.YELLOW:
             return (
-                "The symptoms need to be checked by a health worker. Please go to the health facility today."
+                "These symptoms need to be assessed by a health worker. "
+                "Please go to the health facility today."
             )
         return (
-            "The symptoms can be managed at home with guidance. Follow the advice you were given. "
-            "Come back if symptoms get worse."
+            "Follow the advice given. Return to the health facility if symptoms worsen "
+            "or any danger signs develop."
         )
 
     def _calculate_confidence(
@@ -1010,33 +996,27 @@ def infer_triage_from_query(query: str) -> tuple[TriageLevel, List[str]]:
     #   "hemorrhag"  → hemorrhage / hemorrhaging (American)
     #   "eclampsi"   → eclampsia / pre-eclampsia
     #   "convuls"    → convulsions / convulsing
+    # Only universal, immediately recognisable danger signs are matched here.
+    # Condition-specific escalation (eclampsia, APH, sepsis, etc.) is handled
+    # by _escalate_triage_from_chunks(), which uses clinical_metadata.danger_signs
+    # from the retrieved guideline chunks.  That approach works for any PDF
+    # without requiring per-condition keywords here.
     danger_kw = (
         ("unable to drink", "Unable to drink / cannot drink"),
-        ("cannot drink", "Unable to drink / cannot drink"),
-        ("convuls", "Convulsions / seizures"),
-        ("seizure", "Convulsions / seizures"),
-        ("fit ", "Convulsions / fits"),         # "fits" / "a fit" — space avoids "fits into"
-        ("unconscious", "Unconscious or not waking"),
-        ("not waking", "Unconscious or not waking"),
-        ("very weak", "Very weak"),
-        ("lethargic", "Very weak / lethargic"),
-        ("bleed", "Bleeding"),                  # covers bleeding/bleeds/bled
-        ("haemorrhag", "Haemorrhage"),
-        ("hemorrhag", "Hemorrhage"),
-        ("eclampsi", "Eclampsia / pre-eclampsia"),
-        ("antepartum", "Antepartum complication"),
-        ("postpartum", "Postpartum complication"),
-        ("placenta previa", "Placenta previa"),
-        ("placenta praevia", "Placenta praevia"),
-        ("abruption", "Placental abruption"),
-        ("cord prolapse", "Cord prolapse"),
-        ("obstructed labour", "Obstructed labour"),
-        ("obstructed labor", "Obstructed labor"),
-        ("not breathing", "Not breathing"),
+        ("cannot drink",    "Unable to drink / cannot drink"),
+        ("convuls",         "Convulsions / seizures"),
+        ("seizure",         "Convulsions / seizures"),
+        ("fit ",            "Convulsions / fits"),   # space avoids "fits into"
+        ("unconscious",     "Unconscious"),
+        ("not waking",      "Not waking / unconscious"),
+        ("very weak",       "Very weak / lethargic"),
+        ("lethargic",       "Very weak / lethargic"),
+        ("bleed",           "Bleeding"),
+        ("haemorrhag",      "Haemorrhage"),
+        ("hemorrhag",       "Hemorrhage"),
+        ("not breathing",   "Not breathing"),
         ("stopped breathing", "Stopped breathing"),
-        ("sepsis", "Sepsis"),
-        ("in shock", "Shock"),
-        ("severe pain", "Severe pain"),
+        ("in shock",        "Shock"),
     )
     for needle, label in danger_kw:
         if needle in q:

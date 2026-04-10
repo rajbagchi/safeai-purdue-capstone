@@ -118,24 +118,12 @@ def _clean_list_items(items: List[str]) -> List[str]:
         r"\b(the|if|for|and|or|a|an|of|in|to|with|that|this|is|are|be|by)\s*$",
         re.IGNORECASE,
     )
-    # Patterns that indicate table cell fragments rather than clinical instructions
-    _TABLE_ARTIFACT_RE = re.compile(
-        r"~|"                        # tilde — Uganda guidelines table separator
-        r"\bmg\(or\b|"               # "mg(or" — dose concatenation artifact
-        r"\)\s*\(|"                  # ")(" — adjacent cells merged
-        r",\s*~|~\s*,|"              # comma-tilde combinations
-        r"\bcon-\s*,|"               # word broken across table cells ("con-, tinue")
-        r"^\s*hospital\s+is\b",      # referral fragment starting "hospital is"
-        re.IGNORECASE,
-    )
     cleaned: List[str] = []
     seen_prefixes: set = set()
 
     for item in items:
         item = re.sub(r"\s+", " ", item).strip().strip("|").strip()
         if item.count("|") >= 2:
-            continue
-        if _TABLE_ARTIFACT_RE.search(item):
             continue
         if len(item) < 20 or len(item) > 180:
             continue

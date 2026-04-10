@@ -355,46 +355,18 @@ class MedicalQASystem:
             r"comes?\s+in\s+(?:with\s+)?|complains?\s+of\s+)?",
             re.IGNORECASE,
         )
-        # Medical synonym map: keyword pattern → extra search terms to append.
-        # Terms are appended only when not already present to avoid repetition.
+        # Synonym map: only entries where the user's term is genuinely different
+        # from the document's term in a way the embedding model cannot bridge.
+        # Do NOT add per-symptom or per-condition entries — for normal medical
+        # vocabulary BM25 handles exact matching and the cross-encoder handles
+        # semantic matching without help.  US↔British spelling is handled
+        # separately by HybridRetriever._normalize_medical_spelling().
         _SYNONYMS: List[tuple] = [
-            # Symptoms
-            (r"\bbleed(?:ing|s|ed)?\b",      "bleeding haemorrhage hemorrhage"),
-            (r"\bvomit(?:ing|s|ed)?\b",      "vomiting emesis nausea"),
-            (r"\bfit(?:s|ting)?\b",           "convulsions seizures"),
-            (r"\bfever(?:ish)?\b",            "fever febrile pyrexia temperature"),
-            (r"\bdiarrho?ea\b",               "diarrhoea diarrhea loose stool"),
-            (r"\bcough(?:ing|s|ed)?\b",       "cough respiratory tract"),
-            (r"\bweak(?:ness|ly)?\b",         "weakness lethargic"),
-            (r"\bunconscious\b",              "unconscious unresponsive not waking"),
-            (r"\bchest pain\b",               "chest pain cardiac"),
-            (r"\bbreath(?:ing|s)?\b",         "breathing respiratory dyspnoea"),
-            (r"\bswelling\b",                 "swelling oedema edema"),
-            (r"\bjaundice\b",                 "jaundice yellow skin eyes"),
-            (r"\bpain(?:ful)?\b",             "pain"),
-            # Conditions — common clinical vocabulary mismatches
-            (r"\bappendicitis\b",             "appendicitis acute abdomen surgical abdomen right iliac fossa"),
-            (r"\bheart attack\b",             "myocardial infarction cardiac chest pain"),
-            (r"\bstroke\b",                   "stroke cerebrovascular accident CVA weakness"),
-            (r"\bdiabet(?:es|ic)\b",          "diabetes diabetic blood sugar glucose"),
-            (r"\bhypertension\b",             "hypertension high blood pressure"),
-            (r"\btuberculosis\b|\bTB\b",      "tuberculosis TB respiratory"),
-            (r"\btyphoid\b",                  "typhoid enteric fever"),
-            (r"\bsickle cell\b",              "sickle cell anaemia crisis"),
-            (r"\bkidney\b|\brenal\b",         "kidney renal nephrology"),
-            (r"\bliver\b|\bhepatic\b",        "liver hepatic"),
-            (r"\bsepsis\b|\bseptic\b",        "sepsis septicaemia infection"),
-            (r"\bmeningitis\b",               "meningitis meningism neck stiffness"),
-            (r"\bwound\b|\binjur(?:y|ies)\b", "wound injury trauma"),
-            # Pregnancy / reproductive
-            (r"\bpregnan(?:t|cy)\b",          "pregnant pregnancy antenatal obstetric"),
-            # Infections
-            (r"\bmalaria\b",                  "malaria plasmodium ACT artemisinin"),
-            (r"\bpneumonia\b",                "pneumonia respiratory infection"),
-            (r"\bHIV\b|\bAIDS\b",             "HIV AIDS antiretroviral ARV"),
-            # Anaemia — handle both spellings
-            (r"\banemia\b",                   "anaemia anemia haemoglobin"),
-            (r"\banaemia\b",                  "anaemia anemia haemoglobin"),
+            # Lay / consumer terms whose clinical equivalents look completely different
+            (r"\bappendicitis\b",   "appendicitis acute abdomen right iliac fossa"),
+            (r"\bheart attack\b",   "heart attack myocardial infarction cardiac"),
+            (r"\bstroke\b",         "stroke cerebrovascular accident CVA"),
+            (r"\bhigh blood pressure\b", "high blood pressure hypertension"),
         ]
 
         q = query.strip()
