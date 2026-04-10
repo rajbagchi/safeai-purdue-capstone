@@ -23,7 +23,7 @@ from .response import (
     ResponseOrchestrator,
     infer_triage_from_query,
 )
-from .retriever import HybridRetriever
+from .retriever import HybridRetriever, MEDICAL_EMBED_MODEL
 from .clinical_verifier import ClinicalVerifier
 
 
@@ -120,6 +120,14 @@ class MedicalQASystem:
         retrieval_units = children if children else self.chunks
         self._retriever = HybridRetriever(
             retrieval_units,
+            # PubMedBERT was trained on PubMed biomedical literature and
+            # understands clinical vocabulary that a general web-search model
+            # (all-MiniLM-L6-v2) cannot: antepartum ≠ postpartum, APH ≠ PPH,
+            # haemorrhage ≠ infection, etc.  This resolves the core retrieval
+            # quality problem where obstetric/clinical queries retrieve the
+            # wrong section.  The FAISS index is built in memory at startup from
+            # the saved chunks.json — no PDF re-processing is needed.
+            embed_model_name=MEDICAL_EMBED_MODEL,
             drug_keywords=getattr(self.config, "drug_keywords", None),
             condition_patterns=getattr(self.config, "condition_patterns", None),
         )
@@ -204,6 +212,14 @@ class MedicalQASystem:
         retrieval_units = children if children else self.chunks
         self._retriever = HybridRetriever(
             retrieval_units,
+            # PubMedBERT was trained on PubMed biomedical literature and
+            # understands clinical vocabulary that a general web-search model
+            # (all-MiniLM-L6-v2) cannot: antepartum ≠ postpartum, APH ≠ PPH,
+            # haemorrhage ≠ infection, etc.  This resolves the core retrieval
+            # quality problem where obstetric/clinical queries retrieve the
+            # wrong section.  The FAISS index is built in memory at startup from
+            # the saved chunks.json — no PDF re-processing is needed.
+            embed_model_name=MEDICAL_EMBED_MODEL,
             drug_keywords=getattr(self.config, "drug_keywords", None),
             condition_patterns=getattr(self.config, "condition_patterns", None),
         )
