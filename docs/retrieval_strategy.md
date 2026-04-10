@@ -284,7 +284,7 @@ Before retrieval, `orchestrator._preprocess_query()` rewrites the user's query i
 
 **Step 1 — Strip conversational framing.** VHT workers typically describe scenarios: "A lady has vaginal bleeding" or "My child is not eating". The retriever performs better on the clinical core. A regex removes the leading subject phrase, leaving "vaginal bleeding after 28 weeks of pregnancy" for retrieval.
 
-**Step 2 — Medical synonym expansion.** 15 term groups are expanded at query time. The original term stays; synonyms are appended only if not already present:
+**Step 2 — Medical synonym expansion.** 35 term groups are expanded at query time. The original term stays; synonyms are appended only if not already present:
 
 | Query term | Appended synonyms |
 |---|---|
@@ -295,7 +295,18 @@ Before retrieval, `orchestrator._preprocess_query()` rewrites the user's query i
 | diarrhoea/diarrhea | loose stool |
 | pregnant/pregnancy | antenatal obstetric |
 | weak/weakness | lethargic |
-| … (15 groups total) | |
+| appendicitis | acute abdomen surgical abdomen right iliac fossa |
+| stroke | cerebrovascular accident CVA weakness |
+| meningitis | meningism neck stiffness |
+| diabetes/diabetic | blood sugar glucose |
+| tuberculosis/TB | respiratory TB |
+| anaemia/anemia | haemoglobin low blood count |
+| typhoid | enteric fever |
+| sickle cell | sickle-cell anaemia haemolytic |
+| HIV/AIDS | antiretroviral immunocompromised |
+| sepsis | septicaemia bacteraemia blood poisoning |
+| wound/injury/trauma | laceration abrasion cut |
+| … (35 groups total) | |
 
 The original query is preserved for triage inference, family message, and all display text. Only the retrieval call uses the enriched form.
 
@@ -307,7 +318,7 @@ Min-max normalisation in the cross-encoder blend always maps the best-ranked chu
 - Positive logit → model believes the query and chunk are related
 - Negative logit → model believes they are unrelated
 
-In `chat.py`, if `_ce_best_raw < -1.5`, the response is suppressed and "No matching guidelines found for this query" is displayed. Queries scoring between −1.5 and 0 still receive a response with the existing low-confidence warning. When the cross-encoder is not installed (BM25-only mode), `_ce_best_raw` is None and this check is skipped.
+In `chat.py`, if `_ce_best_raw < -4.0`, the response is suppressed and "No matching guidelines found for this query" is displayed. The threshold is set conservatively at -4.0 rather than a tighter value because `ms-marco-MiniLM-L-6-v2` was trained on general web-search data, not medical text — a vocabulary mismatch (e.g. a query using "appendicitis" against a document that says "acute abdomen") routinely scores around -1.5 to -3, which does not mean the query is out-of-domain. Genuinely unrelated queries (weather, sports, etc.) score -5 to -8. Using -4.0 avoids false "no match" rejections for legitimate medical queries whose terminology differs from the document vocabulary. Queries scoring between −4.0 and 0 receive the response with the existing low-confidence warning. When the cross-encoder is not installed (BM25-only mode), `_ce_best_raw` is None and this check is skipped.
 
 ## Parameters
 

@@ -186,9 +186,17 @@ The retrieval benchmark results and deployable mobile package are tracked in [`r
 
 ## Recent changes
 
+### 2026-04-10 — `chat.py` + `pipeline/orchestrator.py`: CE threshold calibration + synonym expansion
+
+**Problem:** Queries whose terminology differs from the document vocabulary (e.g. "appendicitis" when the guideline uses "acute abdomen") were triggering the "No matching guidelines found" message even though the content was present. The CE threshold of -1.5 was too aggressive for `ms-marco-MiniLM-L-6-v2`, which was trained on general web-search text, not medical language.
+
+**Fix 1 — CE threshold in `chat.py` raised to -4.0.** Genuinely out-of-domain queries (weather, sports) score -5 to -8. Medical vocabulary mismatches score -1.5 to -3. Using -4.0 avoids false "no match" rejections while still suppressing truly irrelevant queries.
+
+**Fix 2 — Synonym list in `orchestrator._preprocess_query()` expanded from 15 to 35 entries.** New groups include: appendicitis → "acute abdomen surgical abdomen right iliac fossa", stroke → "cerebrovascular accident CVA", meningitis → "meningism neck stiffness", TB, anaemia, typhoid, sickle cell, HIV, sepsis, wound/injury, and more. This ensures retrieval finds the right guideline section even when the user's term and the document's term differ.
+
 ### 2026-04-10 — `pipeline/orchestrator.py`: Offline query rewriting (`_preprocess_query`)
 
-New `_preprocess_query(query)` static method runs before every retrieval call. It strips conversational framing ("A lady has…", "My child is…", "I have a patient who…") so the retriever sees clinical terms instead of pronouns and filler. It then appends medical synonyms for 15 term groups (e.g. "bleed" → appends "bleeding haemorrhage hemorrhage"; "fit" → "convulsions seizures"). Original query is kept for triage inference, display, and response text — only the retrieval call receives the enriched query. No internet access, no models — pure regex and a static synonym dictionary.
+New `_preprocess_query(query)` static method runs before every retrieval call. It strips conversational framing ("A lady has…", "My child is…", "I have a patient who…") so the retriever sees clinical terms instead of pronouns and filler. It then appends medical synonyms for 35 term groups (e.g. "bleed" → appends "bleeding haemorrhage hemorrhage"; "fit" → "convulsions seizures"; "appendicitis" → "acute abdomen surgical abdomen right iliac fossa"). Original query is kept for triage inference, display, and response text — only the retrieval call receives the enriched query. No internet access, no models — pure regex and a static synonym dictionary.
 
 ### 2026-04-10 — `pipeline/retriever.py` + `chat.py`: No-match detection
 
