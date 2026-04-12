@@ -51,9 +51,74 @@ Classification drives downstream decisions: preservation level, chunking strateg
 
 Re-extracting text with pdfplumber and computing `fuzz.ratio` similarity against Pass 1 catches silent extraction failures. Text is normalized before comparison (whitespace collapsed, soft hyphens stripped, lowercased) to avoid false divergence from formatting differences. The Uganda PDF scores 94% consistency; malaria scores 83% (lower due to dense evidence tables with complex layouts).
 
+**PDF compatibility fix (2026-04-10):** Some PDFs produced by tools like Adobe InDesign use a non-standard internal page-tree structure that pdfminer/pdfplumber cannot traverse directly, returning 0 pages and causing a false 0% consistency score. The extractor now detects this automatically: if pdfplumber returns 0 pages, the PDF is re-saved through PyMuPDF (`garbage=4, clean=True`) to a temporary file, which normalises the structure to standard PDF. pdfplumber then runs on the repaired copy. The temporary file is deleted after cross-validation. This makes cross-validation work on any uploaded PDF regardless of how it was produced.
+
 **6. Image OCR and caption extraction**
 
 Embedded images are rasterized to PNG. If `pytesseract` or `easyocr` is available, OCR text is extracted. Captions are located by searching for text blocks in an 80px band below the image bounding box, preferring blocks starting with "Figure", "Chart", "Diagram", etc.
+
+## CT Health AI Integration: Docling + TableFormer ACCURATE
+
+**Module:** `pipeline/docling_table_extractor.py` | **Status:** Optional, default enabled when `use_docling_tables=True`
+
+After comparing this codebase with the CT Health AI pipeline (which uses IBM Docling 2.64 + TableFormer ACCURATE as its primary table extractor), we integrated Docling as an optional primary table extraction method. The integration is backwards-compatible: PyMuPDF remains the fallback when Docling is unavailable or when `use_docling_tables=False`.
+
+### Why Docling + TableFormer?
+
+CT Health AI's pipeline achieves **27/27 tables linearized with 0 skipped**, compared to SafeAI's original PyMuPDF approach which could miss or misparse complex borderless or nested tables. TableFormer is a transformer-based table structure recognition model trained on PubTables-1M — it predicts cell boundaries and spanning relationships without relying on visible grid lines, which is critical for clinical dosing tables that often use borderless formatting.
+
+### How the integration works
+
+```python
+# ExtractionConfig (config.py)
+use_docling_tables: bool = True   # new field — enables Docling as primary
+
+# extractor.py — modified extract_all() table section:
+if config.use_docling_tables and DOCLING_AVAILABLE:
+    docling_tables = extract_tables_with_docling(pdf_path, output_dir, table_mode="accurate")
+    # PyMuPDF still runs as cross-check (count logged), but Docling tables are used
+    # Pass 2b stitching is skipped for Docling tables (it handles cross-page layout natively)
+    # SafeAI's _classify_table() and _generate_nll() are applied to Docling table dicts
+else:
+    # original PyMuPDF path runs unchanged
+```
+
+The `extract_tables_with_docling()` function in `docling_table_extractor.py` returns table dicts matching SafeAI's existing format:
+
+```python
+{
+    "page": int,           # 0-based page number
+    "method": "docling",   # provenance
+    "source": "docling",
+    "data": List[dict],    # row dicts keyed by column header
+    "headers": List[str],
+    "markdown": str,       # full markdown table string
+    "num_rows": int,
+    "num_cols": int,
+    "bbox": [x0, y0, x1, y1],
+    "confidence": 0.97,    # fixed high-confidence marker
+    "stitched": False,     # Docling handles layout natively
+    "classification": "",  # filled by SafeAI's _classify_table()
+    "nll": "",             # filled by SafeAI's _generate_nll()
+}
+```
+
+### Installation
+
+Docling is an optional dependency. To enable:
+
+```bash
+pip install 'docling>=2.64.0'
+```
+
+If Docling is not installed, `DOCLING_AVAILABLE = False` and the pipeline transparently falls back to PyMuPDF. No code changes needed.
+
+### Disabling Docling (use PyMuPDF only)
+
+```python
+from pipeline.config import ExtractionConfig
+cfg = ExtractionConfig(pdf_path="...", use_docling_tables=False)
+```
 
 ## Alternatives we considered
 
@@ -61,13 +126,15 @@ Embedded images are rasterized to PNG. If `pytesseract` or `easyocr` is availabl
 
 Using only PyMuPDF text extraction is fast but misses table structure entirely. Tables render as space-separated values with no column alignment. For medical dosing tables where column membership determines whether "500" means "500 mg" or "500 mL", this is unacceptable.
 
-### Docling / Unstructured.io (rejected)
+### Docling / Unstructured.io (original evaluation — now integrated)
 
-We evaluated both document intelligence frameworks:
+We originally evaluated both document intelligence frameworks and rejected them for the following reasons:
 - **Docling** provides excellent table detection but adds significant dependencies (PyTorch vision models, ~2 GB) and was slower than PyMuPDF on our 1,161-page PDF.
 - **Unstructured.io** had similar overhead and its table extraction quality was comparable to PyMuPDF's built-in `find_tables()` for our structured medical PDFs.
 
 Since our PDFs are digitally-authored (not scanned), the simpler PyMuPDF approach provided equivalent quality with fewer dependencies and faster runtime.
+
+**Update:** After benchmarking CT Health AI's Docling integration, we reversed the Docling decision for table extraction specifically. TableFormer ACCURATE (the transformer-based table model in Docling) outperforms `find_tables()` on complex borderless tables. Docling is now the **optional primary** path, with PyMuPDF as fallback. See the CT Health AI Integration section above.
 
 ### Camelot for table extraction (partially adopted)
 

@@ -31,6 +31,11 @@ try:
 except ImportError:
     CAMELOT_AVAILABLE = False
 
+from .docling_table_extractor import (
+    extract_tables_with_docling,
+    DOCLING_AVAILABLE,
+)
+
 try:
     import pdfplumber
     PDFPLUMBER_AVAILABLE = True
@@ -830,8 +835,27 @@ class MultiPassExtractor:
 
         try:
             import pdfplumber
+            import tempfile
 
-            with pdfplumber.open(self.config.pdf_path) as pdf:
+            # Some PDFs (e.g. Adobe InDesign output) use internal page-tree
+            # structures that pdfminer/pdfplumber cannot traverse directly,
+            # returning 0 pages. Re-saving through PyMuPDF normalises the
+            # structure so pdfplumber can read any document.
+            pdf_path_for_plumber = self.config.pdf_path
+            tmp_file = None
+            with pdfplumber.open(pdf_path_for_plumber) as probe:
+                if len(probe.pages) == 0:
+                    print("  PDF structure not readable by pdfplumber — repairing via PyMuPDF...")
+                    import fitz
+                    src = fitz.open(self.config.pdf_path)
+                    tmp_file = tempfile.NamedTemporaryFile(suffix=".pdf", delete=False)
+                    tmp_file.close()
+                    src.save(tmp_file.name, garbage=4, deflate=True, clean=True)
+                    src.close()
+                    pdf_path_for_plumber = tmp_file.name
+                    print(f"  Repaired PDF written to temp file — retrying cross-validation")
+
+            with pdfplumber.open(pdf_path_for_plumber) as pdf:
                 for page_num, page in enumerate(pdf.pages, 1):
                     text = page.extract_text() or ""
 
@@ -850,6 +874,10 @@ class MultiPassExtractor:
                             "page": page_num,
                             "similarity": similarity,
                         })
+
+            if tmp_file:
+                import os as _os
+                _os.unlink(tmp_file.name)
 
             if validation_results["page_matches"]:
                 validation_results["consistency_score"] = float(np.mean([
@@ -920,8 +948,52 @@ class MultiPassExtractor:
 
         tables = []
         if pages_with_tables and self.config.enable_table_detection:
-            tables = self.pass2_table_extraction(pages_with_tables)
-            tables = self.pass2b_stitch_page_boundary_tables(tables)
+            use_docling = self.config.use_docling_tables and DOCLING_AVAILABLE
+            if use_docling:
+                # --- Primary: Docling + TableFormer ACCURATE ---
+                # Docling reconstructs multi-page tables natively; pass2b
+                # stitching is skipped.  Classification and NLL are applied
+                # below via the same helpers used for PyMuPDF tables.
+                print("\n[Docling] Using Docling as primary table extractor...")
+                extra_dosing = self.config.dosing_table_keywords or []
+                extra_clinical = self.config.clinical_table_keywords or []
+                docling_tables = extract_tables_with_docling(
+                    self.config.pdf_path,
+                    self.config.output_dir,
+                )
+                # Apply SafeAI's classification and NLL to Docling tables
+                for t in docling_tables:
+                    t["classification"] = self._classify_table(
+                        t, extra_dosing, extra_clinical
+                    )
+                    t["nll"] = self._generate_nll(t)
+                tables = docling_tables
+                # --- Secondary: PyMuPDF for cross-check ---
+                # PyMuPDF tables are extracted but used only as a secondary
+                # cross-validation baseline; they are not added to `tables`.
+                pymupdf_tables = self.pass2_table_extraction(pages_with_tables)
+                docling_count = len(docling_tables)
+                pymupdf_count = len(pymupdf_tables)
+                print(
+                    f"  [Docling vs PyMuPDF] Docling: {docling_count} tables, "
+                    f"PyMuPDF: {pymupdf_count} tables"
+                )
+                self.passes.append({
+                    "pass": "docling_vs_pymupdf",
+                    "docling_tables": docling_count,
+                    "pymupdf_tables": pymupdf_count,
+                    "primary": "docling",
+                })
+            else:
+                # --- Legacy: PyMuPDF + stitching ---
+                if not DOCLING_AVAILABLE and self.config.use_docling_tables:
+                    print(
+                        "  [Warning] use_docling_tables=True but Docling is not "
+                        "installed. Falling back to PyMuPDF. "
+                        "Install with: pip install 'docling>=2.64.0'"
+                    )
+                tables = self.pass2_table_extraction(pages_with_tables)
+                tables = self.pass2b_stitch_page_boundary_tables(tables)
             self._write_nll_file(tables)
 
         ocr_data = []

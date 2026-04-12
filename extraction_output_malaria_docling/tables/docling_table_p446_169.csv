@@ -1,0 +1,4 @@
+Threshold.,Studies.,Participants.,Cases.,Pooled sensitivity % (95% CI).,Pooled specificity % (95% CI).,Numbers in a cohort of 1000 patients tested (95% CI).Prevalence of 5%,Numbers in a cohort of 1000 patients tested (95% CI).Prevalence of 10%,Numbers in a cohort of 1000 patients tested (95% CI).Prevalence of 20%
+30%,19,11456,1103,"94.9 (89.4, 97.6)","96.2 (93.5, 97.8)","TP=47 (45, 49)","TP=95 (89, 98)","TP=190 (179, 195)"
+,,,,,,"FP=36 (21, 62) FN=3 (1, 5) TN=914","FP=34 (20, 58) FN=5 (2, 11)","FP=30 (18, 52) FN=10 (5, 21) TN=770"
+,,,,,,"(888, 929)","TN=866 (842, 880)","(748, 782)"

@@ -1,0 +1,1254 @@
+{
+  "structure": {
+    "stage": "structure",
+    "passed": true,
+    "issues": [
+      "Heading level skipped: 1 \u2192 3"
+    ],
+    "confidence": 0.8,
+    "suggestions": [
+      "Verify heading hierarchy manually"
+    ],
+    "metadata": {
+      "pages_extracted": 478
+    }
+  },
+  "tables": {
+    "stage": "tables",
+    "passed": true,
+    "issues": [],
+    "confidence": 1.0,
+    "suggestions": [],
+    "metadata": {
+      "tables_extracted": 123,
+      "valid_tables": 123
+    }
+  },
+  "cross": {
+    "stage": "cross_consistency",
+    "passed": false,
+    "issues": [
+      "Low cross-validation consistency: 83.3%"
+    ],
+    "confidence": 0.8328065586727755,
+    "suggestions": [
+      "Review pages with low consistency scores"
+    ],
+    "metadata": {
+      "consistency_score": 0.8328065586727755
+    }
+  },
+  "medical": {
+    "stage": "medical_content",
+    "passed": true,
+    "issues": [],
+    "confidence": 1.0,
+    "suggestions": [],
+    "metadata": {
+      "terms_found": [
+        "dose",
+        "mg",
+        "contraindication",
+        "warning",
+        "severe malaria",
+        "artemisinin",
+        "pregnancy",
+        "children",
+        "infant",
+        "emergency"
+      ],
+      "terms_missing": []
+    }
+  },
+  "dosing_plausibility": {
+    "stage": "dosing_plausibility",
+    "passed": false,
+    "issues": [
+      "[table 2 p[174] / weight_contiguity] Gap between band 1 (9.0 kg) and band 2 (36.0 kg) \u2014 27.0 kg",
+      "[table 3 p[175] / weight_contiguity] Gap between band 1 (9.0 kg) and band 2 (30.0 kg) \u2014 21.0 kg",
+      "[table 4 p[175] / weight_contiguity] Gap between band 1 (10.0 kg) and band 2 (50.0 kg) \u2014 40.0 kg",
+      "[table 5 p[176] / weight_contiguity] Gap between band 1 (8.0 kg) and band 2 (60.0 kg) \u2014 52.0 kg",
+      "[table 6 p[178] / weight_coverage] Table starts at 50.0 kg \u2014 may be missing infant doses (expected \u2264 10.0 kg)",
+      "[table 7 p[203] / weight_contiguity] Open-ended band (\u226510.0 kg) is not the last row",
+      "[table 10 p[423] / combination_consistency] Row 6 (): ratio = 500.00 vs median 250.00 (deviation 100% > 35%)",
+      "[table 10 p[423] / combination_consistency] Row 8 (): ratio = 1000.00 vs median 250.00 (deviation 300% > 35%)",
+      "[table 10 p[423] / combination_consistency] Row 2 (): ratio = 111.11 vs median 200.00 (deviation 44% > 35%)",
+      "[table 10 p[423] / combination_consistency] Row 6 (): ratio = 1000.00 vs median 200.00 (deviation 400% > 35%)",
+      "[table 10 p[423] / combination_consistency] Row 7 (): ratio = 500.00 vs median 200.00 (deviation 150% > 35%)",
+      "[table 10 p[423] / combination_consistency] Row 8 (): ratio = 0.00 vs median 200.00 (deviation 100% > 35%)",
+      "[table 10 p[423] / positive_no_empty] Row 9, dose col 1: empty dose cell",
+      "[table 10 p[423] / positive_no_empty] Row 9, dose col 2: empty dose cell",
+      "[table 11 p[446] / positive_no_empty] Row 3, dose col 1: empty dose cell",
+      "[table 11 p[446] / positive_no_empty] Row 6, dose col 1: empty dose cell",
+      "[table 12 p[447] / positive_no_empty] Row 3, dose col 1: empty dose cell",
+      "[table 12 p[447] / positive_no_empty] Row 5, dose col 1: empty dose cell",
+      "[table 13 p[173, 174] / weight_contiguity] Gap between band 1 (15.0 kg) and band 2 (35.0 kg) \u2014 20.0 kg",
+      "[table 18 p[417, 418] / positive_no_empty] Row 3, dose col 1: empty dose cell",
+      "[table 18 p[417, 418] / positive_no_empty] Row 4, dose col 1: empty dose cell",
+      "[table 18 p[417, 418] / positive_no_empty] Row 14, dose col 1: empty dose cell"
+    ],
+    "confidence": 0.42105263157894735,
+    "suggestions": [
+      "Review flagged dosing tables before deployment"
+    ],
+    "metadata": {
+      "dosing_tables": 19,
+      "passed": 8,
+      "table_results": [
+        {
+          "table_index": 1,
+          "pages": [
+            93
+          ],
+          "classification": "dosing",
+          "num_rows": 4,
+          "overall_passed": true,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": [
+                "no explicit dose columns \u2014 skipped"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 2,
+          "pages": [
+            174
+          ],
+          "classification": "dosing",
+          "num_rows": 4,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": false,
+              "issues": [
+                "Gap between band 1 (9.0 kg) and band 2 (36.0 kg) \u2014 27.0 kg"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": []
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [],
+              "range_low": 0.0,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": []
+            }
+          }
+        },
+        {
+          "table_index": 3,
+          "pages": [
+            175
+          ],
+          "classification": "dosing",
+          "num_rows": 4,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": false,
+              "issues": [
+                "Gap between band 1 (9.0 kg) and band 2 (30.0 kg) \u2014 21.0 kg"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": []
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [],
+              "range_low": 0.0,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": []
+            }
+          }
+        },
+        {
+          "table_index": 4,
+          "pages": [
+            175
+          ],
+          "classification": "dosing",
+          "num_rows": 4,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": false,
+              "issues": [
+                "Gap between band 1 (10.0 kg) and band 2 (50.0 kg) \u2014 40.0 kg"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": []
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [],
+              "range_low": 0.0,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": []
+            }
+          }
+        },
+        {
+          "table_index": 5,
+          "pages": [
+            176
+          ],
+          "classification": "dosing",
+          "num_rows": 8,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": false,
+              "issues": [
+                "Gap between band 1 (8.0 kg) and band 2 (60.0 kg) \u2014 52.0 kg"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": []
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [],
+              "range_low": 0.0,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": []
+            }
+          }
+        },
+        {
+          "table_index": 6,
+          "pages": [
+            178
+          ],
+          "classification": "dosing",
+          "num_rows": 3,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "<2 weight bands \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": []
+            },
+            "weight_coverage": {
+              "passed": false,
+              "issues": [
+                "Table starts at 50.0 kg \u2014 may be missing infant doses (expected \u2264 10.0 kg)"
+              ],
+              "range_low": 50.0,
+              "range_high": 100.0
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": []
+            }
+          }
+        },
+        {
+          "table_index": 7,
+          "pages": [
+            203
+          ],
+          "classification": "dosing",
+          "num_rows": 2,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": false,
+              "issues": [
+                "Open-ended band (\u226510.0 kg) is not the last row"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": []
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [],
+              "range_low": 10.0,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": []
+            }
+          }
+        },
+        {
+          "table_index": 8,
+          "pages": [
+            232
+          ],
+          "classification": "dosing",
+          "num_rows": 3,
+          "overall_passed": true,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": [
+                "no explicit dose columns \u2014 skipped"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 9,
+          "pages": [
+            269
+          ],
+          "classification": "dosing",
+          "num_rows": 20,
+          "overall_passed": true,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": [
+                "no explicit dose columns \u2014 skipped"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 10,
+          "pages": [
+            423
+          ],
+          "classification": "dosing",
+          "num_rows": 9,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": false,
+              "issues": [
+                "Row 6 (): ratio = 500.00 vs median 250.00 (deviation 100% > 35%)",
+                "Row 8 (): ratio = 1000.00 vs median 250.00 (deviation 300% > 35%)",
+                "Row 2 (): ratio = 111.11 vs median 200.00 (deviation 44% > 35%)",
+                "Row 6 (): ratio = 1000.00 vs median 200.00 (deviation 400% > 35%)",
+                "Row 7 (): ratio = 500.00 vs median 200.00 (deviation 150% > 35%)",
+                "Row 8 (): ratio = 0.00 vs median 200.00 (deviation 100% > 35%)"
+              ]
+            },
+            "positive_no_empty": {
+              "passed": false,
+              "issues": [
+                "Row 9, dose col 1: empty dose cell",
+                "Row 9, dose col 2: empty dose cell"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 11,
+          "pages": [
+            446
+          ],
+          "classification": "dosing",
+          "num_rows": 6,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": false,
+              "issues": [
+                "Row 3, dose col 1: empty dose cell",
+                "Row 6, dose col 1: empty dose cell"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 12,
+          "pages": [
+            447
+          ],
+          "classification": "dosing",
+          "num_rows": 5,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": false,
+              "issues": [
+                "Row 3, dose col 1: empty dose cell",
+                "Row 5, dose col 1: empty dose cell"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 13,
+          "pages": [
+            173,
+            174
+          ],
+          "classification": "dosing",
+          "num_rows": 4,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": false,
+              "issues": [
+                "Gap between band 1 (15.0 kg) and band 2 (35.0 kg) \u2014 20.0 kg"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": []
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [],
+              "range_low": 0.0,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": []
+            }
+          }
+        },
+        {
+          "table_index": 14,
+          "pages": [
+            259,
+            260
+          ],
+          "classification": "dosing",
+          "num_rows": 37,
+          "overall_passed": true,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": [
+                "no explicit dose columns \u2014 skipped"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 15,
+          "pages": [
+            261,
+            262
+          ],
+          "classification": "dosing",
+          "num_rows": 45,
+          "overall_passed": true,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": [
+                "no explicit dose columns \u2014 skipped"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 16,
+          "pages": [
+            263,
+            264
+          ],
+          "classification": "dosing",
+          "num_rows": 46,
+          "overall_passed": true,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": [
+                "no explicit dose columns \u2014 skipped"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 17,
+          "pages": [
+            267,
+            268
+          ],
+          "classification": "dosing",
+          "num_rows": 49,
+          "overall_passed": true,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": [
+                "no explicit dose columns \u2014 skipped"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 18,
+          "pages": [
+            417,
+            418
+          ],
+          "classification": "dosing",
+          "num_rows": 14,
+          "overall_passed": false,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": false,
+              "issues": [
+                "Row 3, dose col 1: empty dose cell",
+                "Row 4, dose col 1: empty dose cell",
+                "Row 14, dose col 1: empty dose cell"
+              ]
+            }
+          }
+        },
+        {
+          "table_index": 19,
+          "pages": [
+            421,
+            422
+          ],
+          "classification": "dosing",
+          "num_rows": 21,
+          "overall_passed": true,
+          "checks": {
+            "weight_contiguity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "dose_monotonicity": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ]
+            },
+            "weight_coverage": {
+              "passed": true,
+              "issues": [
+                "no weight-band structure \u2014 skipped"
+              ],
+              "range_low": null,
+              "range_high": null
+            },
+            "clinical_bounds": {
+              "passed": true,
+              "issues": []
+            },
+            "combination_consistency": {
+              "passed": true,
+              "issues": []
+            },
+            "positive_no_empty": {
+              "passed": true,
+              "issues": [
+                "no explicit dose columns \u2014 skipped"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "human_review": {
+    "stage": "human_review",
+    "passed": false,
+    "issues": [
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Dosing accuracy critical - requires human verification",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy",
+      "Safety-critical information - verify accuracy"
+    ],
+    "confidence": 0.0,
+    "suggestions": [
+      "Prioritize flagged items for manual review"
+    ],
+    "metadata": {
+      "items_for_review": [
+        {
+          "type": "dosing_table",
+          "page": 173,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 174,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 175,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 176,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 178,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 203,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 417,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 418,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 423,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 446,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "dosing_table",
+          "page": 447,
+          "reason": "Dosing accuracy critical - requires human verification"
+        },
+        {
+          "type": "contraindication",
+          "page": 7,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 8,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 9,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 10,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 14,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 17,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 20,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 24,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 25,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 54,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 61,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 65,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 72,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 83,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 85,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 94,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 104,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 110,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 115,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 119,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 120,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 125,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 131,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 139,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 143,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 147,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 151,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 155,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 156,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 167,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 168,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 172,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 185,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 188,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 191,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 192,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 203,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 209,
+          "reason": "Safety-critical information - verify accuracy"
+        },
+        {
+          "type": "contraindication",
+          "page": 214,
+          "reason": "Safety-critical information - verify accuracy"
+        }
+      ]
+    }
+  },
+  "overall": {
+    "confidence": 0.6756431983752872,
+    "passed": false,
+    "needs_human_review": true
+  }
+}

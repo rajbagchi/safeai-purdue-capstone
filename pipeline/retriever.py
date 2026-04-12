@@ -50,6 +50,22 @@ try:
 except ImportError:
     _TRANSFORMERS_CE_AVAILABLE = False
 
+# ColPali visual retrieval — optional fourth tier (requires colpali-engine + torch).
+# When the index is not present or colpali-engine is not installed, the retriever
+# continues with BM25 + FAISS + cross-encoder as normal.
+try:
+    from .colpali_retriever import (
+        ColPaliIndex,
+        colpali_search,
+        load_colpali_model,
+        _COLPALI_TABLE_WEIGHT,
+        _COLPALI_FIGURE_WEIGHT,
+        _COLPALI_TEXT_WEIGHT,
+    )
+    _COLPALI_MODULE_AVAILABLE = True
+except ImportError:
+    _COLPALI_MODULE_AVAILABLE = False
+
 
 # ---------------------------------------------------------------------------
 # Default model names
@@ -78,6 +94,67 @@ DEFAULT_RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 # lower P@3 (0.722) overall.  Uses AutoModelForSequenceClassification.
 MEDICAL_RERANK_MODEL = "ncbi/MedCPT-Cross-Encoder"
 _RRF_K_DEFAULT = 60
+
+# ---------------------------------------------------------------------------
+# American → British medical spelling map (CT Health AI)
+# ---------------------------------------------------------------------------
+# Uganda and other Commonwealth clinical guidelines use British spelling.
+# Normalising query terms before BM25/FAISS search prevents missed matches
+# when users type American English (e.g. "diarrhea" vs "diarrhoea").
+_BRITISH_MAP: Dict[str, str] = {
+    "diarrhea": "diarrhoea",
+    "diarrheal": "diarrhoeal",
+    "diarrheas": "diarrhoeas",
+    "anemia": "anaemia",
+    "anemic": "anaemic",
+    "anemias": "anaemias",
+    "pediatric": "paediatric",
+    "pediatrics": "paediatrics",
+    "pediatrician": "paediatrician",
+    "hemoglobin": "haemoglobin",
+    "hemorrhage": "haemorrhage",
+    "hemorrhagic": "haemorrhagic",
+    "hemorrhages": "haemorrhages",
+    "esophagus": "oesophagus",
+    "esophageal": "oesophageal",
+    "leukemia": "leukaemia",
+    "leukocyte": "leucocyte",
+    "leukocytes": "leucocytes",
+    "feces": "faeces",
+    "fecal": "faecal",
+    "edema": "oedema",
+    "orthopedic": "orthopaedic",
+    "gynecology": "gynaecology",
+    "gynecological": "gynaecological",
+    "cesarean": "caesarean",
+    "sulfate": "sulphate",
+    "sulfur": "sulphur",
+    "estrogen": "oestrogen",
+}
+
+
+def _normalize_medical_spelling(query: str) -> str:
+    """Normalize American English medical spelling to British English.
+
+    Applied to queries before BM25 and dense search so that US-spelled
+    queries match Commonwealth-guideline content without missing results.
+
+    Example: "treat diarrhea in children" →
+             "treat diarrhoea in children"
+    """
+    result = query
+    for us, uk in _BRITISH_MAP.items():
+        # Replace whole-word occurrences (case-insensitive, preserve case structure)
+        pattern = r"\b" + re.escape(us) + r"\b"
+        # Lower-case replacement
+        result = re.sub(pattern, uk, result, flags=re.IGNORECASE)
+        # Title-case replacement (e.g. "Diarrhea" → "Diarrhoea")
+        result = re.sub(
+            r"\b" + re.escape(us.title()) + r"\b",
+            uk.title(),
+            result,
+        )
+    return result
 
 # Cross-encoder blending weight.  When cross-encoder is enabled, the final
 # score = alpha * norm(RRF) + (1-alpha) * norm(CE).  A value of 0.6 means
@@ -309,6 +386,7 @@ class HybridRetriever:
         drug_keywords: Optional[Sequence[str]] = None,
         condition_patterns: Optional[List[List[str]]] = None,
         enable_metadata_reranking: bool = True,
+        colpali_index: Optional[Any] = None,
     ):
         self.chunks = chunks
         self.top_k_initial = top_k_initial
@@ -348,6 +426,28 @@ class HybridRetriever:
             self._medical_faiss_index = self._build_faiss(
                 chunks, self._medical_embed_model
             )
+
+        # ColPali visual retrieval — optional fourth tier.
+        # When colpali_index is provided, ColPali MaxSim scores are included in
+        # RRF fusion alongside BM25 and FAISS.  Pages containing tables receive
+        # 2× weight; figure pages 1.5×; text-only pages 0.3× (noise suppression).
+        # If colpali-engine / torch are not installed, this tier is silently skipped.
+        self._colpali_index: Optional[Any] = colpali_index
+        self._colpali_model: Optional[Any] = None
+        self._colpali_processor: Optional[Any] = None
+        self._colpali_device: Optional[Any] = None
+        if colpali_index is not None and _COLPALI_MODULE_AVAILABLE:
+            try:
+                (
+                    self._colpali_model,
+                    self._colpali_processor,
+                    self._colpali_device,
+                ) = load_colpali_model(colpali_index.model_name)
+            except Exception as _e:
+                import logging as _logging
+                _logging.getLogger(__name__).warning(
+                    "ColPali model failed to load — visual retrieval disabled: %s", _e
+                )
 
         # Cross-encoder reranker — enabled by default.  Scores are blended
         # with RRF (alpha-weighted) rather than replacing them, so medical-
@@ -420,22 +520,44 @@ class HybridRetriever:
     @staticmethod
     def _chunk_text(chunk: Dict[str, Any]) -> str:
         """
-        Return the text to index/embed for a chunk.
+        Return the text to index/embed for a chunk, with heading weighting.
 
-        Child chunks (from parent-child Phase 2) carry a ``contextual_content``
-        field that prepends a metadata header — use it when present so the
-        retriever sees both context and content in a single unit.  Parent chunks
-        fall back to text + table NLL concatenation.
+        Heading weighting (CT Health AI pattern):
+          Level-1 headings (chapters) are repeated 5× in the BM25 corpus.
+          Level-2 headings (topics) are repeated 3×.
+          Level-3 headings (subsections) are repeated 2×.
+        This ensures disease/chapter names dominate BM25 scoring for
+        section-specific queries (e.g. "malaria treatment" → malaria chapter)
+        without drowning out keyword signals in the content.
+
+        Child chunks carry ``contextual_content`` (metadata header prepended) —
+        that header already contains the heading once; we prepend extra
+        repetitions so the total weighting still reflects the level hierarchy.
+
+        Parent chunks fall back to: weighted_heading + text + table NLL.
         """
+        heading = chunk.get("heading", "")
+        level = chunk.get("level", 2)
+        # Weight: level-1 → 5×, level-2 → 3×, level-3 → 2×
+        heading_reps = {1: 5, 2: 3, 3: 2}.get(int(level) if level else 2, 2)
+
         cc = chunk.get("contextual_content", "")
         if cc:
-            return cc
-        parts = [chunk.get("text", "")]
+            # contextual_content already contains the heading once in its
+            # "[Context: heading | ...]" prefix.  Prepend (heading_reps - 1)
+            # additional repetitions so the net weight equals heading_reps.
+            extra_reps = max(0, heading_reps - 1)
+            prefix = (heading + " ") * extra_reps if heading and extra_reps else ""
+            return prefix + cc
+
+        # Parent chunk: weighted heading + body text + table NLL
+        heading_prefix = (heading + " ") * heading_reps if heading else ""
+        parts = [heading_prefix, chunk.get("text", "")]
         for t in chunk.get("tables", []):
             nll = t.get("nll", "")
             if nll:
                 parts.append(nll)
-        return " ".join(parts)
+        return " ".join(p for p in parts if p)
 
     @staticmethod
     def _build_bm25(
@@ -542,15 +664,54 @@ class HybridRetriever:
         k_init = max(k, self.top_k_initial)
         id_to_chunk = {c["chunk_id"]: c for c in self.chunks}
 
+        # Normalize American → British medical spelling before all searches.
+        # This ensures queries like "diarrhea treatment" match passages that
+        # use "diarrhoea" (Commonwealth guidelines).
+        query = _normalize_medical_spelling(query)
+
         dense = self._search_dense(query, k_init)
         medical_dense = self._search_medical_dense(query, k_init)
         sparse = self._search_bm25(query, k_init)
 
-        # Fuse all available ranked lists via RRF.  With dual embeddings we
-        # have up to 3 signals: BM25 (keywords) + general FAISS + medical
-        # FAISS.  This widens the candidate pool so the cross-encoder can
-        # see both keyword-matched and concept-matched chunks.
-        ranked_lists = [r for r in (dense, medical_dense, sparse) if r]
+        # ColPali visual retrieval tier — fourth signal in RRF fusion.
+        # Catches dosing tables and clinical figures that are rendered as images
+        # (invisible to BM25 and FAISS).  Content-aware weighting: table pages
+        # 2×, figure pages 1.5×, text-only pages 0.3× (suppresses noise).
+        colpali_ranked: List[Tuple[str, float]] = []
+        if self._colpali_model is not None and self._colpali_index is not None:
+            try:
+                page_results = colpali_search(
+                    query,
+                    self._colpali_model,
+                    self._colpali_processor,
+                    self._colpali_device,
+                    self._colpali_index,
+                    top_k=k_init,
+                )
+                seen_cids: set = set()
+                for pr in page_results:
+                    if pr["has_tables"]:
+                        w = _COLPALI_TABLE_WEIGHT
+                    elif pr["has_figures"]:
+                        w = _COLPALI_FIGURE_WEIGHT
+                    else:
+                        w = _COLPALI_TEXT_WEIGHT
+                    for cid in pr["chunk_ids"]:
+                        if cid not in seen_cids:
+                            seen_cids.add(cid)
+                            colpali_ranked.append((cid, pr["colpali_score"] * w))
+                colpali_ranked.sort(key=lambda x: x[1], reverse=True)
+            except Exception as _e:
+                import logging as _logging
+                _logging.getLogger(__name__).warning(
+                    "ColPali search failed — text-only retrieval used: %s", _e
+                )
+
+        # Fuse all available ranked lists via RRF.  With dual embeddings and
+        # ColPali we have up to 4 signals: BM25 + general FAISS + medical FAISS
+        # + ColPali visual.  This widens the candidate pool so the cross-encoder
+        # can see keyword-matched, concept-matched, and visually-matched chunks.
+        ranked_lists = [r for r in (dense, medical_dense, sparse, colpali_ranked) if r]
         if len(ranked_lists) >= 2:
             fused: List[Tuple[str, float]] = reciprocal_rank_fusion(
                 *ranked_lists, k=self.rrf_k
@@ -580,6 +741,15 @@ class HybridRetriever:
             if pairs:
                 raw_ce = self._predict_cross_encoder(pairs)
 
+                # Store the best absolute CE logit BEFORE normalization.
+                # CE logits are unbounded: positive = relevant, negative = not
+                # relevant.  This value is attached to the first result chunk as
+                # "_ce_best_raw" so callers can detect "no match" queries where
+                # ALL chunks score negatively (the normalised scores are useless
+                # for this purpose because min-max normalisation always maps the
+                # best chunk to 1.0 regardless of absolute relevance).
+                _ce_best_raw = max(raw_ce)
+
                 # Min-max normalise RRF scores for valid IDs.
                 rrf_vals = [rrf_lookup[d] for d in valid_ids]
                 rrf_min, rrf_max = min(rrf_vals), max(rrf_vals)
@@ -597,6 +767,8 @@ class HybridRetriever:
                     blended.append((doc_id, alpha * norm_rrf + (1 - alpha) * norm_ce))
 
                 fused = sorted(blended, key=lambda x: x[1], reverse=True)
+            else:
+                _ce_best_raw = None
 
         # Metadata-aware re-ranking — applies four boost signals using
         # clinical metadata already present on each chunk.
@@ -623,11 +795,21 @@ class HybridRetriever:
                 out["retrieval_rank"] = len(results) + 1
                 results.append(out)
 
+        # Attach the absolute CE relevance to the top result so the caller
+        # can run a "no match" check without rerunning the cross-encoder.
+        if results and self._reranker:
+            results[0]["_ce_best_raw"] = _ce_best_raw
+
         return results
 
     # ------------------------------------------------------------------
     # Capability flags
     # ------------------------------------------------------------------
+
+    @property
+    def colpali_available(self) -> bool:
+        """True when a ColPali visual index is loaded and the model is ready."""
+        return self._colpali_model is not None
 
     @property
     def dense_available(self) -> bool:
