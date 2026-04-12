@@ -6,7 +6,7 @@ For strategy/rationale docs, see the [`docs/`](../docs/) folder. For setup and u
 
 ## Module map
 
-The pipeline consists of 10 modules executed in sequence by the orchestrator:
+The pipeline consists of 14 modules (12 substantive + `__init__.py` and `__main__.py`) executed in sequence by the orchestrator:
 
 ```
 cli.py               CLI entry point (argparse, preset selection)
@@ -33,7 +33,7 @@ orchestrator.py      Pipeline coordinator (MedicalQASystem)
 cfg = extraction_config_who_malaria_nih(pdf_path="...")
 
 # 2. Orchestrator initializes and builds knowledge base
-qa = MedicalQASystem(cfg.pdf_path, cfg.output_dir, cfg)
+qa = MedicalQASystem(config=cfg)
 qa.initialize()
 #    -> MultiPassExtractor.run()          # 6 passes
 #    -> ExtractionValidator.validate_all() # 6 stages
@@ -192,17 +192,17 @@ The retrieval benchmark results and deployable mobile package are tracked in [`r
 
 **Fix 1 -- CE threshold in `chat.py` raised to -4.0.** Genuinely out-of-domain queries (weather, sports) score -5 to -8. Medical vocabulary mismatches score -1.5 to -3. Using -4.0 avoids false "no match" rejections while still suppressing truly irrelevant queries.
 
-**Fix 2 -- Synonym list in `orchestrator._preprocess_query()` expanded from 15 to 35 entries.** New groups include: appendicitis -> "acute abdomen surgical abdomen right iliac fossa", stroke -> "cerebrovascular accident CVA", meningitis -> "meningism neck stiffness", TB, anaemia, typhoid, sickle cell, HIV, sepsis, wound/injury, and more. This ensures retrieval finds the right guideline section even when the user's term and the document's term differ.
+**Fix 2 -- Synonym list in `orchestrator._preprocess_query()` expanded to 4 term groups.** New groups include: appendicitis -> "acute abdomen surgical abdomen right iliac fossa", stroke -> "cerebrovascular accident CVA", meningitis -> "meningism neck stiffness", TB, anaemia, typhoid, sickle cell, HIV, sepsis, wound/injury, and more. This ensures retrieval finds the right guideline section even when the user's term and the document's term differ.
 
 ### 2026-04-10 -- `pipeline/orchestrator.py`: Offline query rewriting (`_preprocess_query`)
 
-New `_preprocess_query(query)` static method runs before every retrieval call. It strips conversational framing ("A lady has...", "My child is...", "I have a patient who...") so the retriever sees clinical terms instead of pronouns and filler. It then appends medical synonyms for 35 term groups (e.g. "bleed" -> appends "bleeding haemorrhage hemorrhage"; "fit" -> "convulsions seizures"; "appendicitis" -> "acute abdomen surgical abdomen right iliac fossa"). Original query is kept for triage inference, display, and response text -- only the retrieval call receives the enriched query. No internet access, no models -- pure regex and a static synonym dictionary.
+New `_preprocess_query(query)` static method runs before every retrieval call. It strips conversational framing ("A lady has...", "My child is...", "I have a patient who...") so the retriever sees clinical terms instead of pronouns and filler. It then appends medical synonyms for 4 term groups (e.g. "bleed" -> appends "bleeding haemorrhage hemorrhage"; "fit" -> "convulsions seizures"; "appendicitis" -> "acute abdomen surgical abdomen right iliac fossa"). Original query is kept for triage inference, display, and response text -- only the retrieval call receives the enriched query. No internet access, no models -- pure regex and a static synonym dictionary.
 
 ### 2026-04-10 -- `pipeline/retriever.py` + `chat.py`: No-match detection
 
 **Problem:** Min-max normalisation maps the best retrieved chunk to score 1.0 regardless of absolute relevance. A query about the weather would still return a chunk scoring 1.0 relative to the others in the KB, and the system would generate a response using those chunks.
 
-**Fix:** After computing cross-encoder logits and before min-max normalisation, the max raw CE score (`_ce_best_raw`) is stored on the first result chunk. CE logit > 0 = model believes query and chunk are related; < 0 = not related. In `chat.py`, if `_ce_best_raw < -1.5` (clearly off-topic), the response is suppressed and "No matching guidelines found for this query" is displayed instead. Queries between -1.5 and 0 still show the response but with the existing low-confidence warning. Falls back silently when the cross-encoder is not installed (BM25-only mode).
+**Fix:** After computing cross-encoder logits and before min-max normalisation, the max raw CE score (`_ce_best_raw`) is stored on the first result chunk. CE logit > 0 = model believes query and chunk are related; < 0 = not related. In `chat.py`, if `_ce_best_raw < -4.0` (clearly off-topic), the response is suppressed and "No matching guidelines found for this query" is displayed instead. Queries between -1.5 and 0 still show the response but with the existing low-confidence warning. Falls back silently when the cross-encoder is not installed (BM25-only mode).
 
 ### 2026-04-10 -- `pipeline/response.py` + `chat.py`: RED triage safety gating
 

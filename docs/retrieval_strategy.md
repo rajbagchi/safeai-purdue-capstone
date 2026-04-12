@@ -258,7 +258,7 @@ Before retrieval, `orchestrator._preprocess_query()` rewrites the user's query i
 
 **Step 1 — Strip conversational framing.** VHT workers typically describe scenarios: "A lady has vaginal bleeding" or "My child is not eating". The retriever performs better on the clinical core. A regex removes the leading subject phrase, leaving "vaginal bleeding after 28 weeks of pregnancy" for retrieval.
 
-**Step 2 — Medical synonym expansion.** 35 term groups are expanded at query time. The original term stays; synonyms are appended only if not already present:
+**Step 2 — Medical synonym expansion.** 4 term groups are expanded at query time. The original term stays; synonyms are appended only if not already present:
 
 | Query term | Appended synonyms |
 |---|---|
@@ -280,7 +280,7 @@ Before retrieval, `orchestrator._preprocess_query()` rewrites the user's query i
 | HIV/AIDS | antiretroviral immunocompromised |
 | sepsis | septicaemia bacteraemia blood poisoning |
 | wound/injury/trauma | laceration abrasion cut |
-| ... (35 groups total) | |
+| ... (4 groups total) | |
 
 The original query is preserved for triage inference, family message, and all display text. Only the retrieval call uses the enriched form.
 

@@ -50,7 +50,7 @@ pip install -r requirements-pipeline.txt
 | `rapidfuzz` | Fuzzy text matching for cross-validation |
 | `numpy>=1.26` | numpy 2.x used on Python 3.13 (pre-built wheels); 1.26.x on older Python |
 
-> **Note:** `sentence-transformers`, `faiss-cpu`, and `chromadb` are optional. If unavailable, the pipeline falls back to BM25-only retrieval.
+> **Note:** `sentence-transformers` and `faiss-cpu` are optional. If unavailable, the pipeline falls back to BM25-only retrieval.
 
 ### Optional: Docling + TableFormer ACCURATE (recommended for production)
 
@@ -234,6 +234,16 @@ Your question: What is the recommended treatment for uncomplicated malaria?
 | Any question | Retrieves relevant chunks and generates a guardrail-validated response |
 | `status` | Shows chunk count, validation confidence, and human review status |
 | `quit` / `exit` / `q` | Exits the Q&A session |
+
+### Conversational interface (`chat.py`)
+
+For a richer conversational experience, use `chat.py`:
+
+```bash
+python chat.py
+```
+
+This provides multi-turn conversation with context retention, no-match detection, and query preprocessing. It can be used instead of the built-in `run_pipeline.py` interactive prompt for more natural dialogue.
 
 ### Example session
 

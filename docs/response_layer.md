@@ -1,6 +1,6 @@
 # Response Layer Strategy
 
-**Modules:** `pipeline/response.py` (500 lines), `pipeline/guardrail.py` (145 lines) | **Classes:** `ResponseOrchestrator`, `VHTResponseFormatter`, `MedicalGuardrailBrain`
+**Modules:** `pipeline/response.py` (~900 lines), `pipeline/guardrail.py` (~490 lines) | **Classes:** `ResponseOrchestrator`, `VHTResponseFormatter`, `MedicalGuardrailBrain`
 
 ## What we built
 

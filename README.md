@@ -84,11 +84,17 @@ PDF Input
   |           SHA-256 audit hashes, deployment gate
   |
   [Stage 5] Hybrid retrieval            pipeline/retriever.py
-  |           BM25 + FAISS dense + RRF fusion
-  |           + optional cross-encoder reranking
+  |           4 retrieval tiers: BM25, FAISS general (MiniLM),
+  |           FAISS medical (PubMedBERT), ColPali visual retrieval
+  |           + RRF fusion + optional cross-encoder reranking
+  |           + metadata re-ranking + British/American spelling normalization
   |
   [Stage 6] Guardrail + Response        pipeline/guardrail.py
               Two-brain validation        pipeline/response.py
+              5 evidence-grounded checks: dosing value verification,
+              contraindication cross-check, completeness check,
+              expanded dangerous advice patterns (10 regexes),
+              chunk-aware triage validation
               Triage-aware VHT formatting
               4 output formats (VHT, Quick, Clinician, Referral)
 ```
@@ -105,7 +111,7 @@ safeai-purdue-capstone/
 |-- .gitignore                   Ignores PDFs, output dirs, venvs
 |
 |-- query.py                     Verbatim query CLI (no LLM, exact source text)
-|-- pipeline/                    Core pipeline package (12 modules, ~7,000 lines)
+|-- pipeline/                    Core pipeline package (14 modules, ~7,000 lines)
 |   |-- __init__.py              Lazy exports for all public classes
 |   |-- __main__.py              Enables `python -m pipeline`
 |   |-- cli.py                   CLI argument parsing, preset selection

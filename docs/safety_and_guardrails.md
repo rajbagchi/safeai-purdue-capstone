@@ -102,9 +102,9 @@ Six independent validation stages catch different error categories:
 - `_generate_family_message()` rejects PDF-extracted sentences containing "at home"/"home treatment" for RED triage; only accepts sentences with hospital/refer/emergency language.
 - `chat.py` filters actions matching "at home"/"manage at home" for RED triage and relabels the section "Steps while arranging referral:" so instructions are clearly pre-transport, not home care.
 
-**No-match detection (2026-04-10):** When a query has no relevant content in the loaded guidelines, the system now responds "No matching guidelines found" instead of fabricating a response from loosely related chunks. The raw cross-encoder logit (before min-max normalisation) is captured as `_ce_best_raw` on the top result. CE logit < -1.5 indicates no reliable match; the response is suppressed entirely. This is a safety improvement: a fabricated response based on wrong-section chunks is more dangerous than a clear "not found" message.
+**No-match detection (2026-04-10):** When a query has no relevant content in the loaded guidelines, the system now responds "No matching guidelines found" instead of fabricating a response from loosely related chunks. The raw cross-encoder logit (before min-max normalisation) is captured as `_ce_best_raw` on the top result. CE logit < -4.0 indicates no reliable match; the response is suppressed entirely. This is a safety improvement: a fabricated response based on wrong-section chunks is more dangerous than a clear "not found" message.
 
-**Offline query rewriting (2026-04-10):** Before retrieval, `orchestrator._preprocess_query()` strips conversational framing and expands medical synonyms using a 15-group offline dictionary. This improves the chance that the retriever finds the correct guideline section, reducing the risk of responses based on wrong-section content.
+**Offline query rewriting (2026-04-10):** Before retrieval, `orchestrator._preprocess_query()` strips conversational framing and expands medical synonyms using a 4-group offline dictionary. This improves the chance that the retriever finds the correct guideline section, reducing the risk of responses based on wrong-section content.
 
 **Preservation-level enforcement.** VERBATIM content (dosing tables) is rendered exactly as extracted -- the response formatter cannot paraphrase or summarize it.
 
