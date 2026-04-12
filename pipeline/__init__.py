@@ -52,6 +52,7 @@ __all__: List[str] = [
     "ResponseContent",
     "ResponseFormat",
     "infer_triage_from_query",
+    "infer_query_intent",
 ]
 
 _LAZY_EXPORTS = {
@@ -64,6 +65,7 @@ _LAZY_EXPORTS = {
     "ResponseContent": ("response", "ResponseContent"),
     "ResponseFormat": ("response", "ResponseFormat"),
     "infer_triage_from_query": ("response", "infer_triage_from_query"),
+    "infer_query_intent": ("retrieval", "infer_query_intent"),
 }
 
 

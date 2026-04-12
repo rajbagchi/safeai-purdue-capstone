@@ -10,14 +10,18 @@ from typing import Any, Dict, List, Optional
 
 from dataclasses import asdict
 
-import numpy as np
-
 from .config import ExtractionConfig
 from .extractor import MultiPassExtractor
 from .validator import ExtractionValidator
 from .chunker import SmartChunker
 from .guardrail import MedicalGuardrailBrain
 from .config import medical_source_for_config
+from .local_simplifier import (
+    LocalSimplifierLLM,
+    local_llm_enabled,
+    structured_answer_from_content,
+)
+from .retrieval import infer_query_intent, retrieve_top_chunk_indices
 from .response import (
     ResponseFormat,
     ResponseOrchestrator,
@@ -66,6 +70,9 @@ class MedicalQASystem:
 
     def initialize(self) -> "MedicalQASystem":
         """Initialize or load existing knowledge base."""
+        from .compat import fix_stdio_encoding
+
+        fix_stdio_encoding()
         print("=" * 70)
         print("MEDICAL Q&A SYSTEM - COMPLETE PIPELINE")
         print("=" * 70)
@@ -229,13 +236,18 @@ class MedicalQASystem:
         )
 
     def _retrieve_top_k(self, query: str, k: int = 5) -> tuple[List[int], List[Dict], List[Dict]]:
-        """BM25 top-k: indices, slim sources {page, heading}, full chunk dicts."""
+        """BM25 over a wide pool, re-ranked by heading quality; returns indices, sources, chunk dicts."""
         assert self.chunks is not None
         assert self.search_index is not None
         query_tokens = re.findall(r"[a-zA-Z0-9]+", query.lower())
         query_tokens = [t for t in query_tokens if len(t) > 1]
-        scores = self.search_index["bm25"].get_scores(query_tokens)
-        top_indices = np.argsort(scores)[::-1][:k]
+        bm25 = self.search_index["bm25"]
+        top_indices = retrieve_top_chunk_indices(
+            bm25,
+            self.chunks,
+            query_tokens,
+            k=k,
+        )
         sources: List[Dict] = []
         chunk_dicts: List[Dict] = []
         for idx in top_indices:
@@ -293,7 +305,12 @@ class MedicalQASystem:
             self._response_orchestrator = ResponseOrchestrator()
         return self._response_orchestrator
 
-    def answer_with_response(self, query: str) -> Dict[str, Any]:
+    def answer_with_response(
+        self,
+        query: str,
+        *,
+        use_local_llm: Optional[bool] = None,
+    ) -> Dict[str, Any]:
         """
         Full pipeline output: BM25 + guardrail + VHT response layer (standard,
         quick, referral note) + structured ResponseContent.
@@ -325,6 +342,7 @@ class MedicalQASystem:
         elif validation["passed"]:
             response += "\n---\n**🧪 Guardrail Brain Validation:** ✅ Passed\n"
 
+        intent = infer_query_intent(query)
         triage, triage_reasons = infer_triage_from_query(query)
         med_src = medical_source_for_config(self.config)
         orch = self._response_orch()
@@ -336,18 +354,62 @@ class MedicalQASystem:
             retrieved_chunks=retrieved_chunks,
             source=med_src,
             dosage_info=None,
+            query_intent=intent,
         )
+
+        rule_vht = structured.to_vht_format()
+        referral_note = orch.formatter.format(structured, ResponseFormat.REFERRAL)
+        quick_summary = orch.formatter.format(structured, ResponseFormat.VHT_QUICK)
+
+        vht_response = rule_vht
+        local_llm_used = False
+        local_llm_skipped_reason: Optional[str] = None
+
+        if local_llm_enabled(use_local_llm):
+            sim = LocalSimplifierLLM()
+            packet = structured_answer_from_content(
+                structured,
+                query=query,
+                document_title=self.config.document_title,
+            )
+            try:
+                candidate = sim.simplify_vht_markdown(
+                    query=query,
+                    document_title=self.config.document_title,
+                    rule_based_vht=rule_vht,
+                    structured_answer=packet,
+                    evidence_chunks=retrieved_chunks,
+                )
+            except Exception as e:
+                candidate = None
+                local_llm_skipped_reason = f"local_llm_error: {e!s}"[:240]
+
+            if candidate:
+                v2 = self.guardrail.validate_response(query, candidate)
+                if v2.get("passed"):
+                    vht_response = candidate
+                    local_llm_used = True
+                else:
+                    errs = v2.get("errors") or []
+                    local_llm_skipped_reason = (
+                        "guardrail_reject_llm: " + "; ".join(str(x) for x in errs[:4])
+                    )
+            elif local_llm_skipped_reason is None:
+                local_llm_skipped_reason = "local_llm_no_output"
 
         return {
             "query": query,
+            "query_intent": intent,
             "response": response,
             "sources": sources,
             "validation": validation,
             "validation_passed": validation["passed"],
             "triage": triage,
             "triage_reasons": triage_reasons,
-            "vht_response": structured.to_vht_format(),
-            "referral_note": orch.formatter.format(structured, ResponseFormat.REFERRAL),
-            "quick_summary": orch.formatter.format(structured, ResponseFormat.VHT_QUICK),
+            "vht_response": vht_response,
+            "referral_note": referral_note,
+            "quick_summary": quick_summary,
             "structured": structured,
+            "local_llm_used": local_llm_used,
+            "local_llm_skipped_reason": local_llm_skipped_reason,
         }

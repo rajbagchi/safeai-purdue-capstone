@@ -1,3 +1,7 @@
+# .NET (WPF pipeline viewer)
+windows/PipelineViewer/**/bin/
+windows/PipelineViewer/**/obj/
+
 # Python
 __pycache__/
 *.py[cod]

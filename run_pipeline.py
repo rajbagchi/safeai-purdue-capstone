@@ -8,7 +8,12 @@ Entry point: run from project root with:
 """
 
 import warnings
+
 warnings.filterwarnings("ignore")
+
+from pipeline.compat import fix_stdio_encoding
+
+fix_stdio_encoding()
 
 from pipeline.cli import main
 

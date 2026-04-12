@@ -54,6 +54,10 @@ class MedicalGuardrailBrain:
 
         return validation
 
+    def dangerous_advice_findings(self, response: str) -> List[str]:
+        """Scan free text for disallowed advice patterns (e.g. LLM output gate)."""
+        return self._check_dangerous_advice(response)
+
     def _validate_triage(self, query: str, response: str) -> Dict:
         """Validate triage level appropriateness."""
         result: Dict = {"passed": True, "warnings": [], "critical": False}

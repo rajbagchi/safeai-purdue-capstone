@@ -11,6 +11,7 @@ from enum import Enum
 from typing import Any, Dict, List, Optional
 
 from .config import MedicalSource, TriageLevel
+from .retrieval import infer_query_intent
 
 
 class ResponseFormat(Enum):
@@ -296,12 +297,14 @@ class ResponseOrchestrator:
         retrieved_chunks: List[Dict[str, Any]],
         source: MedicalSource,
         dosage_info: Optional[Dict[str, Any]] = None,
+        query_intent: Optional[str] = None,
     ) -> ResponseContent:
-        actions = self._select_actions(query, triage)
+        intent = query_intent if query_intent is not None else infer_query_intent(query)
+        actions = self._select_actions(query, triage, intent)
         monitoring = self._select_monitoring(query)
-        referral_criteria = self._select_referral_criteria(triage)
+        referral_criteria = self._select_referral_criteria(triage, intent)
         citations = self._build_citations(retrieved_chunks, source)
-        family_message = self._generate_family_message(query, triage)
+        family_message = self._generate_family_message(query, triage, intent)
         warnings = list(guardrail_output.get("warnings", []))
         return ResponseContent(
             query=query,
@@ -314,10 +317,10 @@ class ResponseOrchestrator:
             medication_dosage=dosage_info,
             family_message=family_message,
             validation_warnings=warnings,
-            confidence_score=self._calculate_confidence(triage, guardrail_output),
+            confidence_score=self._calculate_confidence(triage, guardrail_output, intent),
         )
 
-    def _select_actions(self, query: str, triage: TriageLevel) -> List[str]:
+    def _select_actions(self, query: str, triage: TriageLevel, intent: str) -> List[str]:
         q = query.lower()
         if triage == TriageLevel.RED:
             if "cannot drink" in q or "unable to drink" in q:
@@ -325,6 +328,13 @@ class ResponseOrchestrator:
             if "convulsion" in q or "seizure" in q:
                 return list(self.action_templates["convulsions"])
             return list(self.action_templates["cannot_drink"])
+        if intent == "referral_hospital":
+            return [
+                "Use your national/WHO severe-malaria or referral chart: who must go to hospital now",
+                "Check every danger sign (cannot drink, convulsions, very weak, difficult breathing, confusion)",
+                "If severe malaria is possible or any danger sign → arrange urgent transport to hospital",
+                "If the guideline excerpts are unclear, ask a clinician or supervisor - when unsure, refer",
+            ]
         if "fever" in q:
             return list(self.action_templates["fever"])
         if "rash" in q:
@@ -348,11 +358,24 @@ class ResponseOrchestrator:
             return list(self.monitoring_templates["fever"])
         return list(self.monitoring_templates["generic"])
 
-    def _select_referral_criteria(self, triage: TriageLevel) -> List[str]:
+    def _select_referral_criteria(self, triage: TriageLevel, intent: str) -> List[str]:
         if triage == TriageLevel.RED:
             return list(self.referral_templates["immediate"])
         if triage == TriageLevel.YELLOW:
-            return list(self.referral_templates["urgent"])
+            base = list(self.referral_templates["urgent"])
+            if intent == "referral_hospital":
+                base = [
+                    "Hospital referral when national chart says severe disease or danger signs",
+                    "Any danger sign → refer urgently (do not wait)",
+                    "Severe or complicated malaria per local definition → hospital care",
+                ] + base
+            return base
+        if intent == "referral_hospital":
+            return [
+                "Refer urgently if any danger sign appears while you read this",
+                "Refer if national guidelines say this patient needs injectable care or monitoring",
+                "If you are unsure, err on the side of referral",
+            ]
         return [
             "If symptoms worsen",
             "If new danger signs appear",
@@ -376,7 +399,7 @@ class ResponseOrchestrator:
             })
         return out
 
-    def _generate_family_message(self, query: str, triage: TriageLevel) -> str:
+    def _generate_family_message(self, query: str, triage: TriageLevel, intent: str) -> str:
         q = query.lower()
         if triage == TriageLevel.RED:
             if "cannot drink" in q or "unable to drink" in q:
@@ -395,8 +418,23 @@ class ResponseOrchestrator:
                 "Do not delay."
             )
         if triage == TriageLevel.YELLOW:
+            if intent == "referral_hospital":
+                return (
+                    "You asked when to go to the hospital. Use danger signs and the national chart: "
+                    "if there is any severe sign or you are not sure, go to the health facility today."
+                )
             return (
                 "The symptoms need to be checked by a health worker. Please go to the health facility today."
+            )
+        if intent == "dosing":
+            return (
+                "Medicine amounts depend on weight and age. Use the national dosing chart or a health worker; "
+                "the short excerpts here may not show every dose."
+            )
+        if intent == "referral_hospital":
+            return (
+                "This question is about hospital care. Follow danger signs and national referral rules; "
+                "if anything worries you, go to the health facility."
             )
         return (
             "The symptoms can be managed at home with guidance. Follow the advice you were given. "
@@ -407,8 +445,11 @@ class ResponseOrchestrator:
         self,
         triage: TriageLevel,
         guardrail_output: Dict[str, Any],
+        intent: str,
     ) -> float:
         base = 0.95 if triage == TriageLevel.RED else 0.9
+        if intent in ("referral_hospital", "dosing"):
+            base -= 0.03
         if guardrail_output.get("warnings"):
             base -= 0.05 * min(len(guardrail_output["warnings"]), 3)
         if not guardrail_output.get("passed", True):
@@ -419,7 +460,8 @@ class ResponseOrchestrator:
 def infer_triage_from_query(query: str) -> tuple[TriageLevel, List[str]]:
     """
     Rule-based triage aligned with danger-sign list used in guardrail footer.
-    YELLOW: non-immediate but time-sensitive phrasing in the query.
+    YELLOW: non-immediate but time-sensitive phrasing in the query, or explicit
+    hospital-referral questions (so VHT text is not framed as routine home care).
     """
     q = query.lower()
     reasons: List[str] = []
@@ -438,6 +480,11 @@ def infer_triage_from_query(query: str) -> tuple[TriageLevel, List[str]]:
             reasons.append(label)
     if reasons:
         return TriageLevel.RED, list(dict.fromkeys(reasons))
+
+    if infer_query_intent(query) == "referral_hospital":
+        return TriageLevel.YELLOW, [
+            "Question asks about hospital referral - use national criteria and danger signs"
+        ]
 
     yellow_triggers = (
         ("fever" in q and ("3 day" in q or ">3" in q or "more than 3" in q)),
