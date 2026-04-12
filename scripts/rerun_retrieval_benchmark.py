@@ -218,9 +218,11 @@ def load_child_chunks(path: Path) -> List[dict]:
 
 
 def load_original_queries() -> Dict[str, dict]:
-    """Load the original 12 queries with relevance labels from git (e32337e).
+    """Load the original 12 queries with relevance labels.
 
-    ALWAYS loads from git to avoid cascading label loss.
+    Tries git commit e32337e first (canonical source), then falls back to
+    the current rag_output/retrieval_test_results.json (for repos without
+    that commit in their history).
     """
     print("  Loading original 12-query labels from git (e32337e)...")
     result = subprocess.run(
@@ -228,8 +230,15 @@ def load_original_queries() -> Dict[str, dict]:
         capture_output=True, text=True, cwd=str(ROOT),
     )
     if result.returncode != 0:
-        raise RuntimeError("Cannot recover original benchmark from git")
-    data = json.loads(result.stdout)
+        # Fallback: read from current file on disk.
+        fallback = ROOT / "rag_output" / "retrieval_test_results.json"
+        if not fallback.exists():
+            raise RuntimeError("Cannot recover original benchmark from git and no fallback file found")
+        print("  (git commit not found -- loading labels from rag_output/retrieval_test_results.json)")
+        with open(fallback) as f:
+            data = json.load(f)
+    else:
+        data = json.loads(result.stdout)
 
     queries: Dict[str, dict] = {}
     for qid, qdata in data["queries"].items():

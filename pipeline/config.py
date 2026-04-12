@@ -338,6 +338,12 @@ class ExtractionConfig:
     # Condition patterns for retrieval-time metadata boosting.
     # Each entry is [regex_pattern, canonical_label] from JSON domain_keywords.conditions.
     condition_patterns: Optional[List[List[str]]] = None
+    # Use IBM Docling + TableFormer ACCURATE as primary table extractor.
+    # When True (default), Docling replaces PyMuPDF's find_tables() for
+    # tables; PyMuPDF is retained for text and cross-validation.
+    # Set to False to revert to PyMuPDF-only extraction (legacy behaviour).
+    # Requires: pip install 'docling>=2.64.0'
+    use_docling_tables: bool = True
 
     def __post_init__(self) -> None:
         # Normalize path: expanduser, resolve for stable cache keys on absolute paths

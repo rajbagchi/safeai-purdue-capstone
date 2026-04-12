@@ -219,11 +219,18 @@ class TestChunkText:
             {"nll": "", "classification": "evidence"},
         ])
         text = HybridRetriever._chunk_text(chunk)
-        assert text.strip() == "some text"
+        # Heading weighting prepends the heading (level-2 = 3x), but the
+        # empty NLL should not add any extra content beyond the body text.
+        assert "some text" in text
+        assert text.strip().endswith("some text")
 
     def test_no_tables_returns_text_only(self):
         chunk = make_chunk("c1", "plain text")
-        assert HybridRetriever._chunk_text(chunk) == "plain text"
+        text = HybridRetriever._chunk_text(chunk)
+        # Heading weighting prepends repeated heading tokens (level-2 = 3x),
+        # but the body text must be present and no NLL should be appended.
+        assert "plain text" in text
+        assert text.strip().endswith("plain text")
 
 
 # ---------------------------------------------------------------------------

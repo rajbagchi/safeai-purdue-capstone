@@ -10,6 +10,8 @@ This document describes the safety measures implemented across every stage of th
 
 **Cross-validation (Pass 4).** Every page of extracted text is independently re-extracted with a second library (pdfplumber) and compared. Pages with <90% consistency are flagged, alerting downstream stages to potential extraction errors.
 
+**Automatic PDF repair (2026-04-10).** Some PDFs produced by tools like Adobe InDesign use a non-standard internal page-tree structure that pdfminer/pdfplumber cannot traverse, causing pdfplumber to return 0 pages and the cross-consistency score to silently stay at 0% — a false failure. The extractor now detects this: if pdfplumber returns 0 pages, it automatically re-saves the PDF through PyMuPDF (`garbage=4, deflate=True, clean=True`) to a temporary file, which normalises the PDF structure to standard format. pdfplumber then runs on the repaired copy and produces correct results. The temporary file is deleted after cross-validation. This fix is transparent — no configuration change is needed — and makes cross-validation work correctly on any uploaded PDF.
+
 **Table classification.** Tables are classified by clinical function (dosing, clinical management, evidence, structural, other). Misclassifying a dosing table as "other" could cause it to be paraphrased instead of preserved verbatim. The classification uses conservative keyword matching with domain-specific vocabularies from `configs/*.json`.
 
 ### Stage 2: Validation safety
@@ -74,15 +76,49 @@ Six independent validation stages catch different error categories:
 
 **Two-brain architecture.** The response generator and the guardrail validator are separate, independent systems. The generator cannot suppress or modify guardrail findings.
 
-**Guardrail checks:**
-- Triage level must match detected danger signs
-- Dangerous advice patterns are regex-detected and blocked
-- All five required sections must be present
+**Guardrail checks (updated 2026-04-10):**
+- Triage level must match danger signs detected in query + retrieved chunk metadata
+- Dangerous advice patterns are regex-detected and blocked (10 patterns)
+- All five required sections must be present with meaningful content
 - Citations must reference real pages in the knowledge base
+- Dosing values in the response must appear verbatim in at least one retrieved source chunk
+- Drug contraindications from chunk metadata are cross-checked against patient context in the query
 
-**Preservation-level enforcement.** VERBATIM content (dosing tables) is rendered exactly as extracted — the response formatter cannot paraphrase or summarize it.
+**Guardrail improvements (2026-04-10):** Five new checks added to `MedicalGuardrailBrain`:
 
-**Confidence scoring.** Every response includes a numeric confidence (0.0-1.0) that decreases with each guardrail warning or error. Low-confidence responses are flagged to the user.
+1. **Triage validation from evidence** — `_collect_danger_signs()` scans query text and `clinical_metadata.danger_signs` from retrieved chunks (not raw chunk text, which is too noisy). If danger signs are found and the response is not RED, the check fails. `validate_response()` now accepts `retrieved_chunks` as an optional parameter — both call sites in `orchestrator.py` pass the retrieved chunks.
+
+2. **Expanded dangerous advice patterns** — 4 → 10 patterns. New: double-dosing, stopping treatment course early, dosing without weight check, home treatment for emergencies, metronidazole in first trimester, ibuprofen in infants.
+
+3. **Dosing value grounding** — `_validate_dosing_values()`: every dosing quantity in the response (mg, ml, mcg, etc.) is checked against the verbatim text and table markdown of all retrieved source chunks. A value absent from all chunks is flagged — it may have been paraphrased or invented.
+
+4. **Contraindication cross-check** — `_check_contraindications()`: patient-context signals in the query (pregnant, infant, renal, liver, breastfeeding) are matched against `contraindications` in retrieved chunk `clinical_metadata`. Any contraindication that applies to the detected patient context raises a warning.
+
+5. **Section completeness** — `_check_completeness()`: required sections must contain content above minimum character thresholds (not just a bare header). Citations section must include at least one page reference.
+
+**Triage keyword hardening (2026-04-10):** `infer_triage_from_query()` expanded from 8 to 24 danger-sign entries covering obstetric emergencies (haemorrhage, eclampsia, antepartum/postpartum, abruption, placenta previa, cord prolapse, obstructed labour), systemic emergencies (sepsis, shock, not breathing), and partial-prefix matching to catch inflected forms. Fuzzy matching via `rapidfuzz` (>=80% similarity) added as a second pass to catch misspelled danger signs -- a query like "vaginal leeding" now correctly triggers RED triage.
+
+**RED triage response gating (2026-04-10):** Two gates prevent home-management language from appearing in emergency responses:
+- `_generate_family_message()` rejects PDF-extracted sentences containing "at home"/"home treatment" for RED triage; only accepts sentences with hospital/refer/emergency language.
+- `chat.py` filters actions matching "at home"/"manage at home" for RED triage and relabels the section "Steps while arranging referral:" so instructions are clearly pre-transport, not home care.
+
+**No-match detection (2026-04-10):** When a query has no relevant content in the loaded guidelines, the system now responds "No matching guidelines found" instead of fabricating a response from loosely related chunks. The raw cross-encoder logit (before min-max normalisation) is captured as `_ce_best_raw` on the top result. CE logit < -1.5 indicates no reliable match; the response is suppressed entirely. This is a safety improvement: a fabricated response based on wrong-section chunks is more dangerous than a clear "not found" message.
+
+**Offline query rewriting (2026-04-10):** Before retrieval, `orchestrator._preprocess_query()` strips conversational framing and expands medical synonyms using a 15-group offline dictionary. This improves the chance that the retriever finds the correct guideline section, reducing the risk of responses based on wrong-section content.
+
+**Preservation-level enforcement.** VERBATIM content (dosing tables) is rendered exactly as extracted -- the response formatter cannot paraphrase or summarize it.
+
+**Confidence scoring (updated 2026-04-09).** Every response includes a numeric confidence (0.0-1.0) computed from three real retrieval signals:
+
+```
+confidence = 0.6 * retrieval_score + 0.4 * coverage - penalty
+```
+
+- **Retrieval score (60%)** -- mean score of the top-3 retrieved chunks, normalized to [0,1] after RRF + cross-encoder blending
+- **Coverage (40%)** -- fraction of the 5 requested chunks that were actually returned
+- **Guardrail penalty (subtracted)** -- -0.05 per warning, -0.15 per error, -0.10 if guardrail failed
+
+Prior to this change, the score was a hardcoded constant (0.90 for all non-RED queries) adjusted only for guardrail warnings -- meaning a query backed by weak evidence received the same score as one with five highly-relevant passages. The score now carries real information about how well the retrieved evidence supports the response.
 
 ## Defense-in-depth summary
 
@@ -101,7 +137,7 @@ PDF Input
   |
   [Retrieval] --- metadata-aware, not just embedding similarity
   |
-  [Response generation] --- template-based, VERBATIM dosing blocks
+  [Response generation] --- PDF-first content extraction, VERBATIM dosing blocks
   |
   [Guardrail validation] --- independent safety checks
   |

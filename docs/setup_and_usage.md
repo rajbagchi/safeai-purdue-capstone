@@ -2,6 +2,26 @@
 
 This guide walks through installing dependencies, configuring PDF paths, running the pipeline, and interacting with the Q&A system in your terminal.
 
+## Non-technical users (Mac): start.command
+
+If you are not comfortable with the command line, use the **`start.command`** launcher included in the project root. It handles all setup automatically.
+
+**One-time setup (Terminal, run once):**
+
+```bash
+chmod +x /path/to/safeai-purdue-capstone-main/start.command
+```
+
+After that, **double-click `start.command`** in Finder every time. It will:
+
+1. Create a Python virtual environment (`safeai-env/`) on first run
+2. Install all dependencies automatically (2-5 minutes on first run)
+3. Open a native Mac file picker to select your guideline PDF (first run only)
+4. Process the PDF into a knowledge base (first run only, 5-15 minutes)
+5. Launch the conversational assistant: "What can I help you with today?"
+
+Every subsequent run: just double-click and the assistant opens in seconds.
+
 ## Prerequisites
 
 - **Python 3.9+**
@@ -22,15 +42,47 @@ pip install -r requirements-pipeline.txt
 
 | Package | Purpose |
 |---|---|
-| `pymupdf` | Primary PDF text and table extraction (Pass 1, 2) |
+| `pymupdf` | Primary PDF text and table extraction (Pass 1, 2) -- fallback when Docling unavailable |
 | `pdfplumber` | Secondary extraction for cross-validation (Pass 4) |
 | `rank-bm25` | Sparse keyword retrieval |
 | `sentence-transformers` | Dense embedding (`all-MiniLM-L6-v2`) and cross-encoder reranking (`ms-marco-MiniLM-L-6-v2`) |
 | `faiss-cpu` | Approximate nearest-neighbor search |
 | `rapidfuzz` | Fuzzy text matching for cross-validation |
-| `numpy>=1.20,<2` | Pinned below 2.0 for torch compatibility |
+| `numpy>=1.26` | numpy 2.x used on Python 3.13 (pre-built wheels); 1.26.x on older Python |
 
 > **Note:** `sentence-transformers`, `faiss-cpu`, and `chromadb` are optional. If unavailable, the pipeline falls back to BM25-only retrieval.
+
+### Optional: Docling + TableFormer ACCURATE (recommended for production)
+
+For best table extraction accuracy (especially borderless or multi-column dosing tables), install Docling:
+
+```bash
+pip install 'docling>=2.64.0'
+```
+
+When installed, Docling's TableFormer transformer model is used as the primary table extractor. PyMuPDF remains the fallback. Docling adds ~2 GB of PyTorch vision model dependencies but achieves near-perfect table recall on clinical PDFs. See [docs/extraction_strategy.md](extraction_strategy.md) for details.
+
+To disable Docling even if installed, set `use_docling_tables=False` in `ExtractionConfig`.
+
+### Optional: ColPali v1.2 visual retrieval (recommended for image-heavy PDFs)
+
+Some clinical PDFs contain dosing tables and flow charts rendered as images rather than text. These pages are invisible to BM25 and FAISS. ColPali v1.2 (PaliGemma-3B) embeds page images as patch vectors and uses MaxSim late-interaction scoring to find visually relevant pages.
+
+```bash
+# Install dependencies
+pip install 'colpali-engine>=0.3.8' torch torchvision pypdfium2
+
+# Run the pipeline first to build the knowledge base
+python run_pipeline.py --pdf /path/to/guideline.pdf --output-dir ./my_output
+
+# Then build the ColPali index (one-time, per PDF)
+python scripts/build_colpali_index.py --pdf /path/to/guideline.pdf --kb ./my_output
+
+# query.py auto-detects the index -- no extra flags needed
+python query.py "ACT dosing by weight" --kb ./my_output
+```
+
+ColPali is fully optional. If not installed or the index is not present, the retriever continues with BM25 + FAISS + cross-encoder. See [docs/retrieval_strategy.md](retrieval_strategy.md) for details on the MaxSim scoring and content-aware weighting.
 
 ## Configuring PDF paths
 
@@ -134,6 +186,33 @@ my_output/
 
 The RAG retrieval artifacts (benchmark results, child chunks, brain1 mobile package) are stored separately in [`rag_output/`](../rag_output/). See [`rag_output/README.md`](../rag_output/README.md) for the full directory guide.
 
+## Verbatim query interface (no LLM)
+
+`query.py` provides a standalone query CLI that returns verbatim passages from a processed knowledge base -- no LLM, no synthesis, no paraphrasing. Every result includes the section heading, page number, preservation level, and the exact source text.
+
+```bash
+# Basic query (auto-detects KB directory)
+python query.py "What is the treatment for malaria in children?"
+
+# Specify result count
+python query.py "ACT dosing by weight" --top-k 3
+
+# Specify KB directory explicitly
+python query.py "Danger signs requiring referral" --kb ./medical_kb_who_malaria
+
+# Show only the matching child chunk (not full parent context)
+python query.py "Amoxicillin dose for pneumonia" --child-only
+```
+
+The query pipeline: normalize spelling -> hybrid BM25 + FAISS + cross-encoder -> return verbatim parent chunk text. The KB directory must contain a `knowledge_base.json` (preferred) or `chunks.json` file, produced by `run_pipeline.py`.
+
+### Auto-detected KB directories
+
+`query.py` checks these paths automatically when `--kb` is not specified:
+- `./medical_kb_who_malaria`
+- `./medical_kb_uganda_clinical_2023`
+- `./medical_knowledge_base`
+
 ## Interactive Q&A mode
 
 After the pipeline finishes, it drops into an interactive prompt:
@@ -186,7 +265,7 @@ To force a full re-extraction, delete the output directory or use a new `--outpu
 ## Running the test suite
 
 ```bash
-# Run all 417 tests
+# Run all 444 tests
 python -m pytest tests/ -q
 
 # Run a specific test file
@@ -215,7 +294,7 @@ Reports are written to the `reports/` directory.
 | Issue | Solution |
 |---|---|
 | `ModuleNotFoundError: No module named 'sentence_transformers'` | Install: `pip install sentence-transformers`. Pipeline will fall back to BM25-only if missing. |
-| `numpy` crash on import | Ensure `numpy<2` is installed: `pip install "numpy>=1.20,<2"` |
+| `numpy` build failure during install | Python 3.13 cannot build numpy 1.x from source. The requirement is now `numpy>=1.26` which installs pre-built numpy 2.x wheels on Python 3.13. Delete your venv and reinstall. |
 | PDF not found | Set the env var (`MALARIA_PDF` or `UGANDA_PDF`) or pass `--pdf /absolute/path` |
 | Slow first run | The first run downloads embedding models (~90 MB). Subsequent runs use the cached model. |
 | `EOFError` in scripts | The Q&A loop handles EOF gracefully. Use `Ctrl+C` or pipe `echo quit` for non-interactive runs. |

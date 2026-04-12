@@ -23,7 +23,7 @@ from .response import (
     ResponseOrchestrator,
     infer_triage_from_query,
 )
-from .retriever import HybridRetriever
+from .retriever import HybridRetriever, MEDICAL_EMBED_MODEL
 from .clinical_verifier import ClinicalVerifier
 
 
@@ -120,6 +120,14 @@ class MedicalQASystem:
         retrieval_units = children if children else self.chunks
         self._retriever = HybridRetriever(
             retrieval_units,
+            # PubMedBERT was trained on PubMed biomedical literature and
+            # understands clinical vocabulary that a general web-search model
+            # (all-MiniLM-L6-v2) cannot: antepartum ≠ postpartum, APH ≠ PPH,
+            # haemorrhage ≠ infection, etc.  This resolves the core retrieval
+            # quality problem where obstetric/clinical queries retrieve the
+            # wrong section.  The FAISS index is built in memory at startup from
+            # the saved chunks.json — no PDF re-processing is needed.
+            embed_model_name=MEDICAL_EMBED_MODEL,
             drug_keywords=getattr(self.config, "drug_keywords", None),
             condition_patterns=getattr(self.config, "condition_patterns", None),
         )
@@ -204,6 +212,14 @@ class MedicalQASystem:
         retrieval_units = children if children else self.chunks
         self._retriever = HybridRetriever(
             retrieval_units,
+            # PubMedBERT was trained on PubMed biomedical literature and
+            # understands clinical vocabulary that a general web-search model
+            # (all-MiniLM-L6-v2) cannot: antepartum ≠ postpartum, APH ≠ PPH,
+            # haemorrhage ≠ infection, etc.  This resolves the core retrieval
+            # quality problem where obstetric/clinical queries retrieve the
+            # wrong section.  The FAISS index is built in memory at startup from
+            # the saved chunks.json — no PDF re-processing is needed.
+            embed_model_name=MEDICAL_EMBED_MODEL,
             drug_keywords=getattr(self.config, "drug_keywords", None),
             condition_patterns=getattr(self.config, "condition_patterns", None),
         )
@@ -297,7 +313,7 @@ class MedicalQASystem:
 
         response += self._guardrail_evidence_footer(sources, query)
 
-        validation = self.guardrail.validate_response(query, response)
+        validation = self.guardrail.validate_response(query, response, chunks_top)
 
         if not validation["passed"] or validation["warnings"]:
             response += "\n---\n"
@@ -330,6 +346,60 @@ class MedicalQASystem:
             self._response_orchestrator = ResponseOrchestrator()
         return self._response_orchestrator
 
+    # ------------------------------------------------------------------
+    # Offline query preprocessing
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _preprocess_query(query: str) -> str:
+        """
+        Rewrite a conversational query into a retrieval-optimised form.
+        Runs entirely offline — no API calls, no internet access.
+
+        Two steps:
+        1. Strip conversational framing ("A lady has...", "My child is...")
+           so the retriever sees clinical terms, not pronouns and filler.
+        2. Expand key medical terms with synonyms so BM25 and dense
+           retrieval find relevant chunks even when the user's phrasing
+           differs from the guideline's vocabulary.
+        """
+        _CONV_INTRO = re.compile(
+            r"^(?:a |an |the )?"
+            r"(?:patient|lady|woman|child|infant|baby|man|boy|girl|person|mother|"
+            r"male|female|adult|toddler|neonate|newborn)\s+"
+            r"(?:has |have |is |was |presents?\s+(?:with\s+)?|"
+            r"comes?\s+in\s+(?:with\s+)?|complains?\s+of\s+)?",
+            re.IGNORECASE,
+        )
+        # Synonym map: only entries where the user's term is genuinely different
+        # from the document's term in a way the embedding model cannot bridge.
+        # Do NOT add per-symptom or per-condition entries — for normal medical
+        # vocabulary BM25 handles exact matching and the cross-encoder handles
+        # semantic matching without help.  US↔British spelling is handled
+        # separately by HybridRetriever._normalize_medical_spelling().
+        _SYNONYMS: List[tuple] = [
+            # Lay / consumer terms whose clinical equivalents look completely different
+            (r"\bappendicitis\b",   "appendicitis acute abdomen right iliac fossa"),
+            (r"\bheart attack\b",   "heart attack myocardial infarction cardiac"),
+            (r"\bstroke\b",         "stroke cerebrovascular accident CVA"),
+            (r"\bhigh blood pressure\b", "high blood pressure hypertension"),
+        ]
+
+        q = query.strip()
+        # Strip conversational introduction
+        q_stripped = _CONV_INTRO.sub("", q).strip()
+        if len(q_stripped) >= 8:  # only use stripped version if something remains
+            q = q_stripped
+
+        # Append synonyms for matched terms
+        for pattern, expansion in _SYNONYMS:
+            if re.search(pattern, q, re.IGNORECASE):
+                for syn in expansion.split():
+                    if syn.lower() not in q.lower():
+                        q = q + " " + syn
+
+        return q if q.strip() else query
+
     def answer_with_response(self, query: str) -> Dict[str, Any]:
         """
         Full pipeline output: BM25 + guardrail + VHT response layer (standard,
@@ -337,7 +407,16 @@ class MedicalQASystem:
         """
         assert self.guardrail is not None
 
-        _, sources, retrieved_chunks = self._retrieve_top_k(query, 5)
+        # Preprocess the query offline before retrieval (strips conversational
+        # framing, expands medical synonyms).  The original query is kept for
+        # triage inference, response formatting, and display.
+        retrieval_query = self._preprocess_query(query)
+        # Retrieve 8 candidates so the demographic context filter has more to
+        # work with.  For a late-pregnancy query the filter may discard 2-3
+        # postpartum / pediatric / early-pregnancy chunks; starting from 8
+        # means the APH-specific chunk is more likely to survive into the
+        # top-3 that drive content extraction.
+        _, sources, retrieved_chunks = self._retrieve_top_k(retrieval_query, 8)
 
         response = f"**{self.config.document_title}**\n\n"
         response += f"**Question:** {query}\n\n"
@@ -347,7 +426,7 @@ class MedicalQASystem:
             response += f"📄 **Reference:** Page {s['page']}\n\n"
 
         response += self._guardrail_evidence_footer(sources, query)
-        validation = self.guardrail.validate_response(query, response)
+        validation = self.guardrail.validate_response(query, response, retrieved_chunks)
 
         if not validation["passed"] or validation["warnings"]:
             response += "\n---\n**🧪 Guardrail Brain Validation:**\n\n"
@@ -387,4 +466,7 @@ class MedicalQASystem:
             "referral_note": orch.formatter.format(structured, ResponseFormat.REFERRAL),
             "quick_summary": orch.formatter.format(structured, ResponseFormat.VHT_QUICK),
             "structured": structured,
+            # Raw retrieved chunks — used by chat.py for "no match" detection
+            # via the _ce_best_raw field set by the retriever.
+            "_retrieved_chunks": retrieved_chunks,
         }
